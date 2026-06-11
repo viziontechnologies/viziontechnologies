@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vizion Technology Solutions — Bringing Your Vision into Focus</title>
+
+  <!-- SEO -->
+  <meta name="description"
+    content="Vizion Technology Solutions — Custom software development in Harare, Zimbabwe. Web apps, mobile apps, fleet management systems. Free prototype before you pay.">
+  <meta name="keywords"
+    content="software development Zimbabwe, web development Harare, mobile app development, fleet management system, custom software Zimbabwe">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://vizion.co.zw">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Vizion Technology Solutions">
+  <meta property="og:description"
+    content="Bringing Your Vision into Focus. Custom web and mobile software built for your business.">
+  <meta property="og:image" content="assets/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vizion.co.zw">
+  <meta property="og:locale" content="en_ZW">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vizion Technology Solutions">
+  <meta name="twitter:description" content="Custom software built in Harare, Zimbabwe. Free prototype before you pay.">
+  <meta name="twitter:image" content="assets/logo.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- GSAP (deferred — executes in order after DOM is ready) -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script defer src="js/main.js"></script>
+</head>
+
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cur" aria-hidden="true"></div>
+  <div class="cursor-follower" id="curf" aria-hidden="true"></div>
+
+  <!-- Cookie Notice -->
+  <div class="cookie-bar" id="cookieBar" role="region" aria-label="Cookie notice">
+    <p>We use analytics to improve your experience. <a href="#" onclick="return false">Learn more</a></p>
+    <button class="cookie-accept" id="cookieAccept">Accept</button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div class="mob-nav" id="mobNav" role="dialog" aria-label="Navigation menu" aria-modal="true">
+    <a href="#about" onclick="closeMob()">About</a>
+    <a href="#services" onclick="closeMob()">Services</a>
+    <a href="#process" onclick="closeMob()">How we work</a>
+    <a href="#stack" onclick="closeMob()">Tech stack</a>
+    <a href="portfolio.html" onclick="closeMob()">Portfolio</a>
+    <a href="#contact" onclick="closeMob()">Contact</a>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="mainNav" role="navigation" aria-label="Main navigation">
+    <a href="#" class="nav-logo" aria-label="Vizion Technology Solutions — Home">
+      <img src="assets/logo.png" alt="Vizion Technology Solutions" width="120" height="34">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">How we work</a></li>
+      <li><a href="#stack">Tech stack</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="#contact" class="nav-cta">Free prototype</a></li>
+    </ul>
+    <button class="nav-hamburger" onclick="toggleMob()" aria-label="Open navigation menu" aria-expanded="false"
+      aria-controls="mobNav">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── Hero ───────────────────────────────────────────────────── -->
+  <section class="hero" id="home" aria-label="Hero">
+    <div class="hero-noise" aria-hidden="true"></div>
+    <div class="orb orb1" aria-hidden="true"></div>
+    <div class="orb orb2" aria-hidden="true"></div>
+    <canvas id="heroCanvas" aria-hidden="true" style="position:absolute;inset:0;pointer-events:none"></canvas>
+    <div class="hero-content">
+      <div class="hero-tag" id="hTag"><span class="htdot" aria-hidden="true"></span>Zimbabwe-based software agency</div>
+      <h1 class="hero-h1" id="hH1">
+        <span class="ln"><span>Bringing your</span></span>
+        <span class="ln"><span><em>vision</em> <strong>into</strong></span></span>
+        <span class="ln"><span><strong>focus.</strong></span></span>
+      </h1>
+      <p class="hero-sub" id="hSub">We design and build custom software systems — web apps, mobile apps, and business
+        management platforms that work exactly the way your business does.</p>
+      <div class="hero-acts" id="hActs">
+        <a href="#contact" class="btn-glow">Get a free prototype &rarr;</a>
+        <a href="#services" class="btn-outline">See what we build</a>
+      </div>
+    </div>
+    <div class="hero-scroll" id="hScroll" aria-hidden="true">
+      <div class="scroll-line"></div>Scroll to explore
+    </div>
+  </section>
+
+  <!-- Marquee Ticker -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track" id="mqTrack"></div>
+  </div>
+
+  <!-- ── About ──────────────────────────────────────────────────── -->
+  <section class="intro" id="about" aria-labelledby="about-heading">
+    <div class="intro-grid">
+      <div>
+        <p class="s-lbl reveal" style="color:var(--blue-mid)">About Vizion</p>
+        <h2 class="s-title reveal" style="color:#fff" id="about-heading">We build software that solves real problems.
+        </h2>
+        <p class="s-sub reveal" style="color:rgba(255,255,255,.45);margin-bottom:1.2rem">Vizion Technology Solutions is
+          a software development agency based in Harare, Zimbabwe. We specialise in custom business management systems,
+          web applications, and mobile apps built around your exact operations.</p>
+        <p class="s-sub reveal" style="color:rgba(255,255,255,.3)">We don't use templates. Every system we deliver is
+          designed from scratch — and we show you a clickable prototype before you spend a single dollar.</p>
+        <div class="intro-stats reveal">
+          <div class="i-stat">
+            <div class="stat-n">$<span>0</span></div>
+            <div class="stat-l">Cost to see your prototype before committing</div>
+          </div>
+          <div class="i-stat">
+            <div class="stat-n">2<span>mo</span></div>
+            <div class="stat-l">Typical delivery from kickoff to go-live</div>
+          </div>
+          <div class="i-stat">
+            <div class="stat-n">90<span>d</span></div>
+            <div class="stat-l">Post-launch support at no extra charge</div>
+          </div>
+          <div class="i-stat">
+            <div class="stat-n">5<span>+</span></div>
+            <div class="stat-l">Core modules in every management system</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="i-card">
+          <div class="card-tag"><span class="ctdot" aria-hidden="true"></span>Our offer</div>
+          <h3>See your system before you pay for it.</h3>
+          <p>We design a full clickable prototype of your system — every screen, every module — and present it before
+            any payment is made. You interact with it, request changes, and only proceed once satisfied.</p>
+          <div class="free-badge">&#10003; Free discovery &mdash; no obligation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Services ───────────────────────────────────────────────── -->
+  <section class="services" id="services" aria-labelledby="services-heading">
+    <p class="s-lbl reveal" style="color:var(--blue-mid)">What we build</p>
+    <h2 class="s-title reveal" style="color:#fff" id="services-heading">Custom systems for every operation.</h2>
+    <p class="s-sub reveal" style="color:rgba(255,255,255,.4)">From fleet management to mobile apps — built to fit your
+      business, not the other way around.</p>
+    <div class="svc-grid reveal">
+      <div class="svc">
+        <span class="svc-n">01</span>
+        <span class="svc-icon" aria-hidden="true">&#x1F697;</span>
+        <h3>Fleet &amp; Rental Management</h3>
+        <p>Vehicle tracking, rental agreements, maintenance scheduling, insurance alerts, and financial ROI reporting.
+        </p>
+        <span class="svc-arr" aria-hidden="true">&#x2197;</span>
+      </div>
+      <div class="svc">
+        <span class="svc-n">02</span>
+        <span class="svc-icon" aria-hidden="true">&#x1F4E6;</span>
+        <h3>Inventory &amp; Stock Systems</h3>
+        <p>Real-time inventory tracking, purchase orders, supplier management, and low-stock alerts.</p>
+        <span class="svc-arr" aria-hidden="true">&#x2197;</span>
+      </div>
+      <div class="svc">
+        <span class="svc-n">03</span>
+        <span class="svc-icon" aria-hidden="true">&#x1F4BC;</span>
+        <h3>Business Management</h3>
+        <p>CRM, invoicing, project management, and reporting tools that give complete operational visibility.</p>
+        <span class="svc-arr" aria-hidden="true">&#x2197;</span>
+      </div>
+      <div class="svc">
+        <span class="svc-n">04</span>
+        <span class="svc-icon" aria-hidden="true">&#x1F4F1;</span>
+        <h3>Web &amp; Mobile Apps</h3>
+        <p>Custom applications for web, iOS, and Android — responsive, fast, and designed for real-world use.</p>
+        <span class="svc-arr" aria-hidden="true">&#x2197;</span>
+      </div>
+      <div class="svc">
+        <span class="svc-n">05</span>
+        <span class="svc-icon" aria-hidden="true">&#x1F4CA;</span>
+        <h3>Dashboards &amp; Analytics</h3>
+        <p>Data visualisation that turns your raw numbers into clear, actionable business insights.</p>
+        <span class="svc-arr" aria-hidden="true">&#x2197;</span>
+      </div>
+      <div class="svc">
+        <span class="svc-n">06</span>
+        <span class="svc-icon" aria-hidden="true">&#x1F517;</span>
+        <h3>System Integrations</h3>
+        <p>Connect your tools — accounting software, payment gateways, GPS — into one unified platform.</p>
+        <span class="svc-arr" aria-hidden="true">&#x2197;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Process ────────────────────────────────────────────────── -->
+  <section class="process" id="process" aria-labelledby="process-heading">
+    <p class="s-lbl reveal" style="color:var(--blue-mid)">How we work</p>
+    <h2 class="s-title reveal" style="color:#fff" id="process-heading">Four steps. Zero surprises.</h2>
+    <p class="s-sub reveal" style="color:rgba(255,255,255,.4)">You see progress at every stage — starting before you
+      even pay.</p>
+    <div class="proc-wrap">
+      <div class="p-step reveal">
+        <div class="p-n">STEP / 01</div>
+        <h3>Free Discovery</h3>
+        <p>We meet your team, understand your operations, and design a full clickable prototype of your system.</p><span
+          class="p-free">Free &mdash; no obligation</span>
+      </div>
+      <div class="p-step reveal">
+        <div class="p-n">STEP / 02</div>
+        <h3>You Approve</h3>
+        <p>You interact with the prototype, request changes, and sign off. Payment begins only once you're satisfied.
+        </p>
+      </div>
+      <div class="p-step reveal">
+        <div class="p-n">STEP / 03</div>
+        <h3>We Build</h3>
+        <p>Development with regular progress updates at every milestone. Always in plain language — never technical
+          jargon.</p>
+      </div>
+      <div class="p-step reveal">
+        <div class="p-n">STEP / 04</div>
+        <h3>Launch &amp; Support</h3>
+        <p>We deploy, train your team, and provide 90 days of post-launch support at no extra cost.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why Vizion ──────────────────────────────────────────────── -->
+  <section class="why" id="why" aria-labelledby="why-heading">
+    <p class="s-lbl reveal" style="color:rgba(255,255,255,.4)">Why Vizion</p>
+    <h2 class="s-title reveal" style="color:#fff" id="why-heading">We earn trust before we earn payment.</h2>
+    <p class="s-sub reveal" style="color:rgba(255,255,255,.5)">Working with a new developer is a risk. So we remove it —
+      you see the product before you pay for it.</p>
+    <div class="why-grid reveal">
+      <div class="w-item">
+        <div class="w-n">01</div>
+        <h3>Prototype before payment</h3>
+        <p>Full clickable prototype before any commitment. No guesswork — you see exactly what you're getting.</p>
+      </div>
+      <div class="w-item">
+        <div class="w-n">02</div>
+        <h3>Built for your workflow</h3>
+        <p>Designed around how your business actually operates — not a template adapted to your needs.</p>
+      </div>
+      <div class="w-item">
+        <div class="w-n">03</div>
+        <h3>Clear communication</h3>
+        <p>Regular updates, transparent timelines, and plain language. You always know where your project stands.</p>
+      </div>
+      <div class="w-item">
+        <div class="w-n">04</div>
+        <h3>90-day support guarantee</h3>
+        <p>Bug after launch? We fix it. No extra charge, no negotiation — accountability built into every project.</p>
+      </div>
+      <div class="w-item">
+        <div class="w-n">05</div>
+        <h3>Web and mobile, both</h3>
+        <p>Every system works on desktop, tablet, and mobile — so your team can work from anywhere.</p>
+      </div>
+      <div class="w-item">
+        <div class="w-n">06</div>
+        <h3>Flexible pricing</h3>
+        <p>Pricing and timelines are negotiable. We work within your budget and find what works for both sides.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA Band ────────────────────────────────────────────────── -->
+  <section class="cta-band" aria-label="Call to action">
+    <h2 class="reveal">Ready to see your system?</h2>
+    <p class="reveal">A full clickable prototype in one week. Completely free, no obligation.</p>
+    <div class="cta-feats reveal">
+      <span class="cta-feat"><span class="cta-chk" aria-hidden="true">&#10003;</span> Full UI prototype</span>
+      <span class="cta-feat"><span class="cta-chk" aria-hidden="true">&#10003;</span> 1 week delivery</span>
+      <span class="cta-feat"><span class="cta-chk" aria-hidden="true">&#10003;</span> No payment required</span>
+      <span class="cta-feat"><span class="cta-chk" aria-hidden="true">&#10003;</span> No obligation</span>
+      <span class="cta-feat"><span class="cta-chk" aria-hidden="true">&#10003;</span> Pricing negotiable</span>
+    </div>
+    <a href="#contact" class="btn-glow reveal" style="margin:0 auto">Start with a free prototype &rarr;</a>
+  </section>
+
+  <!-- ── Tech Stack ─────────────────────────────────────────────── -->
+  <section class="stack" id="stack" aria-labelledby="stack-heading">
+    <p class="s-lbl reveal" style="color:var(--blue-mid)">Technology</p>
+    <h2 class="s-title reveal" style="color:#fff" id="stack-heading">Built with modern, proven tools.</h2>
+    <p class="s-sub reveal" style="color:rgba(255,255,255,.4)">Industry-standard technologies that are reliable,
+      scalable, and supported long-term.</p>
+    <div class="stack-cont reveal">
+      <div class="stack-grp">
+        <div class="stack-grp-lbl">Frontend</div>
+        <div class="stack-pills">
+          <span class="s-pill">React</span>
+          <span class="s-pill">React Native</span>
+          <span class="s-pill">HTML5</span>
+          <span class="s-pill">CSS3</span>
+          <span class="s-pill">TypeScript</span>
+          <span class="s-pill">JavaScript</span>
+        </div>
+      </div>
+      <div class="stack-grp">
+        <div class="stack-grp-lbl">Backend</div>
+        <div class="stack-pills">
+          <span class="s-pill">Node.js</span>
+          <span class="s-pill">Express</span>
+          <span class="s-pill">REST APIs</span>
+          <span class="s-pill">JWT Auth</span>
+        </div>
+      </div>
+      <div class="stack-grp">
+        <div class="stack-grp-lbl">Database &amp; Storage</div>
+        <div class="stack-pills">
+          <span class="s-pill">PostgreSQL</span>
+          <span class="s-pill">MongoDB</span>
+          <span class="s-pill">Firebase</span>
+          <span class="s-pill">Cloudinary</span>
+        </div>
+      </div>
+      <div class="stack-grp">
+        <div class="stack-grp-lbl">Deployment &amp; Tools</div>
+        <div class="stack-pills">
+          <span class="s-pill">Vercel</span>
+          <span class="s-pill">Railway</span>
+          <span class="s-pill">Git &amp; GitHub</span>
+          <span class="s-pill">Figma</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ────────────────────────────────────────────────── -->
+  <section class="contact" id="contact" aria-labelledby="contact-heading">
+    <p class="s-lbl reveal" style="color:var(--blue-mid)">Get in touch</p>
+    <h2 class="s-title reveal" style="color:#fff" id="contact-heading">Let's talk about your project.</h2>
+    <p class="s-sub reveal" style="color:rgba(255,255,255,.4)">We respond within 24 hours.</p>
+    <div class="contact-grid">
+
+      <!-- Contact Form -->
+      <div class="reveal">
+        <!-- Replace YOUR_FORM_ID with your Formspree form ID -->
+        <form class="c-form" id="contactForm" action="https://formspree.io/f/xojbkzjw" method="POST">
+          <!-- Hidden fields for Formspree -->
+          <input type="hidden" name="_subject" value="New project inquiry — Vizion website">
+          <input type="hidden" name="_next" value="">
+
+          <div class="f-row">
+            <div class="fg">
+              <label for="f-name">Full name <span aria-hidden="true">*</span></label>
+              <input type="text" id="f-name" name="name" placeholder="John Doe" required autocomplete="name">
+              <span class="error-msg" aria-live="polite">Please enter your name</span>
+            </div>
+            <div class="fg">
+              <label for="f-company">Company</label>
+              <input type="text" id="f-company" name="company" placeholder="Your business name"
+                autocomplete="organization">
+            </div>
+          </div>
+
+          <div class="fg">
+            <label for="f-email">Email address <span aria-hidden="true">*</span></label>
+            <input type="email" id="f-email" name="email" placeholder="john@company.com" required autocomplete="email">
+            <span class="error-msg" aria-live="polite">Please enter your email address</span>
+          </div>
+
+          <div class="fg">
+            <label for="f-whatsapp">WhatsApp number</label>
+            <input type="tel" id="f-whatsapp" name="whatsapp" placeholder="+263 78 ..." autocomplete="tel">
+          </div>
+
+          <div class="fg">
+            <label for="f-service">What do you need?</label>
+            <select id="f-service" name="service">
+              <option value="">Select a service…</option>
+              <option>Fleet &amp; Rental Management System</option>
+              <option>Inventory &amp; Stock System</option>
+              <option>Business Management System</option>
+              <option>Web Application</option>
+              <option>Mobile App</option>
+              <option>Dashboard &amp; Reporting</option>
+              <option>Something else</option>
+            </select>
+          </div>
+
+          <div class="fg">
+            <label for="f-details">Project details <span aria-hidden="true">*</span></label>
+            <textarea id="f-details" name="message"
+              placeholder="Describe what you need, your timeline, and budget range…" required></textarea>
+            <span class="error-msg" aria-live="polite">Please describe your project</span>
+          </div>
+
+          <button type="submit" class="btn-sub">Send message &rarr;</button>
+        </form>
+
+        <!-- Success State -->
+        <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+          <span class="success-icon" aria-hidden="true">&#x2705;</span>
+          <h3>Message sent!</h3>
+          <p>Thanks for reaching out. We'll review your project and reply within 24 hours — usually much sooner. In the
+            meantime, feel free to <a href="https://wa.me/263784981844" style="color:var(--blue-mid)">message us on
+              WhatsApp</a>.</p>
+        </div>
+      </div>
+
+      <!-- Contact Aside -->
+      <div class="c-aside reveal">
+        <h3>We respond within 24 hours.</h3>
+        <p>Send us a message or reach us on WhatsApp — it's the fastest way to get started and schedule your free
+          prototype.</p>
+
+        <a class="c-det" href="https://wa.me/263784981844" target="_blank" rel="noopener"
+          aria-label="Chat on WhatsApp: +263 77 868 6550">
+          <div class="c-ico" aria-hidden="true">&#x1F4F1;</div>
+          <div>
+            <div class="c-lbl">WhatsApp</div>
+            <div class="c-txt">+263 77 868 6550</div>
+          </div>
+        </a>
+
+        <a class="c-det" href="mailto:hello@vizion.co.zw" aria-label="Send email to hello@vizion.co.zw">
+          <div class="c-ico" aria-hidden="true">&#x1F4E7;</div>
+          <div>
+            <div class="c-lbl">Email</div>
+            <div class="c-txt">hello@vizion.co.zw</div>
+          </div>
+        </a>
+
+        <div class="c-det" style="cursor:default">
+          <div class="c-ico" aria-hidden="true">&#x1F4CD;</div>
+          <div>
+            <div class="c-lbl">Based in</div>
+            <div class="c-txt">Harare, Zimbabwe</div>
+          </div>
+        </div>
+
+        <div class="c-promise">
+          <p><strong>Our promise:</strong> We design a clickable prototype of your system for free before you commit to
+            anything. Just reach out and we get started.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer role="contentinfo">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a href="#" class="f-logo" aria-label="Vizion Technology Solutions — Home">
+          <img src="assets/logo.png" alt="Vizion Technology Solutions" width="100" height="28" loading="lazy">
+        </a>
+        <p>Custom software built in Harare, Zimbabwe. We bring your vision into focus — before you pay a cent.</p>
+        <div class="footer-social">
+          <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="Vizion on LinkedIn">in</a>
+          <a href="https://github.com" target="_blank" rel="noopener" aria-label="Vizion on GitHub">gh</a>
+          <a href="https://wa.me/263784981844" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">wa</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#process">How we work</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Fleet &amp; Rental</a></li>
+          <li><a href="#services">Inventory Systems</a></li>
+          <li><a href="#services">Web &amp; Mobile Apps</a></li>
+          <li><a href="#stack">Tech stack</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="f-copy">&copy; 2026 Vizion Technology Solutions. Harare, Zimbabwe.</span>
+      <span class="f-built">Built by <a href="#">Vizion</a></span>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating Button -->
+  <div class="wa-float" aria-label="Chat on WhatsApp">
+    <a class="wa-btn" href="https://wa.me/263784981844" target="_blank" rel="noopener" aria-label="Open WhatsApp chat">
+      <!-- WhatsApp icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"
+        aria-hidden="true">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      </svg>
+    </a>
+    <span class="wa-tooltip" aria-hidden="true">Chat on WhatsApp</span>
+  </div>
+
+</body>
+
+</html>

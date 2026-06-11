@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Vizion Technology Solutions</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Vizion Technology Solutions portfolio — custom software projects built in Harare, Zimbabwe. Fleet systems, web apps, mobile apps, and business management platforms.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://vizion.co.zw/portfolio.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Portfolio — Vizion Technology Solutions">
+  <meta property="og:description" content="Custom software built in Harare, Zimbabwe. Explore our work.">
+  <meta property="og:image" content="assets/logo.png">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- GSAP -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cur" aria-hidden="true"></div>
+  <div class="cursor-follower" id="curf" aria-hidden="true"></div>
+
+  <!-- Cookie Notice -->
+  <div class="cookie-bar" id="cookieBar" role="region" aria-label="Cookie notice">
+    <p>We use analytics to improve your experience.</p>
+    <button class="cookie-accept" id="cookieAccept">Accept</button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div class="mob-nav" id="mobNav" role="dialog" aria-label="Navigation menu" aria-modal="true">
+    <a href="index.html#about"    onclick="closeMob()">About</a>
+    <a href="index.html#services" onclick="closeMob()">Services</a>
+    <a href="index.html#process"  onclick="closeMob()">How we work</a>
+    <a href="index.html#stack"    onclick="closeMob()">Tech stack</a>
+    <a href="portfolio.html"      onclick="closeMob()">Portfolio</a>
+    <a href="index.html#contact"  onclick="closeMob()">Contact</a>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="mainNav" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="Vizion Technology Solutions — Home">
+      <img src="assets/logo.png" alt="Vizion Technology Solutions" width="120" height="34">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#process">How we work</a></li>
+      <li><a href="index.html#stack">Tech stack</a></li>
+      <li><a href="portfolio.html" class="active">Portfolio</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Free prototype</a></li>
+    </ul>
+    <button class="nav-hamburger" onclick="toggleMob()" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobNav">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── Portfolio Hero ─────────────────────────────────────────── -->
+  <header class="portfolio-hero" aria-label="Portfolio hero">
+    <div class="hero-noise" aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="hero-tag" id="hTag"><span class="htdot" aria-hidden="true"></span>Our work</div>
+      <h1 class="hero-h1" id="hH1" style="font-size:clamp(2.8rem,5.5vw,5rem)">
+        <span class="ln"><span>Systems we've</span></span>
+        <span class="ln"><span><strong>designed</strong> &amp; <em>built.</em></span></span>
+      </h1>
+      <p class="hero-sub" id="hSub" style="opacity:1;transform:none;margin-top:1.5rem">From fleet platforms to mobile apps — real software solving real problems for real businesses.</p>
+    </div>
+  </header>
+
+  <!-- ── Portfolio Grid ─────────────────────────────────────────── -->
+  <section class="intro" id="work" aria-labelledby="work-heading" style="background:var(--dark)">
+    <p class="s-lbl reveal" style="color:var(--blue-mid)">Featured projects</p>
+    <h2 class="s-title reveal" style="color:#fff" id="work-heading">Selected work.</h2>
+    <p class="s-sub reveal" style="color:rgba(255,255,255,.4)">Every system below started with a free prototype — just like yours will.</p>
+
+    <div class="portfolio-grid">
+
+      <!-- Project 1: Fleet Management System -->
+      <article class="proj-card reveal" aria-label="FleetTrack Pro project">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#112235)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F697;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="proj-tag">Fleet</span>
+            <span class="proj-tag">React</span>
+            <span class="proj-tag">Node.js</span>
+            <span class="proj-tag">PostgreSQL</span>
+          </div>
+          <h3>FleetTrack Pro</h3>
+          <p>A comprehensive fleet and rental management platform for a transport company in Harare. Tracks vehicle status, rental agreements, maintenance schedules, insurance alerts, and generates ROI reports across 40+ vehicles.</p>
+          <div class="proj-meta">
+            <span class="proj-status">
+              <span class="proj-status-dot" aria-hidden="true"></span>
+              Live &mdash; ongoing support
+            </span>
+            <a href="index.html#contact" class="proj-link" aria-label="Build a similar system">
+              Build similar &rarr;
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2: Inventory System -->
+      <article class="proj-card reveal" aria-label="StockSense inventory system project">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#0a1929)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F4E6;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="proj-tag">Inventory</span>
+            <span class="proj-tag">React</span>
+            <span class="proj-tag">Firebase</span>
+            <span class="proj-tag">Mobile</span>
+          </div>
+          <h3>StockSense</h3>
+          <p>Real-time inventory management for a hardware retailer with three branches. Features barcode scanning via mobile app, automated purchase order generation, supplier management, and low-stock alerts sent via WhatsApp.</p>
+          <div class="proj-meta">
+            <span class="proj-status">
+              <span class="proj-status-dot" aria-hidden="true"></span>
+              Live &mdash; 3 locations
+            </span>
+            <a href="index.html#contact" class="proj-link" aria-label="Build a similar system">
+              Build similar &rarr;
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 3: Business Management / CRM -->
+      <article class="proj-card reveal" aria-label="OperationsHub business management project">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#0e1e33)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F4BC;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="proj-tag">CRM</span>
+            <span class="proj-tag">Invoicing</span>
+            <span class="proj-tag">Node.js</span>
+            <span class="proj-tag">PostgreSQL</span>
+          </div>
+          <h3>OperationsHub</h3>
+          <p>An all-in-one business management platform for a Zimbabwean consulting firm. Combines CRM, project tracking, client invoicing with multi-currency support, and an executive dashboard showing real-time revenue and pipeline metrics.</p>
+          <div class="proj-meta">
+            <span class="proj-status">
+              <span class="proj-status-dot" aria-hidden="true"></span>
+              Live &mdash; 12 team members
+            </span>
+            <a href="index.html#contact" class="proj-link" aria-label="Build a similar system">
+              Build similar &rarr;
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 4: Mobile App -->
+      <article class="proj-card reveal" aria-label="FieldOps mobile app project">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#0f2030)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F4F1;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="proj-tag">Mobile</span>
+            <span class="proj-tag">React Native</span>
+            <span class="proj-tag">GPS</span>
+            <span class="proj-tag">iOS &amp; Android</span>
+          </div>
+          <h3>FieldOps</h3>
+          <p>A field-service management app for a property maintenance company. Technicians receive job dispatches, log site visits with GPS, capture before/after photos, and submit reports — all offline-capable for areas with poor connectivity.</p>
+          <div class="proj-meta">
+            <span class="proj-status">
+              <span class="proj-status-dot" aria-hidden="true"></span>
+              Live &mdash; iOS &amp; Android
+            </span>
+            <a href="index.html#contact" class="proj-link" aria-label="Build a similar app">
+              Build similar &rarr;
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── CTA ────────────────────────────────────────────────────── -->
+  <section class="cta-section" aria-label="Start your project">
+    <p class="s-lbl reveal" style="color:var(--blue-mid);justify-content:center">Start your project</p>
+    <h2 class="reveal">Your system is next.</h2>
+    <p class="reveal">Every project above started with a free discovery session and a clickable prototype. Yours will too.</p>
+    <a href="index.html#contact" class="btn-glow reveal" style="margin:0 auto">Get a free prototype &rarr;</a>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer role="contentinfo">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a href="index.html" class="f-logo" aria-label="Vizion Technology Solutions — Home">
+          <img src="assets/logo.png" alt="Vizion Technology Solutions" width="100" height="28" loading="lazy">
+        </a>
+        <p>Custom software built in Harare, Zimbabwe. We bring your vision into focus — before you pay a cent.</p>
+        <div class="footer-social">
+          <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="Vizion on LinkedIn">in</a>
+          <a href="https://github.com"   target="_blank" rel="noopener" aria-label="Vizion on GitHub">gh</a>
+          <a href="https://wa.me/263784981844" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">wa</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#process">How we work</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="index.html#services">Fleet &amp; Rental</a></li>
+          <li><a href="index.html#services">Inventory Systems</a></li>
+          <li><a href="index.html#services">Web &amp; Mobile Apps</a></li>
+          <li><a href="index.html#stack">Tech stack</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="f-copy">&copy; 2026 Vizion Technology Solutions. Harare, Zimbabwe.</span>
+      <span class="f-built">Built by <a href="index.html">Vizion</a></span>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating Button -->
+  <div class="wa-float" aria-label="Chat on WhatsApp">
+    <a class="wa-btn"
+       href="https://wa.me/263784981844"
+       target="_blank"
+       rel="noopener"
+       aria-label="Open WhatsApp chat">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    </a>
+    <span class="wa-tooltip" aria-hidden="true">Chat on WhatsApp</span>
+  </div>
+
+</body>
+</html>
