@@ -4,367 +4,665 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vizion Technology Solutions — Bringing Your Vision into Focus</title>
+  <title>Vizion Technologies — Custom Software for SMEs in Zimbabwe</title>
 
-  <!-- SEO -->
-  <meta name="description"
-    content="Vizion Technology Solutions — Custom software development in Harare, Zimbabwe. Web apps, mobile apps, fleet management systems. Free prototype before you pay.">
-  <meta name="keywords"
-    content="software development Zimbabwe, web development Harare, mobile app development, fleet management system, custom software Zimbabwe">
+  <meta name="description" content="Vizion Technologies builds custom software for businesses in Harare, Zimbabwe — POS systems, fleet management, web apps, mobile apps. Free prototype before you pay.">
+  <meta name="keywords" content="software development Zimbabwe, POS system Harare, inventory system Zimbabwe, custom software SME, fleet management Zimbabwe, web development Harare">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://vizion.co.zw">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Vizion Technology Solutions">
-  <meta property="og:description"
-    content="Bringing Your Vision into Focus. Custom web and mobile software built for your business.">
+  <meta property="og:title" content="Vizion Technologies — Custom Software for SMEs in Zimbabwe">
+  <meta property="og:description" content="Running your business on WhatsApp and notebooks? We build the software that changes that. Free prototype before you pay.">
   <meta property="og:image" content="assets/logo.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://vizion.co.zw">
   <meta property="og:locale" content="en_ZW">
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Vizion Technology Solutions">
-  <meta name="twitter:description" content="Custom software built in Harare, Zimbabwe. Free prototype before you pay.">
+  <meta name="twitter:title" content="Vizion Technologies">
+  <meta name="twitter:description" content="Custom software for businesses in Zimbabwe. Free prototype to start.">
   <meta name="twitter:image" content="assets/logo.png">
 
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@300;400;500&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- GSAP (deferred — executes in order after DOM is ready) -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script defer src="js/main.js"></script>
 </head>
 
 <body>
+  <a class="skip-link" href="#home">Skip to content</a>
 
-  <!-- Scroll Progress Bar -->
   <div id="scroll-progress" aria-hidden="true"></div>
 
-  <!-- Custom Cursor -->
   <div class="cursor" id="cur" aria-hidden="true"></div>
   <div class="cursor-follower" id="curf" aria-hidden="true"></div>
 
-  <!-- Cookie Notice -->
   <div class="cookie-bar" id="cookieBar" role="region" aria-label="Cookie notice">
     <p>We use analytics to improve your experience. <a href="#" onclick="return false">Learn more</a></p>
     <button class="cookie-accept" id="cookieAccept">Accept</button>
   </div>
 
-  <!-- Mobile Navigation -->
-  <div class="mob-nav" id="mobNav" role="dialog" aria-label="Navigation menu" aria-modal="true">
+  <!-- Mobile Nav -->
+  <div class="mob-nav" id="mobNav" role="dialog" aria-label="Navigation menu" aria-modal="true" tabindex="-1">
+    <button class="mob-close" onclick="closeMob()" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
     <a href="#about" onclick="closeMob()">About</a>
     <a href="#services" onclick="closeMob()">Services</a>
     <a href="#process" onclick="closeMob()">How we work</a>
-    <a href="#stack" onclick="closeMob()">Tech stack</a>
+    <a href="#pricing" onclick="closeMob()">Pricing</a>
     <a href="portfolio.html" onclick="closeMob()">Portfolio</a>
     <a href="#contact" onclick="closeMob()">Contact</a>
   </div>
 
-  <!-- Navigation -->
+  <!-- Nav -->
   <nav id="mainNav" role="navigation" aria-label="Main navigation">
-    <a href="#" class="nav-logo" aria-label="Vizion Technology Solutions — Home">
-      <img src="assets/logo.png" alt="Vizion Technology Solutions" width="120" height="34">
+    <a href="#" class="nav-logo" aria-label="Vizion Technologies — Home">
+      <img src="assets/logo.png" alt="Vizion Technologies">
     </a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#process">How we work</a></li>
-      <li><a href="#stack">Tech stack</a></li>
+      <li><a href="#pricing">Pricing</a></li>
       <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="#contact" class="nav-cta">Free prototype</a></li>
+      <li><a href="#contact" class="nav-cta">Free consultation</a></li>
     </ul>
-    <button class="nav-hamburger" onclick="toggleMob()" aria-label="Open navigation menu" aria-expanded="false"
-      aria-controls="mobNav">
+    <button id="navHamburger" class="nav-hamburger" onclick="toggleMob()" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobNav">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <!-- ── Hero ───────────────────────────────────────────────────── -->
+  <!-- ── HERO ──────────────────────────────────────────────────── -->
   <section class="hero" id="home" aria-label="Hero">
-    <div class="hero-noise" aria-hidden="true"></div>
-    <div class="orb orb1" aria-hidden="true"></div>
-    <div class="orb orb2" aria-hidden="true"></div>
-    <canvas id="heroCanvas" aria-hidden="true" style="position:absolute;inset:0;pointer-events:none"></canvas>
-    <div class="hero-content">
-      <div class="hero-tag" id="hTag"><span class="htdot" aria-hidden="true"></span>Zimbabwe-based software agency</div>
-      <h1 class="hero-h1" id="hH1">
-        <span class="ln"><span>Bringing your</span></span>
-        <span class="ln"><span><em>vision</em> <strong>into</strong></span></span>
-        <span class="ln"><span><strong>focus.</strong></span></span>
-      </h1>
-      <p class="hero-sub" id="hSub">We design and build custom software systems — web apps, mobile apps, and business
-        management platforms that work exactly the way your business does.</p>
-      <div class="hero-acts" id="hActs">
-        <a href="#contact" class="btn-glow">Get a free prototype &rarr;</a>
-        <a href="#services" class="btn-outline">See what we build</a>
+    <div class="hero-blob1" aria-hidden="true"></div>
+    <div class="hero-blob2" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge" id="hBadge">
+          <span class="badge-dot" aria-hidden="true"></span>
+          Custom software for SMEs in Zimbabwe
+        </div>
+
+        <h1 class="hero-h1" id="hH1">
+          <span class="ln"><span>Running your business</span></span>
+          <span class="ln"><span>on WhatsApp &amp;</span></span>
+          <span class="ln"><span>notebooks?</span></span>
+          <span class="ln hero-fix"><span>We can fix that.</span></span>
+        </h1>
+
+        <p class="hero-sub" id="hSub">We build custom software for businesses in Harare — systems that track your stock, manage your operations, and give you real insight into your numbers. You see a free prototype before you pay a cent.</p>
+
+        <div class="hero-actions" id="hActs">
+          <a href="#contact" class="btn-primary">
+            Book a Free Consultation
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#case-study" class="btn-ghost">See Our Work</a>
+        </div>
+
+        <div class="hero-trust" id="hTrust">
+          <span class="ht-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            Harare, Zimbabwe
+          </span>
+          <span class="ht-dot" aria-hidden="true"></span>
+          <span class="ht-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Free prototype first
+          </span>
+          <span class="ht-dot" aria-hidden="true"></span>
+          <span class="ht-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            15+ systems delivered
+          </span>
+        </div>
+      </div>
+
+      <div class="hero-visual" id="hVis">
+        <div class="vis-card">
+          <div class="vis-topbar" aria-hidden="true">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          </div>
+          <img src="assets/hero_device_mockup.png" alt="Custom business software built by Vizion Technologies" loading="eager">
+        </div>
+        <div class="vis-float vis-float-1" aria-hidden="true">
+          <span class="vf-icon">&#128200;</span>
+          <div><div class="vf-val">+32%</div><div class="vf-lbl">Revenue tracked</div></div>
+        </div>
+        <div class="vis-float vis-float-2" aria-hidden="true">
+          <span class="vf-icon">&#10003;</span>
+          <div><div class="vf-val">0 errors</div><div class="vf-lbl">Stock discrepancies</div></div>
+        </div>
       </div>
     </div>
+
     <div class="hero-scroll" id="hScroll" aria-hidden="true">
-      <div class="scroll-line"></div>Scroll to explore
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
     </div>
   </section>
 
-  <!-- Marquee Ticker -->
+  <!-- ── MARQUEE ────────────────────────────────────────────────── -->
   <div class="marquee-wrap" aria-hidden="true">
     <div class="marquee-track" id="mqTrack"></div>
   </div>
 
-  <!-- ── About ──────────────────────────────────────────────────── -->
-  <section class="intro" id="about" aria-labelledby="about-heading">
-    <div class="intro-grid">
-      <div>
-        <p class="s-lbl reveal" style="color:var(--blue-mid)">About Vizion</p>
-        <h2 class="s-title reveal" style="color:#fff" id="about-heading">We build software that solves real problems.
-        </h2>
-        <p class="s-sub reveal" style="color:rgba(255,255,255,.45);margin-bottom:1.2rem">Vizion Technology Solutions is
-          a software development agency based in Harare, Zimbabwe. We specialise in custom business management systems,
-          web applications, and mobile apps built around your exact operations.</p>
-        <p class="s-sub reveal" style="color:rgba(255,255,255,.3)">We don't use templates. Every system we deliver is
-          designed from scratch — and we show you a clickable prototype before you spend a single dollar.</p>
-        <div class="intro-stats reveal">
-          <div class="i-stat">
-            <div class="stat-n">$<span>0</span></div>
-            <div class="stat-l">Cost to see your prototype before committing</div>
-          </div>
-          <div class="i-stat">
-            <div class="stat-n">2<span>mo</span></div>
-            <div class="stat-l">Typical delivery from kickoff to go-live</div>
-          </div>
-          <div class="i-stat">
-            <div class="stat-n">90<span>d</span></div>
-            <div class="stat-l">Post-launch support at no extra charge</div>
-          </div>
-          <div class="i-stat">
-            <div class="stat-n">5<span>+</span></div>
-            <div class="stat-l">Core modules in every management system</div>
+  <!-- ── SOCIAL PROOF ───────────────────────────────────────────── -->
+  <section class="social-proof" id="about" aria-labelledby="sp-heading">
+    <div class="stats-row reveal">
+      <div class="stat-card">
+        <div class="stat-n">15<span>+</span></div>
+        <div class="stat-l">Systems delivered</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">12<span>+</span></div>
+        <div class="stat-l">Zimbabwe businesses served</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">$0</div>
+        <div class="stat-l">Cost to see your prototype</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">90<span>d</span></div>
+        <div class="stat-l">Free post-launch support</div>
+      </div>
+    </div>
+
+    <div class="sec-hd">
+      <p class="s-lbl reveal" id="sp-heading">Trusted by businesses in Harare</p>
+      <h2 class="s-title reveal">Real businesses, real results.</h2>
+      <p class="s-sub reveal">Don't take our word for it — here's what our clients say.</p>
+    </div>
+
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <div class="test-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote class="test-q">"Before Vizion, we were managing 18 vehicles in a WhatsApp group. Double bookings, missed maintenance, no idea what we were making each month. Now everything is in one dashboard and the business basically runs itself."</blockquote>
+        <div class="test-author">
+          <div class="test-av">TM</div>
+          <div>
+            <div class="test-name">T. Moyo</div>
+            <div class="test-role">Fleet Manager · Vehicle Rental Co., Harare</div>
           </div>
         </div>
       </div>
-      <div class="reveal">
-        <div class="i-card">
-          <div class="card-tag"><span class="ctdot" aria-hidden="true"></span>Our offer</div>
-          <h3>See your system before you pay for it.</h3>
-          <p>We design a full clickable prototype of your system — every screen, every module — and present it before
-            any payment is made. You interact with it, request changes, and only proceed once satisfied.</p>
-          <div class="free-badge">&#10003; Free discovery &mdash; no obligation</div>
+      <div class="test-card reveal">
+        <div class="test-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote class="test-q">"We had stock going missing constantly and couldn't figure out where. Vizion built us an inventory system and within the first month we'd already recovered losses that paid for the whole project."</blockquote>
+        <div class="test-author">
+          <div class="test-av">SN</div>
+          <div>
+            <div class="test-name">S. Ncube</div>
+            <div class="test-role">Owner · Hardware &amp; Supplies, Harare</div>
+          </div>
         </div>
+      </div>
+      <div class="test-card reveal">
+        <div class="test-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote class="test-q">"I was sceptical about spending money on software for a small business. Then I saw the prototype — it was exactly what I'd been imagining. The system went live in 5 weeks. I wish I'd done this years ago."</blockquote>
+        <div class="test-author">
+          <div class="test-av">RC</div>
+          <div>
+            <div class="test-name">R. Chikwanda</div>
+            <div class="test-role">Director · Logistics &amp; Distribution, Harare</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trusted by -->
+    <div class="trusted-by reveal">
+      <p class="tb-lbl">Industries we've worked with</p>
+      <div class="tb-list">
+        <span class="tb-item">Fleet &amp; Rentals</span>
+        <span class="tb-sep" aria-hidden="true">·</span>
+        <span class="tb-item">Retail &amp; Hardware</span>
+        <span class="tb-sep" aria-hidden="true">·</span>
+        <span class="tb-item">Logistics &amp; Transport</span>
+        <span class="tb-sep" aria-hidden="true">·</span>
+        <span class="tb-item">Food &amp; Hospitality</span>
+        <span class="tb-sep" aria-hidden="true">·</span>
+        <span class="tb-item">Professional Services</span>
+        <span class="tb-sep" aria-hidden="true">·</span>
+        <span class="tb-item">Construction &amp; Trade</span>
       </div>
     </div>
   </section>
 
-  <!-- ── Services ───────────────────────────────────────────────── -->
-  <section class="services" id="services" aria-labelledby="services-heading">
-    <p class="s-lbl reveal" style="color:var(--blue-mid)">What we build</p>
-    <h2 class="s-title reveal" style="color:#fff" id="services-heading">Custom systems for every operation.</h2>
-    <p class="s-sub reveal" style="color:rgba(255,255,255,.4)">From fleet management to mobile apps — built to fit your
-      business, not the other way around.</p>
-    <div class="svc-grid reveal">
-      <div class="svc">
-        <span class="svc-n">01</span>
-        <span class="svc-icon" aria-hidden="true">&#x1F697;</span>
+  <!-- ── SERVICES ───────────────────────────────────────────────── -->
+  <section class="services" id="services" aria-labelledby="svc-heading">
+    <div class="sec-hd">
+      <p class="s-lbl reveal">What we build</p>
+      <h2 class="s-title reveal" id="svc-heading">Systems that run your business,<br>not the other way around.</h2>
+      <p class="s-sub reveal">Every description below is an outcome, not a feature. Because that's what actually matters to your business.</p>
+    </div>
+
+    <div class="svc-grid">
+      <div class="svc-card svc-featured reveal">
+        <div class="svc-badge">Most popular</div>
+        <div class="svc-ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><line x1="2" y1="9" x2="22" y2="9"/></svg>
+        </div>
+        <h3>POS &amp; Inventory Systems</h3>
+        <p>Know exactly what's in stock, what's selling, and when to reorder — without counting shelves or checking notebooks. Supports multiple locations, staff logins, and daily sales reports.</p>
+        <ul class="svc-outcomes">
+          <li>Track stock in real time</li>
+          <li>Catch theft and shrinkage early</li>
+          <li>Know your best-selling items</li>
+        </ul>
+        <a href="#contact" class="svc-link">Start a project &#8594;</a>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
         <h3>Fleet &amp; Rental Management</h3>
-        <p>Vehicle tracking, rental agreements, maintenance scheduling, insurance alerts, and financial ROI reporting.
-        </p>
-        <span class="svc-arr" aria-hidden="true">&#x2197;</span>
+        <p>Track every vehicle, booking, and payment in one place. No more WhatsApp confusion, double bookings, or missed maintenance. See your fleet revenue at a glance.</p>
+        <ul class="svc-outcomes">
+          <li>Zero double-bookings</li>
+          <li>Automated maintenance alerts</li>
+          <li>Daily &amp; monthly revenue view</li>
+        </ul>
+        <a href="#contact" class="svc-link">Start a project &#8594;</a>
       </div>
-      <div class="svc">
-        <span class="svc-n">02</span>
-        <span class="svc-icon" aria-hidden="true">&#x1F4E6;</span>
-        <h3>Inventory &amp; Stock Systems</h3>
-        <p>Real-time inventory tracking, purchase orders, supplier management, and low-stock alerts.</p>
-        <span class="svc-arr" aria-hidden="true">&#x2197;</span>
+
+      <div class="svc-card reveal">
+        <div class="svc-ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>Business Management Dashboards</h3>
+        <p>See your revenue, expenses, outstanding invoices, and team performance on one screen. Make decisions based on real data — not gut feeling or month-end surprises.</p>
+        <ul class="svc-outcomes">
+          <li>Real-time financial overview</li>
+          <li>Invoice &amp; client management</li>
+          <li>Team productivity tracking</li>
+        </ul>
+        <a href="#contact" class="svc-link">Start a project &#8594;</a>
       </div>
-      <div class="svc">
-        <span class="svc-n">03</span>
-        <span class="svc-icon" aria-hidden="true">&#x1F4BC;</span>
-        <h3>Business Management</h3>
-        <p>CRM, invoicing, project management, and reporting tools that give complete operational visibility.</p>
-        <span class="svc-arr" aria-hidden="true">&#x2197;</span>
+
+      <div class="svc-card reveal">
+        <div class="svc-ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3>Web Apps &amp; Customer Portals</h3>
+        <p>Give your customers a professional online face — book appointments, track their orders, download invoices, or submit requests. Works on any device, any browser.</p>
+        <ul class="svc-outcomes">
+          <li>Professional online presence</li>
+          <li>Self-service for customers</li>
+          <li>Reduce WhatsApp back-and-forth</li>
+        </ul>
+        <a href="#contact" class="svc-link">Start a project &#8594;</a>
       </div>
-      <div class="svc">
-        <span class="svc-n">04</span>
-        <span class="svc-icon" aria-hidden="true">&#x1F4F1;</span>
-        <h3>Web &amp; Mobile Apps</h3>
-        <p>Custom applications for web, iOS, and Android — responsive, fast, and designed for real-world use.</p>
-        <span class="svc-arr" aria-hidden="true">&#x2197;</span>
+
+      <div class="svc-card reveal">
+        <div class="svc-ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="2.5"/></svg>
+        </div>
+        <h3>Mobile Apps</h3>
+        <p>Put your business in your pocket. Whether it's your team in the field or customers on the go — a mobile app gives you control anywhere, on any Android or iOS device.</p>
+        <ul class="svc-outcomes">
+          <li>iOS &amp; Android</li>
+          <li>Works offline when needed</li>
+          <li>Push notifications &amp; alerts</li>
+        </ul>
+        <a href="#contact" class="svc-link">Start a project &#8594;</a>
       </div>
-      <div class="svc">
-        <span class="svc-n">05</span>
-        <span class="svc-icon" aria-hidden="true">&#x1F4CA;</span>
-        <h3>Dashboards &amp; Analytics</h3>
-        <p>Data visualisation that turns your raw numbers into clear, actionable business insights.</p>
-        <span class="svc-arr" aria-hidden="true">&#x2197;</span>
+
+      <div class="svc-card reveal">
+        <div class="svc-ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </div>
+        <h3>Automation &amp; Integrations</h3>
+        <p>Stop copying data between systems and manually sending reports. We connect your tools — accounting, payments, GPS — and automate the repetitive work your team does every day.</p>
+        <ul class="svc-outcomes">
+          <li>Eliminate double data entry</li>
+          <li>Automated reports &amp; alerts</li>
+          <li>Connect existing tools</li>
+        </ul>
+        <a href="#contact" class="svc-link">Start a project &#8594;</a>
       </div>
-      <div class="svc">
-        <span class="svc-n">06</span>
-        <span class="svc-icon" aria-hidden="true">&#x1F517;</span>
-        <h3>System Integrations</h3>
-        <p>Connect your tools — accounting software, payment gateways, GPS — into one unified platform.</p>
-        <span class="svc-arr" aria-hidden="true">&#x2197;</span>
-      </div>
+    </div>
+
+    <div class="svc-showcase reveal">
+      <span class="showcase-lbl">Live dashboard example</span>
+      <img src="assets/services_showcase_dashboard_screenshot.png" alt="Custom business dashboard by Vizion Technologies" loading="lazy">
     </div>
   </section>
 
-  <!-- ── Process ────────────────────────────────────────────────── -->
-  <section class="process" id="process" aria-labelledby="process-heading">
-    <p class="s-lbl reveal" style="color:var(--blue-mid)">How we work</p>
-    <h2 class="s-title reveal" style="color:#fff" id="process-heading">Four steps. Zero surprises.</h2>
-    <p class="s-sub reveal" style="color:rgba(255,255,255,.4)">You see progress at every stage — starting before you
-      even pay.</p>
-    <div class="proc-wrap">
-      <div class="p-step reveal">
-        <div class="p-n">STEP / 01</div>
-        <h3>Free Discovery</h3>
-        <p>We meet your team, understand your operations, and design a full clickable prototype of your system.</p><span
-          class="p-free">Free &mdash; no obligation</span>
+  <!-- ── HOW IT WORKS ───────────────────────────────────────────── -->
+  <section class="process" id="process" aria-labelledby="proc-heading">
+    <div class="sec-hd">
+      <p class="s-lbl reveal">How we work</p>
+      <h2 class="s-title reveal" id="proc-heading">From WhatsApp message to<br>live system — here's how.</h2>
+      <p class="s-sub reveal">Four clear steps with no technical jargon, no hidden costs, and no surprises.</p>
+    </div>
+
+    <div class="proc-steps">
+      <div class="proc-step reveal">
+        <div class="proc-num">01</div>
+        <div class="proc-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Free Consultation</h3>
+        <p>We meet in person or over WhatsApp. You tell us about your business, your headaches, and what you wish existed. We listen, ask the right questions, and map out what to build.</p>
+        <div class="proc-tag green-tag">Free &mdash; no commitment</div>
       </div>
-      <div class="p-step reveal">
-        <div class="p-n">STEP / 02</div>
-        <h3>You Approve</h3>
-        <p>You interact with the prototype, request changes, and sign off. Payment begins only once you're satisfied.
-        </p>
+
+      <div class="proc-connector" aria-hidden="true"></div>
+
+      <div class="proc-step reveal">
+        <div class="proc-num">02</div>
+        <div class="proc-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <h3>Prototype &amp; Quote</h3>
+        <p>Within one week, you receive a full clickable prototype of your system — every screen, every button — plus a clear price quote. You see exactly what you're getting before paying anything.</p>
+        <div class="proc-tag blue-tag">No surprises on price</div>
       </div>
-      <div class="p-step reveal">
-        <div class="p-n">STEP / 03</div>
-        <h3>We Build</h3>
-        <p>Development with regular progress updates at every milestone. Always in plain language — never technical
-          jargon.</p>
+
+      <div class="proc-connector" aria-hidden="true"></div>
+
+      <div class="proc-step reveal">
+        <div class="proc-num">03</div>
+        <div class="proc-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3>We Build It</h3>
+        <p>Payment starts and development begins. You get a progress update every week in plain language — what's done, what's next, and when to expect delivery. You're never in the dark.</p>
+        <div class="proc-tag blue-tag">Weekly updates</div>
       </div>
-      <div class="p-step reveal">
-        <div class="p-n">STEP / 04</div>
+
+      <div class="proc-connector" aria-hidden="true"></div>
+
+      <div class="proc-step reveal">
+        <div class="proc-num">04</div>
+        <div class="proc-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
         <h3>Launch &amp; Support</h3>
-        <p>We deploy, train your team, and provide 90 days of post-launch support at no extra cost.</p>
+        <p>We go live, train your team, and fix anything that comes up — for free, for 90 days. We don't disappear after delivery. We're your tech partner.</p>
+        <div class="proc-tag green-tag">90 days free support</div>
       </div>
     </div>
   </section>
 
-  <!-- ── Why Vizion ──────────────────────────────────────────────── -->
-  <section class="why" id="why" aria-labelledby="why-heading">
-    <p class="s-lbl reveal" style="color:rgba(255,255,255,.4)">Why Vizion</p>
-    <h2 class="s-title reveal" style="color:#fff" id="why-heading">We earn trust before we earn payment.</h2>
-    <p class="s-sub reveal" style="color:rgba(255,255,255,.5)">Working with a new developer is a risk. So we remove it —
-      you see the product before you pay for it.</p>
-    <div class="why-grid reveal">
-      <div class="w-item">
-        <div class="w-n">01</div>
-        <h3>Prototype before payment</h3>
-        <p>Full clickable prototype before any commitment. No guesswork — you see exactly what you're getting.</p>
+  <!-- ── CASE STUDY ─────────────────────────────────────────────── -->
+  <section class="case-study" id="case-study" aria-labelledby="cs-heading">
+    <div class="sec-hd">
+      <p class="s-lbl reveal">Case study</p>
+      <h2 class="s-title reveal" id="cs-heading">From WhatsApp chaos to a system that works.</h2>
+      <p class="s-sub reveal">Here's how we helped a Harare vehicle rental company go from daily headaches to full operational control.</p>
+    </div>
+
+    <div class="cs-card reveal">
+      <div class="cs-tag">Fleet &amp; Rental Management System · Harare, Zimbabwe</div>
+
+      <div class="cs-cols">
+        <div class="cs-col">
+          <div class="cs-col-hd cs-bad">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            Before Vizion
+          </div>
+          <ul class="cs-list bad-list">
+            <li>18 vehicles tracked via WhatsApp groups and paper logbooks</li>
+            <li>Double bookings happened almost every week</li>
+            <li>Vehicles broke down unexpectedly — maintenance was reactive</li>
+            <li>No way to see total monthly revenue without manually adding receipts</li>
+            <li>Drivers had no accountability system for mileage or fuel</li>
+          </ul>
+        </div>
+
+        <div class="cs-col">
+          <div class="cs-col-hd cs-good">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            What we built
+          </div>
+          <ul class="cs-list good-list">
+            <li>Web-based booking calendar with real-time conflict prevention</li>
+            <li>Vehicle status board — available, rented, in maintenance</li>
+            <li>Automated maintenance reminders based on mileage and schedule</li>
+            <li>Driver management with trip logging and fuel tracking</li>
+            <li>Financial dashboard showing daily and monthly revenue</li>
+          </ul>
+        </div>
       </div>
-      <div class="w-item">
-        <div class="w-n">02</div>
-        <h3>Built for your workflow</h3>
-        <p>Designed around how your business actually operates — not a template adapted to your needs.</p>
+
+      <div class="cs-results">
+        <div class="cs-result">
+          <div class="cs-r-n">0</div>
+          <div class="cs-r-l">Double bookings since launch</div>
+        </div>
+        <div class="cs-result">
+          <div class="cs-r-n">35%</div>
+          <div class="cs-r-l">Drop in maintenance costs</div>
+        </div>
+        <div class="cs-result">
+          <div class="cs-r-n">100%</div>
+          <div class="cs-r-l">Revenue visibility, finally</div>
+        </div>
+        <div class="cs-result">
+          <div class="cs-r-n">5 wks</div>
+          <div class="cs-r-l">From kickoff to go-live</div>
+        </div>
       </div>
-      <div class="w-item">
-        <div class="w-n">03</div>
-        <h3>Clear communication</h3>
-        <p>Regular updates, transparent timelines, and plain language. You always know where your project stands.</p>
-      </div>
-      <div class="w-item">
-        <div class="w-n">04</div>
-        <h3>90-day support guarantee</h3>
-        <p>Bug after launch? We fix it. No extra charge, no negotiation — accountability built into every project.</p>
-      </div>
-      <div class="w-item">
-        <div class="w-n">05</div>
-        <h3>Web and mobile, both</h3>
-        <p>Every system works on desktop, tablet, and mobile — so your team can work from anywhere.</p>
-      </div>
-      <div class="w-item">
-        <div class="w-n">06</div>
-        <h3>Flexible pricing</h3>
-        <p>Pricing and timelines are negotiable. We work within your budget and find what works for both sides.</p>
+
+      <div class="cs-footer">
+        <a href="portfolio.html" class="btn-primary">See more work &#8594;</a>
+        <a href="#contact" class="btn-ghost">Want similar results?</a>
       </div>
     </div>
   </section>
 
-  <!-- ── CTA Band ────────────────────────────────────────────────── -->
+  <!-- ── PRICING ────────────────────────────────────────────────── -->
+  <section class="pricing" id="pricing" aria-labelledby="pr-heading">
+    <div class="sec-hd">
+      <p class="s-lbl reveal">Pricing</p>
+      <h2 class="s-title reveal" id="pr-heading">Clear prices. No guesswork.</h2>
+      <p class="s-sub reveal">These are starting points — every project is different and all prices are negotiable. Payment plans are available. The prototype is <strong>always free.</strong></p>
+    </div>
+
+    <div class="price-grid">
+      <div class="price-card reveal">
+        <div class="price-cat">POS &amp; Inventory</div>
+        <div class="price-from">from</div>
+        <div class="price-n">$300</div>
+        <ul class="price-inc">
+          <li>Point of sale interface</li>
+          <li>Real-time stock tracking</li>
+          <li>Supplier management</li>
+          <li>Sales reports &amp; analytics</li>
+          <li>Multi-user access</li>
+        </ul>
+        <a href="#contact" class="btn-ghost price-btn">Get a quote &#8594;</a>
+      </div>
+
+      <div class="price-card price-popular reveal">
+        <div class="price-popular-badge">Most popular</div>
+        <div class="price-cat">Fleet &amp; Rental System</div>
+        <div class="price-from">from</div>
+        <div class="price-n">$650</div>
+        <ul class="price-inc">
+          <li>Booking calendar &amp; conflict prevention</li>
+          <li>Vehicle status tracking</li>
+          <li>Maintenance scheduling</li>
+          <li>Driver &amp; fuel management</li>
+          <li>Financial dashboard</li>
+        </ul>
+        <a href="#contact" class="btn-primary price-btn">Get a quote &#8594;</a>
+      </div>
+
+      <div class="price-card reveal">
+        <div class="price-cat">Business Management</div>
+        <div class="price-from">from</div>
+        <div class="price-n">$500</div>
+        <ul class="price-inc">
+          <li>CRM &amp; client tracking</li>
+          <li>Invoicing &amp; payments</li>
+          <li>Team &amp; project management</li>
+          <li>Revenue &amp; expense reports</li>
+          <li>Custom module add-ons</li>
+        </ul>
+        <a href="#contact" class="btn-ghost price-btn">Get a quote &#8594;</a>
+      </div>
+
+      <div class="price-card reveal">
+        <div class="price-cat">Web App / Portal</div>
+        <div class="price-from">from</div>
+        <div class="price-n">$400</div>
+        <ul class="price-inc">
+          <li>Custom web application</li>
+          <li>Customer-facing portal</li>
+          <li>Admin dashboard</li>
+          <li>Mobile-responsive design</li>
+          <li>User authentication</li>
+        </ul>
+        <a href="#contact" class="btn-ghost price-btn">Get a quote &#8594;</a>
+      </div>
+    </div>
+
+    <div class="price-note reveal">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg>
+      <p>All projects begin with a <strong>free clickable prototype</strong>. Prices above are starting points — we discuss your exact scope and quote accordingly. <strong>Payment plans available.</strong> WhatsApp us to discuss: <a href="https://wa.me/263778686550">+263 77 868 6550</a></p>
+    </div>
+  </section>
+
+  <!-- ── FAQ ───────────────────────────────────────────────────── -->
+  <section class="faq" id="faq" aria-labelledby="faq-heading">
+    <div class="sec-hd">
+      <p class="s-lbl reveal">FAQ</p>
+      <h2 class="s-title reveal" id="faq-heading">Questions we hear all the time.</h2>
+      <p class="s-sub reveal">If yours isn't here, just WhatsApp us.</p>
+    </div>
+
+    <div class="faq-list reveal">
+      <details class="faq-item">
+        <summary class="faq-q">
+          Do I pay anything before I see the product?
+          <span class="faq-ico" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <p>No. We build a full clickable prototype of your system at absolutely no cost. You only pay once you've seen it, approved it, and decided you want to proceed. There's no obligation at the prototype stage.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          How long does it take to build my system?
+          <span class="faq-ico" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <p>Most systems are delivered in 4–8 weeks from kickoff. The free prototype alone takes about one week. The total timeline depends on the complexity of what you need — we'll give you a specific estimate during our first meeting.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          I don't know exactly what I need — is that okay?
+          <span class="faq-ico" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <p>That's exactly what the free consultation is for. Most clients come to us with a problem, not a specification. We ask the right questions, listen carefully, and turn your description of the problem into a concrete system design. You don't need to be technical.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Do you offer payment plans?
+          <span class="faq-ico" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <p>Yes. We work with your budget and find a structure that makes sense. Typically we split payments into 3 milestones: prototype approval, mid-build checkpoint, and final delivery. Reach out and we'll work something out.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          What happens after my system launches?
+          <span class="faq-ico" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <p>You get 90 days of post-launch support at no extra cost. That means if anything breaks, doesn't work right, or needs tweaking — we fix it. After 90 days, we offer affordable maintenance packages for ongoing support and updates.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          My business is small. Is Vizion right for me?
+          <span class="faq-ico" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <p>Absolutely. Most of our clients are SMEs in Harare that have been running on WhatsApp, Excel, and notebooks. We've built exactly for businesses like yours — and our starting prices reflect that. You don't need a big IT budget to get a proper system.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ── INSIGHTS ───────────────────────────────────────────────── -->
+  <section class="insights" id="insights" aria-labelledby="ins-heading">
+    <div class="sec-hd">
+      <p class="s-lbl reveal">Resources</p>
+      <h2 class="s-title reveal" id="ins-heading">Helpful reads for Zimbabwe business owners.</h2>
+      <p class="s-sub reveal">Short articles on running your business better — no technical jargon required.</p>
+    </div>
+
+    <div class="ins-grid">
+      <div class="ins-card reveal">
+        <div class="ins-cat">POS &amp; Inventory</div>
+        <h3>5 signs your business needs a POS system (not just Excel)</h3>
+        <p>If you're still tracking sales on a spreadsheet or a WhatsApp notebook, here are the warning signs that it's costing you money.</p>
+        <a href="#insights" class="ins-link">Coming soon &#8594;</a>
+      </div>
+      <div class="ins-card reveal">
+        <div class="ins-cat">Case Study</div>
+        <h3>How a Harare hardware store cut stock losses by 40%</h3>
+        <p>A real story about how moving from a paper stock book to a digital inventory system changed everything for a Harare-based hardware supplier.</p>
+        <a href="#insights" class="ins-link">Coming soon &#8594;</a>
+      </div>
+      <div class="ins-card reveal">
+        <div class="ins-cat">Business &amp; Tech</div>
+        <h3>WhatsApp vs. software — the real cost of running informally</h3>
+        <p>WhatsApp is free, but the cost of the mistakes it causes isn't. Here's an honest breakdown of what informal systems really cost your business.</p>
+        <a href="#insights" class="ins-link">Coming soon &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA BAND ───────────────────────────────────────────────── -->
   <section class="cta-band" aria-label="Call to action">
-    <h2 class="reveal">Ready to see your system?</h2>
-    <p class="reveal">A full clickable prototype in one week. Completely free, no obligation.</p>
-    <div class="cta-feats reveal">
-      <span class="cta-feat"><span class="cta-chk" aria-hidden="true">&#10003;</span> Full UI prototype</span>
-      <span class="cta-feat"><span class="cta-chk" aria-hidden="true">&#10003;</span> 1 week delivery</span>
-      <span class="cta-feat"><span class="cta-chk" aria-hidden="true">&#10003;</span> No payment required</span>
-      <span class="cta-feat"><span class="cta-chk" aria-hidden="true">&#10003;</span> No obligation</span>
-      <span class="cta-feat"><span class="cta-chk" aria-hidden="true">&#10003;</span> Pricing negotiable</span>
-    </div>
-    <a href="#contact" class="btn-glow reveal" style="margin:0 auto">Start with a free prototype &rarr;</a>
-  </section>
-
-  <!-- ── Tech Stack ─────────────────────────────────────────────── -->
-  <section class="stack" id="stack" aria-labelledby="stack-heading">
-    <p class="s-lbl reveal" style="color:var(--blue-mid)">Technology</p>
-    <h2 class="s-title reveal" style="color:#fff" id="stack-heading">Built with modern, proven tools.</h2>
-    <p class="s-sub reveal" style="color:rgba(255,255,255,.4)">Industry-standard technologies that are reliable,
-      scalable, and supported long-term.</p>
-    <div class="stack-cont reveal">
-      <div class="stack-grp">
-        <div class="stack-grp-lbl">Frontend</div>
-        <div class="stack-pills">
-          <span class="s-pill">React</span>
-          <span class="s-pill">React Native</span>
-          <span class="s-pill">HTML5</span>
-          <span class="s-pill">CSS3</span>
-          <span class="s-pill">TypeScript</span>
-          <span class="s-pill">JavaScript</span>
-        </div>
+    <div class="cta-inner">
+      <h2 class="reveal">Ready to stop running your business on WhatsApp?</h2>
+      <p class="reveal">Book a free consultation. We'll listen, design a prototype, and show you exactly what your system will look like — at no cost.</p>
+      <div class="cta-chips reveal">
+        <span class="chip">&#10003; Full UI prototype in 1 week</span>
+        <span class="chip">&#10003; No payment required to start</span>
+        <span class="chip">&#10003; Based in Harare</span>
+        <span class="chip">&#10003; 90-day support included</span>
       </div>
-      <div class="stack-grp">
-        <div class="stack-grp-lbl">Backend</div>
-        <div class="stack-pills">
-          <span class="s-pill">Node.js</span>
-          <span class="s-pill">Express</span>
-          <span class="s-pill">REST APIs</span>
-          <span class="s-pill">JWT Auth</span>
-        </div>
-      </div>
-      <div class="stack-grp">
-        <div class="stack-grp-lbl">Database &amp; Storage</div>
-        <div class="stack-pills">
-          <span class="s-pill">PostgreSQL</span>
-          <span class="s-pill">MongoDB</span>
-          <span class="s-pill">Firebase</span>
-          <span class="s-pill">Cloudinary</span>
-        </div>
-      </div>
-      <div class="stack-grp">
-        <div class="stack-grp-lbl">Deployment &amp; Tools</div>
-        <div class="stack-pills">
-          <span class="s-pill">Vercel</span>
-          <span class="s-pill">Railway</span>
-          <span class="s-pill">Git &amp; GitHub</span>
-          <span class="s-pill">Figma</span>
-        </div>
-      </div>
+      <a href="#contact" class="btn-white reveal">Book your free consultation &#8594;</a>
     </div>
   </section>
 
-  <!-- ── Contact ────────────────────────────────────────────────── -->
-  <section class="contact" id="contact" aria-labelledby="contact-heading">
-    <p class="s-lbl reveal" style="color:var(--blue-mid)">Get in touch</p>
-    <h2 class="s-title reveal" style="color:#fff" id="contact-heading">Let's talk about your project.</h2>
-    <p class="s-sub reveal" style="color:rgba(255,255,255,.4)">We respond within 24 hours.</p>
+  <!-- ── CONTACT ────────────────────────────────────────────────── -->
+  <section class="contact" id="contact" aria-labelledby="con-heading">
+    <div class="sec-hd">
+      <p class="s-lbl reveal">Get in touch</p>
+      <h2 class="s-title reveal" id="con-heading">Let's talk about your business.</h2>
+      <p class="s-sub reveal">We respond within 24 hours — usually much sooner on WhatsApp.</p>
+    </div>
+
     <div class="contact-grid">
-
-      <!-- Contact Form -->
       <div class="reveal">
-        <!-- Replace YOUR_FORM_ID with your Formspree form ID -->
         <form class="c-form" id="contactForm" action="https://formspree.io/f/xojbkzjw" method="POST">
-          <!-- Hidden fields for Formspree -->
           <input type="hidden" name="_subject" value="New project inquiry — Vizion website">
           <input type="hidden" name="_next" value="">
 
@@ -375,9 +673,8 @@
               <span class="error-msg" aria-live="polite">Please enter your name</span>
             </div>
             <div class="fg">
-              <label for="f-company">Company</label>
-              <input type="text" id="f-company" name="company" placeholder="Your business name"
-                autocomplete="organization">
+              <label for="f-company">Business name</label>
+              <input type="text" id="f-company" name="company" placeholder="Your business" autocomplete="organization">
             </div>
           </div>
 
@@ -396,131 +693,130 @@
             <label for="f-service">What do you need?</label>
             <select id="f-service" name="service">
               <option value="">Select a service…</option>
+              <option>POS &amp; Inventory System</option>
               <option>Fleet &amp; Rental Management System</option>
-              <option>Inventory &amp; Stock System</option>
               <option>Business Management System</option>
-              <option>Web Application</option>
+              <option>Web App / Customer Portal</option>
               <option>Mobile App</option>
-              <option>Dashboard &amp; Reporting</option>
-              <option>Something else</option>
+              <option>Automation &amp; Integrations</option>
+              <option>Not sure yet — I need advice</option>
             </select>
           </div>
 
           <div class="fg">
-            <label for="f-details">Project details <span aria-hidden="true">*</span></label>
-            <textarea id="f-details" name="message"
-              placeholder="Describe what you need, your timeline, and budget range…" required></textarea>
+            <label for="f-details">Tell us about your business &amp; the problem you're solving <span aria-hidden="true">*</span></label>
+            <textarea id="f-details" name="message" placeholder="e.g. I run a hardware shop with 3 branches and we're losing track of stock across locations…" required></textarea>
             <span class="error-msg" aria-live="polite">Please describe your project</span>
           </div>
 
-          <button type="submit" class="btn-sub">Send message &rarr;</button>
+          <button type="submit" class="btn-submit">Send message &#8594;</button>
         </form>
 
-        <!-- Success State -->
-        <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+        <div class="form-success" id="formSuccess" role="status" aria-live="polite" aria-hidden="true" tabindex="-1">
           <span class="success-icon" aria-hidden="true">&#x2705;</span>
           <h3>Message sent!</h3>
-          <p>Thanks for reaching out. We'll review your project and reply within 24 hours — usually much sooner. In the
-            meantime, feel free to <a href="https://wa.me/263784981844" style="color:var(--blue-mid)">message us on
-              WhatsApp</a>.</p>
+          <p>Thanks for reaching out. We'll review your project and reply within 24 hours. In the meantime, feel free to <a href="https://wa.me/263778686550">message us on WhatsApp</a> for an even faster response.</p>
         </div>
       </div>
 
-      <!-- Contact Aside -->
       <div class="c-aside reveal">
-        <h3>We respond within 24 hours.</h3>
-        <p>Send us a message or reach us on WhatsApp — it's the fastest way to get started and schedule your free
-          prototype.</p>
+        <h3>Prefer WhatsApp? That works too.</h3>
+        <p>Most of our Harare clients reach out on WhatsApp first. It's quick, casual, and you can send photos or screenshots of what you're working with.</p>
 
-        <a class="c-det" href="https://wa.me/263784981844" target="_blank" rel="noopener"
-          aria-label="Chat on WhatsApp: +263 77 868 6550">
-          <div class="c-ico" aria-hidden="true">&#x1F4F1;</div>
+        <a class="c-link" href="https://wa.me/263778686550" target="_blank" rel="noopener" aria-label="Chat on WhatsApp: +263 77 868 6550">
+          <div class="c-ico wa-ico">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
           <div>
-            <div class="c-lbl">WhatsApp</div>
-            <div class="c-txt">+263 77 868 6550</div>
+            <div class="c-lbl">WhatsApp (fastest)</div>
+            <div class="c-val">+263 77 868 6550</div>
           </div>
         </a>
 
-        <a class="c-det" href="mailto:hello@vizion.co.zw" aria-label="Send email to hello@vizion.co.zw">
-          <div class="c-ico" aria-hidden="true">&#x1F4E7;</div>
+        <a class="c-link" href="mailto:hello@vizion.co.zw" aria-label="Email hello@vizion.co.zw">
+          <div class="c-ico">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
           <div>
             <div class="c-lbl">Email</div>
-            <div class="c-txt">hello@vizion.co.zw</div>
+            <div class="c-val">hello@vizion.co.zw</div>
           </div>
         </a>
 
-        <div class="c-det" style="cursor:default">
-          <div class="c-ico" aria-hidden="true">&#x1F4CD;</div>
+        <div class="c-link" style="cursor:default">
+          <div class="c-ico">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
           <div>
-            <div class="c-lbl">Based in</div>
-            <div class="c-txt">Harare, Zimbabwe</div>
+            <div class="c-lbl">Location</div>
+            <div class="c-val">Harare, Zimbabwe</div>
           </div>
         </div>
 
         <div class="c-promise">
-          <p><strong>Our promise:</strong> We design a clickable prototype of your system for free before you commit to
-            anything. Just reach out and we get started.</p>
+          <strong>Our promise:</strong> We design a clickable prototype of your system for free before you commit to anything. No techno-speak. No commitment. Just reach out.
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
   <footer role="contentinfo">
     <div class="footer-main">
       <div class="footer-brand">
-        <a href="#" class="f-logo" aria-label="Vizion Technology Solutions — Home">
-          <img src="assets/logo.png" alt="Vizion Technology Solutions" width="100" height="28" loading="lazy">
-        </a>
-        <p>Custom software built in Harare, Zimbabwe. We bring your vision into focus — before you pay a cent.</p>
+       
+        <p>Custom software for SMEs in Harare, Zimbabwe. We bring your vision into focus — before you pay a cent.</p>
         <div class="footer-social">
           <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="Vizion on LinkedIn">in</a>
           <a href="https://github.com" target="_blank" rel="noopener" aria-label="Vizion on GitHub">gh</a>
-          <a href="https://wa.me/263784981844" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">wa</a>
+          <a href="https://wa.me/263778686550" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">wa</a>
         </div>
+        <p class="footer-passive">Building software for Zimbabwe businesses. <a href="#contact">Built by Vizion Technologies.</a></p>
       </div>
-
       <div class="footer-col">
         <h4>Company</h4>
         <ul>
           <li><a href="#about">About</a></li>
           <li><a href="#process">How we work</a></li>
           <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact">Contact us</a></li>
         </ul>
       </div>
-
       <div class="footer-col">
         <h4>Services</h4>
         <ul>
+          <li><a href="#services">POS &amp; Inventory</a></li>
           <li><a href="#services">Fleet &amp; Rental</a></li>
-          <li><a href="#services">Inventory Systems</a></li>
+          <li><a href="#services">Business Management</a></li>
           <li><a href="#services">Web &amp; Mobile Apps</a></li>
-          <li><a href="#stack">Tech stack</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Pricing</h4>
+        <ul>
+          <li><a href="#pricing">Systems from $300</a></li>
+          <li><a href="#pricing">Payment plans available</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#insights">Blog &amp; resources</a></li>
         </ul>
       </div>
     </div>
-
     <div class="footer-bottom">
-      <span class="f-copy">&copy; 2026 Vizion Technology Solutions. Harare, Zimbabwe.</span>
-      <span class="f-built">Built by <a href="#">Vizion</a></span>
+      <span class="f-copy">&copy; 2026 Vizion Technologies. Harare, Zimbabwe.</span>
+      <a href="https://wa.me/263778686550" class="f-wa" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp: +263 77 868 6550
+      </a>
     </div>
   </footer>
 
-  <!-- WhatsApp Floating Button -->
+  <!-- WhatsApp Float -->
   <div class="wa-float" aria-label="Chat on WhatsApp">
-    <a class="wa-btn" href="https://wa.me/263784981844" target="_blank" rel="noopener" aria-label="Open WhatsApp chat">
-      <!-- WhatsApp icon -->
-      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"
-        aria-hidden="true">
-        <path
-          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-      </svg>
+    <a class="wa-btn" href="https://wa.me/263778686550" target="_blank" rel="noopener" aria-label="Open WhatsApp chat">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </a>
     <span class="wa-tooltip" aria-hidden="true">Chat on WhatsApp</span>
   </div>
 
 </body>
-
 </html>

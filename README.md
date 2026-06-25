@@ -1,4 +1,4 @@
-# Vizion Technology Solutions — Website
+# Vizion Technologies — Website
 
 **Bringing Your Vision into Focus**
 Custom software agency based in Harare, Zimbabwe.
@@ -76,7 +76,7 @@ After deploying, point your domain's DNS to the hosting platform:
 |-------|-------|
 | WhatsApp | +263 77 868 6550 |
 | Email | hello@vizion.co.zw |
-| WhatsApp link | `https://wa.me/263784981844` |
+| WhatsApp link | `https://wa.me/263778686550` |
 | Location | Harare, Zimbabwe |
 
 ---
