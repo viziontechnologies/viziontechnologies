@@ -30,9 +30,16 @@
 
   <link rel="stylesheet" href="../css/style.css">
 
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script defer src="../js/main.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script defer src="../js/main.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script>
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        if (typeof gsap === 'undefined') document.documentElement.classList.add('force-reveal');
+      }, 1200);
+    });
+  </script>
 
   <script type="application/ld+json">
   {

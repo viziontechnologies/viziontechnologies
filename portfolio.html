@@ -37,9 +37,16 @@
   <link rel="stylesheet" href="css/style.css">
 
   <!-- GSAP -->
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script defer src="js/main.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script defer src="js/main.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script>
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        if (typeof gsap === 'undefined') document.documentElement.classList.add('force-reveal');
+      }, 1200);
+    });
+  </script>
 </head>
 <body>
 
@@ -88,7 +95,7 @@
   <header class="portfolio-hero" aria-label="Portfolio hero">
     <div class="hero-noise" aria-hidden="true"></div>
     <div class="hero-content">
-      <div class="hero-tag" id="hTag"><span class="htdot" aria-hidden="true"></span>Our work</div>
+      <div class="hero-badge" id="hBadge"><span class="badge-dot" aria-hidden="true"></span>Our work</div>
       <h1 class="hero-h1" id="hH1" style="font-size:clamp(2.8rem,5.5vw,5rem)">
         <span class="ln"><span>Systems we've</span></span>
         <span class="ln"><span><strong>designed</strong> &amp; <em>built.</em></span></span>
@@ -205,6 +212,33 @@
               Live &mdash; iOS &amp; Android
             </span>
             <a href="index.html#contact" class="proj-link" aria-label="Build a similar app">
+              Build similar &rarr;
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 5: POS System -->
+      <article class="proj-card reveal" aria-label="Tylliq POS project">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#12263d)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F9FE;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="proj-tag">POS</span>
+            <span class="proj-tag">Flutter</span>
+            <span class="proj-tag">Offline-first</span>
+            <span class="proj-tag">LAN Sync</span>
+          </div>
+          <h3>Tylliq POS</h3>
+          <p>An offline-first point-of-sale app for small shops — sell, track stock, and print receipts with zero reliance on the internet. Every phone keeps its own local database, and shops sync phone-to-phone over the local network via QR-paired sync, so a spotty connection never stops a sale.</p>
+          <div class="proj-meta">
+            <span class="proj-status">
+              <span class="proj-status-dot" aria-hidden="true"></span>
+              In active development
+            </span>
+            <a href="index.html#contact" class="proj-link" aria-label="Build a similar system">
               Build similar &rarr;
             </a>
           </div>

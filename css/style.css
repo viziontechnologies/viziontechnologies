@@ -855,6 +855,20 @@ footer { background: var(--bg-dark); padding: 5rem 6% 0; }
 /* ── Scroll Reveal ──────────────────────────────────────────── */
 .reveal { opacity: 0; transform: translateY(24px); }
 
+/* If GSAP fails to load (blocked CDN, offline, ad blocker), content
+   that's only ever revealed by JS must not stay hidden forever. */
+html.force-reveal .reveal,
+html.force-reveal .hero-badge,
+html.force-reveal .hero-h1,
+html.force-reveal .hero-sub,
+html.force-reveal .hero-actions,
+html.force-reveal .hero-trust,
+html.force-reveal .hero-scroll,
+html.force-reveal .hero-h1 .ln span {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 1200px) {
   .price-grid { grid-template-columns: repeat(2, 1fr); }
