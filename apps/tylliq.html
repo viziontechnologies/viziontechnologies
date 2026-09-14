@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tylliq POS — License Handbook &amp; Policies — Vizion Technologies</title>
+
+  <meta name="description" content="Everything shop owners need to know about running Tylliq POS: setup, license status, fair-use policies, troubleshooting, and support.">
+  <meta name="author" content="Vizion Technologies">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://viziontechnologies.vercel.app/apps/tylliq.html">
+
+  <meta property="og:title" content="Tylliq POS — License Handbook & Policies">
+  <meta property="og:description" content="Setup, license status, fair-use policies, and troubleshooting for Tylliq POS — the offline-first point-of-sale app built by Vizion Technologies.">
+  <meta property="og:image" content="https://viziontechnologies.vercel.app/assets/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://viziontechnologies.vercel.app/apps/tylliq.html">
+  <meta property="og:site_name" content="Vizion Technologies">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tylliq POS — License Handbook & Policies">
+  <meta name="twitter:description" content="Setup, license status, fair-use policies, and troubleshooting for Tylliq POS.">
+  <meta name="twitter:image" content="https://viziontechnologies.vercel.app/assets/logo.png">
+
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
+
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script defer src="../js/main.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script>
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        if (typeof gsap === 'undefined') document.documentElement.classList.add('force-reveal');
+      }, 1200);
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many devices can I use with one Tylliq license?",
+        "acceptedAnswer": { "@type": "Answer", "text": "As many as your plan's device limit allows. Every device you activate counts against that limit until you deactivate it from My Devices." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I move my Tylliq license to a new device?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Deactivate the old device, then activate Tylliq on the new one. The slot frees up immediately with no waiting period." }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if a Tylliq till loses internet connection?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Tylliq keeps working through short outages and re-syncs automatically once the device is back online." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <div class="cursor" id="cur" aria-hidden="true"></div>
+  <div class="cursor-follower" id="curf" aria-hidden="true"></div>
+
+  <!-- Mobile Nav -->
+  <div class="mob-nav" id="mobNav" role="dialog" aria-label="Navigation menu" aria-modal="true" tabindex="-1">
+    <button class="mob-close" onclick="closeMob()" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <a href="../index.html#about" onclick="closeMob()">About</a>
+    <a href="../index.html#services" onclick="closeMob()">Services</a>
+    <a href="../index.html#apps" onclick="closeMob()">Our apps</a>
+    <a href="../portfolio.html" onclick="closeMob()">Portfolio</a>
+    <a href="../index.html#contact" onclick="closeMob()">Contact</a>
+  </div>
+
+  <!-- Nav -->
+  <nav id="mainNav" role="navigation" aria-label="Main navigation">
+    <a href="../index.html" class="nav-logo" aria-label="Vizion Technologies — Home">
+      <img src="../assets/logo.png" alt="Vizion Technologies">
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#services">Services</a></li>
+      <li><a href="../index.html#apps">Our apps</a></li>
+      <li><a href="../portfolio.html">Portfolio</a></li>
+      <li><a href="../index.html#contact" class="nav-cta">Free consultation</a></li>
+    </ul>
+    <button id="navHamburger" class="nav-hamburger" onclick="toggleMob()" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobNav">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <header class="blog-hero" aria-label="Handbook header">
+    <div class="blog-hero-inner">
+      <a href="../index.html#apps" class="blog-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to our apps
+      </a>
+      <div class="blog-cat">Tylliq POS</div>
+      <h1>The Tylliq POS<br><span>license handbook &amp; policies.</span></h1>
+      <div class="blog-meta">
+        <span>Setup, license status, fair use &amp; support</span>
+        <span class="blog-meta-sep" aria-hidden="true">·</span>
+        <span>Written for shop owners, not developers</span>
+      </div>
+      <div class="app-jumplinks">
+        <a href="#getting-started" class="app-jumplink">Getting started</a>
+        <a href="#status" class="app-jumplink">License status</a>
+        <a href="#policies" class="app-jumplink">Good standing</a>
+        <a href="#troubleshooting" class="app-jumplink">Troubleshooting</a>
+        <a href="#support" class="app-jumplink">Support</a>
+        <a href="#pricing" class="app-jumplink">Plans</a>
+        <a href="#faq" class="app-jumplink">FAQ</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Getting Started -->
+  <section class="app-section" id="getting-started" style="background:var(--bg)" aria-labelledby="gs-heading">
+    <div class="sec-hd">
+      <p class="s-lbl reveal">01 — Setup</p>
+      <h2 class="s-title reveal" id="gs-heading">Getting started, from key to checkout.</h2>
+      <p class="s-sub reveal">Six steps from "just signed up" to running Tylliq on every till you're licensed for.</p>
+    </div>
+
+    <div class="app-steps reveal">
+      <div class="app-step">
+        <div class="app-step-num">1</div>
+        <div><h3>Get your license key</h3><p>After you sign up, we send your business a license key that looks like <code>LIC-XXXXXXXXXXXXXXXXXXXX</code>. It's the credential that unlocks Tylliq for your business — treat it like a password and don't share it outside your team.</p></div>
+      </div>
+      <div class="app-step">
+        <div class="app-step-num">2</div>
+        <div><h3>Install Tylliq on your first till</h3><p>Download and open Tylliq POS on the computer, tablet, or terminal you'll check out customers on. When it asks for a license key, enter yours.</p></div>
+      </div>
+      <div class="app-step">
+        <div class="app-step-num">3</div>
+        <div><h3>Activate the device</h3><p>Tylliq checks your key against our system and unlocks itself for that specific device. You'll see a confirmation, and the till is ready to ring up sales.</p></div>
+      </div>
+      <div class="app-step">
+        <div class="app-step-num">4</div>
+        <div><h3>Add more devices, up to your plan's limit</h3><p>Repeat steps 2–3 on each extra till. Every device you activate counts against your plan's device limit until it's deactivated — see <a href="#status">license status</a> for what happens if you reach it.</p></div>
+      </div>
+      <div class="app-step">
+        <div class="app-step-num">5</div>
+        <div><h3>Let it run</h3><p>Once activated, Tylliq quietly checks in with our servers in the background to stay current. As long as the device connects to the internet occasionally, there's nothing more for you to do.</p></div>
+      </div>
+      <div class="app-step">
+        <div class="app-step-num">6</div>
+        <div><h3>Replacing or retiring a till</h3><p>Getting a new device? Open <strong>My Devices</strong> in the app, deactivate the old one, then activate Tylliq on the new device. The freed-up slot is available immediately — no waiting, no contacting us.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- License Status -->
+  <section class="app-section" id="status" style="background:var(--bg-2)" aria-labelledby="status-heading">
+    <div class="sec-hd">
+      <p class="s-lbl reveal">02 — What your status means</p>
+      <h2 class="s-title reveal" id="status-heading">Your license is always in one of four states.</h2>
+      <p class="s-sub reveal">Only our team can move a license between them — nothing here changes automatically except becoming Expired, and even that reverses itself the moment it's renewed.</p>
+    </div>
+
+    <div class="app-status-grid reveal">
+      <div class="app-status-card active">
+        <span class="app-badge">Active</span>
+        <p>Everything's working normally. Every device on this license can open and use Tylliq without interruption.</p>
+      </div>
+      <div class="app-status-card suspended">
+        <span class="app-badge">Suspended</span>
+        <p>Temporarily paused — usually a billing or policy hold. Devices show a message and stop working until we lift it. Nothing is deleted, and it can be switched back on as soon as it's resolved.</p>
+      </div>
+      <div class="app-status-card revoked">
+        <span class="app-badge">Revoked</span>
+        <p>Permanently withdrawn, normally after a serious or repeated issue. Devices stop working, and a new license would be needed to continue using Tylliq.</p>
+      </div>
+      <div class="app-status-card expired">
+        <span class="app-badge">Expired</span>
+        <p>Your license's term has ended. Devices pause until it's renewed — the moment it is, your status flips back to Active and your tills pick up where they left off.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fair Use Policies -->
+  <section class="app-section" id="policies" style="background:var(--bg)" aria-labelledby="policies-heading">
+    <div class="sec-hd">
+      <p class="s-lbl reveal">03 — Fair use</p>
+      <h2 class="s-title reveal" id="policies-heading">Staying in good standing.</h2>
+      <p class="s-sub reveal">Four plain-language rules that keep your license healthy. None of them are designed to catch honest shops out.</p>
+    </div>
+
+    <div class="app-policy-list reveal">
+      <div class="app-policy-item">
+        <div class="app-policy-icon">1</div>
+        <div><h3>Stay within your device limit</h3><p>Each license allows a fixed number of active devices. Try to activate one over the limit and Tylliq will tell you: <em>"Your device limit has been reached."</em> Deactivate an unused device to free a slot, or talk to us about a plan with more room.</p></div>
+      </div>
+      <div class="app-policy-item">
+        <div class="app-policy-icon">2</div>
+        <div><h3>Keep your license key private</h3><p>Your key is literally what unlocks a device on your account — anyone who has it can activate a till against your license. Share it only within your business, and contact us right away if you think it's leaked; we can issue you a new one.</p></div>
+      </div>
+      <div class="app-policy-item">
+        <div class="app-policy-icon">3</div>
+        <div><h3>Don't wind back a device's clock</h3><p>Some people try to cheat time-limited software by turning a device's clock backward. Tylliq notices this. It won't lock you out on the spot — but repeated or large clock rollbacks are flagged on your account for our team to review, and can lead to a manual suspension.</p></div>
+      </div>
+      <div class="app-policy-item">
+        <div class="app-policy-icon">4</div>
+        <div><h3>Automated setup actions are lightly rate-limited</h3><p>If a device tries to activate, or your account tries to list or manage devices, far more times than any real shop would in an hour, Tylliq briefly pauses that action as an anti-abuse measure. It resets on its own — just wait about an hour and try again.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Troubleshooting -->
+  <section class="app-section" id="troubleshooting" style="background:var(--bg-2)" aria-labelledby="ts-heading">
+    <div class="sec-hd">
+      <p class="s-lbl reveal">04 — When something stops you</p>
+      <h2 class="s-title reveal" id="ts-heading">What the message means, and what to do.</h2>
+      <p class="s-sub reveal">These are the exact messages Tylliq shows when it won't let a device through.</p>
+    </div>
+
+    <div class="app-table-wrap reveal">
+      <table class="app-table">
+        <thead><tr><th>Message you see</th><th>What it means</th><th>What to do</th></tr></thead>
+        <tbody>
+          <tr><td class="msg">"Your device limit has been reached."</td><td>Every device slot on your plan is in use.</td><td>Deactivate an old or unused device, or ask us about a higher device limit.</td></tr>
+          <tr><td class="msg">"This license is suspended."</td><td>Your license has a hold on it, usually billing or policy related.</td><td>Message us on WhatsApp with your business name to get it resolved.</td></tr>
+          <tr><td class="msg">"This license is revoked."</td><td>Your license was withdrawn, typically after a serious issue.</td><td>Contact us to discuss reinstatement or a new license.</td></tr>
+          <tr><td class="msg">"This license is expired."</td><td>The license's term has run out.</td><td>Contact us to renew — every device reactivates automatically once it's renewed.</td></tr>
+          <tr><td class="msg">"This device has been deactivated."</td><td>This specific till was switched off, by you or by us.</td><td>Activate it again from the login screen, or contact us if you didn't do this yourself.</td></tr>
+          <tr><td class="msg">"Too many requests. Try again later."</td><td>An automatic pause after unusually many setup attempts in a short time.</td><td>Wait about an hour and try again — no need to contact us.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Suspended / Support -->
+  <section class="app-section" id="support" style="background:var(--bg)" aria-labelledby="support-heading">
+    <div class="sec-hd">
+      <p class="s-lbl reveal">05 — Talking to us</p>
+      <h2 class="s-title reveal" id="support-heading">If your license is suspended or blocked.</h2>
+    </div>
+
+    <div class="app-callout reveal">
+      <p>Tylliq doesn't have a self-service "appeal" button today — reinstating a suspended or revoked license is handled personally by our team, not automatically. Suspension never deletes your data: the moment your account is cleared, your license switches back to Active and every device you had picks up right where it left off.</p>
+      <p style="font-weight:600;color:var(--text);">Common reasons a license gets paused:</p>
+      <ul>
+        <li>An overdue or failed payment</li>
+        <li>A breach of the terms you agreed to at signup</li>
+        <li>Unusual activity flagged for review, such as repeated clock-tamper warnings</li>
+      </ul>
+      <p style="font-weight:600;color:var(--text);margin-bottom:0;">To get it resolved, message us on WhatsApp with your business name and the phone number your account is registered under.</p>
+      <div class="app-callout-actions">
+        <a href="https://wa.me/263778686550" target="_blank" rel="noopener" class="btn-primary">WhatsApp support &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plans & Pricing -->
+  <section class="pricing" id="pricing" style="background:var(--bg-2)" aria-labelledby="ap-pricing-heading">
+    <div class="sec-hd">
+      <p class="s-lbl reveal">06 — Plans</p>
+      <h2 class="s-title reveal" id="ap-pricing-heading">Plans &amp; pricing.</h2>
+      <p class="s-sub reveal">Every license references a plan: a device limit, a billing period, and the features it unlocks.</p>
+    </div>
+
+    <div class="price-note reveal">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg>
+      <p><strong>Tylliq is still in active development.</strong> Final pricing and device limits will be announced before public launch. WhatsApp us if you'd like early access: <a href="https://wa.me/263778686550">+263 77 868 6550</a></p>
+    </div>
+
+    <div class="price-grid">
+      <div class="price-card sample reveal">
+        <div class="price-cat">Starter</div>
+        <div class="price-from">device limit</div>
+        <div class="price-n" style="font-size:1.6rem">TBA</div>
+        <ul class="price-inc">
+          <li>Point of sale</li>
+        </ul>
+      </div>
+      <div class="price-card price-popular sample reveal">
+        <div class="price-popular-badge">Likely most popular</div>
+        <div class="price-cat">Growth</div>
+        <div class="price-from">device limit</div>
+        <div class="price-n" style="font-size:1.6rem">TBA</div>
+        <ul class="price-inc">
+          <li>Point of sale</li>
+          <li>Inventory tracking</li>
+          <li>Reports &amp; analytics</li>
+        </ul>
+      </div>
+      <div class="price-card sample reveal">
+        <div class="price-cat">Enterprise</div>
+        <div class="price-from">device limit</div>
+        <div class="price-n" style="font-size:1.6rem">TBA</div>
+        <ul class="price-inc">
+          <li>Point of sale</li>
+          <li>Inventory tracking</li>
+          <li>Reports &amp; analytics</li>
+          <li>Multi-location</li>
+          <li>Priority support</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq" style="background:var(--bg)" aria-labelledby="ap-faq-heading">
+    <div class="sec-hd">
+      <p class="s-lbl reveal">07 — Questions</p>
+      <h2 class="s-title reveal" id="ap-faq-heading">Frequently asked questions.</h2>
+      <p class="s-sub reveal">If yours isn't here, WhatsApp us.</p>
+    </div>
+
+    <div class="faq-list reveal">
+      <details class="faq-item" open>
+        <summary class="faq-q">
+          How many devices can I use with one license?
+          <span class="faq-ico" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <p>As many as your plan's device limit allows. Every device you activate counts against that limit until you deactivate it from <strong>My Devices</strong>.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Can I move my license to a new computer?
+          <span class="faq-ico" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <p>Yes. Deactivate the old device, then activate Tylliq on the new one. The slot frees up immediately — there's no waiting period and no need to contact us.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          What happens if a till loses internet connection?
+          <span class="faq-ico" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <p>Tylliq is built to keep working through short outages and re-syncs your license status automatically once the device is back online.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          What actually triggers a suspension?
+          <span class="faq-ico" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <p>Billing issues, a breach of the terms you agreed to, or activity flagged for review — like repeated clock-tamper warnings. A person always reviews it before anything changes, and it's always reversible once resolved.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Is my license key sensitive?
+          <span class="faq-ico" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <p>Yes — treat it like a password. It's the only thing needed to activate a device on your account. If you think it's been shared or leaked, contact us immediately and we'll issue you a new one.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" aria-label="Talk to us about Tylliq">
+    <p class="s-lbl reveal" style="color:var(--accent);justify-content:center">Want early access?</p>
+    <h2 class="reveal">Tylliq is still being built — talk to us.</h2>
+    <p class="reveal">Whether you want early access, have a question this handbook didn't answer, or want something like Tylliq built for your own business, we're one WhatsApp message away.</p>
+    <a href="https://wa.me/263778686550" target="_blank" rel="noopener" class="btn-glow reveal" style="margin:0 auto">WhatsApp us &rarr;</a>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a href="../index.html" class="f-logo" aria-label="Vizion Technologies — Home">
+          <img src="../assets/logo.png" alt="Vizion Technologies" width="100" height="28" loading="lazy">
+        </a>
+        <p>Custom software for SMEs in Harare, Zimbabwe. We bring your vision into focus — before you pay a cent.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/vizion-technologies-895b94415/" target="_blank" rel="noopener" aria-label="Vizion on LinkedIn">in</a>
+          <a href="https://github.com/viziontechnologies" target="_blank" rel="noopener" aria-label="Vizion on GitHub">gh</a>
+          <a href="https://www.instagram.com/viziontechnologies/" target="_blank" rel="noopener" aria-label="Vizion on Instagram">ig</a>
+          <a href="https://www.facebook.com/people/Vizion/61590870712927/" target="_blank" rel="noopener" aria-label="Vizion on Facebook">fb</a>
+          <a href="https://www.tiktok.com/@viziontechnologies" target="_blank" rel="noopener" aria-label="Vizion on TikTok">tt</a>
+          <a href="https://wa.me/263778686550" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">wa</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#process">How we work</a></li>
+          <li><a href="../portfolio.html">Portfolio</a></li>
+          <li><a href="../index.html#contact">Contact us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Apps</h4>
+        <ul>
+          <li><a href="tylliq.html" class="active">Tylliq POS handbook</a></li>
+          <li><a href="tylliq.html#status">License status</a></li>
+          <li><a href="tylliq.html#pricing">Plans &amp; pricing</a></li>
+          <li><a href="tylliq.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="../blog/5-signs-pos-system.html">POS systems guide</a></li>
+          <li><a href="../index.html#pricing">Pricing</a></li>
+          <li><a href="../index.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="f-copy">&copy; 2026 Vizion Technologies. Harare, Zimbabwe.</span>
+      <a href="https://wa.me/263778686550" class="f-wa" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp: +263 77 868 6550
+      </a>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <div class="wa-float" aria-label="Chat on WhatsApp">
+    <a class="wa-btn" href="https://wa.me/263778686550" target="_blank" rel="noopener" aria-label="Open WhatsApp chat">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+    <span class="wa-tooltip" aria-hidden="true">Chat on WhatsApp</span>
+  </div>
+
+</body>
+</html>

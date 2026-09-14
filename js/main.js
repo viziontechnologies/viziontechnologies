@@ -541,7 +541,77 @@ if (contactForm) {
   });
 }
 
-/* ── 19. Cookie Notice ───────────────────────────────────── */
+/* ── 19. Portfolio Project Modal ──────────────────────────── */
+const pfOverlay = document.getElementById('pfModalOverlay');
+if (pfOverlay) {
+  const pfThumb  = document.getElementById('pfModalThumb');
+  const pfTags   = document.getElementById('pfModalTags');
+  const pfTitle  = document.getElementById('pfModalTitle');
+  const pfDesc   = document.getElementById('pfModalDesc');
+  const pfExtra  = document.getElementById('pfModalExtra');
+  const pfStatus = document.getElementById('pfModalStatus');
+  const pfClose  = document.getElementById('pfModalClose');
+  let pfLastFocused = null;
+
+  function openProjectModal(card) {
+    const thumb  = card.querySelector('.proj-thumb');
+    const tags   = card.querySelector('.proj-tags');
+    const title  = card.querySelector('h3');
+    const desc   = card.querySelector('.proj-body > p');
+    const status = card.querySelector('.proj-status');
+    const detail = card.querySelector('.proj-detail');
+
+    pfThumb.innerHTML = thumb ? thumb.innerHTML : '';
+    pfThumb.querySelector('.proj-view-hint')?.remove();
+    pfThumb.setAttribute('style', (thumb && thumb.getAttribute('style')) || '');
+    pfTags.innerHTML   = tags   ? tags.innerHTML   : '';
+    pfTitle.textContent = title ? title.textContent : '';
+    pfDesc.textContent  = desc  ? desc.textContent  : '';
+    pfExtra.innerHTML   = detail ? detail.innerHTML : '';
+    pfStatus.innerHTML  = status ? status.innerHTML : '';
+
+    pfLastFocused = document.activeElement;
+    pfOverlay.hidden = false;
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => pfOverlay.classList.add('open'));
+    pfClose.focus();
+  }
+
+  function closeProjectModal() {
+    pfOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { pfOverlay.hidden = true; }, 250);
+    pfLastFocused?.focus();
+  }
+
+  document.querySelectorAll('.proj-card').forEach(card => {
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-haspopup', 'dialog');
+
+    card.addEventListener('click', e => {
+      if (e.target.closest('.proj-link')) return;
+      openProjectModal(card);
+    });
+    card.addEventListener('keydown', e => {
+      if (e.target.closest('.proj-link')) return;
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openProjectModal(card);
+      }
+    });
+  });
+
+  pfClose.addEventListener('click', closeProjectModal);
+  pfOverlay.addEventListener('click', e => {
+    if (e.target === pfOverlay) closeProjectModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !pfOverlay.hidden) closeProjectModal();
+  });
+}
+
+/* ── 20. Cookie Notice ───────────────────────────────────── */
 const cookieBar = document.getElementById('cookieBar');
 const cookieBtn = document.getElementById('cookieAccept');
 if (cookieBar && !localStorage.getItem('vzn_cookie_ok')) {

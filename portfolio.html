@@ -106,7 +106,7 @@
 
   <!-- ── Portfolio Grid ─────────────────────────────────────────── -->
   <section class="intro" id="work" aria-labelledby="work-heading" style="background:var(--dark)">
-    <p class="s-lbl reveal" style="color:var(--blue-mid)">Featured projects</p>
+    <p class="s-lbl reveal" style="color:var(--accent)">Featured projects</p>
     <h2 class="s-title reveal" style="color:#fff" id="work-heading">Selected work.</h2>
     <p class="s-sub reveal" style="color:rgba(255,255,255,.4)">Every system below started with a free prototype — just like yours will.</p>
 
@@ -117,6 +117,7 @@
         <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#112235)">
           <div class="proj-thumb-bg" aria-hidden="true"></div>
           <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F697;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
@@ -137,12 +138,27 @@
             </a>
           </div>
         </div>
+        <template class="proj-detail">
+          <h4>The challenge</h4>
+          <p>18 vehicles were tracked through WhatsApp groups and paper logbooks. Double bookings happened almost every week, vehicles broke down with no warning, and the owner couldn't see monthly revenue without adding up paper receipts by hand.</p>
+          <h4>What we delivered</h4>
+          <ul>
+            <li>Web-based booking calendar with real-time conflict prevention</li>
+            <li>Vehicle status board — available, rented, in maintenance</li>
+            <li>Automated maintenance reminders by mileage and schedule</li>
+            <li>Driver management with trip logging and fuel tracking</li>
+            <li>Live financial dashboard with daily and monthly revenue, plus per-vehicle ROI reports</li>
+          </ul>
+          <h4>Results</h4>
+          <p>Zero double bookings since launch, a 35% drop in maintenance costs, and full revenue visibility for the first time — all live within 5 weeks of kickoff.</p>
+        </template>
       </article>
 
       <!-- Project 2: Inventory System -->
       <article class="proj-card reveal" aria-label="StockSense inventory system project">
         <div class="proj-thumb">
           <img src="assets/portfolio_card_1_inventory_system.png" alt="StockSense inventory management system interface" loading="lazy">
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
@@ -163,6 +179,19 @@
             </a>
           </div>
         </div>
+        <template class="proj-detail">
+          <h4>The challenge</h4>
+          <p>Three branches kept their own paper stock sheets, so head office never had an accurate, real-time picture of what was actually on the shelves — leading to stockouts on fast movers and overstock on slow ones.</p>
+          <h4>What we delivered</h4>
+          <ul>
+            <li>Mobile barcode scanning for receiving and stock counts</li>
+            <li>Automated purchase order generation when stock hits reorder points</li>
+            <li>Centralized supplier management across all three branches</li>
+            <li>Low-stock alerts pushed straight to the owner's WhatsApp</li>
+          </ul>
+          <h4>Results</h4>
+          <p>Head office now sees live stock levels across every branch from one screen, and reordering happens automatically instead of after a shelf goes empty.</p>
+        </template>
       </article>
 
       <!-- Project 3: Business Management / CRM -->
@@ -170,6 +199,7 @@
         <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#0e1e33)">
           <div class="proj-thumb-bg" aria-hidden="true"></div>
           <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F4BC;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
@@ -190,12 +220,26 @@
             </a>
           </div>
         </div>
+        <template class="proj-detail">
+          <h4>The challenge</h4>
+          <p>Client work was spread across spreadsheets, email threads, and WhatsApp chats. Nobody had a single view of the sales pipeline, invoices went out late, and leadership had no real-time read on revenue.</p>
+          <h4>What we delivered</h4>
+          <ul>
+            <li>CRM with a visual pipeline from lead to signed client</li>
+            <li>Project tracking tied to each client engagement</li>
+            <li>Client invoicing with multi-currency support (USD &amp; ZWG)</li>
+            <li>Executive dashboard with live revenue and pipeline metrics</li>
+          </ul>
+          <h4>Results</h4>
+          <p>12 team members now work from one system. Leadership can see revenue and pipeline health at a glance instead of waiting on end-of-month reports.</p>
+        </template>
       </article>
 
       <!-- Project 4: Mobile App -->
       <article class="proj-card reveal" aria-label="FieldOps mobile app project">
         <div class="proj-thumb">
           <img src="assets/portfolio_card_2_mobile_app.png" alt="FieldOps mobile application for field service management" loading="lazy">
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
@@ -216,6 +260,19 @@
             </a>
           </div>
         </div>
+        <template class="proj-detail">
+          <h4>The challenge</h4>
+          <p>Technicians were dispatched by phone call, with no record of what was actually done on site. Poor connectivity in some areas meant apps that required a live connection were unusable in the field.</p>
+          <h4>What we delivered</h4>
+          <ul>
+            <li>Job dispatch straight to the technician's phone</li>
+            <li>GPS-logged site visits for accountability</li>
+            <li>Before/after photo capture attached to each job</li>
+            <li>Fully offline-capable — logs and syncs automatically once back online</li>
+          </ul>
+          <h4>Results</h4>
+          <p>Every job now has a photo-verified record, and technicians can keep working in areas with no signal without losing any data.</p>
+        </template>
       </article>
 
       <!-- Project 5: POS System -->
@@ -223,6 +280,7 @@
         <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#12263d)">
           <div class="proj-thumb-bg" aria-hidden="true"></div>
           <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F9FE;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
@@ -243,6 +301,20 @@
             </a>
           </div>
         </div>
+        <template class="proj-detail">
+          <h4>The challenge</h4>
+          <p>Small shop owners need a proper point-of-sale system, but cloud POS subscriptions are expensive and depend on a stable internet connection most shops don't reliably have.</p>
+          <h4>What we're building</h4>
+          <ul>
+            <li>Fully offline sales, stock tracking, and receipt printing</li>
+            <li>Each phone keeps its own local database — no cloud dependency</li>
+            <li>Phone-to-phone sync over the local network via QR pairing</li>
+            <li>Built in Flutter for a single codebase across devices</li>
+          </ul>
+          <h4>Why it matters</h4>
+          <p>No monthly subscription, no dependence on the internet, and multiple tills in one shop stay in sync with each other automatically.</p>
+          <p><a href="apps/tylliq.html">Read the full setup guide, license status &amp; policies &rarr;</a></p>
+        </template>
       </article>
 
     </div>
@@ -316,7 +388,7 @@
 
   <!-- ── CTA ────────────────────────────────────────────────────── -->
   <section class="cta-section" aria-label="Start your project">
-    <p class="s-lbl reveal" style="color:var(--blue-mid);justify-content:center">Start your project</p>
+    <p class="s-lbl reveal" style="color:var(--accent);justify-content:center">Start your project</p>
     <h2 class="reveal">Your system is next.</h2>
     <p class="reveal">Every project above started with a free discovery session and a clickable prototype. Yours will too.</p>
     <a href="index.html#contact" class="btn-glow reveal" style="margin:0 auto">Get a free prototype &rarr;</a>
@@ -346,6 +418,7 @@
           <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#process">How we work</a></li>
           <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="index.html#apps">Our apps</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
       </div>
@@ -366,6 +439,27 @@
       <span class="f-built">Built by <a href="index.html">Vizion</a></span>
     </div>
   </footer>
+
+  <!-- ── Project Detail Modal ─────────────────────────────────── -->
+  <div class="pf-modal-overlay" id="pfModalOverlay" hidden>
+    <div class="pf-modal" role="dialog" aria-modal="true" aria-labelledby="pfModalTitle">
+      <button class="pf-modal-close" id="pfModalClose" aria-label="Close project details">&times;</button>
+      <div class="proj-thumb" id="pfModalThumb"></div>
+      <div class="pf-modal-body">
+        <div class="proj-tags" id="pfModalTags"></div>
+        <h3 id="pfModalTitle"></h3>
+        <p id="pfModalDesc"></p>
+        <div class="pf-modal-extra" id="pfModalExtra"></div>
+        <div class="pf-modal-meta">
+          <span class="proj-status" id="pfModalStatus"></span>
+          <div class="pf-modal-actions">
+            <a href="index.html#contact" class="btn-primary">Build something like this &rarr;</a>
+            <a href="https://wa.me/263778686550" target="_blank" rel="noopener" class="btn-ghost">WhatsApp us first</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- WhatsApp Floating Button -->
   <div class="wa-float" aria-label="Chat on WhatsApp">
