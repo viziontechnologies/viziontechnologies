@@ -3,70 +3,72 @@
 **Bringing Your Vision into Focus**
 Custom software agency based in Harare, Zimbabwe.
 
+Live site: https://viziontechnologies.vercel.app
+
 ---
 
 ## File Structure
 
 ```
-vizion_website/
-├── index.html          — Main homepage
-├── portfolio.html      — Portfolio / work page
+vizion.com/
+├── index.html                  — Homepage (services, process, pricing, apps, FAQ, insights, contact)
+├── portfolio.html              — Portfolio / work page
+├── privacy.html                — Privacy policy
+├── 404.html                    — Not-found page (uses root-absolute paths)
+├── apps/
+│   └── tylliq.html             — Tylliq app page
+├── blog/
+│   └── 5-signs-pos-system.html — Article: 5 signs you need a POS system
 ├── css/
-│   └── style.css       — All styles
+│   └── style.css               — Shared stylesheet for every page
 ├── js/
-│   └── main.js         — All JavaScript (GSAP, cursor, form, etc.)
-├── assets/
-│   ├── logo.png        — Company logo (extracted from original HTML)
-│   └── favicon.svg     — SVG favicon
+│   └── main.js                 — Shared script (GSAP, cursor, contact form, cookie notice)
+├── assets/                     — WebP images, logo.png, favicon.svg, app icons
+├── manifest.webmanifest
+├── sitemap.xml
+├── robots.txt
 └── README.md
 ```
 
 ---
 
-## Setup
+## Running Locally
 
-### 1. Connect the Contact Form (Formspree)
+No build step and no npm. Serve the folder with any static server:
 
-The contact form uses [Formspree](https://formspree.io) — free for up to 50 submissions/month.
-
-**Steps:**
-1. Go to [formspree.io](https://formspree.io) and create a free account
-2. Create a new form and copy your form ID (looks like `xbjnjqpv`)
-3. Open `index.html` and find this line:
-   ```html
-   <form ... action="https://formspree.io/f/YOUR_FORM_ID" ...>
-   ```
-4. Replace `YOUR_FORM_ID` with your actual form ID:
-   ```html
-   <form ... action="https://formspree.io/f/xbjnjqpv" ...>
-   ```
-5. In your Formspree dashboard, set the notification email to `hello@vizion.co.zw`
-
-### 2. Update Social Links
-
-In both `index.html` and `portfolio.html`, update the footer social links:
-
-```html
-<a href="https://linkedin.com/company/vizion-tech" ...>in</a>
-<a href="https://github.com/vizion-tech" ...>gh</a>
+```bash
+python -m http.server 8765
 ```
 
-### 3. Deploy
+Then open http://127.0.0.1:8765/.
 
-The site is static HTML/CSS/JS — deploy anywhere:
+---
 
-| Platform | Command / Steps |
-|----------|----------------|
-| **Vercel** | `npx vercel` in the project folder |
-| **Netlify** | Drag the folder into [app.netlify.com](https://app.netlify.com) |
-| **GitHub Pages** | Push to a repo → Settings → Pages → Deploy from `main` |
-| **cPanel / hosting** | Upload all files via FTP to `public_html/` |
+## Deploy
 
-### 4. Custom Domain (vizion.co.zw)
+Hosted on Vercel as a static site.
 
-After deploying, point your domain's DNS to the hosting platform:
-- **Vercel**: Add domain in project settings → update nameservers or A record
-- **Netlify**: Site settings → Domain management → Add custom domain
+The domain `viziontechnologies.vercel.app` is hardcoded in canonical URLs, og tags, JSON-LD, `sitemap.xml` and `robots.txt`. If the domain changes, replace it everywhere.
+
+---
+
+## Contact Form
+
+The form in `index.html` posts to Formspree (`https://formspree.io/f/xojbkzjw`) via `fetch()` in `js/main.js`. If the request fails, it shows a WhatsApp/email fallback instead.
+
+---
+
+## Adding a Page
+
+Every page repeats the nav and footer markup (no templating), so changes to the nav, footer, social icons or head tags must be made on **all** pages.
+
+New pages need:
+- a canonical URL
+- og/twitter tags
+- an `apple-touch-icon` link
+- an entry in `sitemap.xml`
+
+Pages in `apps/` and `blog/` use `../` paths.
 
 ---
 
@@ -75,7 +77,7 @@ After deploying, point your domain's DNS to the hosting platform:
 | Field | Value |
 |-------|-------|
 | WhatsApp | +263 77 868 6550 |
-| Email | hello@vizion.co.zw |
+| Email | viziontechnologies.zw@gmail.com |
 | WhatsApp link | `https://wa.me/263778686550` |
 | Location | Harare, Zimbabwe |
 
@@ -85,34 +87,34 @@ After deploying, point your domain's DNS to the hosting platform:
 
 | Feature | Implementation |
 |---------|---------------|
-| Scroll progress bar | CSS + JS `window.scroll` event |
-| Custom cursor | Canvas-based dot + ring follower |
-| Particle field (hero) | HTML5 Canvas |
+| Scroll progress bar | CSS + JS scroll listener |
+| Custom cursor | Dot + follower ring (`#cur`, `#curf`) |
 | GSAP scroll animations | `ScrollTrigger` + `.reveal` class |
-| Marquee ticker | CSS `animation: mq` + JS-populated track |
+| Marquee ticker | CSS animation + JS-populated track |
 | Nav active state | `IntersectionObserver` on `section[id]` |
-| Contact form | Formspree POST + `fetch()` |
-| Form validation | Client-side required field highlighting |
+| Contact form | Formspree POST + `fetch()`, with WhatsApp/email fallback |
 | WhatsApp float button | Fixed position + CSS pulse animation |
-| Cookie notice | `localStorage` flag (`vzn_cookie_ok`) |
+| Cookie notice | `localStorage` flag (`vzn_cookie_ok`) — no analytics on the site |
 | Mobile hamburger menu | CSS transform slide-in |
 | Accessibility | `aria-label`, `role`, `for`/`id` pairs, `:focus-visible` |
-| SEO | Meta description, OG tags, canonical, Twitter card |
+| SEO | Meta description, OG/Twitter tags, canonical, JSON-LD, sitemap |
 
 ---
 
 ## Brand Reference
 
-```
-Primary blue:  #1A4F8A
-Accent blue:   #2E86C1
-Dark bg:       #080F18
-Dark-2:        #0D1B2A
-Dark-3:        #112235
-Green accent:  #4ade80
-WhatsApp:      #25D366
+Light theme. Colours are CSS variables at the top of `css/style.css`.
 
-Headings/body: Outfit (Google Fonts)
+```
+Background:    #ffffff
+Text:          #0f172a
+Accent blue:   #2563eb
+Accent blue 2: #3b82f6
+Violet:        #7c3aed
+Green:         #059669
+Dark sections: #0f172a
+
+Headings/body: Sora (Google Fonts)
 Labels/code:   DM Mono (Google Fonts)
 ```
 
@@ -122,6 +124,4 @@ Labels/code:   DM Mono (Google Fonts)
 
 - [GSAP 3.12.2](https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js)
 - [GSAP ScrollTrigger 3.12.2](https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js)
-- [Google Fonts — Outfit + DM Mono](https://fonts.google.com)
-
-No build step. No npm. Just open `index.html`.
+- [Google Fonts — Sora + DM Mono](https://fonts.google.com)

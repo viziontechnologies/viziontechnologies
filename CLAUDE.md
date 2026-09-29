@@ -31,6 +31,5 @@ Static, light-theme marketing site for Vizion Technologies (custom software for 
 - Founder: Brian Mahove.
 
 ## Known leftovers
-- `assets/hero_mobile_+_laptop_combo_(alternative).png` (1.3 MB) is unused.
 - No analytics yet (choice of tool pending).
-- `README.md` file-structure section is out of date (predates apps/, blog/, privacy, 404).
+
