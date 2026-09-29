@@ -471,6 +471,16 @@ if (!prefersReducedMotion) {
 const contactForm = document.getElementById('contactForm');
 const formSuccess  = document.getElementById('formSuccess');
 
+function showFormFallback() {
+  if (document.getElementById('formFallback')) return;
+  const note = document.createElement('p');
+  note.id = 'formFallback';
+  note.setAttribute('role', 'alert');
+  note.style.cssText = 'margin-top:1rem;font-size:.9rem;color:#b91c1c';
+  note.innerHTML = "Sorry, that didn't send. Please <a href=\"https://wa.me/263778686550\" target=\"_blank\" rel=\"noopener\">WhatsApp us</a> or email <a href=\"mailto:viziontechnologies.zw@gmail.com\">viziontechnologies.zw@gmail.com</a> instead.";
+  contactForm.appendChild(note);
+}
+
 if (contactForm) {
   contactForm.addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -489,6 +499,7 @@ if (contactForm) {
       if (empty) valid = false;
     });
     if (!valid) return;
+    document.getElementById('formFallback')?.remove();
 
     const btn  = contactForm.querySelector('.btn-submit');
     const orig = btn.innerHTML;
@@ -525,11 +536,13 @@ if (contactForm) {
         btn.removeAttribute('aria-busy');
         // Shake the button to signal error
         gsap.to(btn, { x: [-8,8,-6,6,-3,3,0], duration: .5, ease: 'power2.inOut' });
+        showFormFallback();
       }
     } catch {
-      btn.innerHTML = 'Error — try WhatsApp ↗';
+      btn.innerHTML = orig;
       btn.disabled  = false;
       btn.removeAttribute('aria-busy');
+      showFormFallback();
     }
   });
 

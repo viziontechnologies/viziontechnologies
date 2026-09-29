@@ -296,7 +296,7 @@ section { padding: 7rem 6%; position: relative; }
 .dot.r { background: #ff5f57; }
 .dot.y { background: #febc2e; }
 .dot.g { background: #28c840; }
-.vis-card img { width: 100%; border-radius: 10px; display: block; }
+.vis-card img { width: 100%; height: auto; border-radius: 10px; display: block; }
 
 .vis-float {
   position: absolute;
@@ -459,7 +459,7 @@ blockquote.test-q { font-size: .92rem; color: var(--t2); line-height: 1.8; font-
   letter-spacing: .1em; text-transform: uppercase;
   padding: .3rem .8rem; border-radius: 100px; z-index: 1;
 }
-.svc-showcase img { width: 100%; display: block; }
+.svc-showcase img { width: 100%; height: auto; display: block; }
 
 /* ── Process ────────────────────────────────────────────────── */
 .process { background: var(--bg); }
@@ -1159,3 +1159,7 @@ html.force-reveal .hero-h1 .ln span {
   .blog-article { padding: 3rem 5%; }
   .fb-photo { width: 80px; height: 80px; border-radius: 12px; }
 }
+
+.footer-social a svg { width: 16px; height: 16px; display: block; }
+.f-copy a { color: inherit; text-decoration: underline; }
+.f-copy a:hover { color: rgba(255,255,255,.5); }
