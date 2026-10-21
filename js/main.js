@@ -674,6 +674,8 @@ if (protoFrame) {
     currentTab = tab;
     loadShots(tab);
     setView('proto');
+    // Keep the address bar on this app (portfolio.html#try-<id>) so the link can be shared.
+    history.replaceState(null, '', '#' + tab.getAttribute('aria-controls'));
     if (focus) tab.focus();
   }
 
@@ -731,6 +733,19 @@ if (protoFrame) {
     if (e.key === 'ArrowRight') showShot(shotIndex + 1);
   });
   document.addEventListener('vzn:apk', updateFlag);
+
+  const protoCopy = document.getElementById('protoCopy');
+  protoCopy.addEventListener('click', async () => {
+    const url = location.origin + location.pathname + '#' + currentTab.getAttribute('aria-controls');
+    try {
+      await navigator.clipboard.writeText(url);
+      protoCopy.textContent = 'Link copied';
+    } catch {
+      window.prompt('Copy this link:', url);
+    }
+    clearTimeout(protoCopy._t);
+    protoCopy._t = setTimeout(() => { protoCopy.textContent = 'Copy link to this app'; }, 2000);
+  });
   currentTab = protoTabs.find(t => t.getAttribute('aria-selected') === 'true') || protoTabs[0];
   loadShots(currentTab);
   updateFlag();
