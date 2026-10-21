@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Labour case management case study: AI-assisted complaint tracking — Vizion Technologies</title>
+
+  <meta name="description" content="How we designed and built a labour case management system for an employment council: AI suggestions for each complaint's category and urgency, case tracking from intake to judgement, and a clickable prototype.">
+  <meta name="author" content="Vizion Technologies">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://viziontechnologies.vercel.app/work/case-management.html">
+
+  <meta property="og:title" content="Case study: a labour case system where AI suggests and agents decide">
+  <meta property="og:description" content="The brief, the design decisions, a clickable prototype and how we built a complaints and case system for an employment council.">
+  <meta property="og:image" content="https://viziontechnologies.vercel.app/assets/logo.png">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://viziontechnologies.vercel.app/work/case-management.html">
+  <meta property="og:site_name" content="Vizion Technologies">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Case study: a labour case system where AI suggests and agents decide">
+  <meta name="twitter:description" content="The brief, the design decisions, a clickable prototype and how we built a labour case management system.">
+  <meta name="twitter:image" content="https://viziontechnologies.vercel.app/assets/logo.png">
+
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
+
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script defer src="../js/main.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script>
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        if (typeof gsap === 'undefined') document.documentElement.classList.add('force-reveal');
+      }, 1200);
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Case study: a labour case system where AI suggests and agents decide",
+    "description": "How Vizion Technologies designed and built a complaints and case management system with AI suggestions for an employment council.",
+    "url": "https://viziontechnologies.vercel.app/work/case-management.html",
+    "author": { "@type": "Organization", "name": "Vizion Technologies" },
+    "publisher": { "@type": "Organization", "name": "Vizion Technologies", "logo": { "@type": "ImageObject", "url": "https://viziontechnologies.vercel.app/assets/logo.png" } }
+  }
+  </script>
+</head>
+<body>
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <div class="cursor" id="cur" aria-hidden="true"></div>
+  <div class="cursor-follower" id="curf" aria-hidden="true"></div>
+
+  <!-- Mobile Nav -->
+  <div class="mob-nav" id="mobNav" role="dialog" aria-label="Navigation menu" aria-modal="true" tabindex="-1">
+    <button class="mob-close" onclick="closeMob()" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <a href="../index.html#about" onclick="closeMob()">About</a>
+    <a href="../index.html#services" onclick="closeMob()">Services</a>
+    <a href="../index.html#process" onclick="closeMob()">How we work</a>
+    <a href="../index.html#pricing" onclick="closeMob()">Pricing</a>
+    <a href="../portfolio.html" onclick="closeMob()">Portfolio</a>
+    <a href="../index.html#apps" onclick="closeMob()">Our apps</a>
+    <a href="../index.html#contact" onclick="closeMob()">Contact</a>
+  </div>
+
+  <!-- Nav -->
+  <nav id="mainNav" role="navigation" aria-label="Main navigation">
+    <a href="../index.html" class="nav-logo" aria-label="Vizion Technologies — Home">
+      <img src="../assets/logo.png" alt="Vizion Technologies">
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#services">Services</a></li>
+      <li><a href="../index.html#process">How we work</a></li>
+      <li><a href="../index.html#pricing">Pricing</a></li>
+      <li><a href="../portfolio.html">Portfolio</a></li>
+      <li><a href="../index.html#apps">Our apps</a></li>
+      <li><a href="../index.html#contact" class="nav-cta">Free consultation</a></li>
+    </ul>
+    <button id="navHamburger" class="nav-hamburger" onclick="toggleMob()" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobNav">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <header class="blog-hero cs-hero" aria-label="Case study header">
+    <div class="blog-hero-inner">
+      <a href="../portfolio.html" class="blog-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to the portfolio
+      </a>
+      <div class="blog-cat">Case study &middot; Labour case management</div>
+      <h1>Every labour complaint,<br><span>tracked from intake to judgement.</span></h1>
+      <p class="cs-lede">We built a complaints and case system for an employment council. Staff log each labour complaint once, an AI model suggests its category and a likely resolution, and designated agents see the case through to a final judgement. The client is kept anonymous on this page.</p>
+
+      <dl class="cs-facts">
+        <div><dt>Who it's for</dt><dd>An employment council's admins and designated agents</dd></div>
+        <div><dt>Runs on</dt><dd>Any web browser; Apache, PHP and MySQL on the server</dd></div>
+        <div><dt>Built with</dt><dd>PHP, MySQL, a Python AI model (scikit-learn, Flask)</dd></div>
+        <div><dt>Status</dt><dd>Delivered</dd></div>
+      </dl>
+
+      <div class="app-jumplinks">
+        <a href="#problem" class="app-jumplink">The problem</a>
+        <a href="#process" class="app-jumplink">How we built it</a>
+        <a href="#try" class="app-jumplink">Try the prototype</a>
+        <a href="#decisions" class="app-jumplink">Key decisions</a>
+        <a href="#stack" class="app-jumplink">Tech stack</a>
+        <a href="#next" class="app-jumplink">What the client got</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Problem -->
+  <section class="app-section cs-section" id="problem" aria-labelledby="problem-heading">
+    <div class="cs-wrap cs-split">
+      <div>
+        <p class="s-lbl reveal">01 &mdash; The problem</p>
+        <h2 class="s-title reveal" id="problem-heading">Complaints on paper, and no single record.</h2>
+      </div>
+      <div class="cs-prose reveal">
+        <p>Labour complaints reached the council on paper and by phone. There was no one place to see who was handling a case, what stage it had reached, or how long cases were taking.</p>
+        <p>Complaints also come in mixed. Unpaid wages and a dismissal can arrive in the same letter, and someone has to read each one and decide where it goes. The council needed:</p>
+        <ul class="cs-list">
+          <li>One record per complaint, with its <strong>own case number</strong> and supporting documents</li>
+          <li>A clear <strong>status for every case</strong>, from Pending to Resolved or Dismissed</li>
+          <li><strong>Help sorting complaints</strong> by category and urgency, without taking the decision away from staff</li>
+          <li>A way for admins to <strong>assign cases and see how long they take</strong></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="app-section cs-section cs-alt" id="process" aria-labelledby="process-heading">
+    <div class="cs-wrap">
+      <div class="sec-hd">
+        <p class="s-lbl reveal">02 &mdash; How we built it</p>
+        <h2 class="s-title reveal" id="process-heading">The same six steps we use for every client.</h2>
+        <p class="s-sub reveal">Here's what each step looked like on this project.</p>
+      </div>
+
+      <ol class="cs-steps">
+        <li class="cs-step reveal">
+          <span class="cs-step-num">1</span>
+          <div>
+            <h3>Brief</h3>
+            <p>Every complaint gets one record and a case number. Two kinds of user: admins, who see everything and assign cases, and designated agents, who work the cases assigned to them. The AI may suggest, but a person always decides.</p>
+          </div>
+        </li>
+        <li class="cs-step reveal">
+          <span class="cs-step-num">2</span>
+          <div>
+            <h3>Design decisions</h3>
+            <p>We fixed the case stages (Pending, Assigned, Investigating, Resolved or Dismissed), kept the AI as a separate small service, and decided that every action on a case is logged. These choices are explained <a href="#decisions">below</a>.</p>
+          </div>
+        </li>
+        <li class="cs-step reveal">
+          <span class="cs-step-num">3</span>
+          <div>
+            <h3>Clickable prototype</h3>
+            <p>The screens staff use most (the dashboard, logging a new complaint, a single case and the reports) are mapped as a clickable prototype with sample data, so you can follow a complaint through the system. <a href="#try">Try it below.</a></p>
+          </div>
+        </li>
+        <li class="cs-step reveal">
+          <span class="cs-step-num">4</span>
+          <div>
+            <h3>Build in small pieces</h3>
+            <p>The pieces came one at a time: complaint intake with document uploads, the case list with filters, assigning cases with an email to the agent, the AI suggestions, a timeline for each case, printable case reports, agent performance figures and a public status check.</p>
+          </div>
+        </li>
+        <li class="cs-step reveal">
+          <span class="cs-step-num">5</span>
+          <div>
+            <h3>Test and harden</h3>
+            <p>We trained and checked the model in notebooks on labelled sample complaints. In the app, uploads are limited in size and file type, pages check the user's role, and if the AI service doesn't answer within a few seconds the complaint is still saved.</p>
+          </div>
+        </li>
+        <li class="cs-step reveal">
+          <span class="cs-step-num">6</span>
+          <div>
+            <h3>Ship and support</h3>
+            <p>The system runs as a PHP and MySQL web app with the Python model running beside it. It includes a built-in user manual, and admins can export resolved cases as training data for the next update of the model.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Prototype -->
+  <section class="app-section cs-section" id="try" aria-labelledby="try-heading">
+    <div class="cs-wrap cs-try cs-try-wide">
+      <div class="cs-try-text">
+        <p class="s-lbl reveal">03 &mdash; Try it</p>
+        <h2 class="s-title reveal" id="try-heading">Click through the prototype.</h2>
+        <p class="s-sub reveal">This is the clickable prototype, running live on the page. Every name, case and figure in it is sample data, and it may be a step behind the real system.</p>
+        <ul class="cs-list reveal">
+          <li>Log a new complaint and run the AI analysis</li>
+          <li>Submit it, then assign the case to a designated agent</li>
+          <li>Open Reports to see cases by category and the AI accuracy check</li>
+        </ul>
+        <div class="cs-try-actions reveal">
+          <a href="../prototypes/case-management.html" class="btn-ghost" target="_blank" rel="noopener">Open full screen &#8599;</a>
+        </div>
+      </div>
+      <div class="cs-window reveal"><div class="cs-window-bar"><span class="cs-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="cs-window-url">case-management · demo</span></div><iframe src="../prototypes/case-management.html" title="Labour case management clickable prototype" loading="lazy"></iframe></div>
+    </div>
+  </section>
+
+  <!-- Decisions -->
+  <section class="app-section cs-section cs-alt" id="decisions" aria-labelledby="decisions-heading">
+    <div class="cs-wrap">
+      <div class="sec-hd">
+        <p class="s-lbl reveal">04 &mdash; Key decisions</p>
+        <h2 class="s-title reveal" id="decisions-heading">Four choices that keep people in charge.</h2>
+        <p class="s-sub reveal">In plain English, without the jargon.</p>
+      </div>
+
+      <div class="cs-cards">
+        <article class="cs-card reveal">
+          <h3>The AI suggests, an agent decides</h3>
+          <p>When a complaint is logged, the model suggests one of five categories (such as wage dispute or unfair dismissal) and a likely resolution. The designated agent investigates and records the final judgement, which is what counts.</p>
+        </article>
+        <article class="cs-card reveal">
+          <h3>Show how sure it is, and the runner-up</h3>
+          <p>Each suggestion comes with a confidence percentage and the second most likely category. Complaints often mix issues, like unpaid wages and a dismissal, so staff see when the model is unsure instead of trusting a single label.</p>
+        </article>
+        <article class="cs-card reveal">
+          <h3>The AI runs on its own, and can't block intake</h3>
+          <p>The model is a small separate service on the same machine. The case system asks it for a suggestion when a complaint is submitted. If it doesn't reply within a few seconds, the case is saved anyway and marked "Not predicted", so no complaint is lost.</p>
+        </article>
+        <article class="cs-card reveal">
+          <h3>Every action leaves a trail</h3>
+          <p>Opening, assigning, updating and resolving a case are all written to that case's timeline: who did what, and when. The printable case report includes the timeline, and complainants can check their status with just their case number.</p>
+        </article>
+      </div>
+
+      <p class="cs-aside reveal">Urgency is deliberately simple. Words like "harassment" or "threat" mark a complaint High, and words about unpaid or late wages mark it Medium. Rules like these are easy for staff to understand. The dashboard also flags any case that has sat untouched for 30 days or more.</p>
+    </div>
+  </section>
+
+  <!-- Stack -->
+  <section class="app-section cs-section" id="stack" aria-labelledby="stack-heading">
+    <div class="cs-wrap">
+      <div class="sec-hd">
+        <p class="s-lbl reveal">05 &mdash; Tech stack</p>
+        <h2 class="s-title reveal" id="stack-heading">What it's made of.</h2>
+      </div>
+      <div class="cs-stack reveal">
+        <div><h3>Web app</h3><p>PHP 7.4+, plain HTML, CSS and JavaScript, Chart.js for dashboard charts</p></div>
+        <div><h3>Data</h3><p>MySQL for cases, documents, users and the case audit log</p></div>
+        <div><h3>AI model</h3><p>Python and scikit-learn: TF-IDF text features with logistic regression, able to give several categories per complaint</p></div>
+        <div><h3>AI service</h3><p>A small Flask API that the PHP app calls when a complaint is submitted</p></div>
+        <div><h3>Email</h3><p>PHPMailer, so agents get an email when a case is assigned to them</p></div>
+        <div><h3>Hosting</h3><p>Apache, PHP and MySQL (XAMPP), with the model service running alongside</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next -->
+  <section class="app-section cs-section cs-alt" id="next" aria-labelledby="next-heading">
+    <div class="cs-wrap cs-split">
+      <div>
+        <p class="s-lbl reveal">06 &mdash; What the client got</p>
+        <h2 class="s-title reveal" id="next-heading">What was handed over.</h2>
+      </div>
+      <div class="cs-prose reveal">
+        <p>Alongside case intake and tracking, the council got:</p>
+        <ul class="cs-list">
+          <li>A dashboard with case counts, charts and overdue-case alerts</li>
+          <li>Filters by category, urgency, status and date range, and cases grouped by region</li>
+          <li>An agent performance report: resolution rate and average days to resolve</li>
+          <li>Printable case reports with the AI suggestion, the final judgement and the timeline</li>
+          <li>A public status check page and a built-in user manual</li>
+        </ul>
+        <p>Each resolved case, with the agent's final judgement, can be exported as training data, so the model can be retrained on the council's own cases.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" aria-label="Talk to us">
+    <p class="s-lbl reveal" style="color:var(--accent);justify-content:center">Your project</p>
+    <h2 class="reveal">Want something like this for your business?</h2>
+    <p class="reveal">We follow the same steps for every client, and you see a clickable prototype before you pay for the build.</p>
+    <div class="cs-cta-actions reveal">
+      <a href="../index.html#contact" class="btn-primary">Book a free consultation &rarr;</a>
+      <a href="../portfolio.html" class="btn-ghost">See more of our work</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a href="../index.html" class="f-logo" aria-label="Vizion Technologies — Home">
+          <img src="../assets/logo.png" alt="Vizion Technologies" width="100" height="28" loading="lazy">
+        </a>
+        <p>Custom software for SMEs in Harare, Zimbabwe. We bring your vision into focus — before you pay a cent.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/vizion-technologies-895b94415/" target="_blank" rel="noopener" aria-label="Vizion on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+          <a href="https://github.com/viziontechnologies" target="_blank" rel="noopener" aria-label="Vizion on GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 00-3.64 22.41c.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 015.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0012 .5z"/></svg></a>
+          <a href="https://www.instagram.com/viziontechnologies/" target="_blank" rel="noopener" aria-label="Vizion on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/people/Vizion/61590870712927/" target="_blank" rel="noopener" aria-label="Vizion on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg></a>
+          <a href="https://www.tiktok.com/@viziontechnologies" target="_blank" rel="noopener" aria-label="Vizion on TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0115.54 3h-3.09v12.4a2.59 2.59 0 01-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 004.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg></a>
+          <a href="https://wa.me/263778686550" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#process">How we work</a></li>
+          <li><a href="../portfolio.html">Portfolio</a></li>
+          <li><a href="../index.html#contact">Contact us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Apps</h4>
+        <ul>
+          <li><a href="../apps/tylliq.html">Tylliq POS handbook</a></li>
+          <li><a href="../apps/tylliq.html#status">License status</a></li>
+          <li><a href="../apps/tylliq.html#pricing">Plans &amp; pricing</a></li>
+          <li><a href="../apps/tylliq.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="../blog/5-signs-pos-system.html">POS systems guide</a></li>
+          <li><a href="../index.html#pricing">Pricing</a></li>
+          <li><a href="../index.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="f-copy">&copy; 2026 Vizion Technologies. Harare, Zimbabwe. &middot; <a href="../privacy.html">Privacy</a></span>
+      <a href="https://wa.me/263778686550" class="f-wa" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp: +263 77 868 6550
+      </a>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <div class="wa-float" aria-label="Chat on WhatsApp">
+    <a class="wa-btn" href="https://wa.me/263778686550" target="_blank" rel="noopener" aria-label="Open WhatsApp chat">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+    <span class="wa-tooltip" aria-hidden="true">Chat on WhatsApp</span>
+  </div>
+
+</body>
+</html>
