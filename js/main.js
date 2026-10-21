@@ -687,6 +687,8 @@ if (protoFrame) {
   const protoFlag = document.getElementById('protoFlag');
   const protoFlagText = document.getElementById('protoFlagText');
   const protoFlagApk = document.getElementById('protoFlagApk');
+  const protoFlagMail = document.getElementById('protoFlagMail');
+  const protoFlagWa = document.getElementById('protoFlagWa');
   let currentTab = null, shots = [], shotIndex = 0;
 
   function loadShots(tab) {
@@ -721,6 +723,11 @@ if (protoFrame) {
     const ready = app && window.vznApkReady && window.vznApkReady.has(app);
     protoFlagApk.hidden = !ready;
     if (ready) protoFlagApk.href = `https://github.com/viziontechnologies/downloads/releases/download/${app}-latest/${app}.apk`;
+    // "Ask us for access" links carry a ready-made message naming this prototype.
+    const name = currentTab ? currentTab.dataset.name : 'one of your apps';
+    const ask = `Hi Vizion, I tried the ${name} prototype on your website and I'd like access to the real app. Could you tell me how to get it?`;
+    protoFlagMail.href = `mailto:viziontechnologies.zw@gmail.com?subject=${encodeURIComponent('Access request: ' + name)}&body=${encodeURIComponent(ask)}`;
+    protoFlagWa.href = `https://wa.me/263778686550?text=${encodeURIComponent(ask)}`;
   }
   protoView.addEventListener('click', e => {
     const b = e.target.closest('button[data-view]');
