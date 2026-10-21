@@ -687,6 +687,7 @@ if (protoFrame) {
   const protoFlag = document.getElementById('protoFlag');
   const protoFlagText = document.getElementById('protoFlagText');
   const protoFlagApk = document.getElementById('protoFlagApk');
+  const protoFlagApkCopy = document.getElementById('protoFlagApkCopy');
   const protoFlagMail = document.getElementById('protoFlagMail');
   const protoFlagWa = document.getElementById('protoFlagWa');
   let currentTab = null, shots = [], shotIndex = 0;
@@ -721,7 +722,7 @@ if (protoFrame) {
       : '<strong>This is a prototype</strong> with sample data, not the real app. The real app may be newer than this.';
     const app = currentTab && currentTab.dataset.apk;
     const ready = app && window.vznApkReady && window.vznApkReady.has(app);
-    protoFlagApk.hidden = !ready;
+    protoFlagApk.hidden = protoFlagApkCopy.hidden = !ready;
     if (ready) protoFlagApk.href = `https://github.com/viziontechnologies/downloads/releases/download/${app}-latest/${app}.apk`;
     // "Ask us for access" links carry a ready-made message naming this prototype.
     const name = currentTab ? currentTab.dataset.name : 'one of your apps';
@@ -741,18 +742,23 @@ if (protoFrame) {
   });
   document.addEventListener('vzn:apk', updateFlag);
 
-  const protoCopy = document.getElementById('protoCopy');
-  protoCopy.addEventListener('click', async () => {
-    const url = location.origin + location.pathname + '#' + currentTab.getAttribute('aria-controls');
-    try {
-      await navigator.clipboard.writeText(url);
-      protoCopy.textContent = 'Link copied';
-    } catch {
-      window.prompt('Copy this link:', url);
-    }
-    clearTimeout(protoCopy._t);
-    protoCopy._t = setTimeout(() => { protoCopy.textContent = 'Copy link to this app'; }, 2000);
-  });
+  // Copy buttons in the notice: show "Link copied" for 2s, or fall back to a prompt.
+  function copyButton(btn, getUrl) {
+    const label = btn.textContent;
+    btn.addEventListener('click', async () => {
+      const url = getUrl();
+      try {
+        await navigator.clipboard.writeText(url);
+        btn.textContent = 'Link copied';
+      } catch {
+        window.prompt('Copy this link:', url);
+      }
+      clearTimeout(btn._t);
+      btn._t = setTimeout(() => { btn.textContent = label; }, 2000);
+    });
+  }
+  copyButton(document.getElementById('protoCopy'), () => location.origin + location.pathname + '#' + currentTab.getAttribute('aria-controls'));
+  copyButton(protoFlagApkCopy, () => protoFlagApk.href);
   currentTab = protoTabs.find(t => t.getAttribute('aria-selected') === 'true') || protoTabs[0];
   loadShots(currentTab);
   updateFlag();

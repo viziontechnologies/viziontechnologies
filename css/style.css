@@ -1279,7 +1279,7 @@ html.force-reveal .hero-h1 .ln span {
 .proto-flag strong { font-weight: 700; }
 .proto-flag a, .proto-flag button { color: #92400e; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
 .proto-flag button { background: none; border: 0; padding: 0; font: inherit; font-weight: 700; cursor: pointer; }
-.proto-flag a[hidden] { display: none; }
+.proto-flag a[hidden], .proto-flag button[hidden] { display: none; }
 .proto-flag-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--amber); flex: none; animation: protoBlink 1.6s ease-in-out infinite; }
 .proto-flag.is-shots { background: var(--green-lt); border-color: #a7e3c5; color: var(--green-dk); }
 .proto-flag.is-shots a, .proto-flag.is-shots button { color: var(--green-dk); }
