@@ -598,19 +598,35 @@ if (pfOverlay) {
   }
 
   document.querySelectorAll('.proj-card').forEach(card => {
+    // Cards with data-case="work/<name>.html" open their case study instead of the pop-up.
+    const caseUrl = card.dataset.case;
+    const open = e => {
+      if (!caseUrl) return openProjectModal(card);
+      if (e.ctrlKey || e.metaKey || e.button === 1) window.open(caseUrl, '_blank', 'noopener');
+      else window.location.href = caseUrl;
+    };
+
     card.setAttribute('tabindex', '0');
-    card.setAttribute('role', 'button');
-    card.setAttribute('aria-haspopup', 'dialog');
+    card.setAttribute('role', caseUrl ? 'link' : 'button');
+    if (caseUrl) {
+      const hint = card.querySelector('.proj-view-hint');
+      if (hint) hint.innerHTML = 'Read the case study &rarr;';
+    } else {
+      card.setAttribute('aria-haspopup', 'dialog');
+    }
 
     card.addEventListener('click', e => {
       if (e.target.closest('.proj-link')) return;
-      openProjectModal(card);
+      open(e);
+    });
+    card.addEventListener('auxclick', e => {
+      if (caseUrl && e.button === 1 && !e.target.closest('.proj-link')) open(e);
     });
     card.addEventListener('keydown', e => {
       if (e.target.closest('.proj-link')) return;
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        openProjectModal(card);
+        open(e);
       }
     });
   });
