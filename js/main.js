@@ -761,14 +761,32 @@ if (protoFrame) {
   });
 
   // Links like portfolio.html#try-tylliq (from the project cards) open that app's prototype.
-  function protoFromHash() {
-    const tab = protoTabs.find(t => '#' + t.getAttribute('aria-controls') === location.hash);
-    if (!tab) return;
-    selectProto(tab);
-    document.getElementById('prototypes').scrollIntoView({ behavior: 'smooth' });
+  // The #try-<id> anchor is the text panel beside the phone, so the browser's own jump
+  // lands mid-section. Scroll to the app tabs instead, just below the fixed nav.
+  const protoTablist = document.querySelector('.proto-tabs');
+  function scrollToProtos(behavior) {
+    const navH = mainNav ? mainNav.offsetHeight : 0;
+    window.scrollTo({ top: protoTablist.getBoundingClientRect().top + window.scrollY - navH - 16, behavior });
   }
-  window.addEventListener('hashchange', protoFromHash);
-  protoFromHash();
+  function protoFromHash(behavior) {
+    const tab = protoTabs.find(t => '#' + t.getAttribute('aria-controls') === location.hash);
+    if (!tab) return false;
+    selectProto(tab);
+    scrollToProtos(behavior);
+    return true;
+  }
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#try-"]');
+    if (!a) return;
+    history.replaceState(null, '', a.getAttribute('href'));
+    if (protoFromHash('smooth')) e.preventDefault();
+  });
+  window.addEventListener('hashchange', () => protoFromHash('smooth'));
+  if (protoFromHash('auto')) {
+    // Run again once images and fonts have settled, and after the browser's own anchor jump.
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.addEventListener('load', () => setTimeout(() => scrollToProtos('auto'), 50));
+  }
 }
 
 /* ── 22. Portfolio Filters ───────────────────────────────── */
