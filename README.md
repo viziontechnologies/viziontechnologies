@@ -24,8 +24,7 @@ vizion.com/
 │   └── style.css               — Shared stylesheet for every page
 ├── js/
 │   ├── main.js                 — Shared script (GSAP, cursor, contact form, cookie notice)
-│   ├── devices3d.js            — 3D laptop + phone scenes (hero, case-study headers)
-│   └── viz-robot.js            — Three.js robot mascot for the homepage guide
+│   └── devices3d.js            — 3D laptop + phone scenes (hero, case-study headers)
 ├── assets/                     — WebP images, logo.png, favicon.svg, app icons
 ├── manifest.webmanifest
 ├── sitemap.xml
@@ -130,4 +129,4 @@ Labels/code:   DM Mono (Google Fonts)
 - [GSAP 3.12.2](https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js)
 - [GSAP ScrollTrigger 3.12.2](https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js)
 - [Google Fonts — Sora + DM Mono](https://fonts.google.com)
-- [Three.js 0.160.0](https://cdn.jsdelivr.net/npm/three@0.160.0/) as an ES module via an import map (3D hero, case-study headers, homepage mascot)
+- [Three.js 0.160.0](https://cdn.jsdelivr.net/npm/three@0.160.0/) as an ES module via an import map (3D hero and case-study headers)
