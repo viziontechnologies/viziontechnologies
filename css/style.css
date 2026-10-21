@@ -1284,8 +1284,16 @@ html.force-reveal .hero-h1 .ln span {
 .proto-flag.is-shots { background: var(--green-lt); border-color: #a7e3c5; color: var(--green-dk); }
 .proto-flag.is-shots a, .proto-flag.is-shots button { color: var(--green-dk); }
 .proto-flag.is-shots .proto-flag-dot { background: var(--green); }
+.proto-flag a.proto-flag-dl, .proto-flag.is-shots a.proto-flag-dl {
+  display: inline-flex; align-items: center; gap: .4rem; padding: .45rem .95rem; border-radius: 999px;
+  background: var(--green); color: #fff; text-decoration: none; box-shadow: 0 4px 14px rgba(5,150,105,.35);
+  animation: protoDlPulse 2.2s ease-in-out infinite; transition: background .2s, transform .2s;
+}
+.proto-flag a.proto-flag-dl:hover { background: var(--green-dk); transform: translateY(-1px); }
+.proto-flag a.proto-flag-dl[hidden] { display: none; }
+@keyframes protoDlPulse { 0%,100% { box-shadow: 0 4px 14px rgba(5,150,105,.35), 0 0 0 0 rgba(5,150,105,.45); } 50% { box-shadow: 0 4px 14px rgba(5,150,105,.35), 0 0 0 7px rgba(5,150,105,0); } }
 @keyframes protoBlink { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(217,119,6,.45); } 50% { opacity: .25; box-shadow: 0 0 0 6px rgba(217,119,6,0); } }
-@media (prefers-reduced-motion: reduce) { .proto-flag-dot { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .proto-flag-dot, .proto-flag a.proto-flag-dl { animation: none; } }
 
 .proto-gallery { display: none; position: relative; flex: 1; min-height: 0; background: #0b0f19; }
 .proto-stage[data-view="shots"] .proto-gallery { display: block; }
