@@ -128,32 +128,6 @@ document.addEventListener('keydown', e => {
   }
 });
 
-/* ── 5a. Website Guide ───────────────────────────────────── */
-const guide = document.getElementById('vznGuide');
-if (guide) {
-  const guideToggle = document.getElementById('vznGuideToggle');
-  const guidePanel = document.getElementById('vznGuidePanel');
-  const guideClose = document.getElementById('vznGuideClose');
-
-  function setGuideOpen(open) {
-    guidePanel.hidden = !open;
-    guideToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    guideToggle.setAttribute('aria-label', open ? 'Close Viz, the website guide' : 'Open Viz, the website guide');
-    if (!open) guideToggle.focus();
-  }
-
-  guideToggle.addEventListener('click', () => {
-    setGuideOpen(guidePanel.hidden);
-  });
-  guideClose.addEventListener('click', () => setGuideOpen(false));
-  guidePanel.querySelectorAll('[data-guide-link]').forEach(link => {
-    link.addEventListener('click', () => setGuideOpen(false));
-  });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && !guidePanel.hidden) setGuideOpen(false);
-  });
-}
-
 /* ── 6. Marquee ───────────────────────────────────────────── */
 const mqItems = [
   'React', 'Node.js', 'React Native', 'PostgreSQL',
