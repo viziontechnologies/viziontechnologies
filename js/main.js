@@ -481,6 +481,24 @@ function showFormFallback() {
   contactForm.appendChild(note);
 }
 
+// A paper plane takes off from the Send button when the message goes through.
+function flyPaperPlane(from) {
+  if (prefersReducedMotion || typeof gsap === 'undefined') return;
+  const r = from.getBoundingClientRect();
+  const plane = document.createElement('div');
+  plane.className = 'paper-plane';
+  plane.setAttribute('aria-hidden', 'true');
+  plane.innerHTML = '<svg viewBox="0 0 64 64" width="56" height="56"><path d="M4 30 60 6 44 58 32 38Z" fill="#2563eb"/><path d="M60 6 32 38l-4 18 8-14" fill="#1d4ed8"/><path d="M4 30 32 38 60 6Z" fill="#60a5fa"/></svg>';
+  plane.style.left = `${r.left + r.width / 2 - 28}px`;
+  plane.style.top = `${r.top + r.height / 2 - 28}px`;
+  document.body.appendChild(plane);
+  gsap.timeline({ onComplete: () => plane.remove() })
+    .fromTo(plane, { scale: .4, opacity: 0, rotateZ: -10 }, { scale: 1, opacity: 1, duration: .25, ease: 'back.out(2)' })
+    .to(plane, { x: 140, y: -60, rotateZ: -25, rotateX: 25, duration: .45, ease: 'power1.in' })
+    .to(plane, { x: 60, y: -220, rotateZ: -160, rotateY: 40, duration: .55, ease: 'sine.inOut' })    // the loop
+    .to(plane, { x: window.innerWidth, y: -window.innerHeight * .6, rotateZ: -35, scale: .5, opacity: 0, duration: .9, ease: 'power2.in' });
+}
+
 if (contactForm) {
   contactForm.addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -521,6 +539,7 @@ if (contactForm) {
         headers: { 'Accept': 'application/json' }
       });
       if (res.ok) {
+        flyPaperPlane(btn);
         gsap.to(contactForm, { opacity: 0, y: -16, duration: .4, ease: 'power2.in', onComplete: () => {
           contactForm.style.display = 'none';
           if (formSuccess) {
@@ -687,6 +706,7 @@ if (protoFrame) {
     setDevice(devices.includes(protoStage.dataset.device) && devices.length > 1 && protoStage.dataset.kind === lastKind ? protoStage.dataset.device : devices[0]);
     lastKind = protoStage.dataset.kind;
     protoFrame.title = tab.dataset.name + ' clickable prototype';
+    protoStage.classList.remove('is-used');        // show the "it's live" hint again for each app
     currentTab = tab;
     loadShots(tab);
     setView('proto');
@@ -769,6 +789,12 @@ if (protoFrame) {
     clearTimeout(protoCopy._t);
     protoCopy._t = setTimeout(() => { protoCopy.textContent = 'Copy link to this app'; }, 2000);
   });
+  // "Live app" hint on the device: hidden once the visitor starts using it (pointer
+  // over the screen, or focus moving into the iframe).
+  const markUsed = () => protoStage.classList.add('is-used');
+  protoFrame.addEventListener('pointerenter', () => setTimeout(markUsed, 1200));
+  window.addEventListener('blur', () => { if (document.activeElement === protoFrame) markUsed(); });
+
   currentTab = protoTabs.find(t => t.getAttribute('aria-selected') === 'true') || protoTabs[0];
   loadShots(currentTab);
   updateFlag();
