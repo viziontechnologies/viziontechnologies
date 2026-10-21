@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shanduko Threat Intelligence — clickable prototype by Vizion Technologies</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="proto.css">
+<style>
+:root {
+  --font: 'IBM Plex Sans', system-ui, sans-serif;
+  --brand: #22D3A6; --on-brand: #04130F; --side-bg: #070B12; --side-ink: #C9D4E3; --side-active: rgba(34,211,166,.14);
+  --bg: #0B111B; --card: #111925; --ink: #E6EDF6; --t2: #8A99AE; --line: #1F2A3A; --page: #0B111B; --focus: #22D3A6;
+  --hi: #F43F5E; --med: #F59E0B; --lo: #22D3A6;
+}
+.mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+.wbtn.ghost { color: var(--ink); }
+.badge-s { background: rgba(99,102,241,.18); color: #A5B4FC; }
+.badge-s.red { background: rgba(244,63,94,.16); color: #FDA4AF; }
+.badge-s.amber { background: rgba(245,158,11,.16); color: #FCD34D; }
+.badge-s.green { background: rgba(34,211,166,.14); color: #6EE7C8; }
+.badge-s.grey { background: rgba(148,163,184,.14); color: #CBD5E1; }
+.wtable tr[data-go]:hover td { background: rgba(255,255,255,.03); }
+.trend { display: flex; align-items: flex-end; gap: 6px; height: 120px; padding-top: 8px; }
+.trend div { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 2px; height: 100%; }
+.trend i { display: block; border-radius: 3px 3px 0 0; }
+.trend span { font-size: 10px; color: var(--t2); text-align: center; margin-top: 4px; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--t2); margin-top: 10px; }
+.legend b { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.dist { display: flex; height: 14px; border-radius: 7px; overflow: hidden; margin: 6px 0 10px; }
+.drop { border: 2px dashed #2B3A50; border-radius: 16px; padding: 40px 20px; text-align: center; }
+.drop b { display: block; font-size: 18px; margin: 10px 0 6px; }
+.drop p { color: var(--t2); font-size: 13px; }
+.file { display: flex; gap: 12px; align-items: center; padding: 12px; border: 1px solid var(--line); border-radius: 12px; margin-top: 10px; width: 100%; text-align: left; }
+.file:hover { border-color: #2B3A50; }
+.file .ic { width: 38px; height: 38px; border-radius: 10px; background: #1A2433; display: grid; place-items: center; flex: none; }
+.file b { font-size: 14px; display: block; }
+.file small { color: var(--t2); font-size: 12px; }
+.pipe { display: grid; gap: 10px; }
+.pipe .s { display: flex; gap: 12px; align-items: center; font-size: 14px; color: var(--t2); }
+.pipe .s i { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #2B3A50; flex: none; display: grid; place-items: center; font-style: normal; font-size: 11px; }
+.pipe .s.run { color: var(--ink); }
+.pipe .s.run i { border-color: var(--brand); border-top-color: transparent; animation: sp .7s linear infinite; }
+.pipe .s.ok { color: var(--ink); }
+.pipe .s.ok i { background: var(--brand); border-color: var(--brand); color: var(--on-brand); }
+.pipe .s em { margin-left: auto; font-style: normal; font-size: 12px; }
+@keyframes sp { to { transform: rotate(360deg); } }
+.gauge { width: 150px; height: 150px; border-radius: 50%; display: grid; place-items: center; margin: 0 auto 10px; background: conic-gradient(var(--hi) calc(var(--v) * 1%), #1F2A3A 0); }
+.gauge div { width: 118px; height: 118px; border-radius: 50%; background: var(--card); display: grid; place-items: center; text-align: center; }
+.gauge b { font-size: 36px; font-weight: 700; line-height: 1; }
+.gauge small { display: block; color: var(--t2); font-size: 11px; }
+#iocs td:last-child { word-break: break-all; }
+.hash { font-size: 11px; color: var(--t2); word-break: break-all; }
+.live { display: inline-flex; gap: 6px; align-items: center; font-size: 12px; color: var(--brand); }
+.live::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 3px rgba(34,211,166,.2); }
+</style>
+</head>
+<body class="web">
+<div class="app">
+  <div class="ribbon">Prototype with sample data · the real app may be newer · viziontechnologies.zw@gmail.com</div>
+  <nav class="side" aria-label="Main">
+    <div class="brand"><i>S</i>Shanduko</div>
+    <button data-tab="dash">📊 <span>Dashboard</span></button>
+    <button data-tab="scan">⬆ <span>Scan a file</span></button>
+    <button data-tab="history">🗂 <span>Scan history</span></button>
+    <button data-toast="YARA rule set: community rules, updated weekly">🧬 <span>YARA rules</span></button>
+    <div class="grow"></div>
+    <div class="who"><span class="avatar">SO</span><div><b>SOC analyst</b><small>Signed in</small></div></div>
+  </nav>
+
+  <div class="screens">
+    <!-- Dashboard -->
+    <section class="scr" id="dash" data-tab-of="dash">
+      <div class="topbar"><h1>Threat dashboard</h1><span class="live">Live</span></div>
+      <div class="body wpad">
+        <div class="wgrid c4">
+          <div class="wcard kpi"><small>Files scanned · 7 days</small><b id="kFiles">412</b></div>
+          <div class="wcard kpi"><small>High risk</small><b style="color:var(--hi)" id="kHigh">17</b></div>
+          <div class="wcard kpi"><small>YARA matches</small><b>38</b></div>
+          <div class="wcard kpi"><small>Average risk score</small><b>23</b></div>
+        </div>
+        <div class="wgrid c2" style="margin-top:16px">
+          <div class="wcard"><h3>Scans per day</h3>
+            <div class="trend" id="trend"></div>
+            <div class="legend"><span><b style="background:var(--hi)"></b>High</span><span><b style="background:var(--med)"></b>Medium</span><span><b style="background:#2E4058"></b>Low</span></div>
+          </div>
+          <div class="wcard"><h3>Risk distribution</h3>
+            <div class="dist"><i style="width:4%;background:var(--hi)"></i><i style="width:15%;background:var(--med)"></i><i style="width:81%;background:#2E4058"></i></div>
+            <div style="font-size:13px;color:var(--t2);line-height:1.8">High (70–100): 17 files<br>Medium (40–69): 62 files<br>Low (0–39): 333 files</div>
+            <div style="margin-top:14px"><button class="wbtn" data-tab="scan">⬆ Scan a file</button></div>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--t2);margin-top:14px">Sample figures for the prototype.</p>
+      </div>
+    </section>
+
+    <!-- Scan -->
+    <section class="scr" id="scan" data-tab-of="scan">
+      <div class="topbar"><h1>Scan a file</h1></div>
+      <div class="body wpad">
+        <div class="wcard">
+          <div class="drop"><div style="font-size:34px">⬆</div><b>Drop a file to scan</b><p>Any file type. It is hashed, checked for indicators, matched against YARA rules and scored.</p></div>
+          <div style="font-size:12px;color:var(--t2);margin:16px 0 4px;font-weight:600">Or try a sample file</div>
+          <button class="file" data-file="invoice"><span class="ic">📄</span><span><b>invoice_october.docm</b><small>Word document with macros · 214 KB</small></span></button>
+          <button class="file" data-file="setup"><span class="ic">⚙️</span><span><b>printer_driver_setup.exe</b><small>Windows installer · 3.1 MB</small></span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Running -->
+    <section class="scr" id="running" data-tab-of="scan">
+      <div class="topbar"><h1 id="runTitle">Scanning…</h1><span class="live">WebSocket</span></div>
+      <div class="body wpad">
+        <div class="wcard">
+          <div class="pipe" id="pipe"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Report -->
+    <section class="scr" id="report" data-tab-of="history">
+      <div class="topbar"><button class="back" data-tab="history" aria-label="Back">←</button><h1 id="repTitle">Report</h1><span class="badge-s red" id="repBadge">High risk</span></div>
+      <div class="body wpad">
+        <div class="wgrid c3">
+          <div class="wcard" style="text-align:center">
+            <div class="gauge" id="gauge" style="--v:82"><div><span><b id="score">82</b><small>risk / 100</small></span></div></div>
+            <div class="hash mono" id="sha">SHA-256</div>
+          </div>
+          <div class="wcard" style="grid-column: span 2">
+            <h3>Indicators of compromise</h3>
+            <div class="tscroll"><table class="wtable mono" id="iocs"></table></div>
+          </div>
+        </div>
+        <div class="wgrid c2" style="margin-top:16px">
+          <div class="wcard"><h3>YARA matches</h3><div id="yara"></div></div>
+          <div class="wcard"><h3>CVE references</h3><div id="cves"></div></div>
+        </div>
+        <p style="font-size:12px;color:var(--t2);margin-top:14px">Sample report. Addresses and domains are reserved example values.</p>
+      </div>
+    </section>
+
+    <!-- History -->
+    <section class="scr" id="history" data-tab-of="history">
+      <div class="topbar"><h1>Scan history</h1></div>
+      <div class="body wpad"><div class="wcard tscroll"><table class="wtable" id="hist"></table></div></div>
+    </section>
+  </div>
+</div>
+
+<script src="proto.js"></script>
+<script>
+if (top === self) document.body.classList.add('standalone');
+const P = window.Proto;
+const days = [['Mon', 2, 9, 48], ['Tue', 3, 7, 52], ['Wed', 1, 11, 44], ['Thu', 4, 10, 49], ['Fri', 5, 12, 57], ['Sat', 1, 6, 30], ['Sun', 1, 7, 53]];
+const max = Math.max(...days.map(d => d[1] + d[2] + d[3]));
+document.getElementById('trend').innerHTML = days.map(([n, h, m, l]) =>
+  `<div><i style="height:${h / max * 100}%;background:var(--hi)"></i><i style="height:${m / max * 100}%;background:var(--med)"></i><i style="height:${l / max * 100}%;background:#2E4058"></i><span>${n}</span></div>`).join('');
+
+const FILES = {
+  invoice: { name: 'invoice_october.docm', score: 82, risk: 'High', sha: '9f2c4e81a7d3b05c6e19f8a4d27b3c60e5f1a9d84c2b7e03f6a1d95c8b4e2f70',
+    iocs: [['URL', 'http://update-check.example/payload.ps1'], ['Domain', 'cdn-files.example.net'], ['IPv4', '203.0.113.45'], ['IPv4', '198.51.100.17']],
+    yara: [['Office_Macro_AutoOpen', 'Macro runs when the document opens'], ['Suspicious_PowerShell_Download', 'Macro downloads and runs a script']],
+    cves: [['CVE-2017-11882', 'Microsoft Office Equation Editor memory corruption']] },
+  setup: { name: 'printer_driver_setup.exe', score: 18, risk: 'Low', sha: '41b7d0c2e9a65f38d1c4b70e2a9f5d16c83e0b4a7f2d9c51e6b8a03d7c4f1e29',
+    iocs: [['Domain', 'downloads.vendor.example']], yara: [], cves: [] },
+};
+const scans = [
+  { f: 'quarterly_report.pdf', score: 12, risk: 'Low', when: 'Today 09:12' },
+  { f: 'payroll_update.xlsm', score: 71, risk: 'High', when: 'Yesterday' },
+];
+let file = FILES.invoice;
+const rb = r => r === 'High' ? 'red' : r === 'Medium' ? 'amber' : 'green';
+
+document.querySelectorAll('[data-file]').forEach(b => b.addEventListener('click', () => { file = FILES[b.dataset.file]; P.go('running'); }));
+P.on('running', () => {
+  document.getElementById('runTitle').textContent = 'Scanning ' + file.name;
+  const steps = [['Hashing (SHA-256)', file.sha.slice(0, 12) + '…'], ['Extracting IOCs', file.iocs.length + ' found'], ['YARA rule scan', file.yara.length + ' matches'],
+    ['CVE matching', file.cves.length + ' references'], ['ML risk scoring', file.score + ' / 100']];
+  const pipe = document.getElementById('pipe');
+  pipe.innerHTML = steps.map(([t]) => `<div class="s"><i></i>${t}<em></em></div>`).join('');
+  const els = [...pipe.children];
+  let i = 0;
+  (function next() {
+    if (i > 0) { els[i - 1].className = 's ok'; els[i - 1].querySelector('i').textContent = '✓'; els[i - 1].querySelector('em').textContent = steps[i - 1][1]; }
+    if (i === els.length) {
+      scans.unshift({ f: file.name, score: file.score, risk: file.risk, when: 'Just now', file });
+      document.getElementById('kFiles').textContent = 413;
+      if (file.risk === 'High') document.getElementById('kHigh').textContent = 18;
+      setTimeout(() => P.go('report'), 500);
+      return;
+    }
+    els[i].className = 's run'; i++;
+    setTimeout(next, 650);
+  })();
+});
+P.on('report', () => {
+  document.getElementById('repTitle').textContent = file.name;
+  const b = document.getElementById('repBadge'); b.className = 'badge-s ' + rb(file.risk); b.textContent = file.risk + ' risk';
+  const g = document.getElementById('gauge'); g.style.setProperty('--v', file.score);
+  g.style.background = `conic-gradient(var(${file.risk === 'High' ? '--hi' : '--lo'}) calc(var(--v) * 1%), #1F2A3A 0)`;
+  document.getElementById('score').textContent = file.score;
+  document.getElementById('sha').textContent = 'SHA-256 ' + file.sha;
+  document.getElementById('iocs').innerHTML = '<tr><th>Type</th><th>Value</th></tr>' + file.iocs.map(([t, v]) => `<tr><td>${t}</td><td>${v}</td></tr>`).join('');
+  document.getElementById('yara').innerHTML = file.yara.length ? file.yara.map(([r, d]) => `<div style="padding:8px 0;border-bottom:1px solid var(--line)"><span class="badge-s red mono">${r}</span><div style="font-size:13px;color:var(--t2);margin-top:6px">${d}</div></div>`).join('') : '<p style="color:var(--t2);font-size:13px">No rules matched.</p>';
+  document.getElementById('cves').innerHTML = file.cves.length ? file.cves.map(([c, d]) => `<div style="padding:8px 0"><span class="badge-s amber mono">${c}</span><div style="font-size:13px;color:var(--t2);margin-top:6px">${d}</div></div>`).join('') : '<p style="color:var(--t2);font-size:13px">No CVE references found.</p>';
+});
+P.on('history', () => {
+  document.getElementById('hist').innerHTML = '<tr><th>File</th><th>Score</th><th>Risk</th><th class="hide-sm">When</th></tr>' + scans.map((s, i) =>
+    `<tr ${s.file ? `data-go="report" data-si="${i}"` : `data-toast="Opens the saved report"`}><td class="mono">${s.f}</td><td><b>${s.score}</b></td><td><span class="badge-s ${rb(s.risk)}">${s.risk}</span></td><td class="hide-sm">${s.when}</td></tr>`).join('');
+});
+document.addEventListener('click', e => { const r = e.target.closest('[data-si]'); if (r) file = scans[+r.dataset.si].file; }, true);
+P.start('dash');
+</script>
+</body>
+</html>

@@ -116,6 +116,7 @@
         <span>Written for shop owners, not developers</span>
       </div>
       <div class="app-jumplinks">
+        <a href="#download" class="app-jumplink" data-apk-show="tylliq" hidden>Download</a>
         <a href="#getting-started" class="app-jumplink">Getting started</a>
         <a href="#status" class="app-jumplink">License status</a>
         <a href="#policies" class="app-jumplink">Good standing</a>
@@ -133,6 +134,24 @@
       <p class="s-lbl reveal">01 — Setup</p>
       <h2 class="s-title reveal" id="gs-heading">Getting started, from key to checkout.</h2>
       <p class="s-sub reveal">Six steps from "just signed up" to running Tylliq on every till you're licensed for.</p>
+    </div>
+
+    <!-- Shown by js/main.js once a release exists (reads tylliq/latest.json in viziontechnologies/downloads). -->
+    <div class="apk-card reveal" data-apk="tylliq" id="download" hidden>
+      <div class="apk-card-main">
+        <div class="apk-card-icon" aria-hidden="true">&#x1F4F2;</div>
+        <div>
+          <h3>Tylliq POS for Android</h3>
+          <p class="apk-meta" data-apk-meta>Latest version</p>
+        </div>
+        <a href="https://github.com/viziontechnologies/downloads/releases/download/tylliq-latest/tylliq.apk" class="btn-primary" data-apk-link>Download APK &darr;</a>
+      </div>
+      <ol class="apk-steps">
+        <li>Open the downloaded file on the phone or tablet. If Android asks, allow your browser to <strong>install unknown apps</strong>.</li>
+        <li>Tap <strong>Install</strong>, then open Tylliq and enter your license key.</li>
+        <li>Updates arrive inside the app: <strong>Settings &rsaquo; App updates</strong>. Your shop data stays on the phone.</li>
+      </ol>
+      <p class="apk-note" data-apk-sha></p>
     </div>
 
     <div class="app-steps reveal">

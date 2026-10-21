@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Labour Case Management — clickable prototype by Vizion Technologies</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="proto.css">
+<style>
+:root {
+  --font: 'Inter', system-ui, sans-serif;
+  --brand: #1E3A5F; --on-brand: #fff; --side-bg: #13263F; --side-ink: #DCE6F2; --side-active: rgba(255,255,255,.14);
+  --accent: #C8962E; --bg: #F4F6F9; --card: #fff; --ink: #172234; --t2: #5D6B7E; --line: #E1E6ED; --page: #F4F6F9; --focus: #1E3A5F;
+}
+.ai { border: 1px solid #C9D7EA; background: linear-gradient(180deg, #F3F7FD, #fff); }
+.ai h3 { display: flex; align-items: center; gap: 8px; }
+.pred { display: flex; align-items: baseline; gap: 10px; margin: 6px 0 4px; }
+.pred b { font-size: 22px; font-weight: 800; }
+.pred span { font-size: 22px; font-weight: 800; color: var(--brand); }
+.runner { font-size: 13px; color: var(--t2); }
+.urg { margin-top: 12px; display: flex; gap: 8px; align-items: center; font-size: 13px; font-weight: 600; }
+.sugg { margin-top: 14px; background: #fff; border: 1px dashed #C9D7EA; border-radius: 10px; padding: 12px; font-size: 13px; line-height: 1.6; }
+.sugg small { display: block; color: var(--t2); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+.scanning { display: flex; gap: 10px; align-items: center; color: var(--t2); font-size: 13px; }
+.spin { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--line); border-top-color: var(--brand); animation: sp .8s linear infinite; }
+@keyframes sp { to { transform: rotate(360deg); } }
+.steps { display: flex; gap: 0; margin: 4px 0 6px; }
+.steps div { flex: 1; text-align: center; font-size: 11px; font-weight: 600; color: var(--t2); position: relative; padding-top: 26px; }
+.steps div::before { content: ''; position: absolute; top: 6px; left: 50%; width: 14px; height: 14px; border-radius: 50%; transform: translateX(-50%); background: var(--line); z-index: 1; }
+.steps div::after { content: ''; position: absolute; top: 12px; left: -50%; width: 100%; height: 2px; background: var(--line); }
+.steps div:first-child::after { display: none; }
+.steps div.on { color: var(--brand); }
+.steps div.on::before { background: var(--brand); }
+.steps div.on::after { background: var(--brand); }
+.kv { display: grid; grid-template-columns: 140px 1fr; gap: 8px 12px; font-size: 13px; }
+.kv dt { color: var(--t2); }
+.kv dd { font-weight: 600; }
+.bars { display: grid; gap: 10px; }
+.bars .r { display: grid; grid-template-columns: 150px 1fr 34px; gap: 10px; align-items: center; font-size: 13px; }
+.bars .r i { display: block; height: 10px; border-radius: 5px; background: var(--brand); }
+.pick { display: flex; gap: 8px; flex-wrap: wrap; }
+.pick button { border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; font-size: 13px; font-weight: 600; background: #fff; }
+.pick button.on { border-color: var(--brand); background: #EEF3FA; color: var(--brand); }
+.note { font-size: 12px; color: var(--t2); margin-top: 10px; }
+.upl { border: 1px dashed var(--line); border-radius: 10px; padding: 14px; font-size: 13px; color: var(--t2); text-align: center; }
+@media (max-width: 720px) { .kv { grid-template-columns: 110px 1fr; } .bars .r { grid-template-columns: 110px 1fr 30px; } }
+</style>
+</head>
+<body class="web">
+<div class="app">
+  <div class="ribbon">Prototype with sample data · the real app may be newer · viziontechnologies.zw@gmail.com</div>
+  <nav class="side" aria-label="Main">
+    <div class="brand"><i>⚖</i>Case Management</div>
+    <button data-tab="dash">📊 <span>Dashboard</span></button>
+    <button data-tab="cases">📁 <span>Cases</span></button>
+    <button data-tab="new">＋ <span>New complaint</span></button>
+    <button data-tab="reports">📈 <span>Reports</span></button>
+    <div class="grow"></div>
+    <div class="who"><span class="avatar">AD</span><div><b>Admin</b><small>Head office</small></div></div>
+  </nav>
+
+  <div class="screens">
+    <!-- Dashboard -->
+    <section class="scr" id="dash" data-tab-of="dash">
+      <div class="topbar"><h1>Dashboard</h1><button class="wbtn sm" data-tab="new">＋ New complaint</button></div>
+      <div class="body wpad">
+        <div class="wgrid c4">
+          <div class="wcard kpi"><small>Pending</small><b id="kPending">6</b><em>not yet assigned</em></div>
+          <div class="wcard kpi"><small>Investigating</small><b>11</b><em>with agents</em></div>
+          <div class="wcard kpi"><small>Resolved this month</small><b>23</b><em>closed cases</em></div>
+          <div class="wcard kpi"><small>High urgency</small><b id="kHigh" style="color:#B91C1C">3</b><em>need action</em></div>
+        </div>
+        <div class="wcard tscroll" style="margin-top:16px">
+          <h3>Latest cases</h3>
+          <table class="wtable" id="latest"></table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cases -->
+    <section class="scr" id="cases" data-tab-of="cases">
+      <div class="topbar"><h1>All cases</h1><span class="badge-s grey" data-toast="Filter by status, category, agent or date">Filter</span></div>
+      <div class="body wpad"><div class="wcard tscroll"><table class="wtable" id="all"></table></div></div>
+    </section>
+
+    <!-- New complaint -->
+    <section class="scr" id="new" data-tab-of="new">
+      <div class="topbar"><h1>New complaint</h1></div>
+      <div class="body wpad">
+        <div class="wgrid c2">
+          <div class="wcard">
+            <h3>Complaint details</h3>
+            <div class="field"><label>Complainant</label><div class="in">T. Moyo · panel beater</div></div>
+            <div class="field"><label>Employer</label><div class="in">A motor repair workshop, Harare</div></div>
+            <div class="field"><label>What happened</label><div class="in area">I have not been paid my full wages for August and September. The employer says business is slow and pays half, but I still work the full week.</div></div>
+            <div class="field"><label>Supporting documents</label><div class="upl" data-toast="Upload PDF, JPG or PNG">📎 payslips_aug_sep.pdf</div></div>
+            <button class="wbtn" id="runAi">Analyse with AI</button>
+          </div>
+          <div class="wcard ai" id="aiBox">
+            <h3>🤖 AI analysis</h3>
+            <p style="font-size:13px;color:var(--t2);line-height:1.6">The model reads the complaint and suggests a category, an urgency level and a likely resolution. An agent always makes the final decision.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case detail -->
+    <section class="scr" id="case" data-tab-of="cases">
+      <div class="topbar"><button class="back" data-back aria-label="Back">←</button><h1 id="caseTitle">CASE</h1><span class="badge-s" id="caseBadge">Pending</span></div>
+      <div class="body wpad">
+        <div class="wcard"><div class="steps" id="steps"><div>Pending</div><div>Assigned</div><div>Investigating</div><div>Resolved</div></div></div>
+        <div class="wgrid c2" style="margin-top:16px">
+          <div class="wcard">
+            <h3>Case</h3>
+            <dl class="kv" id="caseKv"></dl>
+          </div>
+          <div class="wcard" id="assignBox">
+            <h3>Assign to a designated agent</h3>
+            <div class="pick" id="agents"><button>R. Chikomba</button><button>P. Ndlovu</button><button>S. Mutasa</button></div>
+            <p class="note">Agents see only the cases assigned to them, update the status and record the final judgement.</p>
+            <div style="margin-top:14px"><button class="wbtn" id="assignBtn">Assign case</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reports -->
+    <section class="scr" id="reports" data-tab-of="reports">
+      <div class="topbar"><h1>Reports</h1><button class="wbtn ghost sm" data-toast="Exporting resolved cases (CSV) for model retraining…">Export for retraining</button></div>
+      <div class="body wpad">
+        <div class="wgrid c2">
+          <div class="wcard"><h3>Cases by category · this year</h3>
+            <div class="bars">
+              <div class="r"><span>Wage dispute</span><i style="width:100%"></i><b>48</b></div>
+              <div class="r"><span>Unfair dismissal</span><i style="width:62%"></i><b>30</b></div>
+              <div class="r"><span>Contract violation</span><i style="width:44%"></i><b>21</b></div>
+              <div class="r"><span>Disciplinary issue</span><i style="width:27%"></i><b>13</b></div>
+              <div class="r"><span>Levy non-payment</span><i style="width:19%"></i><b>9</b></div>
+            </div>
+          </div>
+          <div class="wcard"><h3>AI accuracy check</h3>
+            <p style="font-size:13px;line-height:1.6">On resolved cases, the agent's final category matched the AI's top suggestion in <b>8 of 10</b> cases, and its top two suggestions in <b>9 of 10</b>.</p>
+            <p class="note">Resolved cases feed back into the model when it is retrained.</p>
+          </div>
+        </div>
+        <p class="note">Sample figures for the prototype.</p>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script src="proto.js"></script>
+<script>
+if (top === self) document.body.classList.add('standalone');
+const P = window.Proto;
+const d = new Date(), ymd = d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+const cases = [
+  { no: 'CASE-' + ymd + '-0006', who: 'J. Banda', cat: 'Unfair dismissal', urg: 'High', status: 'Assigned', agent: 'P. Ndlovu' },
+  { no: 'CASE-' + ymd + '-0005', who: 'M. Sibanda', cat: 'Levy non-payment', urg: 'Low', status: 'Pending', agent: '—' },
+  { no: 'CASE-' + ymd + '-0004', who: 'K. Phiri', cat: 'Contract violation', urg: 'Medium', status: 'Investigating', agent: 'R. Chikomba' },
+  { no: 'CASE-' + ymd + '-0003', who: 'L. Dube', cat: 'Wage dispute', urg: 'Medium', status: 'Resolved', agent: 'S. Mutasa' },
+];
+let current = cases[0];
+const badge = s => ({ Pending: 'amber', Assigned: '', Investigating: '', Resolved: 'green', Dismissed: 'grey' }[s] || '');
+const urgB = u => ({ High: 'red', Medium: 'amber', Low: 'grey' }[u]);
+function rows(list) {
+  return '<tr><th>Case</th><th class="hide-sm">Complainant</th><th>Category</th><th class="hide-sm">Urgency</th><th>Status</th></tr>' +
+    list.map((c, i) => `<tr data-go="case" data-ci="${cases.indexOf(c)}"><td><b>${c.no}</b></td><td class="hide-sm">${c.who}</td><td>${c.cat}</td>
+      <td class="hide-sm"><span class="badge-s ${urgB(c.urg)}">${c.urg}</span></td><td><span class="badge-s ${badge(c.status)}">${c.status}</span></td></tr>`).join('');
+}
+function renderTables() {
+  document.getElementById('latest').innerHTML = rows(cases.slice(0, 4));
+  document.getElementById('all').innerHTML = rows(cases);
+  document.getElementById('kPending').textContent = 5 + cases.filter(c => c.status === 'Pending').length;
+}
+document.addEventListener('click', e => { const r = e.target.closest('[data-ci]'); if (r) current = cases[+r.dataset.ci]; }, true);
+P.on('dash', renderTables); P.on('cases', renderTables);
+
+P.on('case', () => {
+  const c = current;
+  document.getElementById('caseTitle').textContent = c.no;
+  const b = document.getElementById('caseBadge'); b.className = 'badge-s ' + badge(c.status); b.textContent = c.status;
+  const order = ['Pending', 'Assigned', 'Investigating', 'Resolved'];
+  [...document.querySelectorAll('#steps div')].forEach((s, i) => s.classList.toggle('on', i <= order.indexOf(c.status)));
+  document.getElementById('caseKv').innerHTML = `<dt>Complainant</dt><dd>${c.who}</dd><dt>Category</dt><dd>${c.cat}${c.conf ? ' · AI ' + c.conf + '%' : ''}</dd>
+    <dt>Urgency</dt><dd><span class="badge-s ${urgB(c.urg)}">${c.urg}</span></dd><dt>Agent</dt><dd id="kvAgent">${c.agent}</dd><dt>Opened</dt><dd>${c.no.slice(5, 13).replace(/(\d{4})(\d{2})(\d{2})/, '$3/$2/$1')}</dd>`;
+  document.getElementById('assignBox').hidden = c.status !== 'Pending';
+  document.querySelectorAll('#agents button').forEach(x => x.classList.remove('on'));
+});
+document.getElementById('agents').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  document.querySelectorAll('#agents button').forEach(x => x.classList.toggle('on', x === b));
+});
+document.getElementById('assignBtn').addEventListener('click', () => {
+  const a = document.querySelector('#agents button.on');
+  if (!a) { P.toast('Pick an agent first'); return; }
+  current.status = 'Assigned'; current.agent = a.textContent;
+  P.toast('Assigned to ' + a.textContent + '. They have been notified.');
+  P.back(); P.go('case');
+});
+
+let analysed = false;
+document.getElementById('runAi').addEventListener('click', () => {
+  const box = document.getElementById('aiBox');
+  if (analysed) { submit(); return; }
+  box.innerHTML = '<h3>🤖 AI analysis</h3><div class="scanning"><span class="spin"></span>Reading the complaint…</div>';
+  setTimeout(() => {
+    box.innerHTML = `<h3>🤖 AI analysis</h3>
+      <div style="font-size:12px;color:var(--t2);font-weight:600">Predicted category</div>
+      <div class="pred"><b>Wage dispute</b><span>87%</span></div>
+      <div class="meter"><i style="width:87%"></i></div>
+      <div class="runner" style="margin-top:8px">Second most likely: Contract violation · 8%</div>
+      <div class="urg">Urgency: <span class="badge-s red">High</span> <span style="font-weight:400;color:var(--t2)">two months of unpaid wages</span></div>
+      <div class="sugg"><small>Suggested resolution</small>Request payroll records from the employer and calculate arrears owed against the industry minimum wage. Propose a payment plan at conciliation.</div>`;
+    document.getElementById('runAi').textContent = 'Submit complaint';
+    analysed = true;
+  }, 1300);
+});
+function submit() {
+  const n = String(cases.length + 3).padStart(4, '0');
+  cases.unshift({ no: 'CASE-' + ymd + '-' + n, who: 'T. Moyo', cat: 'Wage dispute', urg: 'High', status: 'Pending', agent: '—', conf: 87 });
+  document.getElementById('kHigh').textContent = 4;
+  current = cases[0];
+  P.toast('Case ' + current.no + ' created');
+  analysed = false;
+  document.getElementById('runAi').textContent = 'Analyse with AI';
+  document.getElementById('aiBox').innerHTML = '<h3>🤖 AI analysis</h3><p style="font-size:13px;color:var(--t2);line-height:1.6">The model reads the complaint and suggests a category, an urgency level and a likely resolution. An agent always makes the final decision.</p>';
+  P.tab('cases'); P.go('case');
+}
+renderTables();
+P.start('dash');
+</script>
+</body>
+</html>

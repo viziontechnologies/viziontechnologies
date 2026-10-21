@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rutz Cosmetics POS — clickable prototype by Vizion Technologies</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="proto.css">
+<style>
+:root {
+  --font: 'Manrope', system-ui, sans-serif;
+  --brand: #8A2846; --on-brand: #fff; --tint: #F6E3E5; --green: #1F8A4C;
+  --side-bg: #2B211C; --side-ink: #EFE7DE; --side-active: rgba(246,227,229,.16);
+  --bg: #F7F4EF; --card: #fff; --ink: #2B211C; --t2: #6B5F57; --line: #E5E0D7; --page: #F7F4EF; --focus: #8A2846;
+}
+.serif { font-family: 'Newsreader', Georgia, serif; font-weight: 600; letter-spacing: -.01em; }
+.side .brand i { background: var(--tint); color: var(--brand); font-family: 'Newsreader', serif; font-size: 17px; }
+.branch { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 10px; padding: 6px 10px; font-size: 13px; font-weight: 600; background: var(--bg); white-space: nowrap; }
+.branch small { color: var(--t2); font-weight: 500; }
+.badge-s.green { background: #E2F3E9; color: #17663A; }
+/* POS */
+.pos { display: flex; height: 100%; min-height: 0; }
+.pos .cat { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.pos .tools { display: flex; gap: 8px; padding: 14px 18px 10px; }
+.pos .search { flex: 1; border: 1px solid var(--line); background: #fff; border-radius: 10px; padding: 10px 12px; color: var(--t2); font-size: 14px; }
+.pos .scan { width: 44px; border-radius: 10px; background: var(--ink); color: #fff; }
+.chips { display: flex; gap: 6px; padding: 0 18px 10px; overflow-x: auto; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chips button { flex: none; border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 700; }
+.chips button.on { background: var(--brand); border-color: var(--brand); color: #fff; }
+.prods { flex: 1; overflow-y: auto; padding: 0 18px 18px; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; align-content: start; }
+.prod { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 10px; text-align: left; position: relative; }
+.prod .ph { height: 70px; border-radius: 10px; display: grid; place-items: center; font-size: 30px; margin-bottom: 8px; }
+.prod b { display: block; font-size: 13px; font-weight: 700; line-height: 1.3; height: 34px; overflow: hidden; }
+.prod .p { font-weight: 800; font-size: 15px; margin-top: 4px; }
+.prod small { color: var(--t2); font-size: 11px; }
+.prod small.low { color: #B42318; font-weight: 700; }
+.prod .q { position: absolute; top: 6px; right: 6px; background: var(--brand); color: #fff; font-size: 11px; font-weight: 800; border-radius: 10px; min-width: 20px; height: 20px; display: grid; place-items: center; padding: 0 5px; }
+.cart { width: 300px; flex: none; background: #fff; border-left: 1px solid var(--line); display: flex; flex-direction: column; }
+.cart h3 { font-size: 20px; padding: 16px 18px 6px; }
+.cart .lines { flex: 1; overflow-y: auto; padding: 0 18px; }
+.line { display: flex; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+.line .m { flex: 1; min-width: 0; }
+.line .m b { display: block; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.line .m small { color: var(--t2); }
+.qty { display: flex; align-items: center; gap: 6px; }
+.qty button { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--line); font-weight: 800; }
+.cart .tot { padding: 14px 18px 18px; border-top: 1px solid var(--line); }
+.cart .tot div { display: flex; justify-content: space-between; font-size: 13px; color: var(--t2); padding: 2px 0; }
+.cart .tot .g { font-size: 22px; color: var(--ink); font-weight: 800; padding: 6px 0 12px; }
+.cart .empty { color: var(--t2); font-size: 13px; padding: 30px 0; text-align: center; }
+.wbtn.full { width: 100%; height: 48px; font-size: 15px; }
+.mcart { display: none; }
+/* Pay */
+.pay { max-width: 720px; }
+.methods { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 10px 0 16px; }
+.methods button { border: 2px solid var(--line); background: #fff; border-radius: 12px; padding: 12px 6px; font-weight: 700; font-size: 13px; }
+.methods button.on { border-color: var(--brand); background: var(--tint); color: var(--brand); }
+.big { font-size: 40px; font-weight: 800; letter-spacing: -.02em; }
+.receipt { max-width: 380px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 22px; font-family: ui-monospace, 'Courier New', monospace; font-size: 12.5px; }
+.receipt h3 { text-align: center; font-family: 'Newsreader', serif; font-size: 20px; }
+.receipt .c { text-align: center; color: var(--t2); }
+.receipt hr { border: 0; border-top: 1px dashed #bbb; margin: 10px 0; }
+.receipt .r { display: flex; justify-content: space-between; gap: 10px; padding: 2px 0; }
+.receipt .t { font-weight: 800; font-size: 14px; }
+/* Transfer */
+.route { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.route .in { flex: 1; min-width: 140px; }
+.arrow { font-size: 20px; color: var(--t2); }
+.tl { display: flex; gap: 0; margin-top: 6px; }
+.tl div { flex: 1; text-align: center; font-size: 11px; font-weight: 700; color: var(--t2); position: relative; padding-top: 22px; }
+.tl div::before { content: ''; position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; border-radius: 50%; background: var(--line); z-index: 1; }
+.tl div::after { content: ''; position: absolute; top: 9px; left: -50%; width: 100%; height: 2px; background: var(--line); }
+.tl div:first-child::after { display: none; }
+.tl div.on { color: var(--brand); } .tl div.on::before, .tl div.on::after { background: var(--brand); }
+.bars { display: grid; gap: 10px; }
+.bars .r { display: grid; grid-template-columns: 96px 1fr 70px; gap: 10px; align-items: center; font-size: 13px; }
+.bars .r i { display: block; height: 12px; border-radius: 6px; background: var(--brand); }
+.bars .r b { text-align: right; }
+@media (max-width: 1000px) { .cart { width: 260px; } }
+@media (max-width: 720px) {
+  .cart { display: none; }
+  .mcart { display: flex; align-items: center; gap: 12px; margin: 0 12px 12px; padding: 12px 14px; border-radius: 14px; background: var(--ink); color: #fff; }
+  .mcart[hidden] { display: none; }
+  .mcart div { flex: 1; font-size: 12px; color: #d8cfc6; }
+  .mcart b { display: block; color: #fff; font-size: 17px; }
+  .prods { grid-template-columns: repeat(2, 1fr); padding: 0 12px 12px; }
+  .pos .tools, .chips { padding-left: 12px; padding-right: 12px; }
+  .methods { grid-template-columns: repeat(2, 1fr); }
+  .branch small { display: none; }
+}
+</style>
+</head>
+<body class="web">
+<div class="app">
+  <div class="ribbon">Prototype with sample data · the real app may be newer · viziontechnologies.zw@gmail.com</div>
+  <nav class="side" aria-label="Main">
+    <div class="brand"><i>R</i>Rutz Cosmetics</div>
+    <button data-tab="sell">🛍 <span>Sell</span></button>
+    <button data-tab="dash">📊 <span>Dashboard</span></button>
+    <button data-tab="stock">📦 <span>Stock</span></button>
+    <button data-tab="transfer">⇄ <span>Transfers</span></button>
+    <button data-toast="Customers and loyalty">👥 <span>Customers</span></button>
+    <div class="grow"></div>
+    <div class="who"><span class="avatar" style="background:var(--tint);color:var(--brand)">CR</span><div><b>Chiedza R.</b><small>Cashier · Rutz CBD</small></div></div>
+  </nav>
+
+  <div class="screens">
+    <section class="scr" id="sell" data-tab-of="sell">
+      <div class="topbar"><h1 class="serif">New sale</h1><span class="branch" data-toast="Switch branch">Rutz CBD <small>· till 2</small></span></div>
+      <div class="pos" style="flex:1;min-height:0">
+        <div class="cat">
+          <div class="tools"><div class="search">Search products or scan</div><button class="scan" data-toast="Scanning barcode…" aria-label="Scan barcode">▦</button></div>
+          <div class="chips" id="chips"><button class="on">All</button><button>Skin</button><button>Hair</button><button>Make-up</button></div>
+          <div class="prods" id="prods"></div>
+          <div class="mcart" id="mcart" hidden><div><span id="mCount"></span><b id="mTotal"></b></div><button class="wbtn" data-go="pay">Charge</button></div>
+        </div>
+        <aside class="cart" aria-label="Current sale">
+          <h3 class="serif">Current sale</h3>
+          <div class="lines" id="lines"></div>
+          <div class="tot"><div><span>Items</span><span id="cItems">0</span></div><div class="g"><span>Total</span><span id="cTotal">$0.00</span></div>
+            <button class="wbtn full" id="chargeBtn" data-go="pay">Charge</button></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="scr" id="pay" data-tab-of="sell">
+      <div class="topbar"><button class="back" data-back aria-label="Back">←</button><h1 class="serif">Take payment</h1></div>
+      <div class="body wpad"><div class="pay">
+        <div class="wcard"><small style="color:var(--t2);font-weight:600">Amount due</small><div class="big" id="due">$0.00</div>
+          <div class="methods" id="methods"><button class="on">Cash</button><button>EcoCash</button><button>Swipe</button><button>Split</button></div>
+          <button class="wbtn full" id="payBtn">Complete sale</button></div>
+      </div></div>
+    </section>
+
+    <section class="scr" id="done" data-tab-of="sell">
+      <div class="topbar"><h1 class="serif">Sale complete</h1><button class="wbtn sm" data-tab="sell">New sale</button></div>
+      <div class="body wpad"><div class="receipt" id="receipt"></div>
+        <div style="display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap"><button class="wbtn ghost" data-toast="Printing receipt…">🖨 Print</button><button class="wbtn ghost" data-toast="Receipt sent by WhatsApp">💬 WhatsApp receipt</button></div></div>
+    </section>
+
+    <section class="scr" id="dash" data-tab-of="dash">
+      <div class="topbar"><h1 class="serif">Today across branches</h1></div>
+      <div class="body wpad">
+        <div class="wgrid c4">
+          <div class="wcard kpi"><small>Sales today</small><b id="dSales">$2,184</b></div>
+          <div class="wcard kpi"><small>Transactions</small><b id="dTx">96</b></div>
+          <div class="wcard kpi"><small>Low stock items</small><b style="color:#B42318">7</b></div>
+          <div class="wcard kpi"><small>Transfers in transit</small><b id="dTr">1</b></div>
+        </div>
+        <div class="wcard" style="margin-top:16px"><h3 class="serif" style="font-size:18px">Sales by branch</h3>
+          <div class="bars" id="branchBars"></div></div>
+        <p style="font-size:12px;color:var(--t2);margin-top:12px">Sample figures for the prototype.</p>
+      </div>
+    </section>
+
+    <section class="scr" id="stock" data-tab-of="stock">
+      <div class="topbar"><h1 class="serif">Stock by branch</h1><button class="wbtn sm" data-tab="transfer">⇄ Transfer stock</button></div>
+      <div class="body wpad"><div class="wcard tscroll"><table class="wtable" id="stockT"></table></div></div>
+    </section>
+
+    <section class="scr" id="transfer" data-tab-of="transfer">
+      <div class="topbar"><h1 class="serif">Stock transfer</h1><span class="badge-s grey" id="trRef">TRF-0412</span></div>
+      <div class="body wpad">
+        <div class="wgrid c2">
+          <div class="wcard"><h3>Route</h3>
+            <div class="route"><div class="field in" style="margin:0"><label>From</label><div class="in">Rutz CBD</div></div><span class="arrow">→</span><div class="field in" style="margin:0"><label>To</label><div class="in">Rutz Avondale</div></div></div>
+            <h3 style="margin-top:18px">Items</h3>
+            <div class="line"><div class="m"><b>Black Opal Matte Lipstick</b><small>CBD has 42 · Avondale has 3</small></div><div class="qty"><button data-tq="-1" aria-label="Fewer">−</button><b id="tq">12</b><button data-tq="1" aria-label="More">+</button></div></div>
+            <div class="line"><div class="m"><b>Lash Princess Mascara</b><small>CBD has 18 · Avondale has 0</small></div><b>6</b></div>
+          </div>
+          <div class="wcard"><h3>Status</h3>
+            <div class="tl" id="tl"><div class="on">Draft</div><div>Sent</div><div>In transit</div><div>Received</div></div>
+            <p style="font-size:13px;color:var(--t2);line-height:1.6;margin:16px 0" id="trNote">Stock leaves CBD when you send, and arrives at Avondale when they confirm on arrival. Every step is in the audit log.</p>
+            <button class="wbtn full" id="trBtn">Send transfer</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script src="proto.js"></script>
+<script>
+if (top === self) document.body.classList.add('standalone');
+const P = window.Proto;
+const products = [
+  { id: 1, name: 'Black Opal Matte Lipstick', price: 8.5, cat: 'Make-up', e: '💄', tint: '#F6E3E5', stock: 42 },
+  { id: 2, name: 'Maybelline Fit Me Foundation', price: 14, cat: 'Make-up', e: '🧴', tint: '#F3E7DA', stock: 15 },
+  { id: 3, name: 'Lash Princess Mascara', price: 10.5, cat: 'Make-up', e: '👁️', tint: '#E9E4F2', stock: 18 },
+  { id: 4, name: "Palmer's Cocoa Butter Lotion", price: 7, cat: 'Skin', e: '🧴', tint: '#F1E6D6', stock: 26 },
+  { id: 5, name: 'Nivea Soft Moisturising Cream', price: 6, cat: 'Skin', e: '🫙', tint: '#E3ECF6', stock: 4 },
+  { id: 6, name: 'Shea Moisture Cream', price: 24.5, cat: 'Skin', e: '🫙', tint: '#EFE7D6', stock: 9 },
+  { id: 7, name: 'Motions Hair Lotion', price: 9, cat: 'Hair', e: '💆🏾‍♀️', tint: '#E6F0E8', stock: 21 },
+  { id: 8, name: 'Cantu Shea Butter Leave-In', price: 9, cat: 'Hair', e: '🧴', tint: '#F4EBDD', stock: 3 },
+];
+const cart = new Map();
+let cat = 'All', method = 'Cash', receiptNo = 10538;
+const branches = [['Rutz CBD', 712], ['Borrowdale', 488], ['Avondale', 401], ['Eastgate', 322], ['Bulawayo', 261]];
+
+function renderProds() {
+  document.getElementById('prods').innerHTML = products.filter(p => cat === 'All' || p.cat === cat).map(p => {
+    const q = cart.get(p.id) || 0;
+    return `<button class="prod" data-pid="${p.id}">${q ? `<span class="q">${q}</span>` : ''}<div class="ph" style="background:${p.tint}">${p.e}</div>
+      <b>${p.name}</b><div class="p">${P.money(p.price)}</div><small class="${p.stock <= 5 ? 'low' : ''}">${p.stock} in stock</small></button>`;
+  }).join('');
+}
+const totals = () => { let t = 0, n = 0; cart.forEach((q, id) => { t += products.find(p => p.id === id).price * q; n += q; }); return { t, n }; };
+function renderCart() {
+  const { t, n } = totals();
+  document.getElementById('lines').innerHTML = cart.size ? [...cart].map(([id, q]) => {
+    const p = products.find(x => x.id === id);
+    return `<div class="line"><div class="m"><b>${p.name}</b><small>${P.money(p.price)}</small></div>
+      <div class="qty"><button data-cq="-1" data-id="${id}" aria-label="Fewer">−</button><b>${q}</b><button data-cq="1" data-id="${id}" aria-label="More">+</button></div></div>`;
+  }).join('') : '<div class="empty">Tap a product to add it.</div>';
+  document.getElementById('cItems').textContent = n;
+  document.getElementById('cTotal').textContent = P.money(t);
+  document.getElementById('mcart').hidden = !n;
+  document.getElementById('mCount').textContent = n + (n === 1 ? ' item' : ' items');
+  document.getElementById('mTotal').textContent = P.money(t);
+  document.getElementById('chargeBtn').disabled = !n;
+  document.getElementById('chargeBtn').style.opacity = n ? 1 : .4;
+}
+document.getElementById('prods').addEventListener('click', e => {
+  const b = e.target.closest('.prod'); if (!b) return;
+  const id = +b.dataset.pid; cart.set(id, (cart.get(id) || 0) + 1); renderProds(); renderCart();
+});
+document.getElementById('lines').addEventListener('click', e => {
+  const b = e.target.closest('[data-cq]'); if (!b) return;
+  const id = +b.dataset.id, q = (cart.get(id) || 0) + +b.dataset.cq;
+  q > 0 ? cart.set(id, q) : cart.delete(id); renderProds(); renderCart();
+});
+document.getElementById('chips').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  document.querySelectorAll('#chips button').forEach(x => x.classList.toggle('on', x === b));
+  cat = b.textContent; renderProds();
+});
+
+P.on('pay', () => { document.getElementById('due').textContent = P.money(totals().t); });
+document.getElementById('methods').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  document.querySelectorAll('#methods button').forEach(x => x.classList.toggle('on', x === b)); method = b.textContent;
+});
+document.getElementById('payBtn').addEventListener('click', () => {
+  const { t } = totals();
+  receiptNo++;
+  const now = new Date(), time = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+  document.getElementById('receipt').innerHTML = `<h3>Rutz Cosmetics</h3><div class="c">Rutz CBD · till 2</div><hr>
+    <div class="r"><span>RTZ-${receiptNo}</span><span>${time}</span></div><div class="r"><span>Cashier</span><span>Chiedza R.</span></div><hr>
+    ${[...cart].map(([id, q]) => { const p = products.find(x => x.id === id); p.stock -= q; return `<div class="r"><span>${q} × ${p.name}</span><span>${P.money(p.price * q)}</span></div>`; }).join('')}
+    <hr><div class="r t"><span>TOTAL</span><span>${P.money(t)}</span></div><div class="r"><span>Paid by</span><span>${method}</span></div><hr><div class="c">Thank you for shopping with us</div>`;
+  document.getElementById('dSales').textContent = '$' + Math.round(2184 + t).toLocaleString();
+  document.getElementById('dTx').textContent = 97;
+  branches[0][1] += Math.round(t);
+  cart.clear(); renderProds(); renderCart();
+  P.go('done');
+});
+
+P.on('dash', () => {
+  const max = Math.max(...branches.map(b => b[1]));
+  document.getElementById('branchBars').innerHTML = branches.map(([n, v]) => `<div class="r"><span>${n}</span><i style="width:${v / max * 100}%"></i><b>$${v.toLocaleString()}</b></div>`).join('');
+});
+P.on('stock', () => {
+  const extra = { 1: [3, 11, 20, 9], 2: [6, 4, 2, 5], 3: [0, 7, 5, 3], 4: [12, 9, 14, 8], 5: [10, 2, 6, 1], 6: [4, 3, 0, 2], 7: [8, 6, 9, 11], 8: [5, 0, 4, 2] };
+  document.getElementById('stockT').innerHTML = '<tr><th>Product</th><th>CBD</th><th>Avondale</th><th class="hide-sm">Borrowdale</th><th class="hide-sm">Eastgate</th><th class="hide-sm">Bulawayo</th></tr>' +
+    products.map(p => { const [a, b, c, d] = extra[p.id]; const cell = v => v <= 3 ? `<span class="badge-s red">${v}</span>` : v;
+      return `<tr><td><b>${p.name}</b></td><td>${cell(p.stock)}</td><td>${cell(trSent && p.id === 1 ? a + tq : trSent && p.id === 3 ? a + 6 : a)}</td><td class="hide-sm">${cell(b)}</td><td class="hide-sm">${cell(c)}</td><td class="hide-sm">${cell(d)}</td></tr>`; }).join('');
+});
+
+let tq = 12, trStep = 0, trSent = false;
+document.addEventListener('click', e => { const b = e.target.closest('[data-tq]'); if (b && trStep === 0) { tq = Math.max(1, Math.min(42, tq + +b.dataset.tq)); document.getElementById('tq').textContent = tq; } });
+document.getElementById('trBtn').addEventListener('click', () => {
+  const steps = [...document.querySelectorAll('#tl div')], btn = document.getElementById('trBtn'), note = document.getElementById('trNote');
+  if (trStep === 0) { trStep = 2; note.textContent = `${tq + 6} items left Rutz CBD. Avondale will confirm when the box arrives.`; btn.textContent = 'Confirm received at Avondale'; P.toast('Transfer sent'); document.getElementById('dTr').textContent = 2; }
+  else if (trStep === 2) { trStep = 3; trSent = true; products[0].stock -= tq; products[2].stock -= 6; note.textContent = 'Received and counted at Avondale. Stock levels updated in both branches.'; btn.textContent = 'View stock'; P.toast('Received at Avondale ✓'); document.getElementById('dTr').textContent = 1; }
+  else { P.tab('stock'); return; }
+  steps.forEach((s, i) => s.classList.toggle('on', i <= trStep));
+});
+renderProds(); renderCart();
+P.start('sell');
+</script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vizion Portal — clickable prototype by Vizion Technologies</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="proto.css">
+<style>
+:root {
+  --font: 'Sora', system-ui, sans-serif;
+  --brand: #2563EB; --on-brand: #fff; --side-bg: #0F172A; --side-ink: #E2E8F0; --side-active: rgba(37,99,235,.35);
+  --bg: #F8FAFF; --card: #fff; --ink: #0F172A; --t2: #64748B; --line: #E5E9F2; --page: #F8FAFF; --focus: #2563EB;
+}
+.hello h2 { font-size: 22px; font-weight: 800; letter-spacing: -.02em; }
+.hello p { color: var(--t2); font-size: 14px; margin-top: 4px; }
+.need { display: grid; gap: 10px; }
+.need-item { display: flex; align-items: center; gap: 14px; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: #fff; width: 100%; text-align: left; }
+.need-item .ic { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; font-size: 18px; flex: none; background: #EFF6FF; }
+.need-item b { display: block; font-size: 14px; }
+.need-item small { color: var(--t2); font-size: 12px; }
+.need-item .go { margin-left: auto; color: var(--brand); font-weight: 700; font-size: 13px; white-space: nowrap; }
+.need-item.done { opacity: .55; }
+.need-item.done .go { color: #16A34A; }
+.proj { display: flex; gap: 16px; align-items: center; }
+.proj .logo { width: 52px; height: 52px; border-radius: 14px; background: #FFC107; color: #020910; display: grid; place-items: center; font-weight: 800; font-size: 24px; flex: none; }
+.proj .m { flex: 1; min-width: 0; }
+.proj .m b { font-size: 16px; }
+.proj .m small { display: block; color: var(--t2); font-size: 12px; margin: 2px 0 10px; }
+.pct { font-size: 28px; font-weight: 800; color: var(--brand); }
+.act { display: flex; gap: 10px; font-size: 13px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.act:last-child { border-bottom: 0; }
+.act span:first-child { flex: none; }
+.act small { color: var(--t2); margin-left: auto; white-space: nowrap; padding-left: 8px; }
+.ms { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: center; }
+.ms:last-child { border-bottom: 0; }
+.ms .dot { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; flex: none; background: #F1F5F9; color: var(--t2); font-weight: 700; }
+.ms.done .dot { background: #DCFCE7; color: #166534; }
+.ms.now .dot { background: var(--brand); color: #fff; }
+.ms.wait .dot { background: #FEF3C7; color: #92400E; }
+.ms .m { flex: 1; min-width: 0; }
+.ms b { font-size: 14px; display: block; }
+.ms small { color: var(--t2); font-size: 12px; }
+.mock { border-radius: 12px; background: linear-gradient(135deg, #FFF8E1, #F5F0E6); height: 200px; display: grid; place-items: center; font-size: 60px; border: 1px solid var(--line); margin-bottom: 14px; }
+.thread { display: grid; gap: 12px; margin-top: 4px; }
+.bub { padding: 12px 14px; border-radius: 12px; font-size: 13px; line-height: 1.55; max-width: 560px; }
+.bub small { display: block; color: var(--t2); font-size: 11px; margin-bottom: 4px; font-weight: 600; }
+.bub.them { background: #F1F5F9; }
+.bub.me { background: #EFF6FF; margin-left: auto; }
+.reply { display: flex; gap: 10px; margin-top: 14px; }
+.reply .in { flex: 1; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; color: var(--t2); font-size: 14px; }
+.rel { display: flex; align-items: center; gap: 14px; }
+.rel .ic { width: 52px; height: 52px; border-radius: 14px; background: #DCFCE7; display: grid; place-items: center; font-size: 24px; flex: none; }
+.rel ul { margin: 10px 0 0 18px; font-size: 13px; color: var(--t2); line-height: 1.7; }
+.bell { position: relative; width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--line); display: grid; place-items: center; }
+.bell .cnt { position: absolute; top: -6px; right: -6px; margin: 0; }
+</style>
+</head>
+<body class="web">
+<div class="app">
+  <div class="ribbon">Prototype with sample data · the real app may be newer · viziontechnologies.zw@gmail.com</div>
+  <nav class="side" aria-label="Main">
+    <div class="brand"><i>V</i>Vizion Portal</div>
+    <button data-tab="home">🏠 <span>Home</span></button>
+    <button data-tab="project">📋 <span>Project</span></button>
+    <button data-tab="releases">📦 <span>Releases</span></button>
+    <button data-tab="feedback">💬 <span>Feedback</span><span class="cnt" id="fbCnt">1</span></button>
+    <button data-toast="Contracts, designs and reports, downloaded with 60-second links">📄 <span>Documents</span></button>
+    <div class="grow"></div>
+    <div class="who"><span class="avatar" style="background:#FFC107;color:#020910">T</span><div><b>Tendai (client)</b><small>Dellinoo</small></div></div>
+  </nav>
+
+  <div class="screens">
+    <!-- Home -->
+    <section class="scr" id="home" data-tab-of="home">
+      <div class="topbar"><h1>Home</h1><span class="bell" data-toast="Notifications">🔔<span class="cnt" id="bellCnt">2</span></span></div>
+      <div class="body wpad">
+        <div class="hello"><h2>Good morning, Tendai 👋</h2><p>Your app is 68% done. Two things need you this week.</p></div>
+        <div class="wgrid c2" style="margin-top:18px">
+          <div class="wcard">
+            <h3>Your action is required</h3>
+            <div class="need">
+              <button class="need-item" id="needApprove" data-go="approval"><span class="ic">✅</span><span><b>Approve the checkout design</b><small>Requested by Vizion · due Friday</small></span><span class="go">Review →</span></button>
+              <button class="need-item" id="needBuild" data-tab="releases"><span class="ic">📱</span><span><b>New test version v0.4.0</b><small>Install it and try the cart</small></span><span class="go">Open →</span></button>
+            </div>
+          </div>
+          <div class="wcard">
+            <h3>Dellinoo shopping app</h3>
+            <div class="proj"><span class="logo">D</span><div class="m"><b>Phase 3 of 4 · Backend</b><small>Next milestone: payments live</small><div class="meter"><i style="width:68%"></i></div></div><span class="pct">68%</span></div>
+            <div style="margin-top:14px"><button class="wbtn ghost sm" data-tab="project">See milestones →</button></div>
+          </div>
+        </div>
+        <div class="wcard" style="margin-top:16px">
+          <h3>Recent activity</h3>
+          <div id="activity">
+            <div class="act"><span>🚀</span><span>Vizion published <b>v0.4.0</b> with the new cart</span><small>Today</small></div>
+            <div class="act"><span>📝</span><span>Update: product pages now load photos faster</span><small>Yesterday</small></div>
+            <div class="act"><span>✔️</span><span>Milestone done: <b>Customer screens</b></span><small>Mon</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Approval -->
+    <section class="scr" id="approval" data-tab-of="home">
+      <div class="topbar"><button class="back" data-back aria-label="Back">←</button><h1>Approve the checkout design</h1></div>
+      <div class="body wpad">
+        <div class="wgrid c2">
+          <div class="wcard">
+            <div class="mock" aria-hidden="true">🛒</div>
+            <p style="font-size:14px;line-height:1.6">Checkout with delivery areas and Paynow (EcoCash, OneMoney, InnBucks, cards). Once you approve, we start connecting real payments.</p>
+          </div>
+          <div class="wcard" id="approveBox">
+            <h3>Your decision</h3>
+            <p style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:16px">Your answer is recorded with your email and the date.</p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <button class="wbtn" id="approveBtn">Approve</button>
+              <button class="wbtn ghost" id="changesBtn">Ask for changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project -->
+    <section class="scr" id="project" data-tab-of="project">
+      <div class="topbar"><h1>Dellinoo · Milestones</h1><span class="badge-s green">On track</span></div>
+      <div class="body wpad">
+        <div class="wcard">
+          <div class="ms done"><span class="dot">✓</span><div class="m"><b>Design &amp; prototype</b><small>Finished 12 Sep</small></div><span class="badge-s green">Done</span></div>
+          <div class="ms done"><span class="dot">✓</span><div class="m"><b>Customer screens</b><small>Finished 27 Sep</small></div><span class="badge-s green">Done</span></div>
+          <div class="ms now"><span class="dot">3</span><div class="m"><b>Backend &amp; admin panel</b><small>Products, orders, delivery areas</small></div><span class="badge-s">In progress</span></div>
+          <div class="ms wait" id="msPay"><span class="dot">4</span><div class="m"><b>Payments live</b><small>Waiting for your checkout approval</small></div><span class="badge-s amber" id="msPayBadge">Waiting for you</span></div>
+          <div class="ms"><span class="dot">5</span><div class="m"><b>Play Store launch</b><small>Listing, icon, screenshots</small></div><span class="badge-s grey">Not started</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Releases -->
+    <section class="scr" id="releases" data-tab-of="releases">
+      <div class="topbar"><h1>Releases</h1></div>
+      <div class="body wpad">
+        <div class="wcard">
+          <div class="rel"><span class="ic">📱</span><div style="flex:1"><b style="font-size:16px">v0.4.0 · latest</b><div style="font-size:12px;color:var(--t2)">Android test version · built automatically from GitHub</div></div>
+            <button class="wbtn" data-toast="Downloading dellinoo-v0.4.0.apk…">Download app</button></div>
+          <ul><li>New cart with quantity buttons</li><li>Faster product photos</li><li>Fixed: wishlist heart on small phones</li></ul>
+        </div>
+        <div class="wcard" style="margin-top:16px">
+          <h3>History</h3>
+          <div class="tscroll"><table class="wtable"><tr><th>Version</th><th>Date</th><th>What changed</th></tr>
+            <tr><td>v0.3.2</td><td>8 Oct</td><td>Order tracking steps</td></tr>
+            <tr><td>v0.3.0</td><td>1 Oct</td><td>Checkout screens</td></tr>
+            <tr><td>v0.2.0</td><td>24 Sep</td><td>Catalogue and search</td></tr></table></div>
+        </div>
+        <p style="font-size:12px;color:var(--t2);margin-top:14px">How to install: open the file on your phone and allow "Install unknown apps" once.</p>
+      </div>
+    </section>
+
+    <!-- Feedback -->
+    <section class="scr" id="feedback" data-tab-of="feedback">
+      <div class="topbar"><h1>Feedback</h1><button class="wbtn sm" data-toast="New ticket: describe it and add a screenshot">＋ New ticket</button></div>
+      <div class="body wpad">
+        <div class="wcard tscroll">
+          <table class="wtable">
+            <tr><th>#</th><th>Ticket</th><th class="hide-sm">Priority</th><th>Status</th></tr>
+            <tr data-go="ticket"><td>#14</td><td>Cart total doesn't update after removing an item</td><td class="hide-sm"><span class="badge-s red">High</span></td><td><span class="badge-s amber" id="t14">Fix ready, please check</span></td></tr>
+            <tr><td>#13</td><td>Make the "From China" label bigger</td><td class="hide-sm"><span class="badge-s grey">Low</span></td><td><span class="badge-s green">Confirmed</span></td></tr>
+            <tr><td>#12</td><td>Add Chitungwiza as a delivery area</td><td class="hide-sm"><span class="badge-s grey">Medium</span></td><td><span class="badge-s green">Confirmed</span></td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ticket -->
+    <section class="scr" id="ticket" data-tab-of="feedback">
+      <div class="topbar"><button class="back" data-back aria-label="Back">←</button><h1>#14 · Cart total doesn't update</h1></div>
+      <div class="body wpad">
+        <div class="wcard">
+          <div class="thread" id="thread">
+            <div class="bub me"><small>Tendai · Mon</small>When I remove an item from the cart, the total still shows the old amount.</div>
+            <div class="bub them"><small>Vizion · Tue</small>Thanks! Found it. Fixed in v0.4.0. Please install it and check.</div>
+          </div>
+          <div class="reply" id="ticketActions"><button class="wbtn" id="confirmFix">✓ Confirm it's fixed</button><button class="wbtn ghost" id="notFixed">Still broken</button></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script src="proto.js"></script>
+<script>
+if (top === self) document.body.classList.add('standalone');
+const P = window.Proto;
+let bell = 2;
+const setBell = () => { const b = document.getElementById('bellCnt'); b.textContent = bell; b.hidden = bell <= 0; };
+function addActivity(icon, html) {
+  document.getElementById('activity').insertAdjacentHTML('afterbegin', `<div class="act"><span>${icon}</span><span>${html}</span><small>Just now</small></div>`);
+}
+function decide(approved) {
+  document.getElementById('approveBox').innerHTML = approved
+    ? '<h3>Approved ✓</h3><p style="font-size:13px;color:var(--t2);line-height:1.6">Recorded for tendai@client.example today. Vizion has been notified and will start on payments.</p>'
+    : '<h3>Changes requested</h3><p style="font-size:13px;color:var(--t2);line-height:1.6">Vizion will reply here with an updated design.</p>';
+  const n = document.getElementById('needApprove');
+  n.classList.add('done'); n.removeAttribute('data-go'); n.querySelector('.go').textContent = approved ? 'Approved ✓' : 'Changes asked';
+  if (approved) {
+    document.getElementById('msPay').className = 'ms now';
+    document.getElementById('msPay').querySelector('small').textContent = 'Connecting Paynow';
+    const b = document.getElementById('msPayBadge'); b.className = 'badge-s'; b.textContent = 'In progress';
+  }
+  addActivity(approved ? '✅' : '✏️', approved ? 'You approved <b>the checkout design</b>' : 'You asked for changes to <b>the checkout design</b>');
+  bell--; setBell();
+  P.toast(approved ? 'Approved. Vizion has been notified.' : 'Sent to Vizion');
+}
+document.getElementById('approveBtn').addEventListener('click', () => decide(true));
+document.getElementById('changesBtn').addEventListener('click', () => decide(false));
+P.on('releases', () => {
+  const n = document.getElementById('needBuild');
+  if (!n.classList.contains('done')) { n.classList.add('done'); n.querySelector('.go').textContent = 'Seen ✓'; bell--; setBell(); }
+});
+function closeTicket(fixed) {
+  document.getElementById('thread').insertAdjacentHTML('beforeend', fixed
+    ? '<div class="bub me"><small>Tendai · just now</small>Checked on my phone: it works now. Thanks!</div>'
+    : '<div class="bub me"><small>Tendai · just now</small>Still happening on my phone, sorry.</div>');
+  document.getElementById('ticketActions').innerHTML = `<span class="badge-s ${fixed ? 'green' : 'red'}">${fixed ? 'Confirmed fixed' : 'Reopened'}</span>`;
+  const t = document.getElementById('t14'); t.className = 'badge-s ' + (fixed ? 'green' : 'red'); t.textContent = fixed ? 'Confirmed' : 'Reopened';
+  document.getElementById('fbCnt').hidden = true;
+  P.toast(fixed ? 'Thanks! Ticket closed.' : 'Reopened. Vizion will look again.');
+}
+document.getElementById('confirmFix').addEventListener('click', () => closeTicket(true));
+document.getElementById('notFixed').addEventListener('click', () => closeTicket(false));
+P.start('home');
+</script>
+</body>
+</html>

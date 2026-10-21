@@ -636,3 +636,171 @@ if (cookieBtn) {
     gsap.to(cookieBar, { opacity: 0, y: 20, duration: .35, onComplete: () => cookieBar.classList.remove('visible') });
   });
 }
+
+/* ── 21. Clickable Prototypes (portfolio) ─────────────────── */
+const protoFrame = document.getElementById('protoFrame');
+if (protoFrame) {
+  const protoTabs = [...document.querySelectorAll('.proto-tab')];
+  const protoStage = document.getElementById('protoStage');
+  const protoDevices = document.getElementById('protoDevices');
+  let lastKind = protoStage.dataset.kind;
+
+  function setDevice(device) {
+    protoStage.dataset.device = device;
+    protoDevices.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.device === device ? 'true' : 'false'));
+  }
+  protoDevices.addEventListener('click', e => {
+    const b = e.target.closest('button[data-device]');
+    if (b) setDevice(b.dataset.device);
+  });
+
+  function selectProto(tab, focus) {
+    protoTabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (protoFrame.getAttribute('src') !== tab.dataset.src) protoFrame.setAttribute('src', tab.dataset.src);
+    // Frame and chrome follow the app: phone apps, desktop apps (title bar), web systems and websites (browser bar).
+    protoStage.dataset.kind = tab.dataset.kind || 'phone';
+    document.getElementById('protoUrl').textContent = tab.dataset.url || '';
+    const devices = (tab.dataset.devices || 'phone').split(' ');
+    protoDevices.hidden = devices.length < 2;
+    protoDevices.querySelectorAll('button').forEach(b => { b.hidden = !devices.includes(b.dataset.device); });
+    setDevice(devices.includes(protoStage.dataset.device) && devices.length > 1 && protoStage.dataset.kind === lastKind ? protoStage.dataset.device : devices[0]);
+    lastKind = protoStage.dataset.kind;
+    protoFrame.title = tab.dataset.name + ' clickable prototype';
+    currentTab = tab;
+    loadShots(tab);
+    setView('proto');
+    if (focus) tab.focus();
+  }
+
+  // Prototype vs real screenshots. A tab with data-shots="<template id>" gets the
+  // switch; the template holds the screenshot <img>s (personal details blurred).
+  const protoView = document.getElementById('protoView');
+  const protoShot = document.getElementById('protoShot');
+  const protoShotCap = document.getElementById('protoShotCap');
+  const protoFlag = document.getElementById('protoFlag');
+  const protoFlagText = document.getElementById('protoFlagText');
+  const protoFlagApk = document.getElementById('protoFlagApk');
+  let currentTab = null, shots = [], shotIndex = 0;
+
+  function loadShots(tab) {
+    const tpl = tab.dataset.shots && document.getElementById(tab.dataset.shots);
+    shots = tpl ? [...tpl.content.querySelectorAll('img')] : [];
+    shotIndex = 0;
+    protoView.hidden = !shots.length;
+    document.getElementById('protoShotCount').textContent = shots.length ? `(${shots.length})` : '';
+  }
+  function showShot(i) {
+    if (!shots.length) return;
+    shotIndex = (i + shots.length) % shots.length;
+    const s = shots[shotIndex];
+    protoShot.src = s.getAttribute('src');
+    protoShot.alt = s.alt;
+    protoShotCap.textContent = `${shotIndex + 1} / ${shots.length} · ${s.dataset.cap || ''}`;
+  }
+  function setView(view) {
+    if (view === 'shots' && !shots.length) view = 'proto';
+    protoStage.dataset.view = view;
+    protoView.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === view ? 'true' : 'false'));
+    if (view === 'shots') showShot(shotIndex);
+    updateFlag();
+  }
+  function updateFlag() {
+    const shotsView = protoStage.dataset.view === 'shots';
+    protoFlag.classList.toggle('is-shots', shotsView);
+    protoFlagText.innerHTML = shotsView
+      ? '<strong>Real screenshots</strong> from the app. Names and personal details are blurred.'
+      : '<strong>This is a prototype</strong> with sample data, not the real app. The real app may be newer than this.';
+    const app = currentTab && currentTab.dataset.apk;
+    const ready = app && window.vznApkReady && window.vznApkReady.has(app);
+    protoFlagApk.hidden = !ready;
+    if (ready) protoFlagApk.href = `https://github.com/viziontechnologies/downloads/releases/download/${app}-latest/${app}.apk`;
+  }
+  protoView.addEventListener('click', e => {
+    const b = e.target.closest('button[data-view]');
+    if (b) setView(b.dataset.view);
+  });
+  document.getElementById('protoShotPrev').addEventListener('click', () => showShot(shotIndex - 1));
+  document.getElementById('protoShotNext').addEventListener('click', () => showShot(shotIndex + 1));
+  document.getElementById('protoGallery').addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') showShot(shotIndex - 1);
+    if (e.key === 'ArrowRight') showShot(shotIndex + 1);
+  });
+  document.addEventListener('vzn:apk', updateFlag);
+  currentTab = protoTabs.find(t => t.getAttribute('aria-selected') === 'true') || protoTabs[0];
+  loadShots(currentTab);
+  updateFlag();
+
+  protoTabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => selectProto(tab));
+    tab.addEventListener('keydown', e => {
+      const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!step) return;
+      e.preventDefault();
+      selectProto(protoTabs[(i + step + protoTabs.length) % protoTabs.length], true);
+    });
+  });
+
+  // Links like portfolio.html#try-tylliq (from the project cards) open that app's prototype.
+  function protoFromHash() {
+    const tab = protoTabs.find(t => '#' + t.getAttribute('aria-controls') === location.hash);
+    if (!tab) return;
+    selectProto(tab);
+    document.getElementById('prototypes').scrollIntoView({ behavior: 'smooth' });
+  }
+  window.addEventListener('hashchange', protoFromHash);
+  protoFromHash();
+}
+
+/* ── 22. Portfolio Filters ───────────────────────────────── */
+const pfFilters = [...document.querySelectorAll('.pf-filter')];
+if (pfFilters.length) {
+  const pfCards = [...document.querySelectorAll('.portfolio-grid .proj-card')];
+  const inCat = (card, f) => f === 'all' || (card.dataset.cat || '').split(' ').includes(f);
+  pfFilters.forEach(btn => {
+    const n = pfCards.filter(c => inCat(c, btn.dataset.filter)).length;
+    btn.querySelector('span').textContent = n;
+    btn.addEventListener('click', () => {
+      pfFilters.forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+      pfCards.forEach(c => {
+        const show = inCat(c, btn.dataset.filter);
+        c.hidden = !show;
+        // Cards waiting for their scroll-reveal would stay invisible once shown again.
+        if (show) { c.style.opacity = ''; c.style.transform = ''; if (window.gsap) gsap.set(c, { opacity: 1, y: 0 }); }
+      });
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    });
+  });
+}
+
+/* ── 23. APK Downloads ───────────────────────────────────── */
+// Download buttons stay hidden until the app's version file exists in the
+// public downloads repo (written by each app's release workflow), so the site
+// never shows a link to a build that hasn't been published yet.
+const apkTargets = document.querySelectorAll('[data-apk], [data-apk-show]');
+if (apkTargets.length) {
+  const apps = new Set([...apkTargets].map(el => el.dataset.apk || el.dataset.apkShow));
+  apps.forEach(app => {
+    fetch(`https://raw.githubusercontent.com/viziontechnologies/downloads/main/${app}/latest.json`, { cache: 'no-store' })
+      .then(r => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then(m => {
+        if (!m || !m.version || !m.apk_url) return;
+        // Lets the prototype notice offer "Download the real app" (section 21).
+        (window.vznApkReady = window.vznApkReady || new Set()).add(app);
+        document.dispatchEvent(new CustomEvent('vzn:apk', { detail: app }));
+        const mb = m.size_bytes ? ` · ${(m.size_bytes / 1048576).toFixed(1)} MB` : '';
+        const date = m.released_at ? ` · ${new Date(m.released_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}` : '';
+        document.querySelectorAll(`[data-apk="${app}"], [data-apk-show="${app}"]`).forEach(el => {
+          el.hidden = false;
+          el.querySelectorAll('[data-apk-meta]').forEach(x => { x.textContent = `Version ${m.version}${mb}${date} · Android`; });
+          el.querySelectorAll('[data-apk-sha]').forEach(x => { if (m.sha256) x.textContent = `SHA-256 ${m.sha256}`; });
+          if (el.matches('[data-apk-link]') && !el.title) el.title = `Version ${m.version}${mb}`;
+        });
+      })
+      .catch(() => { /* not released yet, or offline: keep the buttons hidden */ });
+  });
+}

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InnSuite front desk — clickable prototype by Vizion Technologies</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="proto.css">
+<style>
+:root {
+  --font: 'Outfit', system-ui, sans-serif;
+  --brand: #0F5257; --on-brand: #fff; --side-bg: #fff; --side-ink: #16222B; --side-active: #E8F2F1;
+  --bg: #FAF8F4; --card: #fff; --ink: #16222B; --t2: #5B6770; --line: #E4E0D8; --page: #FAF8F4; --focus: #0F5257;
+}
+.side { border-right: 1px solid var(--line); }
+.side .brand { font-weight: 300; font-size: 22px; letter-spacing: -.02em; }
+.side .brand b { font-weight: 700; }
+.side button.active { color: var(--brand); }
+.side button:hover { background: #F4F1EB; }
+.side .who { border-top-color: var(--line); }
+.prop { margin: 0 4px 10px; border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; background: var(--bg); font-size: 13px; }
+.prop small { display: block; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--t2); }
+.prop b { font-size: 14px; }
+.topbar { height: 68px; }
+.topbar .date { font-size: 12px; color: var(--t2); display: block; font-weight: 400; }
+.kpi b { font-weight: 600; font-size: 32px; }
+.bar6 { height: 6px; border-radius: 3px; background: #E8F2F1; margin-top: 8px; }
+.bar6 i { display: block; height: 100%; border-radius: 3px; background: var(--brand); }
+.st { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 500; white-space: nowrap; }
+.st.in { background: #E3F1E8; color: #1F5E3A; } .st.ready { background: #E8F2F1; color: #0F5257; } .st.dirty { background: #FBEFD9; color: #7A4A00; }
+.ckin { height: 32px; padding: 0 12px; border: 1px solid var(--brand); color: var(--brand); border-radius: 8px; font-size: 13px; font-weight: 600; background: #fff; }
+.guest b { display: block; font-weight: 600; }
+.guest small { color: var(--t2); font-size: 12px; }
+.alert { margin-top: 14px; padding: 12px 14px; border-radius: 10px; background: #FBEFD9; color: #7A4A00; font-size: 13px; line-height: 1.45; }
+.srow { display: grid; gap: 6px; margin-bottom: 14px; }
+.srow .t { display: flex; justify-content: space-between; font-size: 13px; }
+.srow .t span { display: flex; align-items: center; gap: 8px; }
+.srow .t i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.srow .b { height: 8px; border-radius: 4px; background: #F0EDE7; }
+.srow .b i { display: block; height: 100%; border-radius: 4px; }
+/* Room board */
+.board { display: flex; gap: 0; min-height: 100%; }
+.board .main { flex: 1; min-width: 0; padding: 20px 24px; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.filters button { height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 7px; }
+.filters button i { width: 9px; height: 9px; border-radius: 3px; }
+.filters button.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.floor h4 { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--t2); margin: 4px 0 8px; font-weight: 600; }
+.rooms { display: grid; grid-template-columns: repeat(auto-fill, minmax(86px, 1fr)); gap: 8px; margin-bottom: 16px; }
+.room { height: 74px; border-radius: 10px; border: 2px solid transparent; padding: 8px 9px; text-align: left; display: flex; flex-direction: column; justify-content: space-between; transition: opacity .2s; }
+.room .n { display: flex; justify-content: space-between; align-items: baseline; }
+.room .n b { font-size: 17px; font-weight: 600; }
+.room .n small { font-size: 10px; font-weight: 700; }
+.room .l { font-size: 11px; color: var(--ink); line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.room.sel { border-color: var(--ink); }
+.detail { width: 270px; flex: none; background: #fff; border-left: 1px solid var(--line); padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+.detail h2 { font-size: 26px; font-weight: 600; letter-spacing: -.02em; }
+.detail .kv { background: var(--bg); border-radius: 12px; padding: 14px; display: grid; gap: 10px; font-size: 13px; }
+.detail .kv div { display: flex; justify-content: space-between; gap: 10px; }
+.detail .kv span:first-child { color: var(--t2); }
+.detail .kv span:last-child { font-weight: 500; text-align: right; }
+.detail .acts { margin-top: auto; display: grid; gap: 8px; }
+.wbtn.full { width: 100%; }
+/* Check-in */
+.ci-steps { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.ci-steps span { font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: #F0EDE7; color: var(--t2); }
+.ci-steps span.on { background: #E8F2F1; color: var(--brand); }
+.key { text-align: center; padding: 30px 10px; }
+.key .k { width: 84px; height: 84px; border-radius: 22px; background: #E8F2F1; display: grid; place-items: center; font-size: 40px; margin: 0 auto 14px; }
+@media (max-width: 900px) { .detail { display: none; } }
+@media (max-width: 720px) { .board .main { padding: 14px; } }
+</style>
+</head>
+<body class="web">
+<div class="app">
+  <div class="ribbon">Prototype with sample data · the real app may be newer · viziontechnologies.zw@gmail.com</div>
+  <nav class="side" aria-label="Main">
+    <div class="brand">Inn<b>Suite</b></div>
+    <div class="prop hide-sm"><small>Property</small><b>Sample Lodge</b></div>
+    <button data-tab="today">▦ <span>Today</span></button>
+    <button data-tab="rooms">🛏 <span>Rooms</span></button>
+    <button data-toast="Reservations calendar">📅 <span>Reservations</span></button>
+    <button data-toast="Guest profiles and history">👥 <span>Guests</span></button>
+    <button data-hk="vd">✦ <span>Housekeeping</span></button>
+    <button data-toast="Folios, invoices and payments">🧾 <span>Billing</span></button>
+    <div class="grow"></div>
+    <div class="who"><span class="avatar">TM</span><div><b>Tendai M.</b><small>Front desk</small></div></div>
+  </nav>
+
+  <div class="screens">
+    <section class="scr" id="today" data-tab-of="today">
+      <div class="topbar"><h1>Today<span class="date" id="todayDate"></span></h1><button class="wbtn sm" data-toast="New booking: guest, dates, room type">＋ New booking</button></div>
+      <div class="body wpad">
+        <div class="wgrid c4">
+          <div class="wcard kpi"><small>Occupancy tonight</small><b id="kOcc">79%</b><div class="bar6"><i id="kOccBar" style="width:79%"></i></div></div>
+          <div class="wcard kpi"><small>Arrivals</small><b>12</b><em id="kArr">5 checked in · 7 still due</em></div>
+          <div class="wcard kpi"><small>Departures</small><b>9</b><em>6 checked out · 1 late</em></div>
+          <div class="wcard kpi"><small>Rooms to clean</small><b id="kClean">14</b><em style="color:#7A4A00">2 needed before 14:00</em></div>
+        </div>
+        <div class="wgrid c2" style="margin-top:16px;grid-template-columns:minmax(0,2fr) minmax(0,1fr)">
+          <div class="wcard tscroll">
+            <h3>Arrivals today</h3>
+            <table class="wtable" id="arrivals"></table>
+          </div>
+          <div class="wcard">
+            <h3>Room status</h3>
+            <div id="statusBars"></div>
+            <div class="alert" id="alert">Rooms 104 and 207 are booked for 13:00 arrivals and still dirty.</div>
+            <button class="wbtn ghost sm" style="margin-top:12px" data-tab="rooms">Open room board →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scr" id="rooms" data-tab-of="rooms">
+      <div class="topbar"><h1>Rooms<span class="date">Live status · updated just now</span></h1></div>
+      <div class="body">
+        <div class="board">
+          <div class="main">
+            <div class="filters" id="filters"></div>
+            <div id="floors"></div>
+          </div>
+          <aside class="detail" id="detail" aria-label="Room details"></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="scr" id="checkin" data-tab-of="today">
+      <div class="topbar"><button class="back" data-back aria-label="Back">←</button><h1 id="ciTitle">Check in</h1></div>
+      <div class="body wpad">
+        <div class="ci-steps"><span class="on">1 · Confirm details</span><span id="ciS2">2 · Payment</span><span id="ciS3">3 · Key card</span></div>
+        <div class="wgrid c2" id="ciBody"></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script src="proto.js"></script>
+<script>
+if (top === self) document.body.classList.add('standalone');
+const P = window.Proto;
+const d = new Date();
+document.getElementById('todayDate').textContent = d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+
+const S = {
+  occ: { label: 'Occupied', code: 'OCC', bg: '#E8F2F1', fg: '#0F5257', primary: 'Open folio' },
+  res: { label: 'Arriving today', code: 'ARR', bg: '#ECE8F5', fg: '#4B3A7A', primary: 'Check in' },
+  vd: { label: 'Vacant, dirty', code: 'VD', bg: '#FBEFD9', fg: '#7A4A00', primary: 'Send to housekeeping' },
+  vc: { label: 'Vacant, clean', code: 'VC', bg: '#E3F1E8', fg: '#1F5E3A', primary: 'Assign booking' },
+  ooo: { label: 'Out of order', code: 'OOO', bg: '#EEEEEE', fg: '#4A4A4A', primary: 'View maintenance ticket' },
+};
+const plan = [['occ','res','vd','res','occ','vc','occ','res'], ['occ','vd','occ','res','occ','occ','ooo','vc'], ['vd','occ','occ','occ','res','vd','occ','occ'], ['occ','occ','vc','occ','ooo','occ','res','vd']];
+const types = ['Double','Deluxe double','Twin','Single','Double','Twin','Double','Suite'];
+const names = ['Moyo','Okafor','Dube','Chikore','Banda','Sibanda','Nkomo','Lindqvist','Mutasa','Ncube','Phiri','Zulu','Mhlanga','Gumbo','Hove','Shumba'];
+const rooms = [];
+plan.forEach((row, fi) => row.forEach((s, ri) => {
+  const num = String((fi + 1) * 100 + ri + 1);
+  rooms.push({ num, floor: fi, status: s, type: types[ri], guest: names[(fi * 8 + ri) % names.length], dirtyArrival: num === '104' || num === '207' });
+}));
+rooms.find(r => r.num === '104').status = 'res';
+rooms.find(r => r.num === '207').status = 'res';
+rooms.find(r => r.num === '102').status = 'occ';
+const arrivals = [
+  { name: 'Rudo Chikore', src: 'Direct · 13:00', room: '104', type: 'Deluxe double', nights: 3, st: 'dirty' },
+  { name: 'James Okafor', src: 'Booking.com · 14:00', room: '207', type: 'Double', nights: 2, st: 'dirty' },
+  { name: 'Nyasha Dube', src: 'Direct · 14:00', room: '108', type: 'Double', nights: 1, st: 'ready' },
+  { name: 'Farai Mutasa', src: 'Corporate · 15:30', room: '305', type: 'Suite', nights: 4, st: 'ready' },
+  { name: 'Sarah Lindqvist', src: 'Expedia · arrived 10:12', room: '102', type: 'Deluxe double', nights: 2, st: 'in' },
+];
+const stLabel = { in: 'Checked in', ready: 'Room ready', dirty: 'Room not ready' };
+let filter = 'all', selected = '104', ciGuest = null;
+
+const roomLine = r => ({ occ: r.guest + ' · out in 2 days', res: r.dirtyArrival ? 'Arrives 13:00 · not clean' : 'Arrives 14:00', vd: 'Checked out', vc: 'Ready to sell', ooo: 'Leaking tap' }[r.status]);
+function renderToday() {
+  document.getElementById('arrivals').innerHTML = '<tr><th>Guest</th><th>Room</th><th class="hide-sm">Nights</th><th>Status</th><th></th></tr>' + arrivals.map((a, i) =>
+    `<tr><td class="guest"><b>${a.name}</b><small>${a.src}</small></td><td><b>${a.room}</b><br><small style="color:var(--t2)">${a.type}</small></td><td class="hide-sm">${a.nights}</td>
+    <td><span class="st ${a.st}">${stLabel[a.st]}</span></td><td>${a.st === 'ready' ? `<button class="ckin" data-ci="${i}">Check in</button>` : ''}</td></tr>`).join('');
+  const counts = {}; rooms.forEach(r => counts[r.status] = (counts[r.status] || 0) + 1);
+  document.getElementById('statusBars').innerHTML = ['occ', 'res', 'vd', 'vc', 'ooo'].map(k =>
+    `<div class="srow"><div class="t"><span><i style="background:${S[k].fg}"></i>${S[k].label}</span><b>${counts[k] || 0}</b></div><div class="b"><i style="width:${(counts[k] || 0) / rooms.length * 100}%;background:${S[k].fg}"></i></div></div>`).join('');
+  const dirty = arrivals.filter(a => a.st === 'dirty').map(a => a.room);
+  const al = document.getElementById('alert');
+  al.hidden = !dirty.length;
+  al.textContent = dirty.length ? `Room${dirty.length > 1 ? 's' : ''} ${dirty.join(' and ')} ${dirty.length > 1 ? 'are' : 'is'} booked for early arrivals and still dirty.` : '';
+  document.getElementById('kArr').textContent = `${4 + arrivals.filter(a => a.st === 'in').length} checked in · ${8 - arrivals.filter(a => a.st === 'in').length} still due`;
+  document.getElementById('kClean').textContent = rooms.filter(r => r.status === 'vd').length + 8;
+}
+function renderRooms() {
+  const counts = {}; rooms.forEach(r => counts[r.status] = (counts[r.status] || 0) + 1);
+  document.getElementById('filters').innerHTML = [['all', 'All rooms', '#16222B']].concat(['vc', 'vd', 'occ', 'res', 'ooo'].map(k => [k, S[k].label, S[k].fg])).map(([k, l, c]) =>
+    `<button class="${filter === k ? 'on' : ''}" data-f="${k}" aria-pressed="${filter === k}"><i style="background:${c}"></i>${l} <b>${k === 'all' ? rooms.length : counts[k] || 0}</b></button>`).join('');
+  document.getElementById('floors').innerHTML = [0, 1, 2, 3].map(f => `<div class="floor"><h4>Floor ${f + 1}</h4><div class="rooms">${rooms.filter(r => r.floor === f).map(r =>
+    `<button class="room ${r.num === selected ? 'sel' : ''}" data-room="${r.num}" style="background:${S[r.status].bg};color:${S[r.status].fg};opacity:${filter === 'all' || filter === r.status ? 1 : .25}" aria-label="Room ${r.num}, ${S[r.status].label}">
+      <span class="n"><b>${r.num}</b><small>${S[r.status].code}</small></span><span class="l">${roomLine(r)}</span></button>`).join('')}</div></div>`).join('');
+  const r = rooms.find(x => x.num === selected), s = S[r.status];
+  document.getElementById('detail').innerHTML = `<div><div style="font-size:13px;color:var(--t2)">${r.type}</div><h2>Room ${r.num}</h2>
+    <span class="st" style="background:${s.bg};color:${s.fg}">${s.label}</span></div>
+    <div class="kv"><div><span>Guest</span><span>${r.status === 'occ' || r.status === 'res' ? r.guest + ' party' : '—'}</span></div>
+    <div><span>Housekeeping</span><span>${r.status === 'vd' || r.dirtyArrival && r.status === 'res' ? 'Needs cleaning' : r.status === 'ooo' ? 'Blocked' : 'Clean'}</span></div></div>
+    <div class="acts"><button class="wbtn full" id="primary">${s.primary}</button><button class="wbtn ghost full" id="markClean">Mark as clean</button></div>`;
+}
+document.addEventListener('click', e => {
+  const f = e.target.closest('[data-f]'); if (f) { filter = f.dataset.f; renderRooms(); }
+  const rm = e.target.closest('[data-room]'); if (rm) { selected = rm.dataset.room; renderRooms(); if (window.innerWidth <= 900) P.toast('Room ' + selected + ' · ' + S[rooms.find(r => r.num === selected).status].label); }
+  const hk = e.target.closest("[data-hk]"); if (hk) { filter = hk.dataset.hk; P.tab("rooms"); renderRooms(); }
+  if (e.target.id === 'markClean') {
+    const r = rooms.find(x => x.num === selected);
+    if (r.status === 'vd') r.status = 'vc';
+    if (r.dirtyArrival) { r.dirtyArrival = false; const a = arrivals.find(x => x.room === r.num); if (a) a.st = 'ready'; }
+    P.toast('Room ' + r.num + ' marked clean. Front desk notified.'); renderRooms(); renderToday();
+  }
+  if (e.target.id === 'primary') {
+    const r = rooms.find(x => x.num === selected);
+    if (r.status === 'res') {
+      const a = arrivals.find(x => x.room === r.num);
+      if (a && a.st === 'dirty') { P.toast('Room ' + r.num + ' must be cleaned first'); return; }
+      if (a) { ciGuest = a; P.go('checkin'); return; }
+    }
+    P.toast(S[r.status].primary + ' · Room ' + r.num);
+  }
+  const ci = e.target.closest('[data-ci]'); if (ci) { ciGuest = arrivals[+ci.dataset.ci]; P.go('checkin'); }
+}, true);
+P.on('today', renderToday);
+P.on('rooms', renderRooms);
+
+P.on('checkin', () => {
+  const a = ciGuest;
+  document.getElementById('ciTitle').textContent = 'Check in · ' + a.name;
+  ['ciS2', 'ciS3'].forEach(id => document.getElementById(id).classList.remove('on'));
+  document.getElementById('ciBody').innerHTML = `<div class="wcard"><h3>Guest</h3>
+      <div class="field"><label>Name</label><div class="in">${a.name}</div></div>
+      <div class="field"><label>ID / passport</label><div class="in">Scanned ✓</div></div>
+      <div class="field"><label>Stay</label><div class="in">Room ${a.room} · ${a.type} · ${a.nights} night${a.nights > 1 ? 's' : ''}</div></div></div>
+    <div class="wcard"><h3>Payment</h3>
+      <div class="field"><label>Balance due</label><div class="in"><b>$${a.nights * 65}.00</b> · $65 per night</div></div>
+      <div class="field"><label>Method</label><div class="in">Card on arrival</div></div>
+      <button class="wbtn" id="ciPay">Take payment &amp; issue key</button></div>`;
+  document.getElementById('ciPay').onclick = () => {
+    document.getElementById('ciS2').classList.add('on'); document.getElementById('ciS3').classList.add('on');
+    a.st = 'in';
+    const r = rooms.find(x => x.num === a.room); if (r) r.status = 'occ';
+    document.getElementById('kOcc').textContent = '81%'; document.getElementById('kOccBar').style.width = '81%';
+    document.getElementById('ciBody').innerHTML = `<div class="wcard key" style="grid-column:1/-1"><div class="k">🔑</div><h3 style="font-size:20px">${a.name} is checked in</h3>
+      <p style="color:var(--t2);font-size:14px;margin:6px 0 18px">Key card for room ${a.room} is ready. Housekeeping has been told the room is occupied.</p>
+      <button class="wbtn" data-tab="today">Back to Today</button></div>`;
+  };
+});
+P.start('today');
+</script>
+</body>
+</html>

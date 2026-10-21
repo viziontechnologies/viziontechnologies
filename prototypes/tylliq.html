@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tylliq POS — clickable prototype by Vizion Technologies</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="proto.css">
+<style>
+:root {
+  --font: 'Inter', system-ui, sans-serif;
+  --accent: #F97316; --accent-bg: #FFF1E7; --on-accent: #fff;
+  --bg: #F5F5F5; --card: #fff; --ink: #171717; --t2: #6B6B6B; --line: #E8E8E8;
+  --ok: #16A34A; --warn: #E11D48; --page: #e9ebef; --focus: var(--accent);
+}
+.bar { height: 56px; display: flex; align-items: center; gap: 10px; padding: 0 16px; background: var(--card); border-bottom: 1px solid var(--line); flex: none; }
+.bar h1 { font-size: 18px; font-weight: 600; flex: 1; }
+.shop { display: flex; align-items: center; gap: 8px; flex: 1; font-weight: 700; font-size: 16px; }
+.shop i { width: 30px; height: 30px; border-radius: 8px; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; font-style: normal; font-weight: 800; font-size: 14px; }
+.ib { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-size: 18px; background: var(--bg); }
+.search { display: flex; gap: 8px; padding: 12px 16px; }
+.search .in { flex: 1; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; color: var(--t2); font-size: 14px; }
+.search .scan { width: 46px; border-radius: 12px; background: var(--accent); color: var(--on-accent); font-size: 18px; }
+.cats { display: flex; gap: 8px; padding: 0 16px 12px; overflow-x: auto; scrollbar-width: none; }
+.cats::-webkit-scrollbar { display: none; }
+.cats span { flex: none; padding: 7px 14px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); font-size: 13px; font-weight: 600; }
+.cats span.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 16px 96px; }
+.prod { background: var(--card); border-radius: 16px; padding: 10px; text-align: left; border: 1px solid var(--line); position: relative; }
+.prod .e { font-size: 30px; height: 44px; display: grid; place-items: center; background: var(--bg); border-radius: 10px; margin-bottom: 8px; }
+.prod b { display: block; font-size: 13px; font-weight: 600; line-height: 1.25; height: 33px; overflow: hidden; }
+.prod .pr { font-weight: 800; font-size: 14px; margin-top: 4px; }
+.prod small { display: block; color: var(--t2); font-size: 11px; margin-top: 2px; }
+.prod small.low { color: var(--warn); font-weight: 600; }
+.prod .n { position: absolute; top: 6px; right: 6px; min-width: 22px; height: 22px; border-radius: 11px; background: var(--accent); color: var(--on-accent); font-size: 12px; font-weight: 800; display: none; place-items: center; padding: 0 6px; }
+.prod .n.show { display: grid; }
+.ticket { position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 20; background: var(--ink); color: #fff; border-radius: 16px; padding: 12px 12px 12px 16px; display: flex; align-items: center; gap: 12px; transform: translateY(calc(100% + 24px)); opacity: 0; pointer-events: none; transition: transform .25s, opacity .25s; }
+.ticket.show { transform: none; opacity: 1; pointer-events: auto; }
+.ticket div { flex: 1; font-size: 13px; color: #c8c8c8; }
+.ticket div b { display: block; font-size: 18px; color: #fff; }
+.btn { border-radius: 12px; height: 50px; padding: 0 18px; font-weight: 600; font-size: 15px; background: var(--accent); color: var(--on-accent); display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.btn.block { width: 100%; }
+.btn.ghost { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
+.tabbar { height: 64px; display: flex; background: var(--card); border-top: 1px solid var(--line); flex: none; position: relative; z-index: 25; }
+.tabbar button { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 600; color: var(--t2); }
+.tabbar .ic { font-size: 19px; filter: grayscale(1); opacity: .6; }
+.tabbar button.active { color: var(--accent); }
+.tabbar button.active .ic { filter: none; opacity: 1; }
+body[data-screen="pay"] .tabbar, body[data-screen="receipt"] .tabbar, body[data-screen="sync"] .tabbar { display: none; }
+
+/* pay */
+.pay { padding: 20px 16px; }
+.due { text-align: center; padding: 18px 0 22px; }
+.due small { color: var(--t2); font-weight: 600; font-size: 13px; }
+.due b { display: block; font-size: 44px; font-weight: 800; letter-spacing: -.02em; }
+.lbl { font-size: 13px; font-weight: 600; color: var(--t2); margin: 6px 0 8px; }
+.cash { background: var(--card); border: 2px solid var(--accent); border-radius: 14px; padding: 14px 16px; font-size: 26px; font-weight: 800; }
+.quick { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 10px; }
+.quick button { height: 46px; border-radius: 12px; background: var(--card); border: 1px solid var(--line); font-weight: 700; }
+.change { margin: 18px 0; background: var(--accent-bg); border-radius: 14px; padding: 14px 16px; display: flex; justify-content: space-between; font-weight: 700; font-size: 16px; }
+.change b { font-size: 22px; }
+.lines { background: var(--card); border-radius: 14px; border: 1px solid var(--line); padding: 4px 14px; margin-bottom: 14px; }
+.lines div { display: flex; justify-content: space-between; padding: 9px 0; font-size: 14px; border-bottom: 1px solid var(--line); }
+.lines div:last-child { border-bottom: 0; }
+
+/* receipt */
+.paper { margin: 18px 16px; background: #fff; border-radius: 4px; padding: 20px 18px; font-family: ui-monospace, 'Courier New', monospace; font-size: 12.5px; box-shadow: 0 2px 10px rgba(0,0,0,.08); }
+.paper h3 { text-align: center; font-size: 15px; }
+.paper .c { text-align: center; color: #555; }
+.paper hr { border: 0; border-top: 1px dashed #aaa; margin: 10px 0; }
+.paper .r { display: flex; justify-content: space-between; padding: 2px 0; }
+.paper .t { font-weight: 800; font-size: 14px; }
+.qr { width: 92px; height: 92px; margin: 12px auto 4px; background:
+  conic-gradient(from 90deg at 30% 30%, #111 25%, transparent 0) 0 0/18px 18px,
+  repeating-linear-gradient(45deg, #111 0 3px, transparent 3px 7px); border: 6px solid #fff; outline: 2px solid #111; }
+.row2 { display: flex; gap: 10px; padding: 0 16px 24px; }
+.row2 .btn { flex: 1; }
+
+/* lists */
+.list { background: var(--card); margin: 12px 16px; border-radius: 16px; border: 1px solid var(--line); overflow: hidden; }
+.item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-bottom: 1px solid var(--line); width: 100%; text-align: left; }
+.item:last-child { border-bottom: 0; }
+.item .e { font-size: 22px; width: 40px; height: 40px; background: var(--bg); border-radius: 10px; display: grid; place-items: center; flex: none; }
+.item .m { flex: 1; min-width: 0; }
+.item .m b { display: block; font-size: 14px; font-weight: 600; }
+.item .m small { color: var(--t2); font-size: 12px; }
+.item .v { text-align: right; font-weight: 700; font-size: 14px; }
+.item .v small { display: block; font-weight: 600; font-size: 11px; color: var(--t2); }
+.pillw { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 20px; background: #FFE4EA; color: var(--warn); }
+.alert { margin: 12px 16px 0; background: #FFE4EA; color: #9F1239; border-radius: 14px; padding: 12px 14px; font-size: 13px; font-weight: 600; display: flex; gap: 10px; align-items: center; }
+.alert span:last-child { margin-left: auto; }
+.kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 16px 0; }
+.kpi { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
+.kpi small { color: var(--t2); font-size: 12px; font-weight: 600; }
+.kpi b { display: block; font-size: 22px; font-weight: 800; margin-top: 2px; }
+.sect { font-size: 12px; font-weight: 700; color: var(--t2); text-transform: uppercase; letter-spacing: .05em; padding: 18px 16px 0; }
+
+/* sync */
+.sync { padding: 20px 16px; text-align: center; }
+.sync p { color: var(--t2); font-size: 14px; line-height: 1.5; margin: 8px 0 18px; }
+.bigqr { width: 190px; height: 190px; margin: 4px auto 14px; border-radius: 16px; padding: 14px; background: #fff; border: 1px solid var(--line); }
+.bigqr div { width: 100%; height: 100%; background:
+  conic-gradient(from 90deg at 30% 30%, #111 25%, transparent 0) 0 0/27px 27px,
+  repeating-linear-gradient(45deg, #111 0 4px, transparent 4px 9px); }
+.state { display: inline-flex; gap: 8px; align-items: center; background: #E7F7EE; color: #166534; font-weight: 700; font-size: 13px; padding: 8px 14px; border-radius: 20px; }
+.seg { display: flex; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 4px; margin-bottom: 18px; }
+.seg button { flex: 1; height: 38px; border-radius: 9px; font-weight: 600; font-size: 14px; color: var(--t2); }
+.seg button.on { background: var(--accent); color: var(--on-accent); }
+
+/* settings */
+.swatches { display: flex; gap: 10px; padding: 14px; flex-wrap: wrap; }
+.sw { width: 34px; height: 34px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 1px var(--line); }
+.sw.on { box-shadow: 0 0 0 2px var(--ink); }
+.chev { color: var(--t2); margin-left: auto; }
+.ok { color: var(--ok); font-weight: 700; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="ribbon">Prototype with sample data · the real app may be newer · viziontechnologies.zw@gmail.com</div>
+  <div class="screens">
+
+    <!-- Sell -->
+    <section class="scr" id="sell" data-tab-of="sell">
+      <div class="bar">
+        <div class="shop"><i>M</i><span class="shopName">Mai Rudo's Tuckshop</span></div>
+        <button class="ib" data-go="sync" aria-label="Sync phones">📶</button>
+      </div>
+      <div class="body">
+        <div class="search"><div class="in">Search products</div><button class="scan" data-toast="Camera opens to scan a barcode" aria-label="Scan barcode">▦</button></div>
+        <div class="cats"><span class="on">All</span><span>Drinks</span><span>Groceries</span><span>Snacks</span><span>Household</span></div>
+        <div class="grid" id="grid"></div>
+      </div>
+      <div class="ticket" id="ticket">
+        <div><span id="tkCount">0 items</span><b id="tkTotal">$0.00</b></div>
+        <button class="ib" id="clearBtn" style="background:#333;color:#fff" aria-label="Clear ticket">✕</button>
+        <button class="btn" data-go="pay">Checkout</button>
+      </div>
+    </section>
+
+    <!-- Pay -->
+    <section class="scr" id="pay">
+      <div class="bar"><button class="ib" data-back aria-label="Back">←</button><h1>Checkout</h1></div>
+      <div class="body">
+        <div class="pay">
+          <div class="lines" id="payLines"></div>
+          <div class="due"><small>Total</small><b id="due">$0.00</b></div>
+          <div class="seg"><button class="on">💵 Cash</button><button data-toast="EcoCash: enter the reference after payment">EcoCash</button><button data-toast="Card: use the shop's swipe machine">Card</button></div>
+          <div class="lbl">Cash received</div>
+          <div class="cash" id="cash">$0.00</div>
+          <div class="quick" id="quick"></div>
+          <div class="change"><span>Change</span><b id="change">$0.00</b></div>
+          <button class="btn block" id="doneBtn">Done</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Receipt -->
+    <section class="scr" id="receipt">
+      <div class="bar"><h1>Sale complete</h1><button class="ib" data-tab="sell" aria-label="Close">✕</button></div>
+      <div class="body">
+        <div class="paper" id="paper"></div>
+        <div class="row2">
+          <button class="btn ghost" data-toast="Sharing receipt to WhatsApp…">↗ Share</button>
+          <button class="btn" data-toast="Printing on 58mm Bluetooth printer…">🖨 Print Receipt</button>
+        </div>
+        <div style="padding:0 16px 24px"><button class="btn ghost block" data-tab="sell">New sale</button></div>
+      </div>
+    </section>
+
+    <!-- Inventory -->
+    <section class="scr" id="inventory" data-tab-of="inventory">
+      <div class="bar"><h1>Inventory</h1><button class="ib" data-toast="Add a product: name, price, barcode, photo" aria-label="Add product">＋</button></div>
+      <div class="body">
+        <div class="alert" data-go="low">⚠️ <span>3 products are running low</span><span>›</span></div>
+        <div class="list" id="invList"></div>
+      </div>
+    </section>
+
+    <!-- Low stock -->
+    <section class="scr" id="low" data-tab-of="inventory">
+      <div class="bar"><button class="ib" data-back aria-label="Back">←</button><h1>Low stock</h1></div>
+      <div class="body">
+        <div class="list" id="lowList"></div>
+        <div style="padding:0 16px"><button class="btn block" data-toast="Restock recorded: +24 each">Restock all</button></div>
+      </div>
+    </section>
+
+    <!-- History -->
+    <section class="scr" id="history" data-tab-of="history">
+      <div class="bar"><h1>History</h1><button class="ib" data-toast="Scan a receipt's QR code to check it's genuine" aria-label="Verify receipt">✔</button></div>
+      <div class="body">
+        <div class="kpis"><div class="kpi"><small>Today's sales</small><b id="kSales">$0.00</b></div><div class="kpi"><small>Receipts</small><b id="kCount">0</b></div></div>
+        <div class="sect">Today</div>
+        <div class="list" id="histList"></div>
+      </div>
+    </section>
+
+    <!-- Sync -->
+    <section class="scr" id="sync">
+      <div class="bar"><button class="ib" data-back aria-label="Back">←</button><h1>Sync phones</h1></div>
+      <div class="body">
+        <div class="sync">
+          <div class="seg"><button class="on" id="segHost">Start hosting</button><button id="segJoin">Join a phone</button></div>
+          <div id="hostView">
+            <div class="bigqr"><div></div></div>
+            <span class="state">● Hosting on shop WiFi</span>
+            <p>On the other phone, open Tylliq, tap <b>Join a phone</b> and scan this code. Sales and stock sync directly between phones. No internet needed.</p>
+            <button class="btn ghost block" data-toast="Hosting stopped">Stop hosting</button>
+          </div>
+          <div id="joinView" hidden>
+            <div class="bigqr" style="display:grid;place-items:center;font-size:56px;background:#111;border-color:#111">📷</div>
+            <p>Point the camera at the QR code on the hosting phone.</p>
+            <button class="btn block" id="fakeScan">Simulate scan</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Settings -->
+    <section class="scr" id="settings" data-tab-of="settings">
+      <div class="bar"><h1>Settings</h1></div>
+      <div class="body" style="padding-bottom:20px">
+        <div class="sect">Shop</div>
+        <div class="list">
+          <div class="item"><span class="e">🏪</span><span class="m"><b class="shopName">Mai Rudo's Tuckshop</b><small>Name, logo and receipt footer</small></span><span class="chev">›</span></div>
+          <div style="padding:12px 14px 0;font-size:13px;font-weight:600;color:var(--t2)">Brand colour (syncs to every paired phone)</div>
+          <div class="swatches" id="swatches"></div>
+        </div>
+        <div class="sect">Devices</div>
+        <div class="list">
+          <a class="item" data-go="sync"><span class="e">📶</span><span class="m"><b>Sync phones</b><small>2 phones paired</small></span><span class="chev">›</span></a>
+          <a class="item" data-toast="Searching for Bluetooth printers…"><span class="e">🖨</span><span class="m"><b>Receipt printer</b><small>58mm Bluetooth</small></span><span class="chev">›</span></a>
+        </div>
+        <div class="sect">Licence</div>
+        <div class="list">
+          <a class="item" data-toast="Licence checks in online every 7 days"><span class="e">🔑</span><span class="m"><b>Licence active</b><small>This device can work offline for 7 days</small></span><span class="ok">✓</span></a>
+          <a class="item" data-toast="Opens WhatsApp support chat"><span class="e">💬</span><span class="m"><b>Help &amp; contact</b><small>WhatsApp support</small></span><span class="chev">›</span></a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <nav class="tabbar" aria-label="Main">
+    <button data-tab="sell"><span class="ic">🧾</span>Sell</button>
+    <button data-tab="inventory"><span class="ic">📦</span>Inventory</button>
+    <button data-tab="history"><span class="ic">🕘</span>History</button>
+    <button data-tab="settings"><span class="ic">⚙️</span>Settings</button>
+  </nav>
+</div>
+
+<script src="proto.js"></script>
+<script>
+if (top === self) document.body.classList.add('standalone');
+const P = window.Proto;
+const products = [
+  { id: 1, name: 'Coke 500ml', price: 1, stock: 48, e: '🥤', unit: 'bottle' },
+  { id: 2, name: 'Bread loaf', price: 1.2, stock: 6, e: '🍞', unit: 'loaf' },
+  { id: 3, name: 'Mealie-meal 10kg', price: 7.5, stock: 14, e: '🌽', unit: 'bag' },
+  { id: 4, name: 'Cooking oil 2L', price: 4.8, stock: 3, e: '🫗', unit: 'bottle' },
+  { id: 5, name: 'Sugar 2kg', price: 2.6, stock: 22, e: '🍬', unit: 'pack' },
+  { id: 6, name: 'Freezits', price: 0.1, stock: 200, e: '🧊', unit: 'each' },
+  { id: 7, name: 'Airtime $1', price: 1, stock: 99, e: '📱', unit: 'voucher' },
+  { id: 8, name: 'Soap bar', price: 0.9, stock: 4, e: '🧼', unit: 'bar' },
+  { id: 9, name: 'Eggs (6)', price: 1.5, stock: 18, e: '🥚', unit: 'tray' },
+];
+const ticket = new Map();
+const sales = [
+  { no: 1042, time: '08:12', items: 3, total: 9.7, how: 'Cash' },
+  { no: 1043, time: '09:40', items: 1, total: 7.5, how: 'EcoCash' },
+];
+let cash = 0;
+const LOW = 6;
+
+function renderGrid() {
+  document.getElementById('grid').innerHTML = products.map(p => {
+    const n = ticket.get(p.id) || 0;
+    return `<button class="prod" data-id="${p.id}"><span class="n ${n ? 'show' : ''}">${n}</span><div class="e">${p.e}</div>
+      <b>${p.name}</b><div class="pr">${P.money(p.price)}</div><small class="${p.stock <= LOW ? 'low' : ''}">${p.stock} in stock</small></button>`;
+  }).join('');
+}
+function tkTotal() { let t = 0, n = 0; ticket.forEach((q, id) => { t += products.find(p => p.id === id).price * q; n += q; }); return { t, n }; }
+function renderTicket() {
+  const { t, n } = tkTotal();
+  document.getElementById('ticket').classList.toggle('show', n > 0);
+  document.getElementById('tkCount').textContent = n + (n === 1 ? ' item' : ' items');
+  document.getElementById('tkTotal').textContent = P.money(t);
+}
+document.getElementById('grid').addEventListener('click', e => {
+  const b = e.target.closest('.prod'); if (!b) return;
+  const p = products.find(x => x.id == b.dataset.id);
+  if ((ticket.get(p.id) || 0) >= p.stock) { P.toast('Out of stock'); return; }
+  ticket.set(p.id, (ticket.get(p.id) || 0) + 1);
+  renderGrid(); renderTicket();
+});
+document.getElementById('clearBtn').addEventListener('click', () => { ticket.clear(); renderGrid(); renderTicket(); });
+
+P.on('pay', () => {
+  const { t } = tkTotal();
+  cash = 0;
+  document.getElementById('payLines').innerHTML = [...ticket].map(([id, q]) => {
+    const p = products.find(x => x.id === id);
+    return `<div><span>${q} × ${p.name}</span><span>${P.money(p.price * q)}</span></div>`;
+  }).join('');
+  document.getElementById('due').textContent = P.money(t);
+  // Exact amount, then the notes a customer is likely to hand over.
+  const up = n => Math.ceil(t / n - 1e-9) * n;
+  const opts = [...new Set([t, up(1), up(5), up(10), up(20), up(50), up(100)])].slice(0, 4);
+  document.getElementById('quick').innerHTML = opts.map(v => `<button data-cash="${v}">${v === t ? 'Exact' : '$' + v}</button>`).join('');
+  renderCash();
+});
+document.getElementById('quick').addEventListener('click', e => {
+  const b = e.target.closest('[data-cash]'); if (!b) return;
+  cash = +b.dataset.cash; renderCash();
+});
+function renderCash() {
+  const { t } = tkTotal();
+  document.getElementById('cash').textContent = P.money(cash);
+  document.getElementById('change').textContent = cash >= t ? P.money(cash - t) : '—';
+}
+document.getElementById('doneBtn').addEventListener('click', () => {
+  const { t, n } = tkTotal();
+  if (cash < t) { P.toast('Enter the cash received first'); return; }
+  const no = sales[sales.length - 1].no + 1;
+  const now = new Date();
+  const time = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+  const lines = [...ticket].map(([id, q]) => { const p = products.find(x => x.id === id); return `<div class="r"><span>${q} × ${p.name}</span><span>${P.money(p.price * q)}</span></div>`; }).join('');
+  ticket.forEach((q, id) => { products.find(p => p.id === id).stock -= q; });
+  sales.push({ no, time, items: n, total: t, how: 'Cash' });
+  document.getElementById('paper').innerHTML = `<h3 class="shopName">${shopName}</h3><div class="c">Mbare, Harare</div><hr>
+    <div class="r"><span>Receipt #${no}</span><span>${time}</span></div><hr>${lines}<hr>
+    <div class="r t"><span>TOTAL</span><span>${P.money(t)}</span></div><div class="r"><span>Cash</span><span>${P.money(cash)}</span></div>
+    <div class="r"><span>Change</span><span>${P.money(cash - t)}</span></div><hr><div class="qr"></div><div class="c">Scan to verify</div><div class="c">Thank you, come again!</div>`;
+  ticket.clear(); renderGrid(); renderTicket();
+  P.go('receipt');
+});
+
+function invRow(p) {
+  return `<div class="item"><span class="e">${p.e}</span><span class="m"><b>${p.name}</b><small>${P.money(p.price)} per ${p.unit}</small></span>
+    <span class="v">${p.stock <= LOW ? '<span class="pillw">' + p.stock + ' left</span>' : p.stock}<small>${p.stock <= LOW ? '' : 'in stock'}</small></span></div>`;
+}
+P.on('inventory', () => { document.getElementById('invList').innerHTML = products.map(invRow).join(''); });
+P.on('low', () => { document.getElementById('lowList').innerHTML = products.filter(p => p.stock <= LOW).map(invRow).join(''); });
+P.on('history', () => {
+  document.getElementById('kSales').textContent = P.money(sales.reduce((a, s) => a + s.total, 0));
+  document.getElementById('kCount').textContent = sales.length;
+  document.getElementById('histList').innerHTML = sales.slice().reverse().map(s =>
+    `<div class="item" data-toast="Receipt #${s.no} · ${P.money(s.total)} · ${s.how}"><span class="e">🧾</span><span class="m"><b>Receipt #${s.no}</b><small>${s.time} · ${s.items} item${s.items === 1 ? '' : 's'} · ${s.how}</small></span><span class="v">${P.money(s.total)}</span></div>`).join('');
+});
+
+document.getElementById('segHost').addEventListener('click', () => setSeg(true));
+document.getElementById('segJoin').addEventListener('click', () => setSeg(false));
+function setSeg(host) {
+  document.getElementById('segHost').classList.toggle('on', host);
+  document.getElementById('segJoin').classList.toggle('on', !host);
+  document.getElementById('hostView').hidden = !host;
+  document.getElementById('joinView').hidden = host;
+}
+document.getElementById('fakeScan').addEventListener('click', () => { P.toast('Synced ✓ 12 sales, 9 products'); setTimeout(() => P.back(), 900); });
+
+let shopName = "Mai Rudo's Tuckshop";
+const accents = [['#F97316', 'Orange'], ['#2563EB', 'Blue'], ['#16A34A', 'Green'], ['#E11D48', 'Red'], ['#7C3AED', 'Purple'], ['#0D9488', 'Teal'], ['#DB2777', 'Pink'], ['#334155', 'Slate']];
+document.getElementById('swatches').innerHTML = accents.map(([c, n], i) =>
+  `<button class="sw ${i ? '' : 'on'}" style="background:${c}" data-c="${c}" aria-label="${n}"></button>`).join('');
+document.getElementById('swatches').addEventListener('click', e => {
+  const b = e.target.closest('.sw'); if (!b) return;
+  document.querySelectorAll('.sw').forEach(x => x.classList.toggle('on', x === b));
+  const r = document.documentElement.style;
+  r.setProperty('--accent', b.dataset.c);
+  r.setProperty('--accent-bg', b.dataset.c + '1A');
+  P.toast(b.getAttribute('aria-label') + ' applied');
+});
+
+renderGrid(); renderTicket();
+P.start('sell');
+</script>
+</body>
+</html>

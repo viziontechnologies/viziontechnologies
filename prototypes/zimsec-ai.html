@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZIMSEC AI — clickable prototype by Vizion Technologies</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="proto.css">
+<style>
+:root {
+  --font: 'Roboto', system-ui, sans-serif;
+  --teal: #0F6E5E; --teal-lt: #3E9B87; --teal-bg: #E3F1EE; --amber: #E0A526; --danger: #D1453B; --ok: #2E9E5B;
+  --bg: #F7F8F7; --card: #fff; --ink: #15201D; --t2: #55625E; --line: #E3E6E4; --page: #e9ebef; --focus: var(--teal);
+}
+.bar { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--card); border-bottom: 1px solid var(--line); flex: none; }
+.bar h1 { font-size: 18px; font-weight: 500; flex: 1; }
+.ib { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-size: 18px; flex: none; }
+.off { font-size: 11px; font-weight: 700; color: var(--teal); background: var(--teal-bg); padding: 4px 9px; border-radius: 12px; }
+.btn { display: flex; width: 100%; align-items: center; justify-content: center; height: 50px; border-radius: 25px; background: var(--teal); color: #fff; font-weight: 500; font-size: 15px; }
+.btn.amber { background: var(--amber); color: var(--ink); }
+.btn.ghost { background: var(--card); color: var(--teal); border: 1px solid var(--teal); }
+.tabbar { display: flex; background: var(--card); border-top: 1px solid var(--line); flex: none; padding: 6px 0 10px; }
+.tabbar button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; color: var(--t2); }
+.tabbar .ic { font-size: 18px; width: 56px; height: 28px; border-radius: 14px; display: grid; place-items: center; }
+.tabbar button.active { color: var(--teal); font-weight: 700; }
+.tabbar button.active .ic { background: var(--teal-bg); }
+body[data-screen="welcome"] .tabbar, body[data-screen="setup"] .tabbar, body[data-screen="take"] .tabbar { display: none; }
+
+/* onboarding */
+#welcome, #setup { background: var(--teal); color: #fff; }
+.onb { flex: 1; display: flex; flex-direction: column; padding: 32px 24px 28px; }
+.onb .mark { width: 64px; height: 64px; border-radius: 18px; background: var(--amber); color: var(--ink); display: grid; place-items: center; font-size: 30px; font-weight: 900; }
+.onb h2 { font-size: 30px; font-weight: 700; line-height: 1.15; margin: 28px 0 12px; }
+.onb p { font-size: 15px; line-height: 1.55; opacity: .9; }
+.onb ul { list-style: none; margin: 22px 0; display: grid; gap: 12px; font-size: 14px; }
+.onb li { display: flex; gap: 10px; align-items: center; }
+.onb li span { width: 32px; height: 32px; border-radius: 10px; background: rgba(255,255,255,.15); display: grid; place-items: center; flex: none; }
+.onb .btn { margin-top: auto; background: #fff; color: var(--teal); }
+.prog { height: 10px; background: rgba(255,255,255,.2); border-radius: 5px; overflow: hidden; margin: 26px 0 10px; }
+.prog i { display: block; height: 100%; width: 0; background: var(--amber); border-radius: 5px; transition: width .2s linear; }
+.pct { display: flex; justify-content: space-between; font-size: 13px; opacity: .9; }
+
+/* subjects */
+.hi { padding: 18px 16px 6px; }
+.hi small { color: var(--t2); font-size: 13px; }
+.hi h2 { font-size: 22px; font-weight: 700; }
+.streak { margin: 10px 16px 6px; background: var(--teal); color: #fff; border-radius: 18px; padding: 14px 16px; display: flex; gap: 12px; align-items: center; }
+.streak b { display: block; font-size: 15px; }
+.streak small { opacity: .85; font-size: 12px; }
+.subs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px 16px 20px; }
+.sub { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 14px; text-align: left; }
+.sub .e { font-size: 26px; }
+.sub b { display: block; font-size: 15px; font-weight: 500; margin-top: 8px; }
+.sub small { color: var(--t2); font-size: 12px; }
+.bar2 { height: 5px; border-radius: 3px; background: var(--line); margin-top: 8px; overflow: hidden; }
+.bar2 i { display: block; height: 100%; background: var(--teal-lt); }
+
+/* hub */
+.hub-hero { margin: 16px; background: var(--teal-bg); border-radius: 20px; padding: 18px; display: flex; gap: 14px; align-items: center; }
+.hub-hero .e { font-size: 44px; }
+.hub-hero b { font-size: 20px; display: block; }
+.hub-hero small { color: var(--t2); }
+.label { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--t2); padding: 8px 16px; }
+.acts { display: grid; gap: 8px; padding: 0 16px 18px; }
+.act { display: flex; gap: 12px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px; text-align: left; width: 100%; }
+.act .e { width: 40px; height: 40px; border-radius: 12px; background: var(--teal-bg); display: grid; place-items: center; font-size: 20px; flex: none; }
+.act b { font-size: 14px; font-weight: 500; display: block; }
+.act small { color: var(--t2); font-size: 12px; }
+.act .chev { margin-left: auto; color: var(--t2); }
+
+/* chat */
+#chatBody { padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; }
+.msg { max-width: 86%; padding: 10px 14px; border-radius: 18px; font-size: 14px; line-height: 1.55; }
+.msg.me { align-self: flex-end; background: var(--teal); color: #fff; border-bottom-right-radius: 6px; }
+.msg.ai { align-self: flex-start; background: var(--card); border: 1px solid var(--line); border-bottom-left-radius: 6px; }
+.msg.ai .src { display: block; margin-top: 8px; font-size: 11px; color: var(--teal); font-weight: 500; }
+.msg.ai ol { padding-left: 18px; }
+.cursor::after { content: '▍'; color: var(--teal); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.compose { display: flex; gap: 8px; padding: 10px 16px; border-top: 1px solid var(--line); background: var(--card); flex: none; }
+.compose div { flex: 1; background: var(--bg); border-radius: 24px; padding: 12px 16px; color: var(--t2); font-size: 14px; }
+.compose button { width: 46px; height: 46px; border-radius: 50%; background: var(--teal); color: #fff; font-size: 18px; }
+.qs { display: flex; gap: 8px; overflow-x: auto; padding: 8px 16px 0; scrollbar-width: none; flex: none; background: var(--card); }
+.qs::-webkit-scrollbar { display: none; }
+.qs button { flex: none; border: 1px solid var(--teal); color: var(--teal); border-radius: 16px; padding: 6px 12px; font-size: 12px; }
+
+/* exam */
+.ex-card { margin: 0 16px 10px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 16px; display: flex; gap: 12px; align-items: center; width: calc(100% - 32px); text-align: left; }
+.ex-card .e { font-size: 28px; }
+.ex-card b { display: block; font-size: 15px; font-weight: 500; }
+.ex-card small { color: var(--t2); font-size: 12px; }
+.qhead { display: flex; justify-content: space-between; font-size: 13px; color: var(--t2); padding: 16px 16px 6px; }
+.qprog { height: 6px; background: var(--line); border-radius: 3px; margin: 0 16px; overflow: hidden; }
+.qprog i { display: block; height: 100%; background: var(--teal); transition: width .3s; }
+.q { font-size: 19px; font-weight: 500; line-height: 1.4; padding: 20px 16px 16px; }
+.opts { display: grid; gap: 10px; padding: 0 16px; }
+.opt { display: flex; align-items: center; gap: 12px; background: var(--card); border: 2px solid var(--line); border-radius: 16px; padding: 14px; text-align: left; font-size: 15px; width: 100%; }
+.opt .k { width: 30px; height: 30px; border-radius: 50%; background: var(--bg); display: grid; place-items: center; font-weight: 700; font-size: 13px; flex: none; }
+.opt.right { border-color: var(--ok); background: #E8F6EE; }
+.opt.wrong { border-color: var(--danger); background: #FCEBEA; }
+.explain { margin: 14px 16px 0; background: var(--teal-bg); border-radius: 14px; padding: 12px 14px; font-size: 13px; line-height: 1.5; display: none; }
+.explain.show { display: block; }
+.next { padding: 16px; }
+.score { text-align: center; padding: 30px 16px 10px; }
+.ring { width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 16px; display: grid; place-items: center; background: conic-gradient(var(--teal) var(--p, 0%), var(--line) 0); }
+.ring div { width: 118px; height: 118px; border-radius: 50%; background: var(--bg); display: grid; place-items: center; font-size: 34px; font-weight: 700; }
+.score h2 { font-size: 22px; }
+.score p { color: var(--t2); margin-top: 6px; font-size: 14px; }
+
+/* flashcards */
+.flip { margin: 20px 16px; height: 300px; perspective: 1000px; }
+.flip .in { position: relative; width: 100%; height: 100%; transition: transform .5s; transform-style: preserve-3d; }
+.flip.turned .in { transform: rotateY(180deg); }
+.face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 24px; display: flex; flex-direction: column; justify-content: center; padding: 24px; text-align: center; }
+.face.front { background: var(--card); border: 1px solid var(--line); font-size: 24px; font-weight: 700; }
+.face.back { background: var(--teal); color: #fff; transform: rotateY(180deg); font-size: 16px; line-height: 1.55; }
+.face small { font-size: 12px; font-weight: 500; opacity: .7; margin-top: 16px; }
+.rate { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 16px; }
+.rate button { height: 48px; border-radius: 24px; font-weight: 500; }
+.rate .hard { background: #FCEBEA; color: var(--danger); }
+.rate .easy { background: #E8F6EE; color: var(--ok); }
+.count { text-align: center; color: var(--t2); font-size: 13px; padding-top: 12px; }
+
+/* progress */
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 16px; }
+.stat { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px; }
+.stat small { color: var(--t2); font-size: 12px; }
+.stat b { display: block; font-size: 26px; font-weight: 700; margin-top: 2px; }
+.perf { margin: 0 16px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 6px 14px; }
+.perf .r { display: grid; grid-template-columns: 90px 1fr 40px; gap: 10px; align-items: center; padding: 10px 0; font-size: 14px; }
+.perf .r i { display: block; height: 8px; border-radius: 4px; background: var(--teal-lt); }
+.perf .r i.weak { background: var(--amber); }
+.weak-note { margin: 12px 16px 20px; background: #FDF4E1; border-radius: 14px; padding: 12px 14px; font-size: 13px; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="ribbon">Prototype with sample data · the real app may be newer · viziontechnologies.zw@gmail.com</div>
+  <div class="screens">
+
+    <!-- Welcome -->
+    <section class="scr" id="welcome">
+      <div class="onb">
+        <div class="mark">Z</div>
+        <h2>Your study partner. No internet needed.</h2>
+        <p>An AI tutor for Zimbabwean students that runs entirely on your phone.</p>
+        <ul>
+          <li><span>💬</span>Ask questions about any subject</li>
+          <li><span>📝</span>Practice exams, marked instantly</li>
+          <li><span>🃏</span>Flashcards and study notes</li>
+          <li><span>🔒</span>Nothing leaves your phone</li>
+        </ul>
+        <button class="btn" data-go="setup">Get started</button>
+      </div>
+    </section>
+
+    <!-- Model setup -->
+    <section class="scr" id="setup">
+      <div class="onb">
+        <div class="mark">⬇</div>
+        <h2>Setting up your tutor</h2>
+        <p>Downloading the study model once. After this, everything works offline, even in airplane mode.</p>
+        <div class="prog"><i id="dl"></i></div>
+        <div class="pct"><span id="dlText">Starting…</span><span id="dlPct">0%</span></div>
+        <button class="btn" id="setupDone" style="opacity:.4;pointer-events:none">Start studying</button>
+      </div>
+    </section>
+
+    <!-- Subjects -->
+    <section class="scr" id="subjects" data-tab-of="subjects">
+      <div class="body">
+        <div class="hi"><small>Welcome back</small><h2>Ruvimbo 📚</h2></div>
+        <div class="streak"><span style="font-size:28px">🔥</span><div><b>5-day study streak</b><small>Keep it going: 1 practice test today</small></div></div>
+        <div class="subs">
+          <button class="sub" data-go="hub" data-sub="Biology"><span class="e">🧬</span><b>Biology</b><small>Form 4</small><div class="bar2"><i style="width:72%"></i></div></button>
+          <button class="sub" data-go="hub" data-sub="Mathematics"><span class="e">📐</span><b>Mathematics</b><small>Form 4</small><div class="bar2"><i style="width:58%"></i></div></button>
+          <button class="sub" data-go="hub" data-sub="Chemistry"><span class="e">⚗️</span><b>Chemistry</b><small>Form 4</small><div class="bar2"><i style="width:41%"></i></div></button>
+          <button class="sub" data-go="hub" data-sub="English"><span class="e">📖</span><b>English</b><small>Form 4</small><div class="bar2"><i style="width:80%"></i></div></button>
+          <button class="sub" data-go="hub" data-sub="History"><span class="e">🏛️</span><b>History</b><small>Form 4</small><div class="bar2"><i style="width:35%"></i></div></button>
+          <button class="sub" data-go="hub" data-sub="Geography"><span class="e">🌍</span><b>Geography</b><small>Form 4</small><div class="bar2"><i style="width:63%"></i></div></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subject hub -->
+    <section class="scr" id="hub" data-tab-of="subjects">
+      <div class="bar"><button class="ib" data-back aria-label="Back">←</button><h1 id="hubTitle">Biology</h1><span class="off">Offline</span></div>
+      <div class="body">
+        <div class="hub-hero"><span class="e" id="hubEmoji">🧬</span><div><b id="hubName">Biology</b><small>One tap to start studying</small></div></div>
+        <div class="label">Study with AI</div>
+        <div class="acts">
+          <button class="act" data-tab="chat" data-ask="0"><span class="e">💡</span><span><b>Explain a topic</b><small>e.g. how photosynthesis works</small></span><span class="chev">›</span></button>
+          <button class="act" data-tab="chat" data-ask="1"><span class="e">🪄</span><span><b>Make it simpler</b><small>Plain words, short sentences</small></span><span class="chev">›</span></button>
+          <button class="act" data-tab="exams"><span class="e">📝</span><span><b>Practice exam</b><small>3 questions, marked instantly</small></span><span class="chev">›</span></button>
+          <button class="act" data-go="cards"><span class="e">🃏</span><span><b>Flashcards</b><small>4 cards due today</small></span><span class="chev">›</span></button>
+          <button class="act" data-toast="Import a PDF or Word document: the tutor answers from your own notes"><span class="e">📄</span><span><b>Add your notes</b><small>PDF, Word or text</small></span><span class="chev">›</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chat -->
+    <section class="scr" id="chat" data-tab-of="chat">
+      <div class="bar"><h1>Tutor</h1><span class="off">● Offline · on device</span></div>
+      <div class="body" id="chatBody">
+        <div class="msg ai">Hi Ruvimbo! Ask me anything from your syllabus. I run on your phone, so no data is used.</div>
+      </div>
+      <div class="qs" id="qs">
+        <button data-ask="0">Explain photosynthesis</button>
+        <button data-ask="1">Simpler please</button>
+        <button data-ask="2">Worked example: osmosis</button>
+      </div>
+      <div class="compose"><div>Ask a question…</div><button aria-label="Send" data-toast="Type your own question in the real app">➤</button></div>
+    </section>
+
+    <!-- Exams -->
+    <section class="scr" id="exams" data-tab-of="exams">
+      <div class="bar"><h1>Practice exams</h1></div>
+      <div class="body" style="padding-top:14px">
+        <button class="ex-card" data-go="take"><span class="e">🧬</span><span><b>Biology · Cells &amp; nutrition</b><small>3 multiple-choice questions · ~3 min</small></span></button>
+        <button class="ex-card" data-toast="Sample includes the Biology test only"><span class="e">📐</span><span><b>Mathematics · Algebra</b><small>10 questions · ~12 min</small></span></button>
+        <button class="ex-card" data-toast="Sample includes the Biology test only"><span class="e">⚗️</span><span><b>Chemistry · Acids &amp; bases</b><small>10 questions · ~12 min</small></span></button>
+      </div>
+    </section>
+
+    <!-- Take exam -->
+    <section class="scr" id="take" data-tab-of="exams">
+      <div class="bar"><button class="ib" data-back aria-label="Quit">✕</button><h1>Biology</h1><span class="off">Offline</span></div>
+      <div class="body" id="takeBody"></div>
+    </section>
+
+    <!-- Flashcards -->
+    <section class="scr" id="cards" data-tab-of="subjects">
+      <div class="bar"><button class="ib" data-back aria-label="Back">←</button><h1>Flashcards</h1></div>
+      <div class="body">
+        <div class="flip" id="flip" role="button" tabindex="0" aria-label="Flip card">
+          <div class="in"><div class="face front"><span id="cFront"></span><small>Tap to flip</small></div><div class="face back"><span id="cBack"></span></div></div>
+        </div>
+        <div class="rate"><button class="hard" data-rate="hard">Difficult</button><button class="easy" data-rate="easy">Got it</button></div>
+        <div class="count" id="cCount"></div>
+      </div>
+    </section>
+
+    <!-- Progress -->
+    <section class="scr" id="progress" data-tab-of="progress">
+      <div class="bar"><h1>My progress</h1></div>
+      <div class="body">
+        <div class="stats">
+          <div class="stat"><small>Overall score</small><b id="pScore">68%</b></div>
+          <div class="stat"><small>Questions answered</small><b id="pQs">142</b></div>
+          <div class="stat"><small>Tests completed</small><b id="pTests">11</b></div>
+          <div class="stat"><small>Study days</small><b>18</b></div>
+        </div>
+        <div class="label">By subject</div>
+        <div class="perf">
+          <div class="r"><span>English</span><i style="width:80%"></i><b>80%</b></div>
+          <div class="r"><span>Biology</span><i style="width:72%"></i><b id="pBio">72%</b></div>
+          <div class="r"><span>Geography</span><i style="width:63%"></i><b>63%</b></div>
+          <div class="r"><span>Mathematics</span><i style="width:58%"></i><b>58%</b></div>
+          <div class="r"><span>Chemistry</span><i class="weak" style="width:41%"></i><b>41%</b></div>
+        </div>
+        <div class="weak-note">⚠️ <b>Weak area:</b> Chemistry, acids and bases. Try a practice test on it this week.</div>
+      </div>
+    </section>
+  </div>
+
+  <nav class="tabbar" aria-label="Main">
+    <button data-tab="chat"><span class="ic">💬</span>Tutor</button>
+    <button data-tab="subjects"><span class="ic">📚</span>Subjects</button>
+    <button data-tab="exams"><span class="ic">📝</span>Exams</button>
+    <button data-tab="progress"><span class="ic">📊</span>Progress</button>
+  </nav>
+</div>
+
+<script src="proto.js"></script>
+<script>
+if (top === self) document.body.classList.add('standalone');
+const P = window.Proto;
+
+// Model download
+P.on('setup', () => {
+  let p = 0;
+  const steps = ['Downloading model…', 'Downloading model…', 'Checking files…', 'Ready to go'];
+  const t = setInterval(() => {
+    p = Math.min(100, p + 4 + Math.random() * 6);
+    document.getElementById('dl').style.width = p + '%';
+    document.getElementById('dlPct').textContent = Math.round(p) + '%';
+    document.getElementById('dlText').textContent = steps[Math.min(3, Math.floor(p / 34))];
+    if (p >= 100) {
+      clearInterval(t);
+      const b = document.getElementById('setupDone');
+      b.style.opacity = 1; b.style.pointerEvents = 'auto';
+    }
+  }, 120);
+});
+document.getElementById('setupDone').addEventListener('click', () => P.tab('subjects'));
+
+// Subject hub
+const EMO = { Biology: '🧬', Mathematics: '📐', Chemistry: '⚗️', English: '📖', History: '🏛️', Geography: '🌍' };
+document.addEventListener('click', e => {
+  const s = e.target.closest('[data-sub]');
+  if (s) {
+    const n = s.dataset.sub;
+    document.getElementById('hubTitle').textContent = n;
+    document.getElementById('hubName').textContent = n;
+    document.getElementById('hubEmoji').textContent = EMO[n];
+  }
+}, true);
+
+// Chat: typed-out answers
+const ANS = [
+  ['Explain photosynthesis', 'Photosynthesis is how green plants make their own food. In the <b>chloroplasts</b>, chlorophyll traps light energy and uses it to turn <b>carbon dioxide</b> and <b>water</b> into <b>glucose</b>, giving off <b>oxygen</b>.<br><br>carbon dioxide + water → glucose + oxygen'],
+  ['Simpler please', 'Plants are like little kitchens. They take in air, water and sunlight, and cook up sugar to feed themselves. The "leftover" they breathe out is the oxygen we breathe in. 🌱'],
+  ['Worked example: osmosis', '<b>Question:</b> A potato strip is put in very salty water. What happens?<ol><li>The salty water has less free water than the potato cells.</li><li>Water moves <b>out</b> of the cells by osmosis, through the partially permeable membrane.</li><li>The strip gets shorter and goes soft.</li></ol>'],
+];
+let asked = null;
+document.addEventListener('click', e => { const a = e.target.closest('[data-ask]'); if (a) asked = +a.dataset.ask; }, true);
+P.on('chat', () => { if (asked !== null) { ask(asked); asked = null; } });
+document.getElementById('qs').addEventListener('click', e => { const b = e.target.closest('[data-ask]'); if (b) { asked = null; ask(+b.dataset.ask); } });
+function ask(i) {
+  const [q, a] = ANS[i];
+  const body = document.getElementById('chatBody');
+  body.insertAdjacentHTML('beforeend', `<div class="msg me">${q}</div><div class="msg ai cursor"></div>`);
+  const el = body.lastElementChild;
+  const plain = a.replace(/<[^>]+>/g, '');
+  let n = 0;
+  const t = setInterval(() => {
+    n += 4;
+    el.textContent = plain.slice(0, n);
+    body.scrollTop = body.scrollHeight;
+    if (n >= plain.length) {
+      clearInterval(t);
+      el.classList.remove('cursor');
+      el.innerHTML = a + '<span class="src">📘 From: Form 4 Biology notes</span>';
+      body.scrollTop = body.scrollHeight;
+    }
+  }, 18);
+}
+
+// Practice exam
+const QS = [
+  ['Which part of a plant cell carries out photosynthesis?', ['Mitochondrion', 'Chloroplast', 'Nucleus', 'Cell wall'], 1, 'Chloroplasts contain chlorophyll, which traps light energy.'],
+  ['Which enzyme in saliva starts the digestion of starch?', ['Pepsin', 'Lipase', 'Amylase', 'Trypsin'], 2, 'Salivary amylase breaks starch down into maltose in the mouth.'],
+  ['What is the main job of red blood cells?', ['Fight infection', 'Clot the blood', 'Carry oxygen', 'Make hormones'], 2, 'Red blood cells contain haemoglobin, which carries oxygen around the body.'],
+];
+let qi = 0, right = 0;
+P.on('take', () => { qi = 0; right = 0; renderQ(); });
+function renderQ() {
+  const body = document.getElementById('takeBody');
+  if (qi >= QS.length) {
+    const pct = Math.round(right / QS.length * 100);
+    body.innerHTML = `<div class="score"><div class="ring" style="--p:${pct}%"><div>${right}/${QS.length}</div></div>
+      <h2>${pct === 100 ? 'Excellent! 🎉' : pct >= 60 ? 'Good work!' : 'Keep practising'}</h2><p>Score saved on your phone. Wrong answers become flashcards.</p></div>
+      <div class="next" style="display:grid;gap:10px"><button class="btn" data-tab="progress">See my progress</button><button class="btn ghost" id="retry">Try again</button></div>`;
+    document.getElementById('retry').onclick = () => { qi = 0; right = 0; renderQ(); };
+    document.getElementById('pTests').textContent = 12;
+    document.getElementById('pQs').textContent = 145;
+    return;
+  }
+  const [q, opts] = QS[qi];
+  body.innerHTML = `<div class="qhead"><span>Question ${qi + 1} of ${QS.length}</span><span>${right} correct</span></div>
+    <div class="qprog"><i style="width:${qi / QS.length * 100}%"></i></div><div class="q">${q}</div>
+    <div class="opts">${opts.map((o, i) => `<button class="opt" data-i="${i}"><span class="k">${'ABCD'[i]}</span>${o}</button>`).join('')}</div>
+    <div class="explain" id="explain"></div><div class="next"><button class="btn" id="nextBtn" style="display:none">Next</button></div>`;
+  body.querySelector('.opts').addEventListener('click', e => {
+    const b = e.target.closest('.opt'); if (!b || body.querySelector('.opt.right')) return;
+    const [, , ans, why] = QS[qi];
+    const pick = +b.dataset.i;
+    body.querySelectorAll('.opt')[ans].classList.add('right');
+    if (pick !== ans) b.classList.add('wrong'); else right++;
+    const ex = document.getElementById('explain');
+    ex.innerHTML = (pick === ans ? '✅ Correct. ' : '❌ Not quite. ') + why; ex.classList.add('show');
+    const n = document.getElementById('nextBtn'); n.style.display = 'flex'; n.textContent = qi === QS.length - 1 ? 'See score' : 'Next';
+    n.onclick = () => { qi++; renderQ(); };
+  });
+}
+
+// Flashcards
+const CARDS = [
+  ['Osmosis', 'The movement of water from a dilute solution to a more concentrated one, through a partially permeable membrane.'],
+  ['Diffusion', 'The movement of particles from a region of high concentration to a region of low concentration.'],
+  ['Enzyme', 'A protein that speeds up a chemical reaction in the body without being used up.'],
+  ['Transpiration', 'The loss of water vapour from the leaves of a plant, mostly through the stomata.'],
+];
+let ci = 0;
+function renderCard() {
+  const flip = document.getElementById('flip');
+  flip.classList.remove('turned');
+  if (ci >= CARDS.length) {
+    document.getElementById('cFront').textContent = 'All done for today 🎉';
+    document.getElementById('cBack').textContent = 'Difficult cards come back first next time.';
+    document.getElementById('cCount').textContent = '';
+    return;
+  }
+  document.getElementById('cFront').textContent = CARDS[ci][0];
+  document.getElementById('cBack').textContent = CARDS[ci][1];
+  document.getElementById('cCount').textContent = `Card ${ci + 1} of ${CARDS.length}`;
+}
+document.getElementById('flip').addEventListener('click', e => { e.currentTarget.classList.toggle('turned'); });
+document.getElementById('flip').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.currentTarget.click(); } });
+document.querySelector('.rate').addEventListener('click', e => {
+  const b = e.target.closest('[data-rate]'); if (!b) return;
+  if (b.dataset.rate === 'hard') P.toast('Marked difficult: shown again first');
+  ci = Math.min(ci + 1, CARDS.length); renderCard();
+});
+P.on('cards', () => { ci = 0; renderCard(); });
+
+P.start('welcome');
+</script>
+</body>
+</html>
