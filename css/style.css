@@ -710,7 +710,7 @@ blockquote.test-q { font-size: .92rem; color: var(--t2); line-height: 1.8; font-
 }
 .app-jumplink:hover { background: var(--accent-lt); }
 
-.app-section { padding: 6rem 6%; }
+/* .app-section uses the shared section padding */
 
 .app-steps { display: flex; flex-direction: column; }
 .app-step { display: grid; grid-template-columns: 44px 1fr; gap: 1.2rem; padding-block: 1.4rem; border-top: 1px solid var(--bdr); }
@@ -1055,9 +1055,9 @@ html.force-reveal .hero-h1 .ln span {
 /* ── Blog Article Layout ─────────────────────────────────────── */
 .blog-hero {
   background: var(--bg); border-bottom: 1px solid var(--bdr);
-  padding: 9rem 6% 4rem;
+  padding: clamp(8rem, 12vw, 10rem) 6% 4rem;          /* same top spacing as .page-top */
 }
-.blog-hero-inner { max-width: 860px; margin: 0 auto; }
+.blog-hero-inner { max-width: 860px; }                 /* left edge on the 6% gutter, like the homepage */
 .blog-back {
   display: inline-flex; align-items: center; gap: .5rem;
   font-size: .82rem; color: var(--t3); text-decoration: none;
@@ -1072,8 +1072,8 @@ html.force-reveal .hero-h1 .ln span {
   font-family: 'DM Mono', monospace;
 }
 .blog-hero h1 {
-  font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 800; color: var(--text);
-  line-height: 1.18; letter-spacing: -.03em; margin-bottom: 1.2rem;
+  font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 800; color: var(--text);    /* = .s-title */
+  line-height: 1.1; letter-spacing: -.038em; margin-bottom: 1.2rem;
 }
 .blog-hero h1 span { color: var(--t3); }
 .blog-meta {
@@ -1085,7 +1085,7 @@ html.force-reveal .hero-h1 .ln span {
 .blog-article {
   display: grid; grid-template-columns: 1fr 300px;
   gap: 4rem; align-items: start;
-  max-width: 1200px; margin: 0 auto;
+  max-width: none; margin: 0;
   padding: 4rem 6%;
 }
 .blog-body { max-width: 720px; }
@@ -1094,7 +1094,7 @@ html.force-reveal .hero-h1 .ln span {
   border-left: 3px solid var(--accent); padding-left: 1.2rem;
   margin-bottom: 2rem;
 }
-.blog-body p { font-size: .97rem; color: var(--t2); line-height: 1.9; margin-bottom: 1.4rem; }
+.blog-body p { font-size: 1rem; color: var(--t2); line-height: 1.85; font-weight: 300; margin-bottom: 1.4rem; }
 .blog-body h2 {
   font-size: 1.22rem; font-weight: 700; color: var(--text);
   margin: 2.5rem 0 .9rem; letter-spacing: -.02em;
@@ -1355,7 +1355,7 @@ html.force-reveal .hero-h1 .ln span {
 }
 
 /* ── Case studies (work/*.html) ──────────────────────────────── */
-.cs-hero .blog-hero-inner { max-width: 960px; }
+.cs-hero .blog-hero-inner { max-width: 960px; }       /* left-aligned like every page */
 .cs-lede { font-size: 1.05rem; line-height: 1.85; color: var(--t2); font-weight: 300; max-width: 680px; margin-bottom: 2rem; }
 .cs-facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--bdr); border: 1px solid var(--bdr); border-radius: 14px; overflow: hidden; margin-bottom: .4rem; }
 .cs-facts div { background: #fff; padding: 1rem 1.1rem; }
@@ -1364,9 +1364,9 @@ html.force-reveal .hero-h1 .ln span {
 
 .cs-section { background: var(--bg); }
 .cs-alt { background: var(--bg-2); border-block: 1px solid var(--bdr); }
-.cs-wrap { max-width: 1100px; margin: 0 auto; }
+.cs-wrap { max-width: none; }                           /* full width inside the 6% gutters, like the homepage */
 .cs-split { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem 4rem; align-items: start; }
-.cs-prose p { font-size: .98rem; line-height: 1.85; color: var(--t2); font-weight: 300; margin-bottom: 1rem; }
+.cs-prose p { font-size: 1rem; line-height: 1.85; color: var(--t2); font-weight: 300; margin-bottom: 1rem; }
 .cs-prose a, .cs-step a, .cs-aside a, .cs-stack a { color: var(--accent); font-weight: 500; }
 .cs-list { list-style: none; display: flex; flex-direction: column; gap: .7rem; margin: .4rem 0 1.2rem; }
 .cs-list li { position: relative; padding-left: 1.5rem; font-size: .94rem; line-height: 1.65; color: var(--t2); }
@@ -1570,3 +1570,13 @@ html.force-reveal .hero-h1 .ln span {
 }
 /* The decorative rings belong to the image mockup; hide them once the 3D scene shows. */
 .hero-visual.has-3d .vis-orbit, .hero-visual.d3-loading .vis-orbit { display: none; }
+
+/* Section titles: words rise out of a mask and sharpen (js/main.js §10). */
+.s-title.st-ready .st-word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .1em; margin-bottom: -.1em; }
+.s-title.st-ready .st-in {
+  display: inline-block; transform: translateY(110%); opacity: 0; filter: blur(6px);
+  transition: transform .9s cubic-bezier(.16, 1, .3, 1), opacity .7s ease, filter .8s ease;
+  transition-delay: calc(var(--i) * 55ms);
+}
+.s-title.st-on .st-in { transform: none; opacity: 1; filter: none; }
+html.force-reveal .s-title .st-in { transform: none !important; opacity: 1 !important; filter: none !important; }
