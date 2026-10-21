@@ -471,7 +471,6 @@
               <span class="proj-status-dot" aria-hidden="true"></span>
               Redesign &mdash; ready for launch
             </span>
-            <a href="#try-pride" class="proj-link" aria-label="Try the Pride Transport website">Try the website &rarr;</a>
           </div>
         </div>
         <template class="proj-detail">
@@ -718,29 +717,29 @@
         </template>
       </article>
 
-      <!-- Guesthouse booking app (client kept anonymous) -->
-      <article class="proj-card reveal" aria-label="Guesthouse booking app project" data-cat="mobile">
-        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#12282a)">
-          <div class="proj-thumb-bg" aria-hidden="true"></div>
-          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F6CF;&#xFE0F;</span>
+      <!-- Guesthouse manager (our demo app) -->
+      <article class="proj-card reveal" aria-label="Guesthouse manager app project" data-cat="mobile">
+        <div class="proj-thumb">
+          <img src="assets/screenshots/guesthouse/1-dashboard.jpg" alt="Guesthouse manager dashboard with bookings, guests and rooms summary and quick actions" width="720" height="1600" loading="lazy" style="object-position:top">
           <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
         </div>
         <div class="proj-body">
-          <div class="proj-tags"><span class="proj-tag">Hospitality</span><span class="proj-tag">Flutter</span><span class="proj-tag">Booking</span></div>
-          <h3>Guesthouse booking app</h3>
-          <p>A demo booking app we built for guesthouses: browse rooms with photos and prices, book your dates, see your reservations, and get directions or contact reception.</p>
+          <div class="proj-tags"><span class="proj-tag">Hospitality</span><span class="proj-tag">Flutter</span><span class="proj-tag">Staff app</span></div>
+          <h3>Guesthouse manager</h3>
+          <p>A demo app we built for guesthouse staff: bookings and check-ins, guest records, housekeeping and room-service requests, rooms and prices, staff accounts and reports, all from a phone.</p>
           <div class="proj-meta">
             <span class="proj-status"><span class="proj-status-dot" aria-hidden="true"></span>Demo app</span>
-            <a href="#try-guesthouse" class="proj-link" aria-label="Try the guesthouse app clickable prototype">Try the prototype &rarr;</a>
+            <a href="#try-guesthouse" class="proj-link" aria-label="Try the guesthouse manager prototype and screenshots">Try it &amp; see screenshots &rarr;</a>
           </div>
         </div>
         <template class="proj-detail">
           <h4>What we built</h4>
           <ul>
-            <li>Room list with photos, prices and descriptions</li>
-            <li>Booking by date, with reservation history</li>
-            <li>Location and map, plus call or message the guesthouse</li>
-            <li>Dark and light mode</li>
+            <li>Dashboard with today's bookings, guests and rooms, plus quick actions</li>
+            <li>Bookings by status (confirmed, checked in, checked out, cancelled) and QR check-in</li>
+            <li>Guest records with ID and contact details, searchable</li>
+            <li>Housekeeping, room-service and maintenance requests</li>
+            <li>Rooms and prices, staff accounts, report export, theme and language settings</li>
           </ul>
         </template>
       </article>
@@ -924,16 +923,14 @@
     <div class="proto-tabs" role="tablist" aria-label="Choose an app">
       <span class="proto-group" aria-hidden="true">Mobile apps</span>
       <button class="proto-tab" role="tab" id="pt-dellinoo" aria-selected="true" aria-controls="try-dellinoo" data-src="prototypes/dellinoo.html" data-name="Dellinoo" data-kind="phone" data-devices="phone">Dellinoo</button>
-      <button class="proto-tab" role="tab" id="pt-tylliq" aria-selected="false" aria-controls="try-tylliq" data-src="prototypes/tylliq.html" data-name="Tylliq POS" data-kind="phone" data-devices="phone" tabindex="-1">Tylliq POS</button>
+      <button class="proto-tab" role="tab" id="pt-tylliq" aria-selected="false" aria-controls="try-tylliq" data-src="prototypes/tylliq.html" data-name="Tylliq POS" data-kind="phone" data-devices="phone" data-apk="tylliq" tabindex="-1">Tylliq POS</button>
       <button class="proto-tab" role="tab" id="pt-agrixpert" aria-selected="false" aria-controls="try-agrixpert" data-src="prototypes/agrixpert.html" data-name="AgriXpert" data-kind="phone" data-devices="phone" tabindex="-1">AgriXpert</button>
       <button class="proto-tab" role="tab" id="pt-zimsec" aria-selected="false" aria-controls="try-zimsec" data-src="prototypes/zimsec-ai.html" data-name="ZIMSEC AI" data-kind="phone" data-devices="phone" tabindex="-1">ZIMSEC AI</button>
-      <button class="proto-tab" role="tab" id="pt-guesthouse" aria-selected="false" aria-controls="try-guesthouse" data-src="prototypes/guesthouse.html" data-name="Guesthouse booking app" data-kind="phone" data-devices="phone" tabindex="-1">Guesthouse</button>
+      <button class="proto-tab" role="tab" id="pt-guesthouse" aria-selected="false" aria-controls="try-guesthouse" data-src="prototypes/guesthouse.html" data-name="Guesthouse manager" data-kind="phone" data-devices="phone" data-shots="shots-guesthouse" tabindex="-1">Guesthouse</button>
       <button class="proto-tab" role="tab" id="pt-church" aria-selected="false" aria-controls="try-church" data-src="prototypes/church-app.html" data-name="Church app" data-kind="phone" data-devices="phone" tabindex="-1">Church app</button>
       <span class="proto-group" aria-hidden="true">Desktop apps</span>
       <button class="proto-tab" role="tab" id="pt-rutz" aria-selected="false" aria-controls="try-rutz" data-src="prototypes/rutz-pos.html" data-name="Rutz Cosmetics POS" data-kind="desktop" data-devices="desktop tablet phone" data-url="Rutz Cosmetics POS" tabindex="-1">Rutz POS</button>
       <button class="proto-tab" role="tab" id="pt-innsuite" aria-selected="false" aria-controls="try-innsuite" data-src="prototypes/innsuite.html" data-name="InnSuite front desk" data-kind="desktop" data-devices="desktop tablet" data-url="InnSuite — Front desk" tabindex="-1">InnSuite</button>
-      <span class="proto-group" aria-hidden="true">Websites</span>
-      <button class="proto-tab" role="tab" id="pt-pride" aria-selected="false" aria-controls="try-pride" data-src="prototypes/sites/pride-transport/index.html" data-name="Pride Transport website" data-kind="web" data-devices="desktop tablet phone" data-url="Pride Transport · redesign" tabindex="-1">Pride Transport</button>
       <span class="proto-group" aria-hidden="true">Web systems</span>
       <button class="proto-tab" role="tab" id="pt-portal" aria-selected="false" aria-controls="try-portal" data-src="prototypes/vizion-portal.html" data-name="Vizion Portal" data-kind="web" data-devices="desktop tablet phone" data-url="portal.vizion.dev" tabindex="-1">Vizion Portal</button>
       <button class="proto-tab" role="tab" id="pt-cases" aria-selected="false" aria-controls="try-cases" data-src="prototypes/case-management.html" data-name="Labour case management" data-kind="web" data-devices="desktop tablet phone" data-url="case-management · demo" tabindex="-1">Case management</button>
@@ -941,16 +938,49 @@
       <button class="proto-tab" role="tab" id="pt-zimtech" aria-selected="false" aria-controls="try-zimtech" data-src="prototypes/zimtech.html" data-name="ZimTech Platform" data-kind="web" data-devices="desktop tablet phone" data-url="zimtech · demo" tabindex="-1">ZimTech</button>
     </div>
 
-    <div class="proto-devices" id="protoDevices" role="group" aria-label="Preview on" hidden>
-      <button data-device="desktop" aria-pressed="true">🖥 Desktop</button>
-      <button data-device="tablet" aria-pressed="false">▭ Tablet</button>
-      <button data-device="phone" aria-pressed="false">📱 Phone</button>
+    <!-- Real screenshots per app (data-shots on the tab names the template).
+         Names, phone numbers and ID numbers are pixelated before they go in assets/. -->
+    <template id="shots-guesthouse">
+      <img src="assets/screenshots/guesthouse/1-dashboard.jpg" alt="Dashboard: bookings, guests and rooms summary and quick actions" data-cap="Dashboard">
+      <img src="assets/screenshots/guesthouse/6-dashboard-upcoming.jpg" alt="Dashboard: upcoming check-ins and notifications, guest name blurred" data-cap="Upcoming check-ins (guest name blurred)">
+      <img src="assets/screenshots/guesthouse/7-bookings.jpg" alt="Bookings list with status tabs, guest names blurred" data-cap="Bookings (guest names blurred)">
+      <img src="assets/screenshots/guesthouse/8-guests.jpg" alt="Guest records with search, names, phones and IDs blurred" data-cap="Guests (personal details blurred)">
+      <img src="assets/screenshots/guesthouse/2-services.jpg" alt="Service requests by type" data-cap="Service requests">
+      <img src="assets/screenshots/guesthouse/4-settings.jpg" alt="Settings menu" data-cap="Settings">
+      <img src="assets/screenshots/guesthouse/3-manage-rooms.jpg" alt="Manage rooms with prices and availability" data-cap="Manage rooms">
+      <img src="assets/screenshots/guesthouse/5-about-developer.jpg" alt="About the developer screen crediting Brian Mahove, founder of Vizion" data-cap="About the developer">
+    </template>
+
+    <div class="proto-controls">
+      <div class="proto-view" id="protoView" role="group" aria-label="Show" hidden>
+        <button data-view="proto" aria-pressed="true">Clickable prototype</button>
+        <button data-view="shots" aria-pressed="false">Real screenshots <span id="protoShotCount"></span></button>
+      </div>
+      <div class="proto-devices" id="protoDevices" role="group" aria-label="Preview on" hidden>
+        <button data-device="desktop" aria-pressed="true">🖥 Desktop</button>
+        <button data-device="tablet" aria-pressed="false">▭ Tablet</button>
+        <button data-device="phone" aria-pressed="false">📱 Phone</button>
+      </div>
     </div>
 
-    <div class="proto-stage" id="protoStage" data-kind="phone" data-device="phone">
+    <!-- Shown on every prototype: these are sample-data wireframes, not the shipped app. -->
+    <p class="proto-flag" id="protoFlag" role="note">
+      <span class="proto-flag-dot" aria-hidden="true"></span>
+      <span id="protoFlagText"><strong>This is a prototype</strong>, not the real app, and it may be older than the latest version.</span>
+      <a href="#" id="protoFlagApk" hidden>Download the real app</a>
+      <a href="mailto:viziontechnologies.zw@gmail.com?subject=I%27d%20like%20the%20real%20app" id="protoFlagMail">Email us for the real thing</a>
+    </p>
+
+    <div class="proto-stage" id="protoStage" data-kind="phone" data-device="phone" data-view="proto">
       <div class="proto-device">
         <div class="proto-urlbar" aria-hidden="true"><span class="proto-dots"><i></i><i></i><i></i></span><span class="proto-url" id="protoUrl">portal.vizion.dev</span><span class="proto-win"><i>–</i><i>□</i><i>×</i></span></div>
         <iframe id="protoFrame" src="prototypes/dellinoo.html" title="Dellinoo clickable prototype" loading="lazy"></iframe>
+        <div class="proto-gallery" id="protoGallery" aria-roledescription="carousel" aria-label="Real screenshots">
+          <img id="protoShot" alt="" loading="lazy">
+          <button class="proto-shot-nav prev" id="protoShotPrev" aria-label="Previous screenshot">&#8249;</button>
+          <button class="proto-shot-nav next" id="protoShotNext" aria-label="Next screenshot">&#8250;</button>
+          <p class="proto-shot-cap" id="protoShotCap" aria-live="polite"></p>
+        </div>
       </div>
 
       <div>
@@ -1016,13 +1046,13 @@
         </div>
 
         <div class="proto-info" role="tabpanel" id="try-guesthouse" aria-labelledby="pt-guesthouse" hidden>
-          <p class="proto-kicker">Hospitality &middot; Flutter</p>
-          <h3>Guesthouse booking app</h3>
-          <p>A demo booking app we built for guesthouses: guests browse rooms with photos and prices, pick their dates, book and pay, then find directions or call reception from the same app.</p>
+          <p class="proto-kicker">Hospitality &middot; Flutter &middot; Staff app</p>
+          <h3>Guesthouse manager</h3>
+          <p>A demo app we built for guesthouse staff to run the day from a phone: bookings and check-ins, guest records, service requests, rooms and staff. Switch to <strong>Real screenshots</strong> above to see the actual app.</p>
           <ul class="proto-try">
-            <li>Change the number of guests and open a room</li>
-            <li>Book it and choose how to pay, then see it under Bookings</li>
-            <li>Switch on dark mode from the Find us tab</li>
+            <li>Make a new booking from the dashboard, then find it under Bookings</li>
+            <li>Tap EDIT on a booking to move it to checked in, then checked out</li>
+            <li>Add a maintenance request, search guests, or open Manage Rooms in Settings</li>
           </ul>
           <div class="proto-actions">
             <a href="prototypes/guesthouse.html" class="btn-ghost" target="_blank" rel="noopener">Open full screen &#8599;</a>
@@ -1072,21 +1102,6 @@
           <div class="proto-actions">
             <a href="prototypes/innsuite.html" class="btn-ghost" target="_blank" rel="noopener">Open full screen &#8599;</a>
             <a href="index.html#contact" class="btn-primary">Build a system like this &rarr;</a>
-          </div>
-        </div>
-
-        <div class="proto-info" role="tabpanel" id="try-pride" aria-labelledby="pt-pride" hidden>
-          <p class="proto-kicker">Website &middot; Online booking &middot; Mobile-first</p>
-          <h3>Pride Transport website</h3>
-          <p>The real redesign we built for a Bulawayo bus company, running live in the frame. Switch between desktop, tablet and phone to see how it adapts. Most of their passengers book on a phone.</p>
-          <ul class="proto-try">
-            <li>Search a route from Bulawayo and pick your seat on the seat map</li>
-            <li>Go through booking: trip, seats, details, payment and e-ticket</li>
-            <li>Request a bus hire quote for a group</li>
-          </ul>
-          <div class="proto-actions">
-            <a href="prototypes/sites/pride-transport/index.html" class="btn-ghost" target="_blank" rel="noopener">Open full screen &#8599;</a>
-            <a href="index.html#contact" class="btn-primary">Get a website like this &rarr;</a>
           </div>
         </div>
 

@@ -65,7 +65,9 @@ img { display: block; max-width: 100%; }
 /* Web-app prototypes (browser frame): full width, sidebar layout set by each page */
 body.web .app { max-width: none; }
 body.web #proto-toast { bottom: 28px; }
+/* Web/desktop prototypes opened full screen: small tag in the corner (hidden inside the portfolio frame, where the page shows its own notice). */
 body.web .ribbon { display: none; }
+body.web.standalone .ribbon { display: block; position: fixed; right: 12px; bottom: 12px; left: auto; top: auto; transform: none; z-index: 60; pointer-events: none; font: 600 11px/1.3 system-ui, sans-serif; background: #111; color: #fff; padding: 6px 10px; border-radius: 6px; max-width: calc(100% - 24px); }
 
 /* Shared web layout. Pages set --side-bg, --side-ink, --brand, --card, --line, --t2 */
 body.web .app { flex-direction: row; }

@@ -671,8 +671,69 @@ if (protoFrame) {
     setDevice(devices.includes(protoStage.dataset.device) && devices.length > 1 && protoStage.dataset.kind === lastKind ? protoStage.dataset.device : devices[0]);
     lastKind = protoStage.dataset.kind;
     protoFrame.title = tab.dataset.name + ' clickable prototype';
+    currentTab = tab;
+    loadShots(tab);
+    setView('proto');
     if (focus) tab.focus();
   }
+
+  // Prototype vs real screenshots. A tab with data-shots="<template id>" gets the
+  // switch; the template holds the screenshot <img>s (personal details blurred).
+  const protoView = document.getElementById('protoView');
+  const protoShot = document.getElementById('protoShot');
+  const protoShotCap = document.getElementById('protoShotCap');
+  const protoFlag = document.getElementById('protoFlag');
+  const protoFlagText = document.getElementById('protoFlagText');
+  const protoFlagApk = document.getElementById('protoFlagApk');
+  let currentTab = null, shots = [], shotIndex = 0;
+
+  function loadShots(tab) {
+    const tpl = tab.dataset.shots && document.getElementById(tab.dataset.shots);
+    shots = tpl ? [...tpl.content.querySelectorAll('img')] : [];
+    shotIndex = 0;
+    protoView.hidden = !shots.length;
+    document.getElementById('protoShotCount').textContent = shots.length ? `(${shots.length})` : '';
+  }
+  function showShot(i) {
+    if (!shots.length) return;
+    shotIndex = (i + shots.length) % shots.length;
+    const s = shots[shotIndex];
+    protoShot.src = s.getAttribute('src');
+    protoShot.alt = s.alt;
+    protoShotCap.textContent = `${shotIndex + 1} / ${shots.length} · ${s.dataset.cap || ''}`;
+  }
+  function setView(view) {
+    if (view === 'shots' && !shots.length) view = 'proto';
+    protoStage.dataset.view = view;
+    protoView.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === view ? 'true' : 'false'));
+    if (view === 'shots') showShot(shotIndex);
+    updateFlag();
+  }
+  function updateFlag() {
+    const shotsView = protoStage.dataset.view === 'shots';
+    protoFlag.classList.toggle('is-shots', shotsView);
+    protoFlagText.innerHTML = shotsView
+      ? '<strong>Real screenshots</strong> from the app. Names and personal details are blurred.'
+      : '<strong>This is a prototype</strong> with sample data, not the real app. The real app may be newer than this.';
+    const app = currentTab && currentTab.dataset.apk;
+    const ready = app && window.vznApkReady && window.vznApkReady.has(app);
+    protoFlagApk.hidden = !ready;
+    if (ready) protoFlagApk.href = `https://github.com/viziontechnologies/downloads/releases/download/${app}-latest/${app}.apk`;
+  }
+  protoView.addEventListener('click', e => {
+    const b = e.target.closest('button[data-view]');
+    if (b) setView(b.dataset.view);
+  });
+  document.getElementById('protoShotPrev').addEventListener('click', () => showShot(shotIndex - 1));
+  document.getElementById('protoShotNext').addEventListener('click', () => showShot(shotIndex + 1));
+  document.getElementById('protoGallery').addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') showShot(shotIndex - 1);
+    if (e.key === 'ArrowRight') showShot(shotIndex + 1);
+  });
+  document.addEventListener('vzn:apk', updateFlag);
+  currentTab = protoTabs.find(t => t.getAttribute('aria-selected') === 'true') || protoTabs[0];
+  loadShots(currentTab);
+  updateFlag();
 
   protoTabs.forEach((tab, i) => {
     tab.addEventListener('click', () => selectProto(tab));
@@ -728,6 +789,9 @@ if (apkTargets.length) {
       .then(r => (r.ok ? r.json() : Promise.reject(r.status)))
       .then(m => {
         if (!m || !m.version || !m.apk_url) return;
+        // Lets the prototype notice offer "Download the real app" (section 21).
+        (window.vznApkReady = window.vznApkReady || new Set()).add(app);
+        document.dispatchEvent(new CustomEvent('vzn:apk', { detail: app }));
         const mb = m.size_bytes ? ` · ${(m.size_bytes / 1048576).toFixed(1)} MB` : '';
         const date = m.released_at ? ` · ${new Date(m.released_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}` : '';
         document.querySelectorAll(`[data-apk="${app}"], [data-apk-show="${app}"]`).forEach(el => {
