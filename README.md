@@ -18,11 +18,14 @@ vizion.com/
 ├── apps/
 │   └── tylliq.html             — Tylliq app page
 ├── blog/
-│   └── 5-signs-pos-system.html — Article: 5 signs you need a POS system
+│   ├── 5-signs-pos-system.html — Article: 5 signs you need a POS system
+│   └── plan-your-software-project.html — Guide to preparing a software project
 ├── css/
 │   └── style.css               — Shared stylesheet for every page
 ├── js/
-│   └── main.js                 — Shared script (GSAP, cursor, contact form, cookie notice)
+│   ├── main.js                 — Shared script (GSAP, cursor, contact form, cookie notice)
+│   ├── devices3d.js            — 3D laptop + phone scenes (hero, case-study headers)
+│   └── viz-robot.js            — Three.js robot mascot for the homepage guide
 ├── assets/                     — WebP images, logo.png, favicon.svg, app icons
 ├── manifest.webmanifest
 ├── sitemap.xml
@@ -93,6 +96,8 @@ Pages in `apps/` and `blog/` use `../` paths.
 | Marquee ticker | CSS animation + JS-populated track |
 | Nav active state | `IntersectionObserver` on `section[id]` |
 | Contact form | Formspree POST + `fetch()`, with WhatsApp/email fallback |
+| Project brief | Optional budget and start timing fields help prepare the first conversation |
+| Portfolio search | Search project details and combine the query with format filters |
 | WhatsApp float button | Fixed position + CSS pulse animation |
 | Cookie notice | `localStorage` flag (`vzn_cookie_ok`) — no analytics on the site |
 | Mobile hamburger menu | CSS transform slide-in |
@@ -120,8 +125,9 @@ Labels/code:   DM Mono (Google Fonts)
 
 ---
 
-## Dependencies (CDN — no install required)
+## Dependencies (no install required)
 
 - [GSAP 3.12.2](https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js)
 - [GSAP ScrollTrigger 3.12.2](https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js)
 - [Google Fonts — Sora + DM Mono](https://fonts.google.com)
+- [Three.js 0.160.0](https://cdn.jsdelivr.net/npm/three@0.160.0/) as an ES module via an import map (3D hero, case-study headers, homepage mascot)

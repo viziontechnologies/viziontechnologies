@@ -128,6 +128,32 @@ document.addEventListener('keydown', e => {
   }
 });
 
+/* ── 5a. Website Guide ───────────────────────────────────── */
+const guide = document.getElementById('vznGuide');
+if (guide) {
+  const guideToggle = document.getElementById('vznGuideToggle');
+  const guidePanel = document.getElementById('vznGuidePanel');
+  const guideClose = document.getElementById('vznGuideClose');
+
+  function setGuideOpen(open) {
+    guidePanel.hidden = !open;
+    guideToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    guideToggle.setAttribute('aria-label', open ? 'Close Viz, the website guide' : 'Open Viz, the website guide');
+    if (!open) guideToggle.focus();
+  }
+
+  guideToggle.addEventListener('click', () => {
+    setGuideOpen(guidePanel.hidden);
+  });
+  guideClose.addEventListener('click', () => setGuideOpen(false));
+  guidePanel.querySelectorAll('[data-guide-link]').forEach(link => {
+    link.addEventListener('click', () => setGuideOpen(false));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !guidePanel.hidden) setGuideOpen(false);
+  });
+}
+
 /* ── 6. Marquee ───────────────────────────────────────────── */
 const mqItems = [
   'React', 'Node.js', 'React Native', 'PostgreSQL',
@@ -185,6 +211,29 @@ if (!prefersReducedMotion) {
       if (blob2) blob2.style.transform = `translateY(${y * -0.18}px)`;
     }, { passive: true });
   }
+}
+
+/* ── Hero Dashboard Tilt ─────────────────────────────────── */
+const heroVisual = document.getElementById('hVis');
+if (heroVisual && !prefersReducedMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  let tiltFrame = 0;
+  heroVisual.addEventListener('pointermove', e => {
+    if (e.pointerType !== 'mouse' || tiltFrame) return;
+    tiltFrame = requestAnimationFrame(() => {
+      const bounds = heroVisual.getBoundingClientRect();
+      const x = (e.clientX - bounds.left) / bounds.width - .5;
+      const y = (e.clientY - bounds.top) / bounds.height - .5;
+      heroVisual.style.setProperty('--tilt-x', `${x * 5}deg`);
+      heroVisual.style.setProperty('--tilt-y', `${y * -5}deg`);
+      tiltFrame = 0;
+    });
+  }, { passive: true });
+  heroVisual.addEventListener('pointerleave', () => {
+    if (tiltFrame) cancelAnimationFrame(tiltFrame);
+    tiltFrame = 0;
+    heroVisual.style.setProperty('--tilt-x', '0deg');
+    heroVisual.style.setProperty('--tilt-y', '0deg');
+  });
 }
 
 /* ── 10. ScrambleText on Section Titles ──────────────────── */
@@ -842,21 +891,46 @@ if (protoFrame) {
 const pfFilters = [...document.querySelectorAll('.pf-filter')];
 if (pfFilters.length) {
   const pfCards = [...document.querySelectorAll('.portfolio-grid .proj-card')];
+  const pfSearch = document.getElementById('pfSearch');
+  const pfCount = document.getElementById('pfResultCount');
+  const pfEmpty = document.getElementById('pfNoResults');
   const inCat = (card, f) => f === 'all' || (card.dataset.cat || '').split(' ').includes(f);
+  const matchesSearch = (card, query) => !query || query.split(/\s+/).every(term =>
+    (card.textContent + ' ' + (card.querySelector('.proj-detail')?.content.textContent || '')).toLowerCase().includes(term)
+  );
+  let activeFilter = 'all';
+
+  if (pfCount) pfCount.textContent = `Showing ${pfCards.length} of ${pfCards.length} projects`;
+
+  function updatePortfolio() {
+    const query = pfSearch ? pfSearch.value.trim().toLowerCase() : '';
+    let visible = 0;
+    pfCards.forEach(card => {
+      const show = inCat(card, activeFilter) && matchesSearch(card, query);
+      card.hidden = !show;
+      if (show) {
+        visible++;
+        card.style.opacity = '';
+        card.style.transform = '';
+        if (window.gsap) gsap.set(card, { opacity: 1, y: 0 });
+      }
+    });
+    if (pfCount) pfCount.textContent = `Showing ${visible} of ${pfCards.length} projects`;
+    if (pfEmpty) pfEmpty.hidden = visible !== 0;
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+  }
+
   pfFilters.forEach(btn => {
     const n = pfCards.filter(c => inCat(c, btn.dataset.filter)).length;
-    btn.querySelector('span').textContent = n;
+    const count = btn.querySelector('span');
+    if (count) count.textContent = n;
     btn.addEventListener('click', () => {
       pfFilters.forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
-      pfCards.forEach(c => {
-        const show = inCat(c, btn.dataset.filter);
-        c.hidden = !show;
-        // Cards waiting for their scroll-reveal would stay invisible once shown again.
-        if (show) { c.style.opacity = ''; c.style.transform = ''; if (window.gsap) gsap.set(c, { opacity: 1, y: 0 }); }
-      });
-      if (window.ScrollTrigger) ScrollTrigger.refresh();
+      activeFilter = btn.dataset.filter;
+      updatePortfolio();
     });
   });
+  if (pfSearch) pfSearch.addEventListener('input', updatePortfolio);
 }
 
 /* ── 23. APK Downloads ───────────────────────────────────── */
