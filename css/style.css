@@ -446,22 +446,6 @@ blockquote.test-q { font-size: .92rem; color: var(--t2); line-height: 1.8; font-
 }
 .svc-link:hover { gap: 10px; }
 
-.svc-showcase {
-  margin-top: 2.5rem; border-radius: 18px;
-  overflow: hidden; border: 1px solid var(--bdr);
-  box-shadow: var(--sh-sm); position: relative;
-}
-.showcase-lbl {
-  position: absolute; top: 1rem; left: 1rem;
-  background: rgba(255,255,255,.9); backdrop-filter: blur(8px);
-  border: 1px solid var(--bdr);
-  color: var(--t3); font-size: .62rem;
-  font-family: 'DM Mono', monospace;
-  letter-spacing: .1em; text-transform: uppercase;
-  padding: .3rem .8rem; border-radius: 100px; z-index: 1;
-}
-.svc-showcase img { width: 100%; height: auto; display: block; }
-
 /* ── Process ────────────────────────────────────────────────── */
 .process { background: var(--bg); }
 
