@@ -104,7 +104,7 @@
   <section class="intro page-top" id="work" aria-labelledby="work-heading" style="background:var(--bg-dark)">
     <p class="s-lbl reveal" style="color:var(--accent)">Featured projects</p>
     <h1 class="s-title reveal" style="color:#fff" id="work-heading">Systems we've built.</h1>
-    <p class="s-sub reveal" style="color:rgba(255,255,255,.55)">Every system below started with a free prototype — just like yours will.</p>
+    <p class="s-sub reveal" style="color:rgba(255,255,255,.55)">Browse by format or search for a workflow, industry or feature. Open a project for its details; where a case study is available, you can read the full project page.</p>
 
     <div class="pf-filters" role="group" aria-label="Filter projects">
       <button class="pf-filter" data-filter="all" aria-pressed="true">All<span></span></button>
@@ -113,6 +113,12 @@
       <button class="pf-filter" data-filter="web" aria-pressed="false">Web systems<span></span></button>
       <button class="pf-filter" data-filter="website" aria-pressed="false">Websites<span></span></button>
       <button class="pf-filter" data-filter="ai" aria-pressed="false">AI<span></span></button>
+    </div>
+
+    <div class="pf-search-wrap">
+      <label for="pfSearch">Search projects</label>
+      <input id="pfSearch" type="search" placeholder="Try inventory, transport, bookings…" autocomplete="off">
+      <p id="pfResultCount" class="pf-result-count" role="status" aria-live="polite"></p>
     </div>
 
     <div class="portfolio-grid">
@@ -1088,6 +1094,7 @@
       </article>
 
     </div>
+    <p id="pfNoResults" class="pf-no-results" hidden>No projects match that search and filter. Try a different term or choose “All”.</p>
   </section>
 
   <!-- ── Clickable prototypes ─────────────────────────────────── -->
