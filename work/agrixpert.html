@@ -12,7 +12,9 @@
 
   <meta property="og:title" content="Case study: AgriXpert, farming advice, weather and a market in one app">
   <meta property="og:description" content="The brief, the design decisions, a clickable prototype and how we rebuilt AgriXpert to run on free-tier services.">
-  <meta property="og:image" content="https://viziontechnologies.vercel.app/assets/logo.png">
+  <meta property="og:image" content="https://viziontechnologies.vercel.app/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://viziontechnologies.vercel.app/work/agrixpert.html">
   <meta property="og:site_name" content="Vizion Technologies">
@@ -20,7 +22,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Case study: AgriXpert, farming advice, weather and a market in one app">
   <meta name="twitter:description" content="The brief, the design decisions, a clickable prototype and how we are building AgriXpert.">
-  <meta name="twitter:image" content="https://viziontechnologies.vercel.app/assets/logo.png">
+  <meta name="twitter:image" content="https://viziontechnologies.vercel.app/assets/og-image.jpg">
 
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
   <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
@@ -110,6 +112,8 @@
         <div><dt>Built with</dt><dd>Flutter, Firebase, Gemini</dd></div>
         <div><dt>Status</dt><dd>In development, first version April 2025</dd></div>
       </dl>
+
+      <div class="cs-3d" data-devices3d data-phone="agrixpert,agriweather" data-laptop="farm"></div>
 
       <div class="app-jumplinks">
         <a href="#problem" class="app-jumplink">The problem</a>
@@ -377,5 +381,7 @@
     <span class="wa-tooltip" aria-hidden="true">Chat on WhatsApp</span>
   </div>
 
+  <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }</script>
+  <script type="module" src="../js/devices3d.js"></script>
 </body>
 </html>
