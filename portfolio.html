@@ -66,17 +66,21 @@
   </div>
 
   <!-- Mobile Navigation -->
-  <div class="mob-nav" id="mobNav" role="dialog" aria-label="Navigation menu" aria-modal="true">
-    <a href="index.html#about"    onclick="closeMob()">About</a>
+  <div class="mob-nav" id="mobNav" role="dialog" aria-label="Navigation menu" aria-modal="true" tabindex="-1">
+    <button class="mob-close" onclick="closeMob()" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <a href="index.html#about" onclick="closeMob()">About</a>
     <a href="index.html#services" onclick="closeMob()">Services</a>
-    <a href="index.html#process"  onclick="closeMob()">How we work</a>
-    <a href="index.html#stack"    onclick="closeMob()">Tech stack</a>
-    <a href="portfolio.html"      onclick="closeMob()">Portfolio</a>
-    <a href="index.html#contact"  onclick="closeMob()">Contact</a>
+    <a href="index.html#process" onclick="closeMob()">How we work</a>
+    <a href="index.html#pricing" onclick="closeMob()">Pricing</a>
+    <a href="portfolio.html" onclick="closeMob()">Portfolio</a>
+    <a href="index.html#apps" onclick="closeMob()">Our apps</a>
+    <a href="index.html#contact" onclick="closeMob()">Contact</a>
   </div>
 
   <!-- Navigation -->
-  <nav id="mainNav" role="navigation" aria-label="Main navigation">
+  <nav id="mainNav" class="solid" role="navigation" aria-label="Main navigation">
     <a href="index.html" class="nav-logo" aria-label="Vizion Technologies — Home">
       <img src="assets/logo.png" alt="Vizion Technologies" width="120" height="34">
     </a>
@@ -84,32 +88,20 @@
       <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#services">Services</a></li>
       <li><a href="index.html#process">How we work</a></li>
-      <li><a href="index.html#stack">Tech stack</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
       <li><a href="portfolio.html" class="active">Portfolio</a></li>
-      <li><a href="index.html#contact" class="nav-cta">Free prototype</a></li>
+      <li><a href="index.html#apps">Our apps</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Free consultation</a></li>
     </ul>
     <button class="nav-hamburger" onclick="toggleMob()" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobNav">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <!-- ── Portfolio Hero ─────────────────────────────────────────── -->
-  <header class="portfolio-hero" aria-label="Portfolio hero">
-    <div class="hero-noise" aria-hidden="true"></div>
-    <div class="hero-content">
-      <div class="hero-badge" id="hBadge"><span class="badge-dot" aria-hidden="true"></span>Our work</div>
-      <h1 class="hero-h1" id="hH1" style="font-size:clamp(2rem,4vw,3.4rem)">
-        <span class="ln"><span>Systems we've</span></span>
-        <span class="ln"><span><strong>designed</strong> &amp; <em>built.</em></span></span>
-      </h1>
-      <p class="hero-sub" id="hSub" style="opacity:1;transform:none;margin-top:1.5rem">From fleet platforms to mobile apps — real software solving real problems for real businesses.</p>
-    </div>
-  </header>
-
   <!-- ── Portfolio Grid ─────────────────────────────────────────── -->
-  <section class="intro" id="work" aria-labelledby="work-heading" style="background:var(--bg-dark)">
+  <section class="intro page-top" id="work" aria-labelledby="work-heading" style="background:var(--bg-dark)">
     <p class="s-lbl reveal" style="color:var(--accent)">Featured projects</p>
-    <h2 class="s-title reveal" style="color:#fff" id="work-heading">Selected work.</h2>
+    <h1 class="s-title reveal" style="color:#fff" id="work-heading">Systems we've built.</h1>
     <p class="s-sub reveal" style="color:rgba(255,255,255,.55)">Every system below started with a free prototype — just like yours will.</p>
 
     <div class="pf-filters" role="group" aria-label="Filter projects">

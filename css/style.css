@@ -117,7 +117,7 @@ nav {
   padding: 1.5rem 6%;
   transition: background .35s, box-shadow .35s, padding .35s;
 }
-nav.scrolled {
+nav.scrolled, nav.solid {
   background: rgba(255,255,255,.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -167,6 +167,7 @@ nav.scrolled {
 
 /* ── Shared section styles ──────────────────────────────────── */
 section { padding: 7rem 6%; position: relative; }
+.page-top { padding-top: clamp(8rem, 12vw, 10rem); }
 .sec-hd { margin-bottom: 4rem; }
 
 .s-lbl {
@@ -917,8 +918,6 @@ footer { background: var(--bg-dark); padding: 5rem 6% 0; }
 .wa-float:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
 
 /* ── Portfolio Page ─────────────────────────────────────────── */
-.portfolio-hero { min-height: 42vh; display: flex; align-items: center; padding: 10rem 6% 5rem; background: var(--bg); position: relative; overflow: hidden; }
-.portfolio-hero::after { content: ''; position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(37,99,235,.07), transparent 70%); top: -200px; right: 0; pointer-events: none; }
 .portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 4rem; }
 .proj-card { background: #fff; border: 1px solid var(--bdr); border-radius: 22px; overflow: hidden; box-shadow: var(--sh-xs); transition: box-shadow .3s, transform .3s, border-color .3s; cursor: pointer; }
 .proj-card:hover { box-shadow: var(--sh-lg); transform: translateY(-4px); border-color: var(--accent-lt); }
