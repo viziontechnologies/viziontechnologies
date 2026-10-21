@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZimTech Platform — clickable prototype by Vizion Technologies</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="proto.css">
+<style>
+:root {
+  --font: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --brand: #0B7A43; --on-brand: #fff; --gold: #F2B705; --side-bg: #0A2E1D; --side-ink: #D9EDE2; --side-active: rgba(242,183,5,.18);
+  --bg: #F5F8F6; --card: #fff; --ink: #10231A; --t2: #5B6F64; --line: #E1EAE4; --page: #F5F8F6; --focus: #0B7A43;
+}
+.hero { background: var(--brand); color: #fff; border-radius: 16px; padding: 22px; }
+.hero h2 { font-size: 22px; font-weight: 800; letter-spacing: -.02em; }
+.hero p { opacity: .85; font-size: 14px; margin-top: 4px; }
+.search { margin-top: 14px; display: flex; gap: 8px; }
+.search div { flex: 1; background: #fff; color: var(--t2); border-radius: 10px; padding: 11px 14px; font-size: 14px; }
+.search button { background: var(--gold); color: #1B1300; border-radius: 10px; padding: 0 16px; font-weight: 700; font-size: 14px; }
+.cats { display: flex; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+.cats button { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 7px 14px; font-size: 13px; font-weight: 600; }
+.cats button.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.fl { display: flex; gap: 14px; align-items: flex-start; text-align: left; width: 100%; }
+.fl .av { width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 17px; flex: none; color: #fff; }
+.fl b { font-size: 15px; display: block; }
+.fl small { color: var(--t2); font-size: 12px; display: block; margin-top: 2px; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.tags span { font-size: 11px; font-weight: 600; background: #EEF5F0; color: var(--brand); border-radius: 6px; padding: 3px 8px; }
+.rate { margin-left: auto; text-align: right; font-size: 12px; color: var(--t2); white-space: nowrap; }
+.rate b { color: var(--ink); font-size: 15px; }
+.prof { display: flex; gap: 16px; align-items: center; }
+.prof .av { width: 72px; height: 72px; font-size: 24px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; color: #fff; background: #7C3AED; flex: none; }
+.prof h2 { font-size: 20px; font-weight: 800; }
+.prof small { color: var(--t2); font-size: 13px; }
+.svc { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; gap: 12px; }
+.svc:last-child { border-bottom: 0; }
+.svc b { white-space: nowrap; }
+.rev { font-size: 13px; line-height: 1.55; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.rev:last-child { border-bottom: 0; }
+.rev small { color: var(--t2); display: block; margin-top: 4px; }
+.chat { display: flex; flex-direction: column; height: 100%; }
+.msgs { flex: 1; overflow-y: auto; padding: 18px 24px; display: flex; flex-direction: column; gap: 10px; }
+.m { max-width: 70%; padding: 10px 14px; border-radius: 14px; font-size: 14px; line-height: 1.5; }
+.m.them { background: #fff; border: 1px solid var(--line); align-self: flex-start; border-bottom-left-radius: 4px; }
+.m.me { background: var(--brand); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+.m.offer { background: #FFF8DB; border: 1px solid #F2D675; align-self: flex-start; }
+.m.offer b { display: block; font-size: 15px; }
+.typing { font-size: 12px; color: var(--t2); padding: 0 24px 6px; min-height: 18px; }
+.compose { display: flex; gap: 8px; padding: 12px 24px 16px; border-top: 1px solid var(--line); background: #fff; flex-wrap: wrap; }
+.compose .quick { display: flex; gap: 8px; flex-wrap: wrap; width: 100%; }
+.compose .quick button { border: 1px solid var(--brand); color: var(--brand); border-radius: 16px; padding: 6px 12px; font-size: 13px; font-weight: 600; }
+.sum { display: grid; gap: 8px; font-size: 14px; }
+.sum div { display: flex; justify-content: space-between; }
+.sum .tot { border-top: 1px solid var(--line); padding-top: 10px; font-weight: 800; font-size: 17px; }
+.card-in { border: 1px solid var(--line); border-radius: 10px; padding: 12px; font-size: 14px; display: flex; justify-content: space-between; color: var(--t2); }
+.done { text-align: center; padding: 30px 10px; }
+.done .ok { width: 70px; height: 70px; border-radius: 50%; background: #E3F4EA; color: var(--brand); font-size: 32px; display: grid; place-items: center; margin: 0 auto 14px; }
+@media (max-width: 720px) { .msgs { padding: 14px; } .compose { padding: 10px 14px; } .m { max-width: 85%; } }
+</style>
+</head>
+<body class="web">
+<div class="app">
+  <nav class="side" aria-label="Main">
+    <div class="brand"><i style="background:var(--gold);color:#1B1300">Z</i>ZimTech</div>
+    <button data-tab="home">🔍 <span>Find talent</span></button>
+    <button data-tab="chats">💬 <span>Messages</span><span class="cnt" id="msgCnt" style="background:var(--gold);color:#1B1300">1</span></button>
+    <button data-tab="jobs">📋 <span>My jobs</span></button>
+    <button data-toast="Post a job: what you need, budget and deadline">＋ <span>Post a job</span></button>
+    <div class="grow"></div>
+    <div class="who"><span class="avatar" style="background:var(--gold);color:#1B1300">FM</span><div><b>Farai (client)</b><small>Small business, Harare</small></div></div>
+  </nav>
+
+  <div class="screens">
+    <section class="scr" id="home" data-tab-of="home">
+      <div class="topbar"><h1>Find IT help in Zimbabwe</h1></div>
+      <div class="body wpad">
+        <div class="hero"><h2>Hire vetted local IT freelancers</h2><p>Websites, networks, repairs, software. Chat first, then pay securely.</p>
+          <div class="search"><div>e.g. "fix office WiFi"</div><button data-toast="Showing results for your area">Search</button></div></div>
+        <div class="cats" id="cats"><button class="on">All</button><button>Web &amp; apps</button><button>Networking</button><button>Repairs</button><button>Cybersecurity</button></div>
+        <div class="wgrid c2" style="margin-top:10px" id="list"></div>
+      </div>
+    </section>
+
+    <section class="scr" id="profile" data-tab-of="home">
+      <div class="topbar"><button class="back" data-back aria-label="Back">←</button><h1>Freelancer profile</h1></div>
+      <div class="body wpad">
+        <div class="wgrid c2">
+          <div class="wcard">
+            <div class="prof"><span class="av">RN</span><div><h2>Rumbi N.</h2><small>Network engineer · Harare · replies in about 1 hour</small><div class="tags"><span>WiFi</span><span>Mikrotik</span><span>CCTV</span><span>Office networks</span></div></div></div>
+            <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap"><button class="wbtn" data-go="chats">💬 Message</button><button class="wbtn ghost" data-go="checkout">Hire now</button></div>
+          </div>
+          <div class="wcard"><h3>Services</h3>
+            <div class="svc"><span>Office WiFi survey &amp; fix (up to 10 users)</span><b>$60</b></div>
+            <div class="svc"><span>New office network setup</span><b>from $180</b></div>
+            <div class="svc"><span>CCTV install (4 cameras)</span><b>from $250</b></div>
+          </div>
+        </div>
+        <div class="wcard" style="margin-top:16px"><h3>Reviews</h3>
+          <div class="rev">"Found the problem in 20 minutes. WiFi now reaches the back office."<small>★★★★★ · client in Avondale</small></div>
+          <div class="rev">"Neat cabling and explained everything."<small>★★★★★ · client in Msasa</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scr" id="chats" data-tab-of="chats">
+      <div class="topbar"><button class="back" data-back aria-label="Back">←</button><h1>Rumbi N.</h1><span class="badge-s green">Online</span></div>
+      <div class="chat" style="flex:1;min-height:0">
+        <div class="msgs" id="msgs">
+          <div class="m them">Hi Farai! I saw your note about the office WiFi. How many people use it, and where does it drop?</div>
+        </div>
+        <div class="typing" id="typing"></div>
+        <div class="compose"><div class="quick" id="quick">
+          <button data-say="About 8 people. It drops in the back office.">About 8 people, drops in the back office</button>
+          <button data-say="Can you come on Thursday?">Can you come on Thursday?</button>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="scr" id="checkout" data-tab-of="jobs">
+      <div class="topbar"><button class="back" data-back aria-label="Back">←</button><h1>Hire Rumbi N.</h1></div>
+      <div class="body wpad">
+        <div class="wgrid c2">
+          <div class="wcard"><h3>Job</h3>
+            <div class="field"><label>Service</label><div class="in">Office WiFi survey &amp; fix (up to 10 users)</div></div>
+            <div class="field"><label>When</label><div class="in">Thursday, 10:00</div></div>
+            <div class="field"><label>Where</label><div class="in">Harare CBD</div></div>
+          </div>
+          <div class="wcard"><h3>Payment</h3>
+            <div class="sum"><div><span>Service</span><span>$60.00</span></div><div><span>Platform fee</span><span>$3.00</span></div><div class="tot"><span>Total</span><span>$63.00</span></div></div>
+            <div class="field" style="margin-top:16px"><label>Card</label><div class="card-in"><span>•••• •••• •••• 4242</span><span>12/28</span></div></div>
+            <button class="wbtn" style="width:100%" id="payBtn">Pay $63.00</button>
+            <p style="font-size:12px;color:var(--t2);margin-top:10px">Card payments are processed by Stripe. This is a demo, no money moves.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scr" id="booked" data-tab-of="jobs">
+      <div class="topbar"><h1>Job booked</h1></div>
+      <div class="body wpad"><div class="wcard done"><div class="ok">✓</div><h2 style="font-size:20px">Rumbi is booked for Thursday</h2>
+        <p style="color:var(--t2);margin:8px 0 18px;font-size:14px">You'll get a reminder the day before. Chat with Rumbi any time.</p>
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="wbtn" data-tab="jobs">View my jobs</button><button class="wbtn ghost" data-tab="chats">Message Rumbi</button></div></div></div>
+    </section>
+
+    <section class="scr" id="jobs" data-tab-of="jobs">
+      <div class="topbar"><h1>My jobs</h1></div>
+      <div class="body wpad"><div class="wcard tscroll"><table class="wtable" id="jobsT"></table></div></div>
+    </section>
+  </div>
+</div>
+
+<script src="proto.js"></script>
+<script>
+if (top === self) document.body.classList.add('standalone');
+const P = window.Proto;
+const people = [
+  ['RN', '#7C3AED', 'Rumbi N.', 'Network engineer · Harare', ['WiFi', 'CCTV', 'Office networks'], '4.9', '38 jobs', 'Networking'],
+  ['TK', '#0EA5E9', 'Tawanda K.', 'Web developer · Bulawayo', ['React', 'WordPress', 'E-commerce'], '4.8', '52 jobs', 'Web & apps'],
+  ['CM', '#E11D48', 'Chiedza M.', 'Laptop & phone repairs · Harare', ['Screens', 'Data recovery'], '4.7', '91 jobs', 'Repairs'],
+  ['BS', '#F59E0B', 'Blessing S.', 'Security consultant · Gweru', ['Firewalls', 'Audits'], '5.0', '12 jobs', 'Cybersecurity'],
+];
+function renderList(cat) {
+  document.getElementById('list').innerHTML = people.filter(p => cat === 'All' || p[7] === cat).map(([i, c, n, r, t, s, j]) =>
+    `<div class="wcard" ${i === 'RN' ? 'data-go="profile"' : `data-toast="Sample shows Rumbi's profile only"`} style="cursor:pointer"><div class="fl"><span class="av" style="background:${c}">${i}</span>
+      <div><b>${n}</b><small>${r}</small><div class="tags">${t.map(x => `<span>${x}</span>`).join('')}</div></div>
+      <div class="rate"><b>★ ${s}</b><br>${j}</div></div></div>`).join('');
+}
+document.getElementById('cats').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  document.querySelectorAll('#cats button').forEach(x => x.classList.toggle('on', x === b));
+  renderList(b.textContent.replace('&amp;', '&'));
+});
+renderList('All');
+
+P.on('chats', () => { document.getElementById('msgCnt').hidden = true; });
+const replies = {
+  'About 8 people. It drops in the back office.': 'Sounds like one router can\'t reach that far. I\'d add an access point for the back office. Survey and fix is $60.',
+  'Can you come on Thursday?': 'Yes, Thursday 10:00 works. I\'ll send you an offer now.',
+};
+document.getElementById('quick').addEventListener('click', e => {
+  const b = e.target.closest('[data-say]'); if (!b) return;
+  const msgs = document.getElementById('msgs');
+  msgs.insertAdjacentHTML('beforeend', `<div class="m me">${b.dataset.say}</div>`);
+  const reply = replies[b.dataset.say];
+  b.remove();
+  msgs.scrollTop = msgs.scrollHeight;
+  document.getElementById('typing').textContent = 'Rumbi is typing…';
+  setTimeout(() => {
+    document.getElementById('typing').textContent = '';
+    msgs.insertAdjacentHTML('beforeend', `<div class="m them">${reply}</div>`);
+    if (!document.getElementById('quick').children.length) {
+      msgs.insertAdjacentHTML('beforeend', `<div class="m offer"><b>Offer: Office WiFi survey &amp; fix</b>Thursday 10:00 · $60<div style="margin-top:10px"><button class="wbtn sm" data-go="checkout">Accept &amp; pay</button></div></div>`);
+    }
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 1100);
+});
+
+const jobs = [['Website for a hardware shop', 'Tawanda K.', 'In progress', ''], ['Laptop screen replacement', 'Chiedza M.', 'Completed', 'green']];
+P.on('jobs', () => {
+  document.getElementById('jobsT').innerHTML = '<tr><th>Job</th><th class="hide-sm">Freelancer</th><th>Status</th></tr>' +
+    jobs.map(([j, f, s, c]) => `<tr><td>${j}</td><td class="hide-sm">${f}</td><td><span class="badge-s ${c}">${s}</span></td></tr>`).join('');
+});
+document.getElementById('payBtn').addEventListener('click', e => {
+  e.currentTarget.textContent = 'Processing…';
+  setTimeout(() => {
+    e.target.textContent = 'Pay $63.00';
+    if (!jobs.some(j => j[0].startsWith('Office WiFi'))) jobs.unshift(['Office WiFi survey & fix · Thu 10:00', 'Rumbi N.', 'Booked', 'amber']);
+    P.go('booked');
+  }, 1000);
+});
+P.start('home');
+</script>
+</body>
+</html>

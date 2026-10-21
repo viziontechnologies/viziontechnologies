@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgriXpert — clickable prototype by Vizion Technologies</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="proto.css">
+<style>
+:root {
+  --font: 'Poppins', system-ui, sans-serif;
+  --green: #2E7D32; --green-dk: #1B5E20; --green-lt: #D7EBD8; --harvest: #F2A81D; --soil: #6D4C41;
+  --bg: #F3F6F1; --card: #fff; --ink: #14201A; --t2: #3F4B43; --t3: #6E7B72; --line: #DDE5DC;
+  --page: #e9ebef; --focus: var(--green);
+}
+.bar { display: flex; align-items: center; gap: 10px; padding: 12px 16px; flex: none; }
+.bar h1 { font-size: 18px; font-weight: 600; flex: 1; }
+.ib { width: 40px; height: 40px; border-radius: 12px; background: var(--card); display: grid; place-items: center; font-size: 18px; flex: none; border: 1px solid var(--line); }
+.head { background: var(--green); color: #fff; padding: 16px 16px 60px; border-radius: 0 0 28px 28px; }
+.head .r { display: flex; align-items: center; gap: 10px; }
+.head .hi { flex: 1; }
+.head .hi small { opacity: .85; font-size: 13px; }
+.head .hi b { display: block; font-size: 20px; font-weight: 600; }
+.lang { display: flex; background: rgba(255,255,255,.18); border-radius: 20px; padding: 3px; }
+.lang button { color: #fff; font-size: 12px; font-weight: 600; padding: 5px 9px; border-radius: 16px; }
+.lang button.on { background: #fff; color: var(--green-dk); }
+.weather { margin: -46px 16px 0; background: var(--card); border-radius: 20px; padding: 16px; display: flex; align-items: center; gap: 14px; box-shadow: 0 6px 20px rgba(20,32,26,.08); }
+.weather .t { font-size: 36px; font-weight: 600; }
+.weather .m { flex: 1; font-size: 13px; color: var(--t2); line-height: 1.4; }
+.weather .m b { color: var(--ink); display: block; font-size: 14px; }
+.days { display: flex; gap: 6px; margin: 10px 16px 0; }
+.days div { flex: 1; background: var(--card); border-radius: 14px; padding: 8px 4px; text-align: center; font-size: 11px; color: var(--t3); border: 1px solid var(--line); }
+.days div b { display: block; color: var(--ink); font-size: 13px; }
+.sec { display: flex; justify-content: space-between; align-items: baseline; padding: 20px 16px 10px; }
+.sec h3 { font-size: 16px; font-weight: 600; }
+.sec span { font-size: 12px; color: var(--green); font-weight: 600; }
+.tools { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 16px; }
+.tool { background: var(--card); border-radius: 18px; padding: 14px 6px; text-align: center; font-size: 12px; font-weight: 500; line-height: 1.3; border: 1px solid var(--line); }
+.tool .e { width: 46px; height: 46px; border-radius: 14px; background: var(--green-lt); display: grid; place-items: center; font-size: 22px; margin: 0 auto 8px; }
+.ai-banner { margin: 16px 16px 24px; background: var(--green-dk); color: #fff; border-radius: 20px; padding: 16px; display: flex; gap: 12px; align-items: center; }
+.ai-banner b { display: block; font-size: 15px; }
+.ai-banner small { opacity: .8; font-size: 12px; }
+.ai-banner .go { margin-left: auto; background: var(--harvest); color: var(--ink); border-radius: 12px; padding: 8px 12px; font-weight: 600; font-size: 13px; flex: none; }
+.tabbar { display: flex; background: var(--card); border-top: 1px solid var(--line); flex: none; padding: 6px 4px 10px; }
+.tabbar button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 11px; color: var(--t3); padding: 4px 0; }
+.tabbar .ic { font-size: 18px; width: 48px; height: 28px; border-radius: 14px; display: grid; place-items: center; }
+.tabbar button.active { color: var(--green-dk); font-weight: 600; }
+.tabbar button.active .ic { background: var(--green-lt); }
+
+/* chat */
+#chat .body { padding: 8px 16px 12px; display: flex; flex-direction: column; gap: 10px; }
+.msg { max-width: 85%; padding: 10px 14px; border-radius: 18px; font-size: 14px; line-height: 1.5; }
+.msg.me { align-self: flex-end; background: var(--green); color: #fff; border-bottom-right-radius: 6px; }
+.msg.ai { align-self: flex-start; background: var(--card); border: 1px solid var(--line); border-bottom-left-radius: 6px; }
+.msg.ai b { color: var(--green-dk); }
+.typing { color: var(--t3); font-size: 13px; }
+.sugg { display: flex; gap: 8px; overflow-x: auto; padding: 0 16px 10px; scrollbar-width: none; flex: none; }
+.sugg::-webkit-scrollbar { display: none; }
+.sugg button { flex: none; background: var(--card); border: 1px solid var(--green); color: var(--green-dk); border-radius: 18px; padding: 7px 12px; font-size: 12px; font-weight: 500; }
+.compose { display: flex; gap: 8px; padding: 0 16px 12px; flex: none; }
+.compose div { flex: 1; background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 11px 16px; color: var(--t3); font-size: 14px; }
+.compose button { width: 46px; height: 46px; border-radius: 50%; background: var(--green); color: #fff; font-size: 18px; }
+
+/* lists */
+.card { background: var(--card); border-radius: 18px; border: 1px solid var(--line); margin: 0 16px 10px; padding: 14px; }
+.row { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; }
+.row .e { width: 48px; height: 48px; border-radius: 14px; background: var(--green-lt); display: grid; place-items: center; font-size: 24px; flex: none; }
+.row .m { flex: 1; min-width: 0; }
+.row .m b { display: block; font-size: 14px; font-weight: 600; }
+.row .m small { font-size: 12px; color: var(--t3); }
+.row .chev { color: var(--t3); }
+.tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 10px; background: #FFF2D6; color: #7A5200; }
+.tag.g { background: var(--green-lt); color: var(--green-dk); }
+.crops { display: flex; gap: 8px; padding: 0 16px 14px; overflow-x: auto; scrollbar-width: none; }
+.crops::-webkit-scrollbar { display: none; }
+.crops button { flex: none; padding: 8px 14px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); font-size: 13px; font-weight: 500; }
+.crops button.on { background: var(--green); color: #fff; border-color: var(--green); }
+.detail-hero { margin: 0 16px; border-radius: 22px; background: var(--green-lt); height: 160px; display: grid; place-items: center; font-size: 80px; }
+.prose { padding: 16px; font-size: 14px; line-height: 1.6; color: var(--t2); }
+.prose h2 { color: var(--ink); font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+.prose h4 { color: var(--ink); font-size: 14px; font-weight: 600; margin: 14px 0 4px; }
+.prose ul { padding-left: 18px; }
+.btn { display: flex; width: 100%; align-items: center; justify-content: center; gap: 8px; height: 50px; border-radius: 14px; background: var(--green); color: #fff; font-weight: 600; font-size: 15px; }
+.btn.ghost { background: var(--card); color: var(--green-dk); border: 1px solid var(--green); }
+
+/* calculator */
+.field { margin: 0 16px 14px; }
+.field label { display: block; font-size: 13px; font-weight: 500; color: var(--t2); margin-bottom: 6px; }
+.stepper { display: flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 6px; }
+.stepper button { width: 42px; height: 42px; border-radius: 10px; background: var(--green-lt); color: var(--green-dk); font-size: 20px; font-weight: 600; }
+.stepper b { flex: 1; text-align: center; font-size: 18px; font-weight: 600; }
+.result { margin: 6px 16px 10px; background: var(--green-dk); color: #fff; border-radius: 20px; padding: 16px; }
+.result .l { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.15); font-size: 14px; }
+.result .l:last-of-type { border-bottom: 0; }
+.result .l b { font-size: 16px; }
+.result small { display: block; opacity: .75; font-size: 11px; margin-top: 8px; line-height: 1.4; }
+
+/* community */
+.post .who { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
+.av { width: 38px; height: 38px; border-radius: 50%; background: var(--harvest); display: grid; place-items: center; font-weight: 600; font-size: 14px; flex: none; }
+.post .who b { font-size: 14px; display: block; }
+.post .who small { font-size: 11px; color: var(--t3); }
+.post p { font-size: 14px; line-height: 1.5; }
+.post .pic { height: 120px; border-radius: 14px; background: var(--green-lt); margin-top: 10px; display: grid; place-items: center; font-size: 50px; }
+.acts { display: flex; gap: 18px; margin-top: 10px; font-size: 13px; color: var(--t3); }
+.acts button { color: var(--t3); font-size: 13px; }
+.acts button.liked { color: var(--green); font-weight: 600; }
+.fab { position: absolute; right: 16px; bottom: 82px; background: var(--harvest); color: var(--ink); border-radius: 18px; padding: 14px 18px; font-weight: 600; font-size: 14px; box-shadow: 0 8px 20px rgba(0,0,0,.18); z-index: 10; }
+body:not([data-screen="community"]) .fab { display: none; }
+.mk { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 16px 16px; }
+.mk .it { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 8px; }
+.mk .ph { height: 90px; border-radius: 12px; background: var(--green-lt); display: grid; place-items: center; font-size: 40px; }
+.mk b { display: block; font-size: 13px; font-weight: 600; margin: 8px 4px 0; }
+.mk .p { font-size: 15px; font-weight: 700; color: var(--green-dk); margin: 0 4px; }
+.mk small { font-size: 11px; color: var(--t3); margin: 0 4px; }
+.seg { display: flex; margin: 0 16px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 4px; }
+.seg button { flex: 1; height: 38px; border-radius: 10px; font-size: 13px; font-weight: 500; color: var(--t2); }
+.seg button.on { background: var(--green); color: #fff; }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="ribbon">Prototype · sample data</div>
+  <div class="screens">
+
+    <!-- Home -->
+    <section class="scr" id="home" data-tab-of="home">
+      <div class="body">
+        <div class="head">
+          <div class="r">
+            <div class="hi"><small id="greet">Good morning</small><b>Chipo 🌱</b></div>
+            <div class="lang" role="group" aria-label="Language">
+              <button class="on" data-lang="en">EN</button><button data-lang="sn">SN</button><button data-lang="sw">SW</button>
+            </div>
+          </div>
+        </div>
+        <div class="weather" data-toast="7-day forecast for your farm">
+          <span style="font-size:40px" aria-hidden="true">⛅</span>
+          <span class="t">26°</span>
+          <span class="m"><b>Marondera</b>Partly cloudy · rain likely Thursday</span>
+        </div>
+        <div class="days"><div>Tue<b>26°</b>⛅</div><div>Wed<b>28°</b>☀️</div><div>Thu<b>23°</b>🌧️</div><div>Fri<b>24°</b>🌦️</div><div>Sat<b>27°</b>⛅</div></div>
+        <div class="sec"><h3 id="toolsTitle">Farm tools</h3><span data-toast="All tools">See all</span></div>
+        <div class="tools">
+          <div class="tool" data-go="pests"><div class="e">🐛</div>Pests &amp; diseases</div>
+          <div class="tool" data-go="fert"><div class="e">🧪</div>Fertilizer calculator</div>
+          <div class="tool" data-toast="Crop calendar: pick your crop and farming region"><div class="e">📅</div>Crop calendar</div>
+          <div class="tool" data-toast="Yield prediction: estimate your harvest"><div class="e">📈</div>Yield prediction</div>
+          <div class="tool" data-toast="Weed detection: take a photo of a weed"><div class="e">🌿</div>Weed detection</div>
+          <div class="tool" data-go="jobs"><div class="e">👩🏾‍🌾</div>Hire workers</div>
+        </div>
+        <div class="ai-banner">
+          <span style="font-size:30px" aria-hidden="true">🤖</span>
+          <div><b>Ask the AI farming assistant</b><small>Crops, livestock, pests, prices</small></div>
+          <span class="go" data-tab="chat">Ask</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI chat -->
+    <section class="scr" id="chat" data-tab-of="chat">
+      <div class="bar"><h1>AI assistant</h1><span class="tag g">Online</span></div>
+      <div class="body" id="chatBody">
+        <div class="msg ai">Hi Chipo! I'm your farming assistant. Ask me about your crops, animals or pests. 🌽🐔</div>
+      </div>
+      <div class="sugg" id="sugg">
+        <button data-q="0">My maize leaves have holes</button>
+        <button data-q="1">How do I store my grain?</button>
+        <button data-q="2">My chickens are sneezing</button>
+      </div>
+      <div class="compose"><div>Type your question…</div><button aria-label="Voice question" data-toast="Voice questions in English, Shona or Swahili">🎤</button></div>
+    </section>
+
+    <!-- Pests & diseases -->
+    <section class="scr" id="pests" data-tab-of="home">
+      <div class="bar"><button class="ib" data-back aria-label="Back">←</button><h1>Pests &amp; diseases</h1></div>
+      <div class="body">
+        <div class="crops"><button class="on">🌽 Maize</button><button data-toast="Sample shows maize only">🫘 Beans</button><button data-toast="Sample shows maize only">🍅 Tomatoes</button><button data-toast="Sample shows maize only">🥬 Cabbage</button></div>
+        <div class="card"><div class="row" data-go="pestDetail"><span class="e">🐛</span><span class="m"><b>Fall armyworm</b><small>Ragged holes in young leaves</small></span><span class="tag">Common now</span></div></div>
+        <div class="card"><div class="row" data-toast="Opens the maize streak guide"><span class="e">🦠</span><span class="m"><b>Maize streak virus</b><small>Yellow streaks along the leaves</small></span><span class="chev">›</span></div></div>
+        <div class="card"><div class="row" data-toast="Opens the stalk borer guide"><span class="e">🪲</span><span class="m"><b>Stalk borer</b><small>Holes in the stem, dead heart</small></span><span class="chev">›</span></div></div>
+        <div class="card"><div class="row" data-toast="Camera opens: take a photo of the leaf"><span class="e" style="background:#FFF2D6">📷</span><span class="m"><b>Not sure? Take a photo</b><small>The assistant will try to identify it</small></span><span class="chev">›</span></div></div>
+      </div>
+    </section>
+
+    <section class="scr" id="pestDetail" data-tab-of="home">
+      <div class="bar"><button class="ib" data-back aria-label="Back">←</button><h1>Fall armyworm</h1></div>
+      <div class="body">
+        <div class="detail-hero" aria-hidden="true">🐛</div>
+        <div class="prose">
+          <h2>Fall armyworm</h2>
+          <span class="tag">Maize · sorghum</span>
+          <h4>What you'll see</h4>
+          <ul><li>Ragged holes and "windows" in young leaves</li><li>Sawdust-like droppings in the leaf funnel</li></ul>
+          <h4>What to do</h4>
+          <ul><li>Walk the field every week from emergence</li><li>Crush egg masses and small larvae by hand</li><li>If damage spreads, ask an agronomist which product to use, and follow the label</li></ul>
+        </div>
+        <div style="padding:0 16px 20px;display:grid;gap:10px">
+          <button class="btn" data-go="agro">Talk to an agronomist</button>
+          <button class="btn ghost" data-tab="community">Ask the community</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="scr" id="agro" data-tab-of="home">
+      <div class="bar"><button class="ib" data-back aria-label="Back">←</button><h1>Agronomists</h1></div>
+      <div class="body">
+        <div class="card"><div class="row" data-toast="Calling T. Moyo…"><span class="av">TM</span><span class="m"><b>T. Moyo</b><small>Crops · Mashonaland East</small></span><span class="tag g">Available</span></div></div>
+        <div class="card"><div class="row" data-toast="Opens chat with R. Ncube"><span class="av" style="background:var(--green-lt)">RN</span><span class="m"><b>R. Ncube</b><small>Livestock · Matabeleland</small></span><span class="chev">›</span></div></div>
+      </div>
+    </section>
+
+    <!-- Fertilizer calculator -->
+    <section class="scr" id="fert" data-tab-of="home">
+      <div class="bar"><button class="ib" data-back aria-label="Back">←</button><h1>Fertilizer calculator</h1></div>
+      <div class="body">
+        <div class="crops" style="padding-top:4px"><button class="on">🌽 Maize</button><button data-toast="Sample shows maize only">🫘 Soya beans</button><button data-toast="Sample shows maize only">🌻 Sunflower</button></div>
+        <div class="field"><label>Field size</label>
+          <div class="stepper"><button id="aMinus" aria-label="Smaller">−</button><b id="area">1.0 ha</b><button id="aPlus" aria-label="Bigger">+</button></div></div>
+        <div class="result" id="fertResult"></div>
+        <div style="padding:6px 16px 20px"><button class="btn ghost" data-toast="Saved to your farm notes">Save to farm notes</button></div>
+      </div>
+    </section>
+
+    <!-- Community -->
+    <section class="scr" id="community" data-tab-of="community">
+      <div class="bar"><h1>Community</h1><button class="ib" data-toast="Search posts" aria-label="Search">🔍</button></div>
+      <div class="body" style="padding-bottom:80px">
+        <div class="card post">
+          <div class="who"><span class="av">KM</span><div><b>Kuda M.</b><small>Mutoko · 2h</small></div></div>
+          <p>First rains came yesterday. Who has already planted? My soil still feels dry 10cm down.</p>
+          <div class="acts"><button class="like">👍 <span>24</span></button><button data-toast="Comments open here">💬 9</button></div>
+        </div>
+        <div class="card post">
+          <div class="who"><span class="av" style="background:var(--green-lt)">SN</span><div><b>Sipho N.</b><small>Gwanda · 5h</small></div></div>
+          <p>Tomatoes looking good this season. Drip line from the borehole made all the difference.</p>
+          <div class="pic" aria-hidden="true">🍅</div>
+          <div class="acts"><button class="like">👍 <span>51</span></button><button data-toast="Comments open here">💬 14</button></div>
+        </div>
+      </div>
+      <button class="fab" data-toast="Write your question, add a photo">＋ Ask the community</button>
+    </section>
+
+    <!-- Market -->
+    <section class="scr" id="market" data-tab-of="market">
+      <div class="bar"><h1>Marketplace</h1><button class="ib" data-toast="Sell something: add photos and a price" aria-label="Sell">＋</button></div>
+      <div class="body">
+        <div class="seg"><button class="on">Buy</button><button data-go="jobs">Farm jobs</button></div>
+        <div class="mk">
+          <div class="it" data-toast="Message the seller"><div class="ph">🌽</div><b>Maize seed 10kg</b><div class="p">$28</div><small>Chinhoyi</small></div>
+          <div class="it" data-toast="Message the seller"><div class="ph">🐣</div><b>Day-old chicks ×50</b><div class="p">$45</div><small>Harare</small></div>
+          <div class="it" data-toast="Message the seller"><div class="ph">🧪</div><b>Compound D 50kg</b><div class="p">$38</div><small>Marondera</small></div>
+          <div class="it" data-toast="Message the seller"><div class="ph">🚜</div><b>Tractor hire / day</b><div class="p">$60</div><small>Bindura</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Jobs -->
+    <section class="scr" id="jobs" data-tab-of="market">
+      <div class="bar"><button class="ib" data-back aria-label="Back">←</button><h1>Farm jobs</h1></div>
+      <div class="body">
+        <div class="seg"><button class="on">I need workers</button><button data-toast="Workers post their skills here">I want work</button></div>
+        <div class="card"><div class="row"><span class="e">🌾</span><span class="m"><b>Planting team, 5 people</b><small>Goromonzi · 2 weeks · $8/day</small></span><span class="tag g">New</span></div></div>
+        <div class="card"><div class="row"><span class="e">🐄</span><span class="m"><b>Herd boy</b><small>Masvingo · ongoing</small></span><span class="chev">›</span></div></div>
+        <div style="padding:6px 16px 20px"><button class="btn" data-toast="Post a job: what, where, how long, pay">Post a job</button></div>
+      </div>
+    </section>
+  </div>
+
+  <nav class="tabbar" aria-label="Main">
+    <button data-tab="home"><span class="ic">🏠</span>Home</button>
+    <button data-tab="chat"><span class="ic">🤖</span>Assistant</button>
+    <button data-tab="community"><span class="ic">👥</span>Community</button>
+    <button data-tab="market"><span class="ic">🛒</span>Market</button>
+  </nav>
+</div>
+
+<script src="proto.js"></script>
+<script>
+if (top === self) document.body.classList.add('standalone');
+const P = window.Proto;
+const LANG = {
+  en: ['Good morning', 'Farm tools'],
+  sn: ['Mangwanani', 'Zvishandiso zvepurazi'],
+  sw: ['Habari za asubuhi', 'Zana za shamba'],
+};
+document.querySelector('.lang').addEventListener('click', e => {
+  const b = e.target.closest('[data-lang]'); if (!b) return;
+  document.querySelectorAll('[data-lang]').forEach(x => x.classList.toggle('on', x === b));
+  const [g, t] = LANG[b.dataset.lang];
+  document.getElementById('greet').textContent = g;
+  document.getElementById('toolsTitle').textContent = t;
+});
+
+const QA = [
+  ['My maize leaves have holes', 'That sounds like <b>fall armyworm</b>. Look in the leaf funnel for small caterpillars and sawdust-like droppings. Check 10 plants in different parts of the field. If many are damaged, talk to an agronomist about treatment.'],
+  ['How do I store my grain?', 'Dry it well first: the grain should crack, not bend, when you bite it. Store it in clean, airtight bags or a silo off the floor, and check for weevils every few weeks.'],
+  ['My chickens are sneezing', 'Sneezing can mean a respiratory infection. Separate the sick birds, keep the house dry and well aired, and ask a vet before giving any medicine.'],
+];
+document.getElementById('sugg').addEventListener('click', async e => {
+  const b = e.target.closest('[data-q]'); if (!b) return;
+  const [q, a] = QA[+b.dataset.q];
+  b.remove();
+  const body = document.getElementById('chatBody');
+  body.insertAdjacentHTML('beforeend', `<div class="msg me">${q}</div><div class="msg ai typing">Thinking…</div>`);
+  body.scrollTop = body.scrollHeight;
+  await new Promise(r => setTimeout(r, 900));
+  const t = body.querySelector('.typing'); t.classList.remove('typing'); t.innerHTML = a;
+  body.scrollTop = body.scrollHeight;
+});
+
+// Sample rates for the prototype only (basal + top dressing per hectare).
+let area = 1;
+function renderFert() {
+  document.getElementById('area').textContent = area.toFixed(1) + ' ha';
+  const basal = Math.round(area * 300), top = Math.round(area * 200);
+  document.getElementById('fertResult').innerHTML = `
+    <div class="l"><span>Basal (at planting)</span><b>${basal} kg · ${Math.ceil(basal / 50)} bags</b></div>
+    <div class="l"><span>Top dressing (week 4–6)</span><b>${top} kg · ${Math.ceil(top / 50)} bags</b></div>
+    <small>Sample rates for this prototype. Confirm rates with a soil test or your agronomist.</small>`;
+}
+document.getElementById('aMinus').addEventListener('click', () => { area = Math.max(0.5, area - 0.5); renderFert(); });
+document.getElementById('aPlus').addEventListener('click', () => { area = Math.min(20, area + 0.5); renderFert(); });
+renderFert();
+
+document.querySelectorAll('.like').forEach(b => b.addEventListener('click', () => {
+  const n = b.querySelector('span'), on = b.classList.toggle('liked');
+  n.textContent = +n.textContent + (on ? 1 : -1);
+}));
+
+P.start('home');
+</script>
+</body>
+</html>

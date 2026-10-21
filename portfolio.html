@@ -107,15 +107,24 @@
   </header>
 
   <!-- ── Portfolio Grid ─────────────────────────────────────────── -->
-  <section class="intro" id="work" aria-labelledby="work-heading" style="background:var(--dark)">
+  <section class="intro" id="work" aria-labelledby="work-heading" style="background:var(--bg-dark)">
     <p class="s-lbl reveal" style="color:var(--accent)">Featured projects</p>
     <h2 class="s-title reveal" style="color:#fff" id="work-heading">Selected work.</h2>
-    <p class="s-sub reveal" style="color:rgba(255,255,255,.4)">Every system below started with a free prototype — just like yours will.</p>
+    <p class="s-sub reveal" style="color:rgba(255,255,255,.55)">Every system below started with a free prototype — just like yours will.</p>
+
+    <div class="pf-filters" role="group" aria-label="Filter projects">
+      <button class="pf-filter" data-filter="all" aria-pressed="true">All<span></span></button>
+      <button class="pf-filter" data-filter="mobile" aria-pressed="false">Mobile apps<span></span></button>
+      <button class="pf-filter" data-filter="desktop" aria-pressed="false">Desktop apps<span></span></button>
+      <button class="pf-filter" data-filter="web" aria-pressed="false">Web systems<span></span></button>
+      <button class="pf-filter" data-filter="website" aria-pressed="false">Websites<span></span></button>
+      <button class="pf-filter" data-filter="ai" aria-pressed="false">AI<span></span></button>
+    </div>
 
     <div class="portfolio-grid">
 
       <!-- Project 1: Fleet Management System -->
-      <article class="proj-card reveal" aria-label="FleetTrack Pro project">
+      <article class="proj-card reveal" aria-label="FleetTrack Pro project" data-cat="web">
         <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#112235)">
           <div class="proj-thumb-bg" aria-hidden="true"></div>
           <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F697;</span>
@@ -157,7 +166,7 @@
       </article>
 
       <!-- Project 2: Inventory System -->
-      <article class="proj-card reveal" aria-label="StockSense inventory system project">
+      <article class="proj-card reveal" aria-label="StockSense inventory system project" data-cat="web mobile">
         <div class="proj-thumb">
           <img src="assets/portfolio_card_1_inventory_system.webp" alt="StockSense inventory management system interface" width="1100" height="821" loading="lazy">
           <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
@@ -197,7 +206,7 @@
       </article>
 
       <!-- Project 3: Business Management / CRM -->
-      <article class="proj-card reveal" aria-label="OperationsHub business management project">
+      <article class="proj-card reveal" aria-label="OperationsHub business management project" data-cat="web">
         <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#0e1e33)">
           <div class="proj-thumb-bg" aria-hidden="true"></div>
           <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F4BC;</span>
@@ -238,7 +247,7 @@
       </article>
 
       <!-- Project 4: Mobile App -->
-      <article class="proj-card reveal" aria-label="FieldOps mobile app project">
+      <article class="proj-card reveal" aria-label="FieldOps mobile app project" data-cat="mobile">
         <div class="proj-thumb">
           <img src="assets/portfolio_card_2_mobile_app.webp" alt="FieldOps mobile application for field service management" width="614" height="1100" loading="lazy">
           <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
@@ -278,7 +287,7 @@
       </article>
 
       <!-- Project 5: POS System -->
-      <article class="proj-card reveal" aria-label="Tylliq POS project">
+      <article class="proj-card reveal" aria-label="Tylliq POS project" data-cat="mobile">
         <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#12263d)">
           <div class="proj-thumb-bg" aria-hidden="true"></div>
           <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F9FE;</span>
@@ -298,8 +307,8 @@
               <span class="proj-status-dot" aria-hidden="true"></span>
               In active development
             </span>
-            <a href="index.html#contact" class="proj-link" aria-label="Build a similar system">
-              Build similar &rarr;
+            <a href="#try-tylliq" class="proj-link" aria-label="Try the Tylliq POS clickable prototype">
+              Try the prototype &rarr;
             </a>
           </div>
         </div>
@@ -319,6 +328,830 @@
         </template>
       </article>
 
+      <!-- Dellinoo shopping app -->
+      <article class="proj-card reveal" aria-label="Dellinoo shopping app project" data-cat="mobile">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#1d2333)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F6CD;&#xFE0F;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="proj-tag">E-commerce</span>
+            <span class="proj-tag">Flutter</span>
+            <span class="proj-tag">Android</span>
+            <span class="proj-tag">Paynow</span>
+          </div>
+          <h3>Dellinoo</h3>
+          <p>A shopping app for a business that imports fashion, phones, watches and electronics from China and sells them in Zimbabwe. Every product shows a real delivery date, whether it's already in stock or still to be flown in.</p>
+          <div class="proj-meta">
+            <span class="proj-status">
+              <span class="proj-status-dot" aria-hidden="true"></span>
+              Customer app built &mdash; backend next
+            </span>
+            <a href="#try-dellinoo" class="proj-link" aria-label="Try the Dellinoo clickable prototype">
+              Try the prototype &rarr;
+            </a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>The brief</h4>
+          <p>Give customers a simple way to shop goods bought in China, with honest delivery times and local payment options, instead of ordering through WhatsApp messages.</p>
+          <h4>What we built</h4>
+          <ul>
+            <li>Catalogue with categories, search, wishlist and recently viewed</li>
+            <li>Every product marked "In stock" (1&ndash;3 days) or "From China" (about 3 weeks), with the date shown</li>
+            <li>Cart and checkout with delivery areas and Paynow: EcoCash, OneMoney, InnBucks and cards</li>
+            <li>Order tracking through each step: bought in China, flying to Zimbabwe, arrived in Harare</li>
+            <li>Light and dark mode, and WhatsApp support from any product</li>
+          </ul>
+          <h4>Next</h4>
+          <p>Backend, phone-number login, live Paynow payments and an admin panel for products and orders.</p>
+        </template>
+      </article>
+
+      <!-- AgriXpert farming app -->
+      <article class="proj-card reveal" aria-label="AgriXpert farming app project" data-cat="mobile ai">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#13281f)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F33D;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="proj-tag">Agriculture</span>
+            <span class="proj-tag">Flutter</span>
+            <span class="proj-tag">Firebase</span>
+            <span class="proj-tag">AI</span>
+          </div>
+          <h3>AgriXpert</h3>
+          <p>A smart-farming app for Android, iOS, web and desktop. Farmers get crop and livestock tools, an AI farming assistant, weather, a marketplace, a community feed and a job board for farm workers, in English, Shona and Swahili.</p>
+          <div class="proj-meta">
+            <span class="proj-status">
+              <span class="proj-status-dot" aria-hidden="true"></span>
+              In development
+            </span>
+            <a href="#try-agrixpert" class="proj-link" aria-label="Try the AgriXpert clickable prototype">
+              Try the prototype &rarr;
+            </a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>The brief</h4>
+          <p>Put expert farming advice, local weather and a place to buy, sell and hire into one app that works for smallholder farmers, including in their own language.</p>
+          <h4>What we're building</h4>
+          <ul>
+            <li>AI farming assistant for questions about crops, animals and pests</li>
+            <li>Crop calendar, pests &amp; diseases guide, fertilizer calculator, yield prediction and weed detection</li>
+            <li>Marketplace, community feed and a job board connecting farmers with workers</li>
+            <li>English, Shona and Swahili; notes and tools that work offline</li>
+            <li>Runs on free-tier Firebase and a free weather proxy, so running costs stay low</li>
+          </ul>
+        </template>
+      </article>
+
+      <!-- ZIMSEC AI study app -->
+      <article class="proj-card reveal" aria-label="ZIMSEC AI study app project" data-cat="mobile ai">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#0f2a29)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F4DA;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="proj-tag">Education</span>
+            <span class="proj-tag">Flutter</span>
+            <span class="proj-tag">On-device AI</span>
+            <span class="proj-tag">Offline</span>
+          </div>
+          <h3>ZIMSEC AI</h3>
+          <p>An offline AI study assistant for Zimbabwean students. The tutor, practice exams, flashcards and notes all run on the phone itself, so students can study without data or a signal.</p>
+          <div class="proj-meta">
+            <span class="proj-status">
+              <span class="proj-status-dot" aria-hidden="true"></span>
+              Phases 1 &amp; 2 complete
+            </span>
+            <a href="#try-zimsec" class="proj-link" aria-label="Try the ZIMSEC AI clickable prototype">
+              Try the prototype &rarr;
+            </a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>The brief</h4>
+          <p>Mobile data is expensive, and many students study where the signal is weak. The tutor had to work with no internet at all and keep students' work private.</p>
+          <h4>What we built</h4>
+          <ul>
+            <li>A local AI model on the phone: no cloud chatbot, no API costs</li>
+            <li>Students import their own notes (PDF, Word, text) and the tutor answers from them</li>
+            <li>Subject hubs with one-tap "explain", "simplify" and "worked example" prompts</li>
+            <li>AI-generated practice exams, flashcards and study notes</li>
+            <li>Progress by subject, with weak areas flagged, all stored on the device</li>
+          </ul>
+        </template>
+      </article>
+
+      <!-- Project 6: Pride Transport website -->
+      <article class="proj-card reveal" aria-label="Pride Transport website project" data-cat="website">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#13253a)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F68C;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="proj-tag">Website</span>
+            <span class="proj-tag">Online booking</span>
+            <span class="proj-tag">HTML/CSS/JS</span>
+            <span class="proj-tag">Mobile-first</span>
+          </div>
+          <h3>Pride Transport</h3>
+          <p>A website redesign for Pride Transport, a bus company running routes from Bulawayo to Beitbridge, Binga, Nkayi, Matshetsheni and beyond. Passengers search a route, pick their seat on a live seat map, pay and get an e-ticket, all from their phone.</p>
+          <div class="proj-meta">
+            <span class="proj-status">
+              <span class="proj-status-dot" aria-hidden="true"></span>
+              Redesign &mdash; ready for launch
+            </span>
+            <a href="#try-pride" class="proj-link" aria-label="Try the Pride Transport website">Try the website &rarr;</a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>The brief</h4>
+          <p>Give a regional bus operator a modern website where passengers can find a trip and book a seat online, instead of phoning or queueing at the rank.</p>
+          <h4>What we delivered</h4>
+          <ul>
+            <li>Route search with destinations and fleet pages</li>
+            <li>Step-by-step booking: trip, seat picker, passenger details and payment, then an e-ticket</li>
+            <li>Bus hire quote form for groups and events</li>
+            <li>About, contact and FAQ pages, plus passenger reviews</li>
+            <li>Plain HTML, CSS and JavaScript, so it loads fast on mobile data</li>
+          </ul>
+        </template>
+      </article>
+
+      <!-- Project 7: InnSuite hotel management -->
+      <article class="proj-card reveal" aria-label="InnSuite hotel management project" data-cat="desktop mobile">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#101f36)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F3E8;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="proj-tag">Hospitality</span>
+            <span class="proj-tag">Web app</span>
+            <span class="proj-tag">Mobile</span>
+            <span class="proj-tag">Branding</span>
+          </div>
+          <h3>InnSuite</h3>
+          <p>A hotel and lodge management system covering the front desk, the room board and housekeeping. We designed the brand identity and the full app interface, from the reception dashboard to a phone app for housekeeping staff.</p>
+          <div class="proj-meta">
+            <span class="proj-status">
+              <span class="proj-status-dot" aria-hidden="true"></span>
+              Brand &amp; UI designed
+            </span>
+            <a href="#try-innsuite" class="proj-link" aria-label="Try the InnSuite clickable prototype">Try the prototype &rarr;</a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>The brief</h4>
+          <p>Give small hotels and lodges one system for the whole day's work: who is arriving, which rooms are ready, and what housekeeping still has to clean.</p>
+          <h4>What we designed</h4>
+          <ul>
+            <li>Brand identity and logo, explored across four directions</li>
+            <li>Front-desk "Today" dashboard with arrivals, departures and occupancy</li>
+            <li>Interactive room board with status filters</li>
+            <li>Housekeeping mobile app so cleaners can update room status from the corridor</li>
+          </ul>
+        </template>
+      </article>
+
+      <!-- Project 8: Rutz Cosmetics POS -->
+      <article class="proj-card reveal" aria-label="Rutz Cosmetics POS project" data-cat="desktop mobile">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#14233b)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F484;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="proj-tag">POS</span>
+            <span class="proj-tag">Retail</span>
+            <span class="proj-tag">Multi-branch</span>
+            <span class="proj-tag">Design system</span>
+          </div>
+          <h3>Rutz Cosmetics POS</h3>
+          <p>A point-of-sale and stock system for Rutz Cosmetics and its branches across Harare and Bulawayo. Every branch runs from a single account, with sales, returns, purchase orders and stock transfers between shops, on desktop, tablet and phone.</p>
+          <div class="proj-meta">
+            <span class="proj-status">
+              <span class="proj-status-dot" aria-hidden="true"></span>
+              Design system complete
+            </span>
+            <a href="#try-rutz" class="proj-link" aria-label="Try the Rutz Cosmetics POS clickable prototype">Try the prototype &rarr;</a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>The brief</h4>
+          <p>Run several cosmetics shops as one business: see what each branch sells, move stock to where it's needed, and keep every till consistent.</p>
+          <h4>What we designed</h4>
+          <ul>
+            <li>A full design system (colours, type, components) so every screen looks and works the same</li>
+            <li>Checkout and returns, with a reason recorded for every return</li>
+            <li>Stock transfers between branches and stock adjustments</li>
+            <li>Purchase orders to suppliers, per branch</li>
+            <li>Layouts for desktop, tablet and phone</li>
+          </ul>
+        </template>
+      </article>
+
+      <!-- Project 9: Hwindi game -->
+      <article class="proj-card reveal" aria-label="Hwindi game project" data-cat="other">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#1a2340)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F690;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="proj-tag">Game</span>
+            <span class="proj-tag">HTML5</span>
+            <span class="proj-tag">Mobile web</span>
+            <span class="proj-tag">Made in Harare</span>
+          </div>
+          <h3>Hwindi</h3>
+          <p>A puzzle game where you play a kombi conductor in Harare. Fit commuters, cross-border traders, church ladies and the odd pair of goats into the seats, keep everyone patient, beat the rival hwindi to passengers, and get past the roadblocks to hit the day's target.</p>
+          <div class="proj-meta">
+            <span class="proj-status">
+              <span class="proj-status-dot" aria-hidden="true"></span>
+              Playable prototype
+            </span>
+            <a href="index.html#contact" class="proj-link" aria-label="Talk to us about a game or interactive project">
+              Build similar &rarr;
+            </a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>The idea</h4>
+          <p>A game that only makes sense if you've ridden a kombi: the shouting at the rank, the extra passenger on the aisle, and the police roadblock up ahead.</p>
+          <h4>What we built</h4>
+          <ul>
+            <li>Drag-and-turn seating puzzle on a top-down kombi</li>
+            <li>15 passenger types, each with their own quirk</li>
+            <li>Morning and evening rush, stops along the route, street events and roadblocks</li>
+            <li>A trip slip with fares, fines and passenger reviews after every run</li>
+            <li>Runs in the phone browser with no download, sound effects included</li>
+          </ul>
+        </template>
+      </article>
+
+      <!-- Vizion Portal -->
+      <article class="proj-card reveal" aria-label="Vizion Portal project" data-cat="web">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#13234a)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F4CA;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="proj-tag">Client portal</span><span class="proj-tag">Next.js</span><span class="proj-tag">Supabase</span><span class="proj-tag">Realtime</span></div>
+          <h3>Vizion Portal</h3>
+          <p>The live project dashboard we give our own clients. They sign in with an email link and see progress, milestones, test builds and updates, approve designs and report bugs, all updating in real time.</p>
+          <div class="proj-meta">
+            <span class="proj-status"><span class="proj-status-dot" aria-hidden="true"></span>Deployed on Vercel</span>
+            <a href="#try-portal" class="proj-link" aria-label="Try the Vizion Portal clickable prototype">Try the prototype &rarr;</a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>The problem</h4>
+          <p>Clients kept asking "where are we?" over WhatsApp and email, and approvals got lost in chat threads.</p>
+          <h4>What we built</h4>
+          <ul>
+            <li>"Your action is required" list: approvals, things waiting on the client, fixes to check, new versions</li>
+            <li>Milestones, releases with one-tap Android installs, feedback tickets with reply threads</li>
+            <li>Sign-offs recorded with the client's email and date</li>
+            <li>Merged GitHub pull requests become draft updates; tagged builds appear as "Download app"</li>
+            <li>Each client sees only their own company's projects, enforced in the database</li>
+          </ul>
+        </template>
+      </article>
+
+      <!-- Labour case management (client kept anonymous) -->
+      <article class="proj-card reveal" aria-label="Labour case management system project" data-cat="web ai">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#16253b)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x2696;&#xFE0F;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="proj-tag">Case management</span><span class="proj-tag">PHP</span><span class="proj-tag">MySQL</span><span class="proj-tag">Python AI</span></div>
+          <h3>Labour case management</h3>
+          <p>A complaints and case system for an employment council. An AI model suggests each complaint's category and urgency, and agents track every case from intake to judgement.</p>
+          <div class="proj-meta">
+            <span class="proj-status"><span class="proj-status-dot" aria-hidden="true"></span>Built</span>
+            <a href="#try-cases" class="proj-link" aria-label="Try the case management clickable prototype">Try the prototype &rarr;</a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>The brief</h4>
+          <p>Labour complaints arrived on paper and by phone, with no single record of who was handling what or how long cases took.</p>
+          <h4>What we built</h4>
+          <ul>
+            <li>Complaint intake with supporting documents and automatic case numbers</li>
+            <li>Status tracking: Pending, Assigned, Investigating, Resolved or Dismissed</li>
+            <li>AI category prediction across five classes, with confidence and the second most likely category</li>
+            <li>Urgency level and a suggested resolution for each case</li>
+            <li>Roles for admins and designated agents; resolved cases feed back into retraining</li>
+          </ul>
+        </template>
+      </article>
+
+      <!-- Shanduko -->
+      <article class="proj-card reveal" aria-label="Shanduko threat intelligence project" data-cat="web ai">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#0b1a22)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F6E1;&#xFE0F;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="proj-tag">Cybersecurity</span><span class="proj-tag">Python</span><span class="proj-tag">YARA</span><span class="proj-tag">ML</span></div>
+          <h3>Shanduko</h3>
+          <p>A threat intelligence platform. Upload any file and it is scanned for indicators of compromise, YARA rule matches and CVE references, then given a machine-learning risk score, with progress shown live.</p>
+          <div class="proj-meta">
+            <span class="proj-status"><span class="proj-status-dot" aria-hidden="true"></span>Built</span>
+            <a href="#try-shanduko" class="proj-link" aria-label="Try the Shanduko clickable prototype">Try the prototype &rarr;</a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>What it does</h4>
+          <ul>
+            <li>SHA-256 hashing and extraction of IPs, domains, URLs and hashes</li>
+            <li>YARA scanning against a community rule set, plus CVE reference matching</li>
+            <li>A scikit-learn model that scores each file from 0 to 100</li>
+            <li>Live scan progress over WebSockets</li>
+            <li>Dashboard with trend charts and risk distribution, behind JWT sign-in</li>
+          </ul>
+        </template>
+      </article>
+
+      <!-- ZimTech Platform -->
+      <article class="proj-card reveal" aria-label="ZimTech Platform project" data-cat="web">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#10281d)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F91D;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="proj-tag">Marketplace</span><span class="proj-tag">React</span><span class="proj-tag">Node.js</span><span class="proj-tag">MongoDB</span></div>
+          <h3>ZimTech Platform</h3>
+          <p>A marketplace that connects businesses in Zimbabwe with local IT freelancers, with profiles, real-time chat and card payments.</p>
+          <div class="proj-meta">
+            <span class="proj-status"><span class="proj-status-dot" aria-hidden="true"></span>Built</span>
+            <a href="#try-zimtech" class="proj-link" aria-label="Try the ZimTech clickable prototype">Try the prototype &rarr;</a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>What we built</h4>
+          <ul>
+            <li>React frontend and a Node.js/Express API on MongoDB</li>
+            <li>Real-time chat between clients and freelancers (Socket.io)</li>
+            <li>Card payments through Stripe</li>
+            <li>Ready to deploy: frontend on Vercel or Netlify, API on Render or Railway</li>
+          </ul>
+        </template>
+      </article>
+
+      <!-- Guesthouse booking app (client kept anonymous) -->
+      <article class="proj-card reveal" aria-label="Guesthouse booking app project" data-cat="mobile">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#12282a)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F6CF;&#xFE0F;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="proj-tag">Hospitality</span><span class="proj-tag">Flutter</span><span class="proj-tag">Booking</span></div>
+          <h3>Guesthouse booking app</h3>
+          <p>A mobile app for a guesthouse: browse rooms with photos and prices, book your dates, see your reservations, and get directions or contact reception.</p>
+          <div class="proj-meta">
+            <span class="proj-status"><span class="proj-status-dot" aria-hidden="true"></span>Built</span>
+            <a href="#try-guesthouse" class="proj-link" aria-label="Try the guesthouse app clickable prototype">Try the prototype &rarr;</a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>What we built</h4>
+          <ul>
+            <li>Room list with photos, prices and descriptions</li>
+            <li>Booking by date, with reservation history</li>
+            <li>Location and map, plus call or message the guesthouse</li>
+            <li>Dark and light mode</li>
+          </ul>
+        </template>
+      </article>
+
+      <!-- Church app (client kept anonymous) -->
+      <article class="proj-card reveal" aria-label="Church app project" data-cat="mobile">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#1b2730)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x26EA;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="proj-tag">Church</span><span class="proj-tag">Flutter</span><span class="proj-tag">Live streaming</span></div>
+          <h3>Church app</h3>
+          <p>A church management app with live service streaming, a sermon library, events with RSVP, a community forum and prayer wall, and online giving.</p>
+          <div class="proj-meta">
+            <span class="proj-status"><span class="proj-status-dot" aria-hidden="true"></span>Built</span>
+            <a href="#try-church" class="proj-link" aria-label="Try the church app clickable prototype">Try the prototype &rarr;</a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>What we built</h4>
+          <ul>
+            <li>Live TV streaming and a searchable sermon library, with downloads for offline viewing</li>
+            <li>Home with verse of the day, announcements and upcoming events</li>
+            <li>Event calendar with RSVP and reminders</li>
+            <li>Discussion boards and a prayer wall with anonymous posting</li>
+            <li>Giving by card, PayPal or bank transfer, with campaign progress and history</li>
+          </ul>
+        </template>
+      </article>
+
+      <!-- Church website (client kept anonymous) -->
+      <article class="proj-card reveal" aria-label="Church website redesign project" data-cat="website">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#221d33)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F54A;&#xFE0F;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="proj-tag">Website</span><span class="proj-tag">HTML/CSS/JS</span><span class="proj-tag">Responsive</span></div>
+          <h3>Church website redesign</h3>
+          <p>A modern, responsive website for an international church based in Harare, with sermons, events, testimonies, a gallery, prayer requests, online giving and its global branches.</p>
+          <div class="proj-meta">
+            <span class="proj-status"><span class="proj-status-dot" aria-hidden="true"></span>Live</span>
+            <a href="index.html#contact" class="proj-link" aria-label="Build a similar website">Build similar &rarr;</a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>What we built</h4>
+          <ul>
+            <li>Ten pages: home, about, ministries, events, sermons, testimonies, gallery, prayer, give and contact</li>
+            <li>Prayer request and contact forms, service times, map and global branches</li>
+            <li>Plain HTML, CSS and JavaScript, so it loads fast and is cheap to host</li>
+          </ul>
+        </template>
+      </article>
+
+      <!-- Ministry website (client kept anonymous) -->
+      <article class="proj-card reveal" aria-label="Ministry website project" data-cat="website">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#2a2216)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F30D;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="proj-tag">Website</span><span class="proj-tag">Next.js</span><span class="proj-tag">TypeScript</span><span class="proj-tag">Tailwind</span></div>
+          <h3>Ministry website</h3>
+          <p>A premium website for a Zimbabwean ministry with an international audience: live services, sermons, events, testimonies, a gallery and online giving, with cinematic scroll animations.</p>
+          <div class="proj-meta">
+            <span class="proj-status"><span class="proj-status-dot" aria-hidden="true"></span>Built</span>
+            <a href="index.html#contact" class="proj-link" aria-label="Build a similar website">Build similar &rarr;</a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>What we built</h4>
+          <ul>
+            <li>Next.js 14 with server rendering for search engines, in TypeScript</li>
+            <li>Tailwind CSS design system and Framer Motion animations</li>
+            <li>Pages for about, ministries, sermons, events, gallery, testimonies, live, give and contact</li>
+            <li>Content kept in one data layer, ready to plug into a CMS later</li>
+          </ul>
+        </template>
+      </article>
+
+      <!-- Vizion CRM -->
+      <article class="proj-card reveal" aria-label="Vizion CRM project" data-cat="web mobile">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#1a2240)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F4C7;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="proj-tag">CRM</span><span class="proj-tag">React</span><span class="proj-tag">React Native</span><span class="proj-tag">PostgreSQL</span></div>
+          <h3>Vizion CRM</h3>
+          <p>A full-stack client management system for a software agency, on web and mobile: clients, a leads board, projects with phases, invoices with PDF export and payment milestones.</p>
+          <div class="proj-meta">
+            <span class="proj-status"><span class="proj-status-dot" aria-hidden="true"></span>Core modules complete</span>
+            <a href="index.html#contact" class="proj-link" aria-label="Build a similar system">Build similar &rarr;</a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>What we built</h4>
+          <ul>
+            <li>Drag-and-drop leads board; a won lead becomes a project automatically</li>
+            <li>Projects with phases and progress, invoices with line items and PDF export</li>
+            <li>Reference numbers for every client, lead, project and invoice, searchable everywhere</li>
+            <li>Dashboard with stats and activity, plus alerts for overdue invoices and stale leads</li>
+            <li>React web app, React Native mobile app, Node.js API on PostgreSQL</li>
+          </ul>
+        </template>
+      </article>
+
+      <!-- Tylliq Licensing Control Center -->
+      <article class="proj-card reveal" aria-label="Tylliq Licensing Control Center project" data-cat="web">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#2a1d12)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F511;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="proj-tag">Licensing</span><span class="proj-tag">Firebase</span><span class="proj-tag">Cloud Functions</span><span class="proj-tag">Security</span></div>
+          <h3>Tylliq Licensing Control Center</h3>
+          <p>The licensing backend and admin console behind Tylliq POS. It activates devices with signed licences, enforces device limits and a 7-day offline grace period, and manages shops and payments.</p>
+          <div class="proj-meta">
+            <span class="proj-status"><span class="proj-status-dot" aria-hidden="true"></span>Deployed</span>
+            <a href="apps/tylliq.html" class="proj-link" aria-label="About Tylliq">About Tylliq &rarr;</a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>What we built</h4>
+          <ul>
+            <li>Ed25519-signed licence certificates, checked on the phone itself</li>
+            <li>Device limits, revalidation and an offline grace period</li>
+            <li>Admin console for businesses, licences and payments, behind role-based sign-in</li>
+            <li>Rate limiting and app attestation on public endpoints, and hard caps that keep running costs near zero</li>
+          </ul>
+        </template>
+      </article>
+
+      <!-- ML trading research -->
+      <article class="proj-card reveal" aria-label="ML trading research bot project" data-cat="ai">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0D1B2A,#13202b)">
+          <div class="proj-thumb-bg" aria-hidden="true"></div>
+          <span aria-hidden="true" style="font-size:3.5rem;position:relative;z-index:1">&#x1F4C8;</span>
+          <span class="proj-view-hint" aria-hidden="true">View details &rarr;</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="proj-tag">Machine learning</span><span class="proj-tag">Python</span><span class="proj-tag">Backtesting</span></div>
+          <h3>ML trading research bot</h3>
+          <p>A real-time crypto trading bot that streams live prices, scores each bar with a machine-learning model and trades on paper only. Built to report honestly whether a strategy works, not to flatter it.</p>
+          <div class="proj-meta">
+            <span class="proj-status"><span class="proj-status-dot" aria-hidden="true"></span>Research complete</span>
+            <a href="index.html#contact" class="proj-link" aria-label="Talk to us about a data or AI project">Talk to us &rarr;</a>
+          </div>
+        </div>
+        <template class="proj-detail">
+          <h4>What we built</h4>
+          <ul>
+            <li>Live data over WebSockets that reconnects without losing a candle and survives a crash</li>
+            <li>Purged walk-forward validation, so the model is never tested on data it has seen</li>
+            <li>Backtests that pay realistic fees and slippage and trade at the next bar's price</li>
+            <li>Risk controls: stops, daily loss limit and a drawdown kill switch</li>
+          </ul>
+          <h4>The honest result</h4>
+          <p>After testing many settings from 1-minute to daily bars, it found no edge big enough to pay trading costs, and it says so. That is what reliable tooling should do.</p>
+        </template>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── Clickable prototypes ─────────────────────────────────── -->
+  <section class="protos" id="prototypes" aria-labelledby="proto-heading">
+    <div class="sec-hd">
+      <p class="s-lbl reveal">Clickable prototypes</p>
+      <h2 class="s-title reveal" id="proto-heading">Tap through our apps.</h2>
+      <p class="s-sub reveal">Clickable wireframes of mobile apps and web systems we've built, filled with sample data. Tap anything that looks tappable. Tap an empty spot and the app shows you what you can press.</p>
+    </div>
+
+    <div class="proto-tabs" role="tablist" aria-label="Choose an app">
+      <span class="proto-group" aria-hidden="true">Mobile apps</span>
+      <button class="proto-tab" role="tab" id="pt-dellinoo" aria-selected="true" aria-controls="try-dellinoo" data-src="prototypes/dellinoo.html" data-name="Dellinoo" data-kind="phone" data-devices="phone">Dellinoo</button>
+      <button class="proto-tab" role="tab" id="pt-tylliq" aria-selected="false" aria-controls="try-tylliq" data-src="prototypes/tylliq.html" data-name="Tylliq POS" data-kind="phone" data-devices="phone" tabindex="-1">Tylliq POS</button>
+      <button class="proto-tab" role="tab" id="pt-agrixpert" aria-selected="false" aria-controls="try-agrixpert" data-src="prototypes/agrixpert.html" data-name="AgriXpert" data-kind="phone" data-devices="phone" tabindex="-1">AgriXpert</button>
+      <button class="proto-tab" role="tab" id="pt-zimsec" aria-selected="false" aria-controls="try-zimsec" data-src="prototypes/zimsec-ai.html" data-name="ZIMSEC AI" data-kind="phone" data-devices="phone" tabindex="-1">ZIMSEC AI</button>
+      <button class="proto-tab" role="tab" id="pt-guesthouse" aria-selected="false" aria-controls="try-guesthouse" data-src="prototypes/guesthouse.html" data-name="Guesthouse booking app" data-kind="phone" data-devices="phone" tabindex="-1">Guesthouse</button>
+      <button class="proto-tab" role="tab" id="pt-church" aria-selected="false" aria-controls="try-church" data-src="prototypes/church-app.html" data-name="Church app" data-kind="phone" data-devices="phone" tabindex="-1">Church app</button>
+      <span class="proto-group" aria-hidden="true">Desktop apps</span>
+      <button class="proto-tab" role="tab" id="pt-rutz" aria-selected="false" aria-controls="try-rutz" data-src="prototypes/rutz-pos.html" data-name="Rutz Cosmetics POS" data-kind="desktop" data-devices="desktop tablet phone" data-url="Rutz Cosmetics POS" tabindex="-1">Rutz POS</button>
+      <button class="proto-tab" role="tab" id="pt-innsuite" aria-selected="false" aria-controls="try-innsuite" data-src="prototypes/innsuite.html" data-name="InnSuite front desk" data-kind="desktop" data-devices="desktop tablet" data-url="InnSuite — Front desk" tabindex="-1">InnSuite</button>
+      <span class="proto-group" aria-hidden="true">Websites</span>
+      <button class="proto-tab" role="tab" id="pt-pride" aria-selected="false" aria-controls="try-pride" data-src="prototypes/sites/pride-transport/index.html" data-name="Pride Transport website" data-kind="web" data-devices="desktop tablet phone" data-url="Pride Transport · redesign" tabindex="-1">Pride Transport</button>
+      <span class="proto-group" aria-hidden="true">Web systems</span>
+      <button class="proto-tab" role="tab" id="pt-portal" aria-selected="false" aria-controls="try-portal" data-src="prototypes/vizion-portal.html" data-name="Vizion Portal" data-kind="web" data-devices="desktop tablet phone" data-url="portal.vizion.dev" tabindex="-1">Vizion Portal</button>
+      <button class="proto-tab" role="tab" id="pt-cases" aria-selected="false" aria-controls="try-cases" data-src="prototypes/case-management.html" data-name="Labour case management" data-kind="web" data-devices="desktop tablet phone" data-url="case-management · demo" tabindex="-1">Case management</button>
+      <button class="proto-tab" role="tab" id="pt-shanduko" aria-selected="false" aria-controls="try-shanduko" data-src="prototypes/shanduko.html" data-name="Shanduko" data-kind="web" data-devices="desktop tablet phone" data-url="shanduko · demo" tabindex="-1">Shanduko</button>
+      <button class="proto-tab" role="tab" id="pt-zimtech" aria-selected="false" aria-controls="try-zimtech" data-src="prototypes/zimtech.html" data-name="ZimTech Platform" data-kind="web" data-devices="desktop tablet phone" data-url="zimtech · demo" tabindex="-1">ZimTech</button>
+    </div>
+
+    <div class="proto-devices" id="protoDevices" role="group" aria-label="Preview on" hidden>
+      <button data-device="desktop" aria-pressed="true">🖥 Desktop</button>
+      <button data-device="tablet" aria-pressed="false">▭ Tablet</button>
+      <button data-device="phone" aria-pressed="false">📱 Phone</button>
+    </div>
+
+    <div class="proto-stage" id="protoStage" data-kind="phone" data-device="phone">
+      <div class="proto-device">
+        <div class="proto-urlbar" aria-hidden="true"><span class="proto-dots"><i></i><i></i><i></i></span><span class="proto-url" id="protoUrl">portal.vizion.dev</span><span class="proto-win"><i>–</i><i>□</i><i>×</i></span></div>
+        <iframe id="protoFrame" src="prototypes/dellinoo.html" title="Dellinoo clickable prototype" loading="lazy"></iframe>
+      </div>
+
+      <div>
+        <div class="proto-info" role="tabpanel" id="try-dellinoo" aria-labelledby="pt-dellinoo">
+          <p class="proto-kicker">E-commerce &middot; Flutter &middot; Android</p>
+          <h3>Dellinoo</h3>
+          <p>A shopping app for a business that buys goods in China and sells them in Zimbabwe. Every product shows a real delivery date: in stock in a few days, or pre-ordered from China in about three weeks.</p>
+          <ul class="proto-try">
+            <li>Open a product, pick a size and add it to your cart</li>
+            <li>Check out with a delivery area and EcoCash, OneMoney, InnBucks or card</li>
+            <li>Track the order: bought in China, flying to Zimbabwe, arrived in Harare</li>
+          </ul>
+          <div class="proto-actions">
+            <a href="prototypes/dellinoo.html" class="btn-ghost" target="_blank" rel="noopener">Open full screen &#8599;</a>
+            <a href="index.html#contact" class="btn-primary">Build an app like this &rarr;</a>
+          </div>
+        </div>
+
+        <div class="proto-info" role="tabpanel" id="try-tylliq" aria-labelledby="pt-tylliq" hidden>
+          <p class="proto-kicker">Point of sale &middot; Flutter &middot; Offline-first</p>
+          <h3>Tylliq POS</h3>
+          <p>A point-of-sale app for small shops that works with no internet. Each phone keeps its own records, and phones in the same shop sync with each other over WiFi by scanning a QR code.</p>
+          <ul class="proto-try">
+            <li>Tap products to ring up a sale, then take cash and see the change</li>
+            <li>Print or share the receipt, then find it in History</li>
+            <li>Check low stock, pair a second phone, or change the shop's brand colour</li>
+          </ul>
+          <div class="proto-actions">
+            <a href="prototypes/tylliq.html" class="btn-ghost" target="_blank" rel="noopener">Open full screen &#8599;</a>
+            <a href="https://github.com/viziontechnologies/downloads/releases/download/tylliq-latest/tylliq.apk" class="btn-ghost" data-apk="tylliq" data-apk-link hidden>Download APK &darr;</a>
+            <a href="apps/tylliq.html" class="btn-primary">About Tylliq &rarr;</a>
+          </div>
+        </div>
+
+        <div class="proto-info" role="tabpanel" id="try-agrixpert" aria-labelledby="pt-agrixpert" hidden>
+          <p class="proto-kicker">Agriculture &middot; Flutter &middot; AI</p>
+          <h3>AgriXpert</h3>
+          <p>A smart-farming app with crop and livestock tools, an AI farming assistant, weather, a marketplace, a community feed and a job board for farm workers, in English, Shona and Swahili.</p>
+          <ul class="proto-try">
+            <li>Switch the language between English, Shona and Swahili</li>
+            <li>Ask the AI assistant about holes in your maize leaves</li>
+            <li>Look up fall armyworm, work out fertilizer for your field, or post a farm job</li>
+          </ul>
+          <div class="proto-actions">
+            <a href="prototypes/agrixpert.html" class="btn-ghost" target="_blank" rel="noopener">Open full screen &#8599;</a>
+            <a href="index.html#contact" class="btn-primary">Build an app like this &rarr;</a>
+          </div>
+        </div>
+
+        <div class="proto-info" role="tabpanel" id="try-zimsec" aria-labelledby="pt-zimsec" hidden>
+          <p class="proto-kicker">Education &middot; Flutter &middot; On-device AI</p>
+          <h3>ZIMSEC AI</h3>
+          <p>An AI study assistant for Zimbabwean students that runs entirely on the phone. No cloud chatbot and no data costs: the tutor, practice exams, flashcards and progress tracking all work offline.</p>
+          <ul class="proto-try">
+            <li>Set up the tutor, pick a subject and ask it to explain a topic</li>
+            <li>Take a 3-question Biology practice test and see your score</li>
+            <li>Flip through flashcards and check your progress by subject</li>
+          </ul>
+          <div class="proto-actions">
+            <a href="prototypes/zimsec-ai.html" class="btn-ghost" target="_blank" rel="noopener">Open full screen &#8599;</a>
+            <a href="index.html#contact" class="btn-primary">Build an app like this &rarr;</a>
+          </div>
+        </div>
+
+        <div class="proto-info" role="tabpanel" id="try-guesthouse" aria-labelledby="pt-guesthouse" hidden>
+          <p class="proto-kicker">Hospitality &middot; Flutter</p>
+          <h3>Guesthouse booking app</h3>
+          <p>A booking app for a guesthouse: guests browse rooms with photos and prices, pick their dates, book and pay, then find directions or call reception from the same app.</p>
+          <ul class="proto-try">
+            <li>Change the number of guests and open a room</li>
+            <li>Book it and choose how to pay, then see it under Bookings</li>
+            <li>Switch on dark mode from the Find us tab</li>
+          </ul>
+          <div class="proto-actions">
+            <a href="prototypes/guesthouse.html" class="btn-ghost" target="_blank" rel="noopener">Open full screen &#8599;</a>
+            <a href="index.html#contact" class="btn-primary">Build an app like this &rarr;</a>
+          </div>
+        </div>
+
+        <div class="proto-info" role="tabpanel" id="try-church" aria-labelledby="pt-church" hidden>
+          <p class="proto-kicker">Church &middot; Flutter &middot; Live streaming</p>
+          <h3>Church app</h3>
+          <p>A church app with live service streaming, a sermon library, events with RSVP, a prayer wall where members can post anonymously, and online giving with campaign progress.</p>
+          <ul class="proto-try">
+            <li>Join the live service and press play</li>
+            <li>RSVP to an event and pray for a request on the prayer wall</li>
+            <li>Give to the roof campaign and watch the progress bar move</li>
+          </ul>
+          <div class="proto-actions">
+            <a href="prototypes/church-app.html" class="btn-ghost" target="_blank" rel="noopener">Open full screen &#8599;</a>
+            <a href="index.html#contact" class="btn-primary">Build an app like this &rarr;</a>
+          </div>
+        </div>
+
+        <div class="proto-info" role="tabpanel" id="try-rutz" aria-labelledby="pt-rutz" hidden>
+          <p class="proto-kicker">Point of sale &middot; Desktop, tablet &amp; phone</p>
+          <h3>Rutz Cosmetics POS</h3>
+          <p>A point-of-sale and stock system for a cosmetics retailer with branches in Harare and Bulawayo. The same app runs on the till computer, a tablet on the shop floor, or a phone. Switch the device above to see each layout.</p>
+          <ul class="proto-try">
+            <li>Ring up a sale and take payment by cash, EcoCash or card</li>
+            <li>Send a stock transfer from CBD to Avondale and confirm it on arrival</li>
+            <li>Check stock in every branch and today's sales by branch</li>
+          </ul>
+          <div class="proto-actions">
+            <a href="prototypes/rutz-pos.html" class="btn-ghost" target="_blank" rel="noopener">Open full screen &#8599;</a>
+            <a href="index.html#contact" class="btn-primary">Build a system like this &rarr;</a>
+          </div>
+        </div>
+
+        <div class="proto-info" role="tabpanel" id="try-innsuite" aria-labelledby="pt-innsuite" hidden>
+          <p class="proto-kicker">Hotel management &middot; Desktop &amp; tablet</p>
+          <h3>InnSuite front desk</h3>
+          <p>A front-desk system for hotels and lodges: today's arrivals and departures, a live room board by floor, check-in with payment and key cards, and housekeeping status that front desk can see at a glance.</p>
+          <ul class="proto-try">
+            <li>Check in a guest whose room is ready</li>
+            <li>Try to check in room 104: it's still dirty, so mark it clean first</li>
+            <li>Filter the room board by status, or open Housekeeping</li>
+          </ul>
+          <div class="proto-actions">
+            <a href="prototypes/innsuite.html" class="btn-ghost" target="_blank" rel="noopener">Open full screen &#8599;</a>
+            <a href="index.html#contact" class="btn-primary">Build a system like this &rarr;</a>
+          </div>
+        </div>
+
+        <div class="proto-info" role="tabpanel" id="try-pride" aria-labelledby="pt-pride" hidden>
+          <p class="proto-kicker">Website &middot; Online booking &middot; Mobile-first</p>
+          <h3>Pride Transport website</h3>
+          <p>The real redesign we built for a Bulawayo bus company, running live in the frame. Switch between desktop, tablet and phone to see how it adapts. Most of their passengers book on a phone.</p>
+          <ul class="proto-try">
+            <li>Search a route from Bulawayo and pick your seat on the seat map</li>
+            <li>Go through booking: trip, seats, details, payment and e-ticket</li>
+            <li>Request a bus hire quote for a group</li>
+          </ul>
+          <div class="proto-actions">
+            <a href="prototypes/sites/pride-transport/index.html" class="btn-ghost" target="_blank" rel="noopener">Open full screen &#8599;</a>
+            <a href="index.html#contact" class="btn-primary">Get a website like this &rarr;</a>
+          </div>
+        </div>
+
+        <div class="proto-info" role="tabpanel" id="try-portal" aria-labelledby="pt-portal" hidden>
+          <p class="proto-kicker">Client portal &middot; Next.js &middot; Supabase</p>
+          <h3>Vizion Portal</h3>
+          <p>The live project dashboard we give our own clients. They see progress, milestones and test builds, approve designs, and report bugs, all updating in real time. No more status emails.</p>
+          <ul class="proto-try">
+            <li>Approve the checkout design and watch the milestone move</li>
+            <li>Open the latest test version under Releases</li>
+            <li>Confirm a bug fix in Feedback</li>
+          </ul>
+          <div class="proto-actions">
+            <a href="prototypes/vizion-portal.html" class="btn-ghost" target="_blank" rel="noopener">Open full screen &#8599;</a>
+            <a href="index.html#contact" class="btn-primary">Start a project &rarr;</a>
+          </div>
+        </div>
+
+        <div class="proto-info" role="tabpanel" id="try-cases" aria-labelledby="pt-cases" hidden>
+          <p class="proto-kicker">Case management &middot; PHP &middot; Python AI</p>
+          <h3>Labour case management</h3>
+          <p>A complaints system for an employment council. Staff log a labour complaint, an AI model suggests its category, urgency and a likely resolution, and admins assign it to an agent who sees it through to judgement.</p>
+          <ul class="proto-try">
+            <li>Log a new complaint and run the AI analysis</li>
+            <li>Submit it and assign the case to an agent</li>
+            <li>Check the reports and the AI's accuracy</li>
+          </ul>
+          <div class="proto-actions">
+            <a href="prototypes/case-management.html" class="btn-ghost" target="_blank" rel="noopener">Open full screen &#8599;</a>
+            <a href="index.html#contact" class="btn-primary">Build a system like this &rarr;</a>
+          </div>
+        </div>
+
+        <div class="proto-info" role="tabpanel" id="try-shanduko" aria-labelledby="pt-shanduko" hidden>
+          <p class="proto-kicker">Cybersecurity &middot; Python &middot; React</p>
+          <h3>Shanduko threat intelligence</h3>
+          <p>Upload any file and Shanduko hashes it, pulls out indicators of compromise, runs YARA rules, matches CVEs and gives it a machine-learning risk score, with progress shown live.</p>
+          <ul class="proto-try">
+            <li>Scan the sample Word document and watch each step run</li>
+            <li>Read the report: risk score, indicators, YARA matches and CVEs</li>
+            <li>Scan the installer to compare a low-risk result</li>
+          </ul>
+          <div class="proto-actions">
+            <a href="prototypes/shanduko.html" class="btn-ghost" target="_blank" rel="noopener">Open full screen &#8599;</a>
+            <a href="index.html#contact" class="btn-primary">Build a system like this &rarr;</a>
+          </div>
+        </div>
+
+        <div class="proto-info" role="tabpanel" id="try-zimtech" aria-labelledby="pt-zimtech" hidden>
+          <p class="proto-kicker">Marketplace &middot; React &middot; Node.js</p>
+          <h3>ZimTech Platform</h3>
+          <p>A marketplace that connects businesses in Zimbabwe with local IT freelancers. Clients find someone by skill, chat in real time, accept an offer and pay by card.</p>
+          <ul class="proto-try">
+            <li>Filter freelancers by skill and open a profile</li>
+            <li>Chat with the freelancer until they send an offer</li>
+            <li>Accept, pay, and find the job under My jobs</li>
+          </ul>
+          <div class="proto-actions">
+            <a href="prototypes/zimtech.html" class="btn-ghost" target="_blank" rel="noopener">Open full screen &#8599;</a>
+            <a href="index.html#contact" class="btn-primary">Build a platform like this &rarr;</a>
+          </div>
+        </div>
+
+        <p class="proto-note">Wireframes for demonstration. Names, prices and figures are sample data.</p>
+      </div>
     </div>
   </section>
 

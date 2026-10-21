@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guesthouse booking app — clickable prototype by Vizion Technologies</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="proto.css">
+<style>
+:root {
+  --font: 'DM Sans', system-ui, sans-serif;
+  --teal: #134E4A; --teal-2: #1F6F68; --sand: #F3EDE3; --gold: #C8963E;
+  --bg: #FBF9F5; --card: #fff; --ink: #1A2422; --t2: #66706D; --line: #E8E2D8; --page: #e9ebef; --focus: #134E4A;
+}
+body.dark { --bg: #111816; --card: #1A2321; --ink: #ECF1EF; --t2: #9AA6A2; --line: #2A3532; --sand: #1E2926; }
+.serif { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; }
+.hero { background: linear-gradient(160deg, var(--teal), var(--teal-2)); color: #fff; padding: 20px 20px 70px; border-radius: 0 0 28px 28px; }
+.hero .r { display: flex; justify-content: space-between; align-items: center; }
+.hero small { opacity: .8; font-size: 13px; }
+.hero h1 { font-size: 30px; line-height: 1.1; margin-top: 18px; }
+.ib { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.15); display: grid; place-items: center; font-size: 17px; color: inherit; }
+.ib.l { background: var(--card); border: 1px solid var(--line); }
+.when { margin: -50px 20px 0; background: var(--card); border-radius: 20px; padding: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.08); display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.when div { background: var(--sand); border-radius: 12px; padding: 10px 12px; }
+.when small { display: block; color: var(--t2); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+.when b { font-size: 15px; }
+.when .guests { grid-column: span 2; display: flex; justify-content: space-between; align-items: center; }
+.step { display: flex; gap: 10px; align-items: center; }
+.step button { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); font-weight: 700; }
+.sec { display: flex; justify-content: space-between; align-items: baseline; padding: 22px 20px 10px; }
+.sec h3 { font-size: 20px; }
+.sec span { font-size: 13px; color: var(--t2); }
+.room { margin: 0 20px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; display: block; width: calc(100% - 40px); text-align: left; }
+.room .ph { height: 130px; display: grid; place-items: center; font-size: 56px; position: relative; }
+.room .ph span.tag { position: absolute; left: 12px; top: 12px; background: rgba(255,255,255,.92); color: #1A2422; font-size: 11px; font-weight: 700; padding: 4px 9px; border-radius: 20px; }
+.room .m { padding: 12px 14px 14px; display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; }
+.room b { font-size: 16px; display: block; }
+.room small { color: var(--t2); font-size: 12px; }
+.price { text-align: right; white-space: nowrap; }
+.price b { font-size: 18px; color: var(--teal-2); }
+body.dark .price b { color: #5EC4B6; }
+.tabbar { display: flex; background: var(--card); border-top: 1px solid var(--line); flex: none; padding: 8px 0 12px; }
+.tabbar button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; color: var(--t2); font-weight: 600; }
+.tabbar .ic { font-size: 19px; }
+.tabbar button.active { color: var(--teal-2); }
+body.dark .tabbar button.active { color: #5EC4B6; }
+body[data-screen="room"] .tabbar, body[data-screen="confirm"] .tabbar, body[data-screen="booked"] .tabbar { display: none; }
+.top { display: flex; align-items: center; gap: 10px; padding: 14px 20px; }
+.top h2 { font-size: 22px; flex: 1; }
+.big { height: 230px; display: grid; place-items: center; font-size: 100px; position: relative; }
+.big .ib { position: absolute; top: 14px; background: rgba(255,255,255,.9); color: #1A2422; }
+.info { padding: 18px 20px 120px; }
+.info h2 { font-size: 26px; }
+.info p { color: var(--t2); font-size: 14px; line-height: 1.6; margin-top: 8px; }
+.amen { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 16px; }
+.amen span { background: var(--sand); border-radius: 12px; padding: 10px; font-size: 13px; font-weight: 600; }
+.bar { position: absolute; left: 0; right: 0; bottom: 0; background: var(--card); border-top: 1px solid var(--line); padding: 14px 20px 18px; display: flex; align-items: center; gap: 14px; }
+.bar div { flex: 1; }
+.bar small { color: var(--t2); font-size: 12px; }
+.bar b { font-size: 18px; display: block; }
+.btn { background: var(--teal); color: #fff; border-radius: 14px; height: 50px; padding: 0 22px; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; justify-content: center; }
+.btn.block { display: flex; width: 100%; }
+.sum { margin: 0 20px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 16px; font-size: 14px; }
+.sum div { display: flex; justify-content: space-between; padding: 6px 0; }
+.sum .tot { border-top: 1px dashed var(--line); margin-top: 6px; padding-top: 12px; font-weight: 700; font-size: 17px; }
+.opt { margin: 0 20px 8px; background: var(--card); border: 2px solid var(--line); border-radius: 14px; padding: 13px 14px; display: flex; justify-content: space-between; font-weight: 600; font-size: 14px; width: calc(100% - 40px); text-align: left; }
+.opt.sel { border-color: var(--teal-2); }
+.h { font-size: 15px; font-weight: 700; padding: 18px 20px 10px; }
+.ok { text-align: center; padding: 50px 28px; }
+.ok .c { width: 96px; height: 96px; border-radius: 50%; background: var(--teal); color: #fff; font-size: 44px; display: grid; place-items: center; margin: 0 auto 20px; }
+.ok p { color: var(--t2); line-height: 1.6; margin: 10px 0 24px; }
+.res { margin: 0 20px 12px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 14px; display: flex; gap: 12px; align-items: center; }
+.res .e { width: 54px; height: 54px; border-radius: 14px; background: var(--sand); display: grid; place-items: center; font-size: 26px; flex: none; }
+.res b { display: block; font-size: 15px; }
+.res small { color: var(--t2); font-size: 12px; }
+.res .badge-s { margin-left: auto; }
+.map { margin: 0 20px; height: 200px; border-radius: 20px; background:
+  linear-gradient(90deg, transparent 48%, rgba(255,255,255,.7) 48% 52%, transparent 52%),
+  linear-gradient(0deg, transparent 58%, rgba(255,255,255,.7) 58% 62%, transparent 62%), #D8E7DF; display: grid; place-items: center; font-size: 40px; }
+body.dark .map { background-color: #22312C; }
+.row { display: flex; gap: 12px; align-items: center; margin: 0 20px; padding: 14px 0; border-bottom: 1px solid var(--line); width: calc(100% - 40px); text-align: left; font-size: 14px; font-weight: 600; }
+.row span:last-child { margin-left: auto; color: var(--t2); }
+.toggle { width: 46px; height: 26px; border-radius: 13px; background: var(--line); position: relative; flex: none; margin-left: auto; }
+.toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: left .2s; }
+body.dark .toggle { background: var(--teal-2); }
+body.dark .toggle::after { left: 23px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="ribbon">Prototype · sample data</div>
+  <div class="screens">
+    <section class="scr" id="home" data-tab-of="home">
+      <div class="body">
+        <div class="hero">
+          <div class="r"><small>Welcome to</small><button class="ib" id="themeBtn" aria-label="Dark mode">🌙</button></div>
+          <h1 class="serif">The<br>Guesthouse</h1>
+        </div>
+        <div class="when">
+          <div data-toast="Pick your check-in date"><small>Check in</small><b id="inD"></b></div>
+          <div data-toast="Pick your check-out date"><small>Check out</small><b id="outD"></b></div>
+          <div class="guests"><span><small>Guests</small><b id="gN">2 adults</b></span><span class="step"><button id="gMinus" aria-label="Fewer guests">−</button><button id="gPlus" aria-label="More guests">+</button></span></div>
+        </div>
+        <div class="sec"><h3 class="serif">Available rooms</h3><span id="nights">2 nights</span></div>
+        <div id="rooms"></div>
+        <div style="height:10px"></div>
+      </div>
+    </section>
+
+    <section class="scr" id="room">
+      <div class="body">
+        <div class="big" id="rPh"><button class="ib" style="left:16px" data-back aria-label="Back">←</button><button class="ib" style="right:16px" data-toast="Saved ♥" aria-label="Save">♡</button><span id="rE"></span></div>
+        <div class="info">
+          <h2 class="serif" id="rName"></h2>
+          <p id="rDesc"></p>
+          <div class="amen"><span>📶 Free WiFi</span><span>🍳 Breakfast</span><span>🅿️ Secure parking</span><span>🔌 Backup power</span><span>❄️ Air con</span><span>📺 DStv</span></div>
+        </div>
+      </div>
+      <div class="bar"><div><small id="rNights"></small><b id="rTotal"></b></div><button class="btn" data-go="confirm">Book</button></div>
+    </section>
+
+    <section class="scr" id="confirm">
+      <div class="top"><button class="ib l" data-back aria-label="Back">←</button><h2 class="serif">Confirm booking</h2></div>
+      <div class="body" style="padding-bottom:24px">
+        <div class="sum" id="cSum"></div>
+        <div class="h">Pay</div>
+        <button class="opt sel" data-g="pay">EcoCash<span>●</span></button>
+        <button class="opt" data-g="pay">Card<span></span></button>
+        <button class="opt" data-g="pay">Pay at reception<span></span></button>
+        <div style="padding:16px 20px 0"><button class="btn block" id="bookBtn">Confirm booking</button></div>
+      </div>
+    </section>
+
+    <section class="scr" id="booked">
+      <div class="body"><div class="ok">
+        <div class="c">✓</div><h2 class="serif" style="font-size:28px">You're booked!</h2>
+        <p id="okText"></p>
+        <button class="btn block" data-tab="trips">View my bookings</button>
+        <button class="btn block" style="margin-top:10px;background:var(--sand);color:var(--ink)" data-tab="home">Back to home</button>
+      </div></div>
+    </section>
+
+    <section class="scr" id="trips" data-tab-of="trips">
+      <div class="top"><h2 class="serif">My bookings</h2></div>
+      <div class="body" id="tripList"></div>
+    </section>
+
+    <section class="scr" id="find" data-tab-of="find">
+      <div class="top"><h2 class="serif">Find us</h2></div>
+      <div class="body">
+        <div class="map" aria-hidden="true">📍</div>
+        <button class="row" data-toast="Opening directions in Maps">🧭 Get directions<span>›</span></button>
+        <button class="row" data-toast="Calling reception…">📞 Call reception<span>›</span></button>
+        <button class="row" data-toast="Opening WhatsApp chat">💬 WhatsApp us<span>›</span></button>
+        <button class="row" id="themeRow">🌙 Dark mode<span class="toggle"></span></button>
+      </div>
+    </section>
+  </div>
+  <nav class="tabbar" aria-label="Main">
+    <button data-tab="home"><span class="ic">🏠</span>Rooms</button>
+    <button data-tab="trips"><span class="ic">🧳</span>Bookings</button>
+    <button data-tab="find"><span class="ic">📍</span>Find us</button>
+  </nav>
+</div>
+
+<script src="proto.js"></script>
+<script>
+if (top === self) document.body.classList.add('standalone');
+const P = window.Proto;
+const rooms = [
+  { id: 1, name: 'Garden Double', e: '🛏️', tint: '#DCEBE5', price: 55, desc: 'Queen bed and a private patio facing the garden. Quiet and close to breakfast.', tag: 'Most booked' },
+  { id: 2, name: 'Executive Suite', e: '🛋️', tint: '#F1E4CF', price: 85, desc: 'Separate lounge, work desk and a walk-in shower. Good for longer business stays.', tag: 'Best for work' },
+  { id: 3, name: 'Family Room', e: '👨‍👩‍👧', tint: '#E3E6F4', price: 95, desc: 'A double and two singles. Fits a family of four comfortably.', tag: 'Sleeps 4' },
+];
+let room = rooms[0], guests = 2;
+const NIGHTS = 2;
+document.getElementById('inD').textContent = P.inDays(7);
+document.getElementById('outD').textContent = P.inDays(7 + NIGHTS);
+document.getElementById('rooms').innerHTML = rooms.map(r => `
+  <div class="room" data-go="room" data-rid="${r.id}"><div class="ph" style="background:${r.tint}"><span class="tag">${r.tag}</span><span aria-hidden="true">${r.e}</span></div>
+  <div class="m"><div><b>${r.name}</b><small>Breakfast included</small></div><div class="price"><b>$${r.price}</b><br><small>per night</small></div></div></div>`).join('');
+document.addEventListener('click', e => { const r = e.target.closest('[data-rid]'); if (r) room = rooms.find(x => x.id == r.dataset.rid); }, true);
+const setG = () => { document.getElementById('gN').textContent = guests + (guests === 1 ? ' adult' : ' adults'); };
+document.getElementById('gMinus').addEventListener('click', () => { guests = Math.max(1, guests - 1); setG(); });
+document.getElementById('gPlus').addEventListener('click', () => { guests = Math.min(4, guests + 1); setG(); });
+
+P.on('room', () => {
+  document.getElementById('rPh').style.background = room.tint;
+  document.getElementById('rE').textContent = room.e;
+  document.getElementById('rName').textContent = room.name;
+  document.getElementById('rDesc').textContent = room.desc;
+  document.getElementById('rNights').textContent = `${P.inDays(7)} – ${P.inDays(7 + NIGHTS)} · ${NIGHTS} nights`;
+  document.getElementById('rTotal').textContent = '$' + room.price * NIGHTS;
+});
+P.on('confirm', () => {
+  document.getElementById('cSum').innerHTML = `<div><span>${room.name}</span><span>$${room.price} × ${NIGHTS}</span></div>
+    <div><span>Dates</span><span>${P.inDays(7)} – ${P.inDays(7 + NIGHTS)}</span></div><div><span>Guests</span><span>${guests}</span></div>
+    <div class="tot"><span>Total</span><span>$${room.price * NIGHTS}</span></div>`;
+});
+document.querySelectorAll('.opt').forEach(o => o.addEventListener('click', () => {
+  document.querySelectorAll('.opt').forEach(x => { x.classList.toggle('sel', x === o); x.lastElementChild.textContent = x === o ? '●' : ''; });
+}));
+const trips = [{ e: '🛏️', name: 'Garden Double', when: '2 – 4 Aug', st: 'Completed', c: 'grey' }];
+document.getElementById('bookBtn').addEventListener('click', () => {
+  trips.unshift({ e: room.e, name: room.name, when: `${P.inDays(7)} – ${P.inDays(7 + NIGHTS)}`, st: 'Confirmed', c: 'green' });
+  document.getElementById('okText').textContent = `${room.name}, ${P.inDays(7)} – ${P.inDays(7 + NIGHTS)}. We've sent the details to your phone.`;
+  P.go('booked');
+});
+P.on('trips', () => {
+  document.getElementById('tripList').innerHTML = trips.map(t => `<div class="res"><span class="e">${t.e}</span><div><b>${t.name}</b><small>${t.when}</small></div>
+    <span class="badge-s" style="background:${t.c === 'green' ? '#DCFCE7' : '#F1F5F9'};color:${t.c === 'green' ? '#166534' : '#475569'};font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px">${t.st}</span></div>`).join('');
+});
+const toggleDark = () => { document.body.classList.toggle('dark'); P.toast(document.body.classList.contains('dark') ? 'Dark mode on' : 'Light mode on'); };
+document.getElementById('themeBtn').addEventListener('click', toggleDark);
+document.getElementById('themeRow').addEventListener('click', toggleDark);
+P.start('home');
+</script>
+</body>
+</html>
