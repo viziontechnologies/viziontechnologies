@@ -210,46 +210,43 @@ if (heroVisual && !prefersReducedMotion && window.matchMedia('(hover: hover) and
   });
 }
 
-/* ── 10. ScrambleText on Section Titles ──────────────────── */
-class ScrambleText {
-  constructor(el) {
-    this.el = el;
-    this.originalHTML = el.innerHTML;
-    this.plainText    = el.textContent;
-    this.chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@%!&';
-    this.frame = 0;
-    this.raf   = null;
-  }
-  run() {
-    cancelAnimationFrame(this.raf);
-    this.frame = 0;
-    const { el, plainText, chars, originalHTML } = this;
-    const total = 26;
-    const tick  = () => {
-      const progress  = this.frame / total;
-      const resolved  = Math.floor(progress * plainText.length);
-      el.textContent  = plainText.split('').map((ch, i) => {
-        if (ch === ' ' || ch === '\n') return ch;
-        if (i < resolved) return ch;
-        return chars[Math.floor(Math.random() * chars.length)];
-      }).join('');
-      this.frame++;
-      if (this.frame <= total) {
-        this.raf = requestAnimationFrame(tick);
-      } else {
-        el.innerHTML = originalHTML;
-      }
-    };
-    this.raf = requestAnimationFrame(tick);
-  }
+/* ── 10. Word Reveal on Section Titles ───────────────────── */
+// Each word rises out of a mask and sharpens, one after another, when the
+// title scrolls into view. Only text nodes are wrapped, so coloured spans
+// and <br>s inside titles keep working and the text stays readable.
+function splitWords(el) {
+  let i = 0;
+  const walk = node => {
+    [...node.childNodes].forEach(child => {
+      if (child.nodeType === Node.ELEMENT_NODE) return walk(child);
+      if (child.nodeType !== Node.TEXT_NODE || !child.textContent.trim()) return;
+      const frag = document.createDocumentFragment();
+      child.textContent.split(/(\s+)/).forEach(part => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) return frag.appendChild(document.createTextNode(part));
+        const word = document.createElement('span');
+        word.className = 'st-word';
+        const inner = document.createElement('span');
+        inner.className = 'st-in';
+        inner.style.setProperty('--i', i++);
+        inner.textContent = part;
+        word.appendChild(inner);
+        frag.appendChild(word);
+      });
+      child.replaceWith(frag);
+    });
+  };
+  walk(el);
 }
 
 if (!prefersReducedMotion) {
   document.querySelectorAll('.s-title').forEach(el => {
-    const sc = new ScrambleText(el);
+    el.classList.remove('reveal');               // the word reveal replaces the generic fade-up
+    splitWords(el);
+    el.classList.add('st-ready');
     const obs = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) { sc.run(); obs.disconnect(); }
-    }, { threshold: 0.4 });
+      if (entries[0].isIntersecting) { el.classList.add('st-on'); obs.disconnect(); }
+    }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
     obs.observe(el);
   });
 }
