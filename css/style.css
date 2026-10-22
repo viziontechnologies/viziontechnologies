@@ -1580,3 +1580,123 @@ html.force-reveal .hero-h1 .ln span {
 }
 .s-title.st-on .st-in { transform: none; opacity: 1; filter: none; }
 html.force-reveal .s-title .st-in { transform: none !important; opacity: 1 !important; filter: none !important; }
+
+/* ══ UI polish ════════════════════════════════════════════════ */
+
+/* 1 · Nav: links never wrap; the menu button takes over before they get squeezed. */
+.nav-links { gap: clamp(1.1rem, 2.2vw, 2.5rem); }
+.nav-links a { white-space: nowrap; }
+@media (max-width: 1100px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+}
+
+/* 3 · Readable small grey text (WCAG AA on white). */
+:root { --t4: #6b7280; }
+
+/* 4 · One button system: same height, shape, weight, hover lift and press. */
+.btn-primary, .btn-ghost, .btn-submit, .btn-glow, .btn-white {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: .85rem 1.8rem; border-radius: 100px;
+  font-family: inherit; font-size: .9rem; font-weight: 600; line-height: 1.2; letter-spacing: -.01em;
+  text-decoration: none; cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s, box-shadow .2s, translate .2s;
+}
+.btn-glow { background: var(--accent); color: #fff; border: 0; }
+.btn-white { background: #fff; color: var(--accent); border: 0; }
+.btn-primary:hover, .btn-submit:hover, .btn-glow:hover { background: #1d4ed8; box-shadow: var(--sh-blue); }
+.btn-white:hover { box-shadow: 0 12px 32px rgba(15,23,42,.22); }
+.btn-primary:hover, .btn-ghost:hover, .btn-submit:hover, .btn-glow:hover, .btn-white:hover, .nav-cta:hover { transform: none; translate: 0 -2px; }
+.btn-primary:active, .btn-ghost:active, .btn-submit:active, .btn-glow:active, .btn-white:active, .nav-cta:active { translate: 0 0; scale: .98; }
+.btn-primary:focus-visible, .btn-ghost:focus-visible, .btn-submit:focus-visible, .btn-glow:focus-visible, .btn-white:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 3px;
+}
+.btn-white:focus-visible { outline-color: #fff; }
+/* Text links with an arrow: same size and the same small slide on hover. */
+.svc-link, .ins-link, .proj-link { font-size: .82rem; font-weight: 600; transition: gap .2s, color .2s; }
+
+/* 5 · Homepage rhythm: sections alternate white / pale blue, with a hairline between. */
+#faq { background: var(--bg); }
+#insights { background: var(--bg-2); }
+#apps { background: var(--bg); }
+.services, .case-study, #insights, .contact { box-shadow: inset 0 1px 0 var(--bdr), inset 0 -1px 0 var(--bdr); }
+
+/* 6 · Cards: one hover everywhere. `translate` keeps working on cards GSAP has
+   already revealed (GSAP writes an inline transform). */
+.stat-card, .test-card, .svc-card, .proc-step, .price-card, .ins-card, .proj-card, .cs-step, .cs-card {
+  transition: translate .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s, border-color .3s;
+}
+:is(.stat-card, .test-card, .svc-card, .proc-step, .price-card, .ins-card, .proj-card, .cs-step, .cs-card):hover {
+  transform: none; translate: 0 -4px; box-shadow: var(--sh-lg);
+}
+:is(.stat-card, .test-card, .svc-card, .proc-step, .price-card:not(.price-popular), .ins-card, .proj-card, .cs-step, .cs-card):hover {
+  border-color: var(--accent-lt);
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(.stat-card, .test-card, .svc-card, .proc-step, .price-card, .ins-card, .proj-card, .cs-step, .cs-card):hover,
+  .btn-primary:hover, .btn-ghost:hover, .btn-submit:hover, .btn-glow:hover, .btn-white:hover { translate: none; }
+}
+
+/* 7 · Portfolio: case-study badge and "Show all" button. */
+.proj-case-badge {
+  position: absolute; top: 14px; left: 14px; z-index: 2;
+  padding: .3rem .7rem; border-radius: 99px; background: rgba(255,255,255,.94); color: var(--accent);
+  font: 600 .66rem/1.4 'DM Mono', monospace; letter-spacing: .08em; text-transform: uppercase;
+  box-shadow: var(--sh-sm);
+}
+.proj-thumb { position: relative; }
+.pf-more { display: flex; justify-content: center; margin-top: 2.5rem; }
+.pf-more[hidden] { display: none; }
+
+/* 8 · Footer call-to-action strip (top of every footer). */
+.footer-cta {
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem 2.5rem; flex-wrap: wrap;
+  padding: 1.8rem 2.2rem; margin-bottom: 4rem; border-radius: 22px;
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 55%, #7c3aed 100%);
+  box-shadow: 0 20px 50px -20px rgba(37,99,235,.55);
+}
+.footer-cta-copy { color: rgba(255,255,255,.85); font-size: 1rem; line-height: 1.6; max-width: 560px; }
+.footer-cta-copy strong { color: #fff; font-weight: 700; font-size: 1.15rem; letter-spacing: -.01em; }
+.footer-cta-actions { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+.footer-cta-wa { color: #fff; font-size: .85rem; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.4); padding: .3rem 0; }
+.footer-cta-wa:hover { border-bottom-color: #fff; }
+/* 3 · Footer text was too faint on the navy background. */
+.footer-brand p { color: rgba(255,255,255,.6); }
+@media (max-width: 640px) { .footer-cta { padding: 1.5rem; } }
+.footer-col h4 { color: rgba(255,255,255,.5); }
+.footer-col ul li a, .f-wa, .footer-passive a { color: rgba(255,255,255,.62) !important; }
+.footer-col ul li a:hover, .f-wa:hover { color: #fff !important; }
+.f-copy, .footer-passive { color: rgba(255,255,255,.45) !important; }
+.footer-social a { color: rgba(255,255,255,.62); }
+
+/* 9 · Phone action bar (js/main.js §22a): replaces the floating WhatsApp button on phones. */
+.mobile-bar { display: none; }
+@media (max-width: 640px) {
+  .mobile-bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 820;
+    display: grid; grid-template-columns: 1fr 1.25fr; gap: .6rem;
+    padding: .65rem .9rem calc(.65rem + env(safe-area-inset-bottom));
+    background: rgba(255,255,255,.96); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border-top: 1px solid var(--bdr); box-shadow: 0 -8px 24px rgba(15,23,42,.08);
+  }
+  .mobile-bar a {
+    display: flex; align-items: center; justify-content: center; gap: .45rem; min-height: 48px;
+    border-radius: 14px; font-size: .88rem; font-weight: 600; text-decoration: none;
+  }
+  .mobile-bar-wa { background: #e8f8ee; color: #128c7e; }
+  .mobile-bar-cta { background: var(--accent); color: #fff; }
+  .mobile-bar a:active { scale: .98; }
+  body.has-mobile-bar { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+  body.has-mobile-bar .wa-float { display: none; }
+  body.has-mobile-bar .cookie-bar { bottom: calc(76px + env(safe-area-inset-bottom)); }
+}
+
+/* 10 · Tap targets: at least 44px on touch screens. */
+@media (pointer: coarse) {
+  .pf-filter, .proto-tab, .proto-devices button, .proto-view button { min-height: 44px; }
+  .footer-col ul li a { display: inline-block; padding: .55rem 0; }
+  .footer-social a { min-width: 44px; min-height: 44px; display: inline-grid; place-items: center; }
+  .nav-hamburger { min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+  .proj-link, .svc-link, .ins-link { min-height: 44px; display: inline-flex; align-items: center; }
+  .blog-back, .d3-actions a { min-height: 44px; display: inline-flex; align-items: center; }
+}
