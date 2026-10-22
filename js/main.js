@@ -861,7 +861,16 @@ if (protoFrame) {
 /* ── 22. Portfolio Filters ───────────────────────────────── */
 const pfFilters = [...document.querySelectorAll('.pf-filter')];
 if (pfFilters.length) {
-  const pfCards = [...document.querySelectorAll('.portfolio-grid .proj-card')];
+  // Projects with a full case study come first, with a small badge.
+  const pfGrid = document.querySelector('.portfolio-grid');
+  [...pfGrid.querySelectorAll('.proj-card[data-case]')].reverse().forEach(card => {
+    pfGrid.prepend(card);
+    const thumb = card.querySelector('.proj-thumb');
+    if (thumb && !thumb.querySelector('.proj-case-badge')) {
+      thumb.insertAdjacentHTML('beforeend', '<span class="proj-case-badge">Case study</span>');
+    }
+  });
+  const pfCards = [...pfGrid.querySelectorAll('.proj-card')];
   const pfSearch = document.getElementById('pfSearch');
   const pfCount = document.getElementById('pfResultCount');
   const pfEmpty = document.getElementById('pfNoResults');
@@ -871,13 +880,27 @@ if (pfFilters.length) {
   );
   let activeFilter = 'all';
 
-  if (pfCount) pfCount.textContent = `Showing ${pfCards.length} of ${pfCards.length} projects`;
+  // "All" with no search shows the first few projects and a "Show all" button.
+  const PF_FIRST = 9;
+  let pfExpanded = false;
+  const pfMore = document.createElement('div');
+  pfMore.className = 'pf-more';
+  pfMore.innerHTML = '<button type="button" class="btn-ghost"></button>';
+  pfGrid.after(pfMore);
+  pfMore.querySelector('button').addEventListener('click', () => {
+    pfExpanded = true;
+    updatePortfolio();
+    pfCards[PF_FIRST]?.querySelector('.proj-link, a')?.focus({ preventScroll: true });
+  });
 
   function updatePortfolio() {
     const query = pfSearch ? pfSearch.value.trim().toLowerCase() : '';
-    let visible = 0;
+    const limit = activeFilter === 'all' && !query && !pfExpanded ? PF_FIRST : Infinity;
+    let matched = 0, visible = 0;
     pfCards.forEach(card => {
-      const show = inCat(card, activeFilter) && matchesSearch(card, query);
+      const match = inCat(card, activeFilter) && matchesSearch(card, query);
+      if (match) matched++;
+      const show = match && matched <= limit;
       card.hidden = !show;
       if (show) {
         visible++;
@@ -887,9 +910,12 @@ if (pfFilters.length) {
       }
     });
     if (pfCount) pfCount.textContent = `Showing ${visible} of ${pfCards.length} projects`;
-    if (pfEmpty) pfEmpty.hidden = visible !== 0;
+    if (pfEmpty) pfEmpty.hidden = matched !== 0;
+    pfMore.hidden = visible >= matched;
+    pfMore.querySelector('button').textContent = `Show all ${matched} projects`;
     if (window.ScrollTrigger) ScrollTrigger.refresh();
   }
+  updatePortfolio();
 
   pfFilters.forEach(btn => {
     const n = pfCards.filter(c => inCat(c, btn.dataset.filter)).length;
@@ -903,6 +929,28 @@ if (pfFilters.length) {
   });
   if (pfSearch) pfSearch.addEventListener('input', updatePortfolio);
 }
+
+/* ── 22a. Phone Action Bar ───────────────────────────────── */
+// On phones, WhatsApp and the free consultation stay one tap away at the
+// bottom of the screen (CSS shows it only on small screens and hides the
+// floating WhatsApp button there). The consultation link reuses the nav
+// button's href, so it is right on every page.
+(() => {
+  const consult = document.querySelector('.nav-cta');
+  if (!consult) return;
+  const bar = document.createElement('div');        // not <nav>: the site's nav styles would pin it to the top
+  bar.setAttribute('role', 'navigation');
+  bar.className = 'mobile-bar';
+  bar.setAttribute('aria-label', 'Quick contact');
+  bar.innerHTML = `
+    <a class="mobile-bar-wa" href="https://wa.me/263778686550" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.5-4-.1-.2-1.1-1.4-1.1-2.7 0-1.3.7-1.9.9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.2z"/></svg>
+      WhatsApp us
+    </a>
+    <a class="mobile-bar-cta" href="${consult.getAttribute('href')}">Free consultation &rarr;</a>`;
+  document.body.appendChild(bar);
+  document.body.classList.add('has-mobile-bar');
+})();
 
 /* ── 23. APK Downloads ───────────────────────────────────── */
 // Download buttons stay hidden until the app's version file exists in the
