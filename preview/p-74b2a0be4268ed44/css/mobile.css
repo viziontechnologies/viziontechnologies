@@ -1,0 +1,75 @@
+/* Phone layout (up to 760px). The pages style everything inline inside
+   <template id="tpl">, so these rules target that markup and use !important to
+   win over the inline styles. Desktop is unchanged. */
+@media (max-width: 760px) {
+  /* ── Header: logo + "Book a seat" on one row, the menu as one swipeable row ── */
+  header > div {
+    padding: 12px 16px 6px !important;
+    gap: 10px !important;
+    position: relative;
+  }
+  header > div > a:first-child img { height: 30px !important; }
+  header > div > a:first-child span { font-size: 17px !important; letter-spacing: 0.01em !important; }
+  nav[aria-label="Main"] {
+    width: 100%;
+    flex-wrap: nowrap !important;
+    gap: 22px !important;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    padding: 6px 0 4px;
+    /* fade the right edge so it's clear the row scrolls */
+    -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent);
+    mask-image: linear-gradient(90deg, #000 85%, transparent);
+  }
+  nav[aria-label="Main"]::-webkit-scrollbar { display: none; }
+  nav[aria-label="Main"] a { flex: none; white-space: nowrap; font-size: 15px; }
+  /* The menu's "Book a seat" pill moves up beside the logo */
+  nav[aria-label="Main"] a[href="book.html"]:last-child {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    padding: 9px 16px !important;
+    font-size: 14px;
+    border-bottom: 0 !important;
+  }
+
+  /* ── Hero background: the tall peach panel sat behind the form; keep it to the bottom ── */
+  [aria-hidden="true"][style*="right: 0"][style*="border-radius: 260px"] {
+    top: auto !important;
+    bottom: 0;
+    width: 78% !important;
+    height: 34% !important;
+    border-radius: 180px 0 0 0 !important;
+  }
+
+  /* ── Spacing: tighter side padding and section padding on small screens ── */
+  #app section { padding-left: 16px !important; padding-right: 16px !important; }
+  #app section[style*="padding: 56px"] { padding-top: 40px !important; padding-bottom: 40px !important; }
+  #app section[style*="padding: 72px"] { padding-top: 44px !important; padding-bottom: 44px !important; }
+  #app [style*="padding: 32px"] { padding: 20px !important; }
+  #app [style*="padding: 28px"] { padding: 22px !important; }
+
+  /* ── Forms: 16px text so phones don't zoom in, and 48px touch targets ── */
+  #app select, #app input, #app textarea { font-size: 16px !important; }
+
+  /* ── Home search box: From and To stacked, swap button beside them, Date and Search full width ── */
+  #book > div[style*="grid-template-columns: 1fr 40px 1fr"] {
+    grid-template-columns: minmax(0, 1fr) 48px !important;
+    padding: 8px !important;
+  }
+  #book > div[style*="grid-template-columns: 1fr 40px 1fr"] > * { height: 48px !important; }
+  #book > div[style*="grid-template-columns: 1fr 40px 1fr"] > :nth-child(1) { grid-column: 1; grid-row: 1; }
+  #book > div[style*="grid-template-columns: 1fr 40px 1fr"] > :nth-child(2) {
+    grid-column: 2; grid-row: 1 / span 2; width: 48px !important; height: auto !important;
+  }
+  #book > div[style*="grid-template-columns: 1fr 40px 1fr"] > :nth-child(2) svg { transform: rotate(90deg); }
+  #book > div[style*="grid-template-columns: 1fr 40px 1fr"] > :nth-child(3) { grid-column: 1; grid-row: 2; }
+  #book > div[style*="grid-template-columns: 1fr 40px 1fr"] > :nth-child(4),
+  #book > div[style*="grid-template-columns: 1fr 40px 1fr"] > :nth-child(5) { grid-column: 1 / -1 !important; }
+  #book > div[style*="grid-template-columns: 1fr 40px 1fr"] > :nth-child(5) { font-weight: 700 !important; }
+  #book > div:first-child { gap: 0 18px !important; }
+
+  /* ── Hero bus: don't let it take most of the first screen ── */
+  .drive-in img, .drive-in-left img, .approach img { max-height: 30vh !important; }
+}
