@@ -930,6 +930,56 @@ if (pfFilters.length) {
   if (pfSearch) pfSearch.addEventListener('input', updatePortfolio);
 }
 
+/* ── 22b. App Store (apps.html) ──────────────────────────── */
+// Platform tabs and search over .store-app tiles (data-platform="android web").
+// Rows hide when none of their tiles match; rows with data-static="all windows"
+// have no tiles and show only on those tabs, with no search typed.
+const storeTabs = [...document.querySelectorAll('.store-tab')];
+if (storeTabs.length) {
+  const apps = [...document.querySelectorAll('.store-app')];
+  const rows = [...document.querySelectorAll('.store-row')];
+  const featured = document.getElementById('storeFeatured');
+  const search = document.getElementById('storeSearch');
+  const count = document.getElementById('storeCount');
+  const empty = document.getElementById('storeEmpty');
+  const onPlatform = (el, p) => p === 'all' || (el.dataset.platform || '').split(' ').includes(p);
+  let platform = 'all';
+
+  function updateStore() {
+    const query = search ? search.value.trim().toLowerCase() : '';
+    let shown = 0;
+    apps.forEach(app => {
+      const show = onPlatform(app, platform) && (!query || query.split(/\s+/).every(t => app.textContent.toLowerCase().includes(t)));
+      app.hidden = !show;
+      if (show) {
+        shown++;
+        if (window.gsap) gsap.set(app, { opacity: 1, y: 0 });
+      }
+    });
+    rows.forEach(row => {
+      if (row === featured) row.hidden = platform !== 'all' || !!query;
+      else if (row.dataset.static) row.hidden = !!query || !row.dataset.static.split(' ').includes(platform) && platform !== 'all';
+      else row.hidden = !row.querySelector('.store-app:not([hidden])');
+    });
+    if (count) count.textContent = query ? `${shown} ${shown === 1 ? 'app' : 'apps'} found` : '';
+    if (empty) empty.hidden = shown !== 0 || !query;
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+  }
+
+  storeTabs.forEach(tab => {
+    const n = apps.filter(a => onPlatform(a, tab.dataset.platform)).length;
+    const badge = tab.querySelector('span');
+    if (badge) badge.textContent = n;
+    tab.addEventListener('click', () => {
+      storeTabs.forEach(t => t.setAttribute('aria-pressed', t === tab ? 'true' : 'false'));
+      platform = tab.dataset.platform;
+      updateStore();
+    });
+  });
+  if (search) search.addEventListener('input', updateStore);
+  updateStore();
+}
+
 /* ── 22a. Phone Action Bar ───────────────────────────────── */
 // On phones, WhatsApp and the free consultation stay one tap away at the
 // bottom of the screen (CSS shows it only on small screens and hides the

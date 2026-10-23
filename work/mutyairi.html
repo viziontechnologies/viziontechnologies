@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mutyairi case study: a learner's licence app for Zimbabwe — Vizion Technologies</title>
+
+  <meta name="description" content="How we built Mutyairi, an offline app with study notes, practice questions, mock exams, road signs and games for the Zimbabwe VID provisional (learner's licence) test.">
+  <meta name="author" content="Vizion Technologies">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://viziontechnologies.vercel.app/work/mutyairi.html">
+
+  <meta property="og:title" content="Case study: Mutyairi, pass your learner's licence test with notes, practice and games">
+  <meta property="og:description" content="The brief, the design decisions, real screenshots and how we built an offline learner's licence app for Zimbabwe.">
+  <meta property="og:image" content="https://viziontechnologies.vercel.app/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://viziontechnologies.vercel.app/work/mutyairi.html">
+  <meta property="og:site_name" content="Vizion Technologies">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Case study: Mutyairi, pass your learner's licence test with notes, practice and games">
+  <meta name="twitter:description" content="The brief, the design decisions, real screenshots and how we built Mutyairi.">
+  <meta name="twitter:image" content="https://viziontechnologies.vercel.app/assets/og-image.jpg">
+
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
+
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script defer src="../js/main.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script>
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        if (typeof gsap === 'undefined') document.documentElement.classList.add('force-reveal');
+      }, 1200);
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Case study: Mutyairi, pass your learner's licence test with notes, practice and games",
+    "description": "How Vizion Technologies built Mutyairi, an offline app for the Zimbabwe VID provisional test.",
+    "url": "https://viziontechnologies.vercel.app/work/mutyairi.html",
+    "author": { "@type": "Organization", "name": "Vizion Technologies" },
+    "publisher": { "@type": "Organization", "name": "Vizion Technologies", "logo": { "@type": "ImageObject", "url": "https://viziontechnologies.vercel.app/assets/logo.png" } }
+  }
+  </script>
+</head>
+<body>
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <div class="cursor" id="cur" aria-hidden="true"></div>
+  <div class="cursor-follower" id="curf" aria-hidden="true"></div>
+
+  <!-- Mobile Nav -->
+  <div class="mob-nav" id="mobNav" role="dialog" aria-label="Navigation menu" aria-modal="true" tabindex="-1">
+    <button class="mob-close" onclick="closeMob()" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <a href="../index.html#about" onclick="closeMob()">About</a>
+    <a href="../index.html#services" onclick="closeMob()">Services</a>
+    <a href="../index.html#process" onclick="closeMob()">How we work</a>
+    <a href="../index.html#pricing" onclick="closeMob()">Pricing</a>
+    <a href="../portfolio.html" onclick="closeMob()">Portfolio</a>
+    <a href="../apps.html" onclick="closeMob()">Our apps</a>
+    <a href="../index.html#contact" onclick="closeMob()">Contact</a>
+  </div>
+
+  <!-- Nav -->
+  <nav id="mainNav" role="navigation" aria-label="Main navigation">
+    <a href="../index.html" class="nav-logo" aria-label="Vizion Technologies — Home">
+      <img src="../assets/logo.png" alt="Vizion Technologies">
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#services">Services</a></li>
+      <li><a href="../index.html#process">How we work</a></li>
+      <li><a href="../index.html#pricing">Pricing</a></li>
+      <li><a href="../portfolio.html">Portfolio</a></li>
+      <li><a href="../apps.html">Our apps</a></li>
+      <li><a href="../index.html#contact" class="nav-cta">Free consultation</a></li>
+    </ul>
+    <button id="navHamburger" class="nav-hamburger" onclick="toggleMob()" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobNav">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <header class="blog-hero cs-hero" aria-label="Case study header">
+    <div class="blog-hero-inner">
+      <a href="../portfolio.html" class="blog-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to the portfolio
+      </a>
+      <div class="blog-cat">Case study &middot; Mutyairi</div>
+      <h1>Pass your learner's licence test<br><span>with notes, practice and games on your phone.</span></h1>
+      <p class="cs-lede">Mutyairi (&ldquo;driver&rdquo; in Shona) is our own app for people preparing for the Zimbabwe VID provisional test. It has short study notes, practice questions with explanations, timed mock exams, road signs and four learning games, and it works completely offline. This page shows how we built it.</p>
+
+      <dl class="cs-facts">
+        <div><dt>Who it's for</dt><dd>Learner drivers preparing for the VID provisional test</dd></div>
+        <div><dt>Runs on</dt><dd>Android phones, offline, no account needed</dd></div>
+        <div><dt>Built with</dt><dd>Flutter</dd></div>
+        <div><dt>Status</dt><dd>Version 1.9, free download for Android, October 2026</dd></div>
+      </dl>
+
+      <div class="cs-try-actions" data-apk-show="mutyairi" hidden>
+        <a href="https://github.com/viziontechnologies/downloads/releases/download/mutyairi-latest/mutyairi.apk" class="btn-primary" data-apk="mutyairi" data-apk-link hidden>Download for Android &darr;</a>
+      </div>
+
+      <div class="cs-3d" data-devices3d data-phone="mutyairi,mutyairigame" data-laptop="learner"></div>
+
+      <div class="app-jumplinks">
+        <a href="#problem" class="app-jumplink">The problem</a>
+        <a href="#process" class="app-jumplink">How we built it</a>
+        <a href="#screens" class="app-jumplink">Screens</a>
+        <a href="#decisions" class="app-jumplink">Key decisions</a>
+        <a href="#stack" class="app-jumplink">Tech stack</a>
+        <a href="#next" class="app-jumplink">What's next</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Problem -->
+  <section class="app-section cs-section" id="problem" aria-labelledby="problem-heading">
+    <div class="cs-wrap cs-split">
+      <div>
+        <p class="s-lbl reveal">01 &mdash; The problem</p>
+        <h2 class="s-title reveal" id="problem-heading">Learners study from a printed book, or pay to travel to town for oral lessons.</h2>
+      </div>
+      <div class="cs-prose reveal">
+        <p>The provisional test is 25 questions in 8 minutes, and you need 22 to pass. Most people prepare from a printed Highway Code or by paying for oral lessons, and the questions on who goes first at an intersection are where many fail.</p>
+        <p>We wanted one app that teaches the rules and lets you practise them, anywhere. It had to:</p>
+        <ul class="cs-list">
+          <li>Explain the rules in <strong>short, plain-English notes</strong>, using the words the VID test and the Highway Code use</li>
+          <li>Give <strong>practice questions with an explanation</strong> after every answer, and <strong>mock exams</strong> timed like the real test</li>
+          <li>Teach the <strong>road signs</strong> and the <strong>intersection rules</strong> in a way that sticks</li>
+          <li>Work <strong>without internet or data</strong>, with nothing to sign up for</li>
+          <li>Be <strong>small enough to share on WhatsApp</strong></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="app-section cs-section cs-alt" id="process" aria-labelledby="process-heading">
+    <div class="cs-wrap">
+      <div class="sec-hd">
+        <p class="s-lbl reveal">02 &mdash; How we built it</p>
+        <h2 class="s-title reveal" id="process-heading">The same six steps we use for every client.</h2>
+        <p class="s-sub reveal">Mutyairi is our own product, so we were the client. Here's what each step looked like.</p>
+      </div>
+
+      <ol class="cs-steps">
+        <li class="cs-step reveal">
+          <span class="cs-step-num">1</span>
+          <div>
+            <h3>Brief</h3>
+            <p>Notes, practice, mock exams and games for the provisional test in one offline app. The mock exam follows the real test: 25 questions, 8 minutes, pass mark 22.</p>
+          </div>
+        </li>
+        <li class="cs-step reveal">
+          <span class="cs-step-num">2</span>
+          <div>
+            <h3>Design decisions</h3>
+            <p>We grouped the Highway Code into eight topics, from Rules of the Road to Parking &amp; Emergencies, and gave every topic notes to read and questions to answer. The look is calm and light, with soft 3D pictures, so long study sessions don't feel tiring. More on the choices <a href="#decisions">below</a>.</p>
+          </div>
+        </li>
+        <li class="cs-step reveal">
+          <span class="cs-step-num">3</span>
+          <div>
+            <h3>Prototype</h3>
+            <p>Because this was our own app, we went straight to a working build and reviewed it screen by screen at phone size, changing the layout, wording and text sizes as we went.</p>
+          </div>
+        </li>
+        <li class="cs-step reveal">
+          <span class="cs-step-num">4</span>
+          <div>
+            <h3>Build in small pieces</h3>
+            <p>First the question bank and the mock exam, then the 52 SADC road signs with a signs quiz, then study notes for every topic, then four games, and finally a profile with a test-day countdown, daily goal, study streak, badges, reminders and dark mode. The app now has 149 questions.</p>
+          </div>
+        </li>
+        <li class="cs-step reveal">
+          <span class="cs-step-num">5</span>
+          <div>
+            <h3>Test and harden</h3>
+            <p>More than 60 automated tests check the questions, the right-of-way rules in every intersection, the stopping-distance maths, the notes and the screens. One test draws every road sign, after we found five signs that showed up blank; another checks every main screen on a small phone with large text.</p>
+          </div>
+        </li>
+        <li class="cs-step reveal">
+          <span class="cs-step-num">6</span>
+          <div>
+            <h3>Ship and support</h3>
+            <p>The Android app is signed and free to download. We cut the download from 58 MB to about 20 MB so it is easy to share on WhatsApp, and each release lists what changed on the app's About screen.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Screens -->
+  <section class="app-section cs-section" id="screens" aria-labelledby="screens-heading">
+    <div class="cs-wrap cs-shots-wrap">
+      <p class="s-lbl reveal">03 &mdash; Screens</p>
+      <h2 class="s-title reveal" id="screens-heading">What it looks like.</h2>
+      <p class="cs-shots-sub reveal">Screenshots of the real app with sample progress for a learner called Rudo. Scroll sideways to see them all.</p>
+      <div class="cs-shots reveal" tabindex="0" aria-label="Mutyairi screenshots">
+        <figure><img src="../assets/screenshots/mutyairi/1-home.webp" alt="Home screen with the test countdown, exam readiness, today's goal and a study streak" width="540" height="1161" loading="lazy"><figcaption>Home</figcaption></figure>
+        <figure><img src="../assets/screenshots/mutyairi/2-learn.webp" alt="Learn tab listing the eight topics with progress and notes read" width="540" height="1161" loading="lazy"><figcaption>Topics</figcaption></figure>
+        <figure><img src="../assets/screenshots/mutyairi/3-notes.webp" alt="Study notes on intersections with Highway Code page numbers and Remember boxes" width="540" height="1161" loading="lazy"><figcaption>Study notes</figcaption></figure>
+        <figure><img src="../assets/screenshots/mutyairi/4-question.webp" alt="Road sign question answered, showing the right answer in green and an explanation" width="540" height="1161" loading="lazy"><figcaption>Practice with explanations</figcaption></figure>
+        <figure><img src="../assets/screenshots/mutyairi/5-junction.webp" alt="Intersection Challenge game: tap the cars in right-of-way order" width="540" height="1161" loading="lazy"><figcaption>Intersection Challenge</figcaption></figure>
+        <figure><img src="../assets/screenshots/mutyairi/6-games.webp" alt="Games menu: Intersection Challenge, Sign Rush, Stop in Time and Safe or Not" width="540" height="1161" loading="lazy"><figcaption>Four games</figcaption></figure>
+        <figure><img src="../assets/screenshots/mutyairi/7-signs.webp" alt="Road signs book showing control signs" width="540" height="1161" loading="lazy"><figcaption>Road signs</figcaption></figure>
+        <figure><img src="../assets/screenshots/mutyairi/8-profile.webp" alt="Profile with the days until the test, streak and achievement badges" width="540" height="1161" loading="lazy"><figcaption>Profile and badges</figcaption></figure>
+      </div>
+      <p class="cs-shots-sub reveal">In dark mode on a real phone, from first launch.</p>
+      <div class="cs-shots reveal" tabindex="0" aria-label="Mutyairi dark mode screenshots from a real phone">
+        <figure><img src="../assets/screenshots/mutyairi/d1-welcome.webp" alt="Welcome screen with a green car and traffic light, asking what to call you" width="540" height="1103" loading="lazy"><figcaption>Welcome</figcaption></figure>
+        <figure><img src="../assets/screenshots/mutyairi/d2-test-date.webp" alt="Calendar to pick the date of your test" width="540" height="1103" loading="lazy"><figcaption>Pick your test date</figcaption></figure>
+        <figure><img src="../assets/screenshots/mutyairi/d3-how-it-works.webp" alt="How it works: learn, practise, mock exam, and a daily goal picker" width="540" height="1103" loading="lazy"><figcaption>How it works</figcaption></figure>
+        <figure><img src="../assets/screenshots/mutyairi/d4-home.webp" alt="Home screen in dark mode with exam readiness and quick practice" width="540" height="1103" loading="lazy"><figcaption>Home</figcaption></figure>
+        <figure><img src="../assets/screenshots/mutyairi/d5-notes.webp" alt="Study notes on intersections in dark mode" width="540" height="1103" loading="lazy"><figcaption>Study notes</figcaption></figure>
+        <figure><img src="../assets/screenshots/mutyairi/d6-games.webp" alt="Games menu with four games" width="540" height="1103" loading="lazy"><figcaption>Games</figcaption></figure>
+        <figure><img src="../assets/screenshots/mutyairi/d7-junction.webp" alt="Intersection Challenge with a stop sign, a yield sign and three cars" width="540" height="1103" loading="lazy"><figcaption>Intersection Challenge</figcaption></figure>
+        <figure><img src="../assets/screenshots/mutyairi/d8-safe-or-not.webp" alt="Safe or Not? card: pulling off the road to rest when you feel sleepy" width="540" height="1103" loading="lazy"><figcaption>Safe or Not?</figcaption></figure>
+        <figure><img src="../assets/screenshots/mutyairi/d9-sign-question.webp" alt="Quick test question about a roadworks sign" width="540" height="1103" loading="lazy"><figcaption>Sign question</figcaption></figure>
+        <figure><img src="../assets/screenshots/mutyairi/d10-profile.webp" alt="Profile with test countdown and locked achievement badges" width="540" height="1103" loading="lazy"><figcaption>Profile</figcaption></figure>
+        <figure><img src="../assets/screenshots/mutyairi/d11-progress.webp" alt="My progress: tests taken, score chart and progress by topic" width="540" height="1103" loading="lazy"><figcaption>My progress</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Decisions -->
+  <section class="app-section cs-section cs-alt" id="decisions" aria-labelledby="decisions-heading">
+    <div class="cs-wrap">
+      <div class="sec-hd">
+        <p class="s-lbl reveal">04 &mdash; Key decisions</p>
+        <h2 class="s-title reveal" id="decisions-heading">Four choices that make it easy to use and trust.</h2>
+        <p class="s-sub reveal">In plain English, without the jargon.</p>
+      </div>
+
+      <div class="cs-cards">
+        <article class="cs-card reveal">
+          <h3>Offline, with no account</h3>
+          <p>Everything is inside the app, so it works with no data bundle. There is no sign-up, no ads and no analytics, and progress is saved only on the phone.</p>
+        </article>
+        <article class="cs-card reveal">
+          <h3>The rules in our own words</h3>
+          <p>The Highway Code is copyright, so the notes and questions are written in our own words from its rules, with page numbers so learners can check the book. The wording follows the test: traffic circle, yield, hooter, robots.</p>
+        </article>
+        <article class="cs-card reveal">
+          <h3>Learn by playing</h3>
+          <p>Reading alone is boring. Intersection Challenge teaches who goes first; Stop in Time uses your real reaction time and the Code's stopping distances; Sign Rush and Safe or Not? drill the signs and rules against the clock.</p>
+        </article>
+        <article class="cs-card reveal">
+          <h3>Small enough to share</h3>
+          <p>Most learners get apps from a friend on WhatsApp, so size matters. One 20 MB file installs on any Android phone, old or new.</p>
+        </article>
+      </div>
+
+      <p class="cs-aside reveal">The road signs are the official SADC designs from Wikimedia Commons (public domain), and the 3D pictures were made for the app, with no third-party logos.</p>
+    </div>
+  </section>
+
+  <!-- Stack -->
+  <section class="app-section cs-section" id="stack" aria-labelledby="stack-heading">
+    <div class="cs-wrap">
+      <div class="sec-hd">
+        <p class="s-lbl reveal">05 &mdash; Tech stack</p>
+        <h2 class="s-title reveal" id="stack-heading">What it's made of.</h2>
+      </div>
+      <div class="cs-stack reveal">
+        <div><h3>App</h3><p>Flutter for Android, with light and dark themes and layouts checked down to small phones</p></div>
+        <div><h3>On the device</h3><p>Progress, bookmarks, mistakes, notes read and best scores saved on the phone; works offline</p></div>
+        <div><h3>Content</h3><p>149 questions, study notes for 8 topics and 52 SADC road signs as sharp vector images</p></div>
+        <div><h3>Games</h3><p>Drawn in Flutter: a top-down intersection with right-of-way rules, and a braking scene using stopping-distance maths</p></div>
+        <div><h3>Reminders</h3><p>Optional daily study reminders using the phone's own notifications, no internet needed</p></div>
+        <div><h3>Quality</h3><p>More than 60 automated tests, including drawing every road sign and checking screens on small phones</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next -->
+  <section class="app-section cs-section cs-alt" id="next" aria-labelledby="next-heading">
+    <div class="cs-wrap cs-split">
+      <div>
+        <p class="s-lbl reveal">06 &mdash; What's next</p>
+        <h2 class="s-title reveal" id="next-heading">Into learners' hands.</h2>
+      </div>
+      <div class="cs-prose reveal">
+        <p>Mutyairi is out now as a free Android download. These are on the list but not built yet:</p>
+        <ul class="cs-list">
+          <li>A Google Play listing</li>
+          <li>More questions, so mock exams repeat less often</li>
+          <li>Shona and Ndebele versions of the notes</li>
+          <li>More intersection scenarios for the game</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" aria-label="Talk to us">
+    <p class="s-lbl reveal" style="color:var(--accent);justify-content:center">Your project</p>
+    <h2 class="reveal">Want a learning app like this?</h2>
+    <p class="reveal">We follow the same steps for every client, and you see a clickable prototype before you pay for the build.</p>
+    <div class="cs-cta-actions reveal">
+      <a href="../index.html#contact" class="btn-primary">Book a free consultation &rarr;</a>
+      <a href="../portfolio.html" class="btn-ghost">See more of our work</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="footer-cta">
+      <div class="footer-cta-copy"><strong>Free prototype first.</strong> <span>See your system working before you pay for the build.</span></div>
+      <div class="footer-cta-actions">
+        <a href="../index.html#contact" class="btn-white">Start a project &rarr;</a>
+        <a href="https://wa.me/263778686550" class="footer-cta-wa" target="_blank" rel="noopener">WhatsApp +263 77 868 6550</a>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a href="../index.html" class="f-logo" aria-label="Vizion Technologies — Home">
+          <img src="../assets/logo.png" alt="Vizion Technologies" width="100" height="28" loading="lazy">
+        </a>
+        <p>Custom software for SMEs in Harare, Zimbabwe. We bring your vision into focus — before you pay a cent.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/vizion-technologies-895b94415/" target="_blank" rel="noopener" aria-label="Vizion on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+          <a href="https://github.com/viziontechnologies" target="_blank" rel="noopener" aria-label="Vizion on GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 00-3.64 22.41c.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 015.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0012 .5z"/></svg></a>
+          <a href="https://www.instagram.com/viziontechnologies/" target="_blank" rel="noopener" aria-label="Vizion on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/people/Vizion/61590870712927/" target="_blank" rel="noopener" aria-label="Vizion on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg></a>
+          <a href="https://www.tiktok.com/@viziontechnologies" target="_blank" rel="noopener" aria-label="Vizion on TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0115.54 3h-3.09v12.4a2.59 2.59 0 01-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 004.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg></a>
+          <a href="https://wa.me/263778686550" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#process">How we work</a></li>
+          <li><a href="../portfolio.html">Portfolio</a></li>
+          <li><a href="../index.html#contact">Contact us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Apps</h4>
+        <ul>
+          <li><a href="../apps/tylliq.html">Tylliq POS handbook</a></li>
+          <li><a href="../apps/tylliq.html#status">License status</a></li>
+          <li><a href="../apps/tylliq.html#pricing">Plans &amp; pricing</a></li>
+          <li><a href="../apps/tylliq.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="../blog/5-signs-pos-system.html">POS systems guide</a></li>
+          <li><a href="../index.html#pricing">Pricing</a></li>
+          <li><a href="../index.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="f-copy">&copy; 2026 Vizion Technologies. Harare, Zimbabwe. &middot; <a href="../privacy.html">Privacy</a></span>
+      <a href="https://wa.me/263778686550" class="f-wa" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp: +263 77 868 6550
+      </a>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <div class="wa-float" aria-label="Chat on WhatsApp">
+    <a class="wa-btn" href="https://wa.me/263778686550" target="_blank" rel="noopener" aria-label="Open WhatsApp chat">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+    <span class="wa-tooltip" aria-hidden="true">Chat on WhatsApp</span>
+  </div>
+
+  <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }</script>
+  <script type="module" src="../js/devices3d.js"></script>
+</body>
+</html>

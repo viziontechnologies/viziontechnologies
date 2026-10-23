@@ -39,8 +39,10 @@ const APPS = {
   dellinoo:   { name: 'Dellinoo',           kind: 'prototype', img: 'assets/screenshots/prototypes/dellinoo.jpg',   href: 'work/dellinoo.html',             theme: 'orders' },
   zimsec:     { name: 'ZIMSEC AI',          kind: 'prototype', img: 'assets/screenshots/prototypes/zimsec-ai.jpg',  href: 'portfolio.html#try-zimsec',      theme: 'study' },
   church:     { name: 'Church app',         kind: 'prototype', img: 'assets/screenshots/prototypes/church-app.jpg', href: 'portfolio.html#try-church',      theme: 'church' },
+  mutyairi:   { name: 'Mutyairi',           kind: 'real',      img: 'assets/screenshots/mutyairi/1-home.webp',      href: 'work/mutyairi.html',             theme: 'learner' },
+  mutyairigame:{ name: 'Mutyairi',          kind: 'real',      img: 'assets/screenshots/mutyairi/5-junction.webp',  href: 'work/mutyairi.html',             theme: 'learner' },
 };
-const HERO_APPS = ['agrixpert', 'tylliq', 'guesthouse', 'dellinoo', 'zimsec', 'church'];
+const HERO_APPS = ['agrixpert', 'mutyairi', 'tylliq', 'guesthouse', 'dellinoo', 'zimsec', 'church'];
 
 /* Laptop screens. img: a capture of one of our desktop prototypes;
    otherwise a dashboard drawn here (bars, not figures: sample UI). */
@@ -49,6 +51,7 @@ const THEMES = {
   farm:     { title: 'Farm overview', sub: 'Crops, livestock and tasks', nav: ['Overview', 'Crops', 'Livestock', 'Tasks', 'Market'], tiles: ['Crops', 'Livestock', 'Tasks'], chart: 'Rainfall this week', list: 'Today', accent: '#16a34a' },
   orders:   { title: 'Orders', sub: 'In stock and shipping from China', nav: ['Orders', 'Products', 'Customers', 'Deliveries', 'Payments'], tiles: ['New', 'In transit', 'Delivered'], chart: 'Orders this week', list: 'Latest orders', accent: '#eab308' },
   study:    { title: 'Study progress', sub: 'Practice by subject', nav: ['Subjects', 'Practice', 'Flashcards', 'Notes', 'Progress'], tiles: ['Maths', 'English', 'Science'], chart: 'Questions practised', list: 'Weak topics', accent: '#0f766e' },
+  learner:  { title: 'Learner progress', sub: "Ready for the learner's licence test", nav: ['Learn', 'Practice', 'Mock exams', 'Games', 'Progress'], tiles: ['Signs', 'Rules', 'Junctions'], chart: 'Questions practised', list: 'Weak topics', accent: '#1f8a4c' },
   church:   { title: 'Church admin', sub: 'Members, events and giving', nav: ['Members', 'Events', 'Sermons', 'Giving', 'Groups'], tiles: ['Attendance', 'Events', 'Giving'], chart: 'Attendance', list: 'Coming up', accent: '#7c3aed' },
   shop:     { img: 'assets/screenshots/prototypes/rutz-pos.jpg' },
   bookings: { img: 'assets/screenshots/prototypes/innsuite.jpg' },

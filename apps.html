@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our apps — Vizion Technologies</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Download apps made by Vizion Technologies in Harare: Mutyairi for the learner's licence test, Tylliq POS for small shops, and demos you can try in your browser.">
+  <meta name="author" content="Vizion Technologies">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://viziontechnologies.vercel.app/apps.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Our apps — Vizion Technologies">
+  <meta property="og:description" content="Download our Android apps or try demos in your browser.">
+  <meta property="og:image" content="https://viziontechnologies.vercel.app/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://viziontechnologies.vercel.app/apps.html">
+  <meta property="og:site_name" content="Vizion Technologies">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Our apps — Vizion Technologies">
+  <meta name="twitter:description" content="Download our Android apps or try demos in your browser.">
+  <meta name="twitter:image" content="https://viziontechnologies.vercel.app/assets/og-image.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- GSAP -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script defer src="js/main.js" onerror="document.documentElement.classList.add('force-reveal')"></script>
+  <script>
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        if (typeof gsap === 'undefined') document.documentElement.classList.add('force-reveal');
+      }, 1200);
+    });
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Vizion Technologies apps",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "item": { "@type": "SoftwareApplication", "name": "Mutyairi", "operatingSystem": "Android", "applicationCategory": "EducationalApplication", "url": "https://viziontechnologies.vercel.app/work/mutyairi.html", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "author": { "@type": "Organization", "name": "Vizion Technologies" } } },
+      { "@type": "ListItem", "position": 2, "item": { "@type": "SoftwareApplication", "name": "Tylliq POS", "operatingSystem": "Android", "applicationCategory": "BusinessApplication", "url": "https://viziontechnologies.vercel.app/apps/tylliq.html", "author": { "@type": "Organization", "name": "Vizion Technologies" } } }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cur" aria-hidden="true"></div>
+  <div class="cursor-follower" id="curf" aria-hidden="true"></div>
+
+  <!-- Cookie Notice -->
+  <div class="cookie-bar" id="cookieBar" role="region" aria-label="Cookie notice">
+    <p>We use only essential storage (like remembering this notice). No tracking. <a href="privacy.html">Privacy policy</a></p>
+    <button class="cookie-accept" id="cookieAccept">Accept</button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div class="mob-nav" id="mobNav" role="dialog" aria-label="Navigation menu" aria-modal="true" tabindex="-1">
+    <button class="mob-close" onclick="closeMob()" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <a href="index.html#about" onclick="closeMob()">About</a>
+    <a href="index.html#services" onclick="closeMob()">Services</a>
+    <a href="index.html#process" onclick="closeMob()">How we work</a>
+    <a href="index.html#pricing" onclick="closeMob()">Pricing</a>
+    <a href="portfolio.html" onclick="closeMob()">Portfolio</a>
+    <a href="apps.html" onclick="closeMob()">Our apps</a>
+    <a href="index.html#contact" onclick="closeMob()">Contact</a>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="mainNav" class="solid" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="Vizion Technologies — Home">
+      <img src="assets/logo.png" alt="Vizion Technologies" width="120" height="34">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#process">How we work</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="apps.html" class="active">Our apps</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Free consultation</a></li>
+    </ul>
+    <button class="nav-hamburger" onclick="toggleMob()" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobNav">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── Store header ───────────────────────────────────────────── -->
+  <section class="intro page-top store-hero" aria-labelledby="store-heading">
+    <p class="s-lbl reveal">Our apps</p>
+    <h1 class="s-title reveal" id="store-heading">Download our apps.</h1>
+    <p class="s-sub reveal">Apps we build and run ourselves. Download them straight to your phone or computer, or try a demo in your browser. No sign-up needed to download.</p>
+
+    <div class="store-tabs" role="group" aria-label="Filter apps by platform">
+      <button class="store-tab" data-platform="all" aria-pressed="true">All <span></span></button>
+      <button class="store-tab" data-platform="android" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
+        Android <span></span>
+      </button>
+      <button class="store-tab" data-platform="windows" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        Windows <span></span>
+      </button>
+      <button class="store-tab" data-platform="web" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+        In your browser <span></span>
+      </button>
+    </div>
+
+    <div class="pf-search-wrap">
+      <label for="storeSearch">Search apps</label>
+      <input id="storeSearch" type="search" placeholder="Try driving, shop, church, study…" autocomplete="off">
+      <p id="storeCount" class="pf-result-count" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="store-body" aria-label="Apps">
+
+    <!-- Featured -->
+    <div class="store-row" id="storeFeatured">
+      <div class="store-row-hd"><h2>New</h2></div>
+      <article class="store-feature reveal" aria-label="Mutyairi, featured app">
+        <div class="store-feature-img">
+          <img src="assets/cards/mutyairi.webp" alt="Three Mutyairi screens: a road sign question, the home screen and the junction game" width="1200" height="675">
+        </div>
+        <div class="store-feature-body">
+          <div class="store-id">
+            <div class="store-icon"><img src="assets/apps/mutyairi.webp" alt="" width="192" height="192"></div>
+            <div>
+              <h3>Mutyairi</h3>
+              <div class="store-dev">Vizion Technologies</div>
+              <div class="store-cat">Education &middot; Learner's licence</div>
+            </div>
+          </div>
+          <p>Pass your learner's licence test first time. 149 practice questions, 52 road signs, study notes from the Highway Code, timed mock exams and four driving games. Works offline, no account, no ads.</p>
+          <div class="store-chips">
+            <span class="store-chip is-dl">Free</span>
+            <span class="store-chip">Android 7+</span>
+            <span class="store-chip">Works offline</span>
+          </div>
+          <p class="store-meta" data-apk-show="mutyairi" hidden><span data-apk-meta></span></p>
+          <div class="store-actions">
+            <a href="https://github.com/viziontechnologies/downloads/releases/download/mutyairi-latest/mutyairi.apk" class="btn-primary" data-apk="mutyairi" data-apk-link hidden>Download APK &darr;</a>
+            <a href="work/mutyairi.html" class="btn-ghost">Screenshots &amp; details</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Android -->
+    <div class="store-row">
+      <div class="store-row-hd">
+        <h2>Download for Android</h2>
+        <p>Install the APK on any Android phone. <a href="#install" class="store-more">How to install &rarr;</a></p>
+      </div>
+      <div class="store-grid">
+
+        <article class="store-app reveal" data-platform="android" aria-label="Mutyairi">
+          <div class="store-app-shot"><img src="assets/cards/mutyairi.webp" alt="" width="1200" height="675" loading="lazy"></div>
+          <div class="store-app-body">
+            <div class="store-id">
+              <div class="store-icon"><img src="assets/apps/mutyairi.webp" alt="" width="192" height="192" loading="lazy"></div>
+              <div>
+                <h3>Mutyairi</h3>
+                <div class="store-dev">Vizion Technologies</div>
+                <div class="store-cat">Education &middot; Driving</div>
+              </div>
+            </div>
+            <p>Study for the Zimbabwe learner's licence test: notes, practice questions, road signs, mock exams and games. Offline, no ads.</p>
+            <div class="store-chips"><span class="store-chip is-dl">Free</span><span class="store-chip">Android</span><span class="store-chip">Offline</span></div>
+            <p class="store-meta" data-apk-show="mutyairi" hidden><span data-apk-meta></span></p>
+            <div class="store-actions">
+              <a href="https://github.com/viziontechnologies/downloads/releases/download/mutyairi-latest/mutyairi.apk" class="btn-primary" data-apk="mutyairi" data-apk-link hidden>Download &darr;</a>
+              <a href="work/mutyairi.html" class="store-more">Details &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="store-app reveal" data-platform="android" aria-label="Tylliq POS">
+          <div class="store-app-shot"><img src="assets/cards/tylliq-pos.webp" alt="" width="1200" height="675" loading="lazy"></div>
+          <div class="store-app-body">
+            <div class="store-id">
+              <div class="store-icon"><img src="assets/apps/tylliq.webp" alt="" width="192" height="192" loading="lazy"></div>
+              <div>
+                <h3>Tylliq POS</h3>
+                <div class="store-dev">Vizion Technologies</div>
+                <div class="store-cat">Business &middot; Point of sale</div>
+              </div>
+            </div>
+            <p>Offline-first point of sale for small shops: sell, track stock and print receipts. Phones sync with each other over the shop's own Wi-Fi.</p>
+            <div class="store-chips"><span class="store-chip">Android</span><span class="store-chip">Offline-first</span><span class="store-chip is-demo">In active development</span></div>
+            <p class="store-meta" data-apk-show="tylliq" hidden><span data-apk-meta></span></p>
+            <div class="store-actions">
+              <a href="https://github.com/viziontechnologies/downloads/releases/download/tylliq-latest/tylliq.apk" class="btn-primary" data-apk="tylliq" data-apk-link hidden>Download &darr;</a>
+              <a href="apps/tylliq.html" class="store-more">Setup &amp; licence &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Windows -->
+    <div class="store-row" data-static="windows">
+      <div class="store-row-hd"><h2>Windows</h2></div>
+      <div class="store-empty">
+        <p><strong>No Windows apps to download yet.</strong> When we publish one, it will appear here. Need one of our apps on a computer, or a desktop system of your own? Talk to us.</p>
+        <a href="https://wa.me/263778686550?text=Hi%2C%20I%27m%20asking%20about%20a%20Windows%20app" class="btn-ghost" target="_blank" rel="noopener">Ask on WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- Browser demos -->
+    <div class="store-row">
+      <div class="store-row-hd">
+        <h2>Try in your browser</h2>
+        <p>Clickable prototypes with sample data. Nothing to install.</p>
+      </div>
+      <div class="store-grid">
+
+        <article class="store-app reveal" data-platform="web" aria-label="Tylliq POS prototype">
+          <div class="store-app-shot"><img src="assets/cards/tylliq-pos.webp" alt="" width="1200" height="675" loading="lazy"></div>
+          <div class="store-app-body">
+            <div class="store-id">
+              <div class="store-icon"><img src="assets/apps/tylliq.webp" alt="" width="192" height="192" loading="lazy"></div>
+              <div><h3>Tylliq POS</h3><div class="store-dev">Vizion Technologies</div><div class="store-cat">Business &middot; Point of sale</div></div>
+            </div>
+            <p>Add products to the cart, check out, restock and see how a second phone pairs by QR code.</p>
+            <div class="store-chips"><span class="store-chip is-demo">Prototype</span><span class="store-chip">Sample data</span></div>
+            <div class="store-actions">
+              <a href="prototypes/tylliq.html" class="btn-ghost" target="_blank" rel="noopener">Open &#8599;</a>
+              <a href="work/tylliq.html" class="store-more">Case study &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="store-app reveal" data-platform="web" aria-label="ZIMSEC AI prototype">
+          <div class="store-app-shot"><img src="assets/cards/zimsec-ai.webp" alt="" width="1200" height="675" loading="lazy"></div>
+          <div class="store-app-body">
+            <div class="store-id">
+              <div class="store-icon" aria-hidden="true">&#x1F4DA;</div>
+              <div><h3>ZIMSEC AI</h3><div class="store-dev">Vizion Technologies</div><div class="store-cat">Education &middot; Study</div></div>
+            </div>
+            <p>An offline AI study assistant for Zimbabwean students: tutor, practice exams, flashcards and notes that run on the phone.</p>
+            <div class="store-chips"><span class="store-chip is-demo">Prototype</span><span class="store-chip">Study</span></div>
+            <div class="store-actions">
+              <a href="prototypes/zimsec-ai.html" class="btn-ghost" target="_blank" rel="noopener">Open &#8599;</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="store-app reveal" data-platform="web" aria-label="AgriXpert prototype">
+          <div class="store-app-shot"><img src="assets/cards/agrixpert.webp" alt="" width="1200" height="675" loading="lazy"></div>
+          <div class="store-app-body">
+            <div class="store-id">
+              <div class="store-icon" aria-hidden="true">&#x1F33E;</div>
+              <div><h3>AgriXpert</h3><div class="store-dev">Vizion Technologies</div><div class="store-cat">Agriculture</div></div>
+            </div>
+            <p>Smart-farming tools, an AI farming assistant, weather and a marketplace, in English, Shona and Swahili.</p>
+            <div class="store-chips"><span class="store-chip is-demo">Prototype</span><span class="store-chip">In development</span></div>
+            <div class="store-actions">
+              <a href="prototypes/agrixpert.html" class="btn-ghost" target="_blank" rel="noopener">Open &#8599;</a>
+              <a href="work/agrixpert.html" class="store-more">Case study &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="store-app reveal" data-platform="web" aria-label="Guesthouse manager demo">
+          <div class="store-app-shot"><img src="assets/cards/guesthouse.webp" alt="" width="1200" height="675" loading="lazy"></div>
+          <div class="store-app-body">
+            <div class="store-id">
+              <div class="store-icon" aria-hidden="true">&#x1F3E8;</div>
+              <div><h3>Guesthouse manager</h3><div class="store-dev">Vizion Technologies</div><div class="store-cat">Hospitality &middot; Staff app</div></div>
+            </div>
+            <p>A demo staff app for bookings and check-ins, guest records, housekeeping, rooms and prices, all from a phone.</p>
+            <div class="store-chips"><span class="store-chip is-demo">Demo</span><span class="store-chip">Hospitality</span></div>
+            <div class="store-actions">
+              <a href="prototypes/guesthouse.html" class="btn-ghost" target="_blank" rel="noopener">Open &#8599;</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="store-app reveal" data-platform="web" aria-label="Church app demo">
+          <div class="store-app-shot"><img src="assets/cards/church-app.webp" alt="" width="1200" height="675" loading="lazy"></div>
+          <div class="store-app-body">
+            <div class="store-id">
+              <div class="store-icon" aria-hidden="true">&#x26EA;</div>
+              <div><h3>Church app</h3><div class="store-dev">Vizion Technologies</div><div class="store-cat">Community &middot; Church</div></div>
+            </div>
+            <p>A demo church app: live service streaming, sermons, events with RSVP, a prayer wall and online giving.</p>
+            <div class="store-chips"><span class="store-chip is-demo">Demo</span><span class="store-chip">Church</span></div>
+            <div class="store-actions">
+              <a href="prototypes/church-app.html" class="btn-ghost" target="_blank" rel="noopener">Open &#8599;</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <p class="pf-no-results" id="storeEmpty" hidden>No apps match that search. Try another word, or <a href="https://wa.me/263778686550" target="_blank" rel="noopener">ask us on WhatsApp</a>.</p>
+
+    <!-- Install help -->
+    <div class="store-row" id="install" data-static="all android">
+      <div class="store-row-hd"><h2>How to install an Android app from here</h2></div>
+      <ol class="store-help">
+        <li><strong>Tap Download</strong> on the app you want. The APK file saves to your phone.</li>
+        <li><strong>Open the file</strong> from the download notification, or from Files &rarr; Downloads.</li>
+        <li>If Android asks, <strong>allow your browser or Files app to install apps</strong>. You can switch this off again afterwards.</li>
+        <li><strong>Tap Install</strong>, then Open. Updates install the same way, over the old version, and keep your data.</li>
+      </ol>
+      <p class="store-note">Every APK here is signed by Vizion Technologies and served from our public <a href="https://github.com/viziontechnologies/downloads/releases" target="_blank" rel="noopener">GitHub releases</a>, where each version lists its SHA-256 checksum. Because these apps aren't from the Play Store, Android may show a warning before installing. Stuck? <a href="https://wa.me/263778686550" target="_blank" rel="noopener">Message us on WhatsApp</a> and we'll help.</p>
+    </div>
+
+  </section>
+
+  <footer role="contentinfo">
+    <div class="footer-cta">
+      <div class="footer-cta-copy"><strong>Free prototype first.</strong> <span>See your system working before you pay for the build.</span></div>
+      <div class="footer-cta-actions">
+        <a href="index.html#contact" class="btn-white">Start a project &rarr;</a>
+        <a href="https://wa.me/263778686550" class="footer-cta-wa" target="_blank" rel="noopener">WhatsApp +263 77 868 6550</a>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a href="index.html" class="f-logo" aria-label="Vizion Technologies — Home">
+          <img src="assets/logo.png" alt="Vizion Technologies" width="100" height="28" loading="lazy">
+        </a>
+        <p>Custom software built in Harare, Zimbabwe. We bring your vision into focus — before you pay a cent.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/vizion-technologies-895b94415/" target="_blank" rel="noopener" aria-label="Vizion on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+          <a href="https://github.com/viziontechnologies" target="_blank" rel="noopener" aria-label="Vizion on GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 00-3.64 22.41c.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 015.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0012 .5z"/></svg></a>
+          <a href="https://www.instagram.com/viziontechnologies/" target="_blank" rel="noopener" aria-label="Vizion on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/people/Vizion/61590870712927/" target="_blank" rel="noopener" aria-label="Vizion on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg></a>
+          <a href="https://www.tiktok.com/@viziontechnologies" target="_blank" rel="noopener" aria-label="Vizion on TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0115.54 3h-3.09v12.4a2.59 2.59 0 01-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 004.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg></a>
+          <a href="https://wa.me/263778686550" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#process">How we work</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="apps.html">Our apps</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="index.html#services">Fleet &amp; Rental</a></li>
+          <li><a href="index.html#services">Inventory Systems</a></li>
+          <li><a href="index.html#services">Web &amp; Mobile Apps</a></li>
+          <li><a href="index.html#stack">Tech stack</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="f-copy">&copy; 2026 Vizion Technologies. Harare, Zimbabwe. &middot; <a href="privacy.html">Privacy</a></span>
+      <span class="f-built">Built by <a href="index.html">Vizion</a></span>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating Button -->
+  <div class="wa-float" aria-label="Chat on WhatsApp">
+    <a class="wa-btn"
+       href="https://wa.me/263778686550"
+       target="_blank"
+       rel="noopener"
+       aria-label="Open WhatsApp chat">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    </a>
+    <span class="wa-tooltip" aria-hidden="true">Chat on WhatsApp</span>
+  </div>
+
+</body>
+</html>
