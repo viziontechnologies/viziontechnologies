@@ -675,33 +675,6 @@ blockquote.test-q { font-size: .92rem; color: var(--t2); line-height: 1.8; font-
 .ins-link { font-size: .82rem; color: var(--accent); font-weight: 600; text-decoration: none; margin-top: auto; transition: gap .2s; display: inline-flex; gap: 4px; align-items: center; }
 .ins-link:hover { gap: 8px; }
 
-/* ── Our Apps ───────────────────────────────────────────────── */
-.apps { background: var(--bg-2); }
-.app-spotlight {
-  background: #fff; border: 1px solid var(--bdr); border-radius: 24px;
-  padding: 2.5rem; box-shadow: var(--sh-xs);
-  display: flex; flex-direction: column; gap: 1.1rem;
-  max-width: 720px;
-}
-.app-spotlight + .app-spotlight { margin-top: 1.5rem; }
-.apps-all { margin-top: 2rem; }
-.app-spotlight-top { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-.app-spotlight-icon {
-  width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
-  background: var(--accent-bg); color: var(--accent);
-  display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
-}
-.app-spotlight h3 { font-size: 1.3rem; font-weight: 800; color: var(--text); letter-spacing: -.02em; }
-.app-spotlight-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: .66rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
-  color: var(--amber); background: var(--amber-lt); padding: .3rem .7rem; border-radius: 100px;
-  font-family: 'DM Mono', monospace;
-}
-.app-spotlight-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
-.app-spotlight p { font-size: .92rem; color: var(--t3); line-height: 1.85; font-weight: 300; }
-.app-spotlight-actions { display: flex; gap: .9rem; flex-wrap: wrap; margin-top: .4rem; }
-
 /* ── App Handbook Pages ───────────────────────────────────────── */
 .app-jumplinks { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.6rem; }
 .app-jumplink {
