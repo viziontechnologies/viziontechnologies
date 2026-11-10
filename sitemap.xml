@@ -73,6 +73,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://viziontechnologies.vercel.app/work/car-rental.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://viziontechnologies.vercel.app/work/vizion-portal.html</loc>
     <lastmod>2026-10-21</lastmod>
     <changefreq>monthly</changefreq>

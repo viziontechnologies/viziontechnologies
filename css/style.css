@@ -1430,6 +1430,14 @@ html.force-reveal .hero-h1 .ln span {
 .cs-shots figure { flex: none; width: 200px; scroll-snap-align: start; }
 .cs-shots img { width: 100%; height: auto; display: block; border-radius: 18px; border: 1px solid var(--bdr2); box-shadow: var(--sh-sm); }
 .cs-shots figcaption { font-size: .78rem; color: var(--t3); margin-top: .6rem; text-align: center; }
+/* Desktop-shaped screenshots (websites) */
+.cs-shots--wide figure { width: min(560px, 82vw); }
+.cs-shots--wide img { border-radius: 12px; }
+
+/* Case study header image, for projects shown by screenshot instead of the 3D devices */
+.cs-hero-shot { margin: 2.2rem 0 0; }
+.cs-hero-shot img { width: 100%; height: auto; display: block; border-radius: 16px; border: 1px solid var(--bdr2); box-shadow: var(--sh-lg); }
+.cs-hero-shot figcaption { font-size: .78rem; color: var(--t3); margin-top: .7rem; text-align: center; }
 
 /* ── Hero 3D scene (js/hero3d.js) ─────────────────────────────
    The canvas box is empty until WebGL draws; then .has-3d swaps the
